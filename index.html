@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delta Consultora</title>
+<meta name="description" content="Delta Consultora — consultoría en procesos, arquitectura empresarial y gestión organizacional.">
+
+<!-- Tipografías de marca: League Spartan (principal) e IBM Plex Mono (etiquetas/datos), según Manual de Marca Delta v1 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+
+<!-- Favicon: triángulo de marca (celeste / azul medio), reproducido en SVG -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpolygon points='20,4 4,36 20,36' fill='%235FCBF5'/%3E%3Cpolygon points='20,4 36,36 20,36' fill='%232F86D8'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- ============================= -->
+<!-- 1. HEADER                     -->
+<!-- ============================= -->
+<header class="site-header" id="site-header">
+  <div class="container site-header__inner">
+
+    <a href="#inicio" class="logo" aria-label="Delta Consultora — inicio">
+      <svg class="logo__mark" viewBox="0 0 40 40" width="34" height="34" aria-hidden="true">
+        <polygon points="20,4 4,36 20,36" fill="var(--celeste-delta)"/>
+        <polygon points="20,4 36,36 20,36" fill="var(--azul-medio)"/>
+        <polygon points="20,4 28,36 20,36" fill="var(--navy)" opacity="0.45" style="mix-blend-mode:multiply"/>
+      </svg>
+      <span class="logo__text">
+        <span class="logo__word">Delta</span>
+        <span class="logo__sub">Consultora</span>
+      </span>
+    </a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Abrir menú de navegación">
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+
+    <nav class="primary-nav" id="primary-nav" aria-label="Navegación principal">
+      <ul class="primary-nav__list">
+        <li><a href="#inicio" class="primary-nav__link">Inicio</a></li>
+        <li><a href="#quienes-somos" class="primary-nav__link">Quiénes somos</a></li>
+        <li><a href="#valores" class="primary-nav__link">Nuestros valores</a></li>
+        <li><a href="#servicios" class="primary-nav__link">Servicios</a></li>
+        <li><a href="#casos-exito" class="primary-nav__link">Casos de éxito</a></li>
+        <li><a href="#contacto" class="primary-nav__link primary-nav__link--cta">Contacto</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================= -->
+  <!-- 2. HERO                        -->
+  <!-- ============================= -->
+  <section class="hero" id="inicio">
+    <!-- FALTA: reemplazar el fondo geométrico por una fotografía institucional real.
+         Para usar una imagen: en styles.css, en .hero, agregar
+         background-image: linear-gradient(...), url('ruta/a/la/imagen.jpg'); -->
+    <div class="hero__bg" aria-hidden="true">
+      <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+        <polygon points="0,600 260,120 520,600" fill="var(--azul-profundo)" opacity="0.9"/>
+        <polygon points="180,600 420,180 660,600" fill="var(--navy)" opacity="0.75"/>
+        <polygon points="380,600 560,260 800,600" fill="var(--azul-medio)" opacity="0.55"/>
+        <polygon points="560,600 700,340 840,600" fill="var(--celeste-delta)" opacity="0.35"/>
+      </svg>
+    </div>
+
+    <div class="container hero__content">
+      <!-- FALTA: título principal definitivo -->
+      <h1 class="hero__title">[Falta contenido: título principal del hero]</h1>
+      <!-- FALTA: bajada / texto corto de apoyo -->
+      <p class="hero__subtitle">[Falta contenido: texto breve de bajada que resuma la propuesta de valor de Delta Consultora]</p>
+      <a href="#contacto" class="btn btn--primary">Contactanos</a>
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- 3. QUIÉNES SOMOS               -->
+  <!-- ============================= -->
+  <section class="about" id="quienes-somos">
+    <div class="container about__grid">
+
+      <div class="about__text">
+        <span class="eyebrow">Quiénes somos</span>
+        <h2>Conocé a Delta Consultora</h2>
+        <!-- FALTA: párrafo de presentación de la empresa -->
+        <p>[Falta contenido: párrafo de presentación de Delta Consultora — a qué se dedica, trayectoria, enfoque de trabajo y alcance]</p>
+      </div>
+
+      <div class="about__image">
+        <!-- FALTA: imagen institucional (equipo, oficina, trabajo con clientes) -->
+        <div class="about__image-placeholder" role="img" aria-label="Imagen institucional pendiente de carga">
+          <svg viewBox="0 0 40 40" width="56" height="56" aria-hidden="true">
+            <polygon points="20,4 4,36 20,36" fill="var(--celeste-delta)"/>
+            <polygon points="20,4 36,36 20,36" fill="var(--azul-medio)"/>
+          </svg>
+          <span>[Falta imagen institucional]</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- 4. NUESTROS VALORES            -->
+  <!-- ============================= -->
+  <section class="values" id="valores">
+    <div class="container">
+      <span class="eyebrow">Nuestros valores</span>
+      <h2 class="section-title">Misión, visión y lo que nos define</h2>
+
+      <div class="values__mission-vision">
+        <div class="mv-block">
+          <h3>Misión</h3>
+          <!-- FALTA: misión de Delta Consultora -->
+          <p>[Falta contenido: misión de Delta Consultora]</p>
+        </div>
+        <div class="mv-block">
+          <h3>Visión</h3>
+          <!-- FALTA: visión de Delta Consultora -->
+          <p>[Falta contenido: visión de Delta Consultora]</p>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <!-- FALTA: título y descripción del valor/diferencial 1 -->
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Zm0 9L2 6v11l10 5 10-5V6l-10 5Z" fill="currentColor"/></svg>
+          </div>
+          <h3 class="card__title">[Falta: valor/diferencial 1]</h3>
+          <p class="card__desc">[Falta contenido: descripción breve del valor/diferencial 1]</p>
+        </article>
+
+        <!-- FALTA: título y descripción del valor/diferencial 2 -->
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 12c5 0 9 2.5 9 5.5V22H3v-2.5C3 16.5 7 14 12 14Z" fill="currentColor"/></svg>
+          </div>
+          <h3 class="card__title">[Falta: valor/diferencial 2]</h3>
+          <p class="card__desc">[Falta contenido: descripción breve del valor/diferencial 2]</p>
+        </article>
+
+        <!-- FALTA: título y descripción del valor/diferencial 3 -->
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.2 3.8 9.9 9 11 5.2-1.1 9-5.8 9-11V5l-9-4Zm-1 15-4-4 1.4-1.4L11 13.2l6.6-6.6L19 8l-8 8Z" fill="currentColor"/></svg>
+          </div>
+          <h3 class="card__title">[Falta: valor/diferencial 3]</h3>
+          <p class="card__desc">[Falta contenido: descripción breve del valor/diferencial 3]</p>
+        </article>
+
+        <!-- FALTA: título y descripción del valor/diferencial 4 -->
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2 1 12h3v9h6v-6h4v6h6v-9h3L12 2Z" fill="currentColor"/></svg>
+          </div>
+          <h3 class="card__title">[Falta: valor/diferencial 4]</h3>
+          <p class="card__desc">[Falta contenido: descripción breve del valor/diferencial 4]</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- 5. NUESTROS SERVICIOS          -->
+  <!-- ============================= -->
+  <section class="services" id="servicios">
+    <div class="container">
+      <span class="eyebrow">Servicios</span>
+      <h2 class="section-title">Nuestros servicios</h2>
+
+      <div class="cards-grid">
+        <!-- FALTA: nombre y descripción del servicio 1 -->
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v4H4V4Zm0 6h16v4H4v-4Zm0 6h10v4H4v-4Z" fill="currentColor"/></svg>
+          </div>
+          <h3 class="card__title">[Falta: nombre del servicio 1]</h3>
+          <p class="card__desc">[Falta contenido: descripción breve del servicio 1]</p>
+        </article>
+
+        <!-- FALTA: nombre y descripción del servicio 2 -->
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3V3Zm10 0h8v8h-8V3ZM3 13h8v8H3v-8Zm10 0h8v8h-8v-8Z" fill="currentColor"/></svg>
+          </div>
+          <h3 class="card__title">[Falta: nombre del servicio 2]</h3>
+          <p class="card__desc">[Falta contenido: descripción breve del servicio 2]</p>
+        </article>
+
+        <!-- FALTA: nombre y descripción del servicio 3 -->
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 17 9 11l4 4 8-8M21 7v6M21 7h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="card__title">[Falta: nombre del servicio 3]</h3>
+          <p class="card__desc">[Falta contenido: descripción breve del servicio 3]</p>
+        </article>
+
+        <!-- FALTA: nombre y descripción del servicio 4 -->
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm8.4-3a8.4 8.4 0 0 0-.15-1.55l2.1-1.64-2-3.46-2.48 1a8.6 8.6 0 0 0-2.68-1.55L14.8 2h-4l-.4 2.8a8.6 8.6 0 0 0-2.68 1.55l-2.48-1-2 3.46 2.1 1.64A8.4 8.4 0 0 0 5.2 12c0 .53.05 1.05.15 1.55l-2.1 1.64 2 3.46 2.48-1a8.6 8.6 0 0 0 2.68 1.55L10.8 22h4l.4-2.8a8.6 8.6 0 0 0 2.68-1.55l2.48 1 2-3.46-2.1-1.64c.1-.5.15-1.02.15-1.55Z" fill="currentColor"/></svg>
+          </div>
+          <h3 class="card__title">[Falta: nombre del servicio 4]</h3>
+          <p class="card__desc">[Falta contenido: descripción breve del servicio 4]</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- 6. CASOS DE ÉXITO              -->
+  <!-- ============================= -->
+  <section class="case-study" id="casos-exito">
+    <div class="container">
+      <span class="eyebrow eyebrow--light">Casos de éxito</span>
+      <h2 class="section-title section-title--light">Resultados con nuestros clientes</h2>
+
+      <!--
+        Contenido real basado en el relevamiento organizacional y la arquitectura
+        empresarial que Delta Consultora realizó para Farriplast (planta de
+        reciclado de plástico industrial, AMBA), según los documentos de proyecto
+        provistos. Reemplazar/ampliar cuando haya más casos cargados.
+      -->
+      <div class="case-card">
+        <div class="case-card__body">
+          <h3>Farriplast</h3>
+          <p class="case-card__industry">Reciclado de plástico industrial · AMBA</p>
+          <p>
+            Delta Consultora llevó adelante el relevamiento organizacional y el
+            diagnóstico de arquitectura empresarial de Farriplast, una planta de
+            reciclado de plástico postindustrial. A partir del trabajo con el
+            equipo operativo y la dirección, se definieron objetivos estratégicos
+            medibles para acompañar el crecimiento de la compañía.
+          </p>
+
+          <div class="case-card__stats">
+            <div class="stat">
+              <span class="stat__value">−10%</span>
+              <span class="stat__label">Merma sobre material procesado</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">+10%</span>
+              <span class="stat__label">Margen promedio por kilo procesado</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">+4</span>
+              <span class="stat__label">Clientes nuevos en 18 meses</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">+2</span>
+              <span class="stat__label">Nuevos sectores industriales en 24 meses</span>
+            </div>
+          </div>
+
+          <div class="case-card__details" id="case-details" hidden>
+            <h4>Objetivos estratégicos definidos</h4>
+            <ul>
+              <li><strong>Expansión comercial en el AMBA:</strong> sumar 4 nuevos clientes fijos en los sectores de higiene, limpieza y juguetería dentro de los 18 meses posteriores a la adquisición del nuevo galpón.</li>
+              <li><strong>Rentabilidad:</strong> reducir en un 10% la merma y aumentar en un 10% el margen promedio por kilo procesado dentro de los 12 meses posteriores a la implementación.</li>
+              <li><strong>Diversificación de cartera:</strong> incorporar al menos 2 clientes de nuevas industrias (por ejemplo, automotriz o construcción) dentro de los 24 meses posteriores a la puesta en marcha de la nueva planta.</li>
+            </ul>
+          </div>
+
+          <button type="button" class="btn btn--outline" id="case-toggle" aria-expanded="false" aria-controls="case-details">
+            Ver más
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- 7. CONTACTO                    -->
+  <!-- ============================= -->
+  <section class="contact" id="contacto">
+    <div class="container contact__grid">
+      <div class="contact__intro">
+        <span class="eyebrow">Contacto</span>
+        <h2 class="section-title">Hablemos de tu proyecto</h2>
+        <!-- FALTA: texto de apoyo para la sección de contacto (opcional) -->
+        <p>[Falta contenido: texto breve invitando a contactar a Delta Consultora]</p>
+      </div>
+
+      <!--
+        FORMULARIO DE CONTACTO
+        Configurado por defecto para Netlify Forms (funciona automáticamente
+        al desplegar en Netlify, sin backend adicional).
+
+        Para usar Formspree en su lugar:
+          1) Eliminar los atributos: data-netlify="true", netlify-honeypot="bot-field"
+             y el <input type="hidden" name="form-name" ...>
+          2) Cambiar el atributo action de este <form> por:
+             action="https://formspree.io/f/TU_FORM_ID"
+          3) Mantener method="POST".
+        El endpoint/ID definitivo debe completarse antes de publicar el sitio.
+      -->
+      <form
+        class="contact-form"
+        id="contact-form"
+        name="contact"
+        method="POST"
+        action="/gracias.html"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+      >
+        <input type="hidden" name="form-name" value="contact">
+        <p class="contact-form__honeypot" hidden>
+          <label>No completar este campo: <input name="bot-field"></label>
+        </p>
+
+        <div class="form-field">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+        </div>
+
+        <div class="form-field">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+        </div>
+
+        <div class="form-field">
+          <label for="empresa">Empresa</label>
+          <input type="text" id="empresa" name="empresa" autocomplete="organization" required>
+        </div>
+
+        <div class="form-field">
+          <!-- FALTA: si se prefiere un selector desplegable, definir la lista real de sectores/servicios de Delta -->
+          <label for="sector">Sector de interés</label>
+          <input type="text" id="sector" name="sector" required>
+        </div>
+
+        <div class="form-field form-field--full">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--primary form-field--full">Enviar mensaje</button>
+
+        <p class="contact-form__status" id="contact-form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================= -->
+<!-- 8. FOOTER                      -->
+<!-- ============================= -->
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+
+    <a href="#inicio" class="logo logo--negative" aria-label="Delta Consultora — inicio">
+      <svg class="logo__mark" viewBox="0 0 40 40" width="30" height="30" aria-hidden="true">
+        <polygon points="20,4 4,36 20,36" fill="var(--celeste-delta)"/>
+        <polygon points="20,4 36,36 20,36" fill="#ffffff"/>
+      </svg>
+      <span class="logo__text">
+        <span class="logo__word">Delta</span>
+        <span class="logo__sub">Consultora</span>
+      </span>
+    </a>
+
+    <!-- FALTA: reemplazar "#" por las URLs reales de cada red social -->
+    <div class="social-links" aria-label="Redes sociales de Delta Consultora">
+      <a href="#" class="social-links__item" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.07 1.2.05 2 .24 2.5.4.6.24 1 .53 1.5 1s.76.9 1 1.5c.17.5.36 1.3.4 2.5.06 1.2.07 1.6.07 4.8s0 3.6-.07 4.8c-.05 1.2-.24 2-.4 2.5a4.1 4.1 0 0 1-1 1.5 4.1 4.1 0 0 1-1.5 1c-.5.17-1.3.36-2.5.4-1.2.06-1.6.07-4.8.07s-3.6 0-4.8-.07c-1.2-.05-2-.24-2.5-.4a4.1 4.1 0 0 1-1.5-1 4.1 4.1 0 0 1-1-1.5c-.17-.5-.36-1.3-.4-2.5C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.8c.05-1.2.24-2 .4-2.5.24-.6.53-1 1-1.5s.9-.76 1.5-1c.5-.17 1.3-.36 2.5-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.52 0-4.76.07-1 .04-1.5.2-1.85.34-.47.18-.8.4-1.15.75-.35.35-.57.68-.75 1.15-.14.35-.3.85-.34 1.85C3.1 8.5 3.1 8.85 3.1 12s0 3.52.07 4.76c.04 1 .2 1.5.34 1.85.18.47.4.8.75 1.15.35.35.68.57 1.15.75.35.14.85.3 1.85.34 1.24.06 1.6.07 4.76.07s3.52 0 4.76-.07c1-.04 1.5-.2 1.85-.34.47-.18.8-.4 1.15-.75.35-.35.57-.68.75-1.15.14-.35.3-.85.34-1.85.06-1.24.07-1.6.07-4.76s0-3.52-.07-4.76c-.04-1-.2-1.5-.34-1.85a3.1 3.1 0 0 0-.75-1.15 3.1 3.1 0 0 0-1.15-.75c-.35-.14-.85-.3-1.85-.34C15.52 4 15.15 4 12 4Zm0 3.4a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2Zm0 1.8a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Zm4.8-2a1.08 1.08 0 1 1 0 2.16 1.08 1.08 0 0 1 0-2.16Z" fill="currentColor"/></svg>
+      </a>
+      <a href="#" class="social-links__item" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M22 12s0-3.1-.4-4.6a2.9 2.9 0 0 0-2-2C17.9 5 12 5 12 5s-5.9 0-7.6.4a2.9 2.9 0 0 0-2 2C2 8.9 2 12 2 12s0 3.1.4 4.6a2.9 2.9 0 0 0 2 2C6.1 19 12 19 12 19s5.9 0 7.6-.4a2.9 2.9 0 0 0 2-2C22 15.1 22 12 22 12ZM10 15.4V8.6l6 3.4-6 3.4Z" fill="currentColor"/></svg>
+      </a>
+      <a href="#" class="social-links__item" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.3 8.3L23.3 22h-6.8l-5.3-6.9L5 22H1.9l7.8-8.9L1 2h7l4.8 6.3L18.9 2Zm-1.2 18h1.9L7.4 4H5.3l12.4 16Z" fill="currentColor"/></svg>
+      </a>
+      <a href="#" class="social-links__item" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M6.9 8.5H3.6V20h3.3V8.5ZM5.3 3.5a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 0 0 0-3.8ZM20.4 20h-3.3v-6c0-1.4 0-3.3-2-3.3s-2.3 1.6-2.3 3.2V20H9.5V8.5h3.2v1.6h.05c.44-.83 1.5-1.7 3.1-1.7 3.3 0 3.9 2.2 3.9 5V20Z" fill="currentColor"/></svg>
+      </a>
+    </div>
+
+    <p class="site-footer__copy">© <span id="current-year"></span> Delta Consultora. Todos los derechos reservados.</p>
+
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
