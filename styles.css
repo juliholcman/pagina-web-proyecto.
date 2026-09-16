@@ -26,7 +26,7 @@
   /* Layout */
   --max-width: 1180px;
   --radius: 14px;
-  --header-height: 76px;
+  --header-height: 84px;
 }
 
 /* ---------- Reset básico ---------- */
@@ -148,10 +148,21 @@ section {
 }
 
 /* ---------- Logo (usado en header y footer) ---------- */
+/* El símbolo (svg/img) siempre define su tamaño por CSS con ancho y alto
+   iguales (o aspect-ratio explícito para archivos rectangulares), nunca se
+   estira: así se preserva su proporción original en cualquier tamaño. */
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  flex-shrink: 0; /* el logo nunca cede espacio frente al menú */
+}
+
+.logo__mark {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
 }
 
 .logo__text {
@@ -163,19 +174,21 @@ section {
 .logo__word {
   font-family: var(--font-principal);
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   color: var(--azul-delta);
   margin-left: -4px; /* leve superposición con el símbolo, según manual */
+  white-space: nowrap;
 }
 
 .logo__sub {
   font-family: var(--font-mono);
   font-weight: 600;
-  font-size: 0.55rem;
+  font-size: 0.6rem;
   letter-spacing: 0.34em; /* interletrado definido en el manual de marca */
   text-transform: uppercase;
   color: var(--navy);
   align-self: flex-end;
+  white-space: nowrap;
 }
 
 .logo--negative .logo__word {
@@ -205,6 +218,16 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 20px;
+  width: 100%; /* imprescindible: sin esto, al ser flex-item de .site-header
+     el margin auto de abajo encoge el contenedor a su contenido y lo
+     centra como grupo, pegando el logo contra el menú */
+  max-width: var(--max-width);
+  margin: 0 auto;
+  /* Padding asimétrico: el logo queda pegado al borde izquierdo del
+     contenedor (no centrado) mientras el menú conserva aire a la derecha. */
+  padding: 0 20px 0 16px;
 }
 
 .nav-toggle {
@@ -428,6 +451,32 @@ section {
   margin-top: 28px;
 }
 
+/* Logo del cliente dentro del caso de éxito: nunca se deforma
+   (se limita el ancho máximo y la altura queda automática). */
+.case-card__logo {
+  max-width: 180px;
+  max-height: 64px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.case-card__logo--placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  height: 56px;
+  padding: 0 16px;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #A9BBD4;
+  text-align: center;
+}
+
 .case-card h3 {
   color: var(--blanco);
   font-size: 1.6rem;
@@ -582,6 +631,11 @@ section {
   text-align: center;
 }
 
+.site-footer .logo__mark {
+  width: 36px;
+  height: 36px;
+}
+
 .social-links {
   display: flex;
   gap: 16px;
@@ -635,9 +689,11 @@ section {
 }
 
 /* =========================================================
-   RESPONSIVE — Desktop (≥ 900px): nav horizontal
+   RESPONSIVE — Desktop (≥ 1040px): nav horizontal
+   (breakpoint más alto para que el logo agrandado y las 6 opciones de
+   menú + botón de contacto nunca queden ajustados/superpuestos)
    ========================================================= */
-@media (min-width: 900px) {
+@media (min-width: 1040px) {
   .nav-toggle {
     display: none;
   }
@@ -648,12 +704,16 @@ section {
     overflow: visible;
     background: none;
     border-bottom: none;
+    min-width: 0; /* permite que el nav ceda espacio antes de invadir el logo */
   }
 
   .primary-nav__list {
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 32px;
+    justify-content: flex-end;
+    gap: clamp(16px, 2.4vw, 32px);
+    row-gap: 10px;
     padding: 0;
   }
 
