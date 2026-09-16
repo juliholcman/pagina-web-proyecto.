@@ -316,21 +316,15 @@ section {
   gap: 40px;
 }
 
-.about__image-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  aspect-ratio: 4 / 3;
-  background: var(--gris-hielo);
-  border: 2px dashed #C7D7EA;
+/* Foto institucional: se recorta de forma responsive (object-fit: cover)
+   pero nunca se deforma/estira, ya que mantiene siempre su relación de
+   aspecto original dentro del contenedor. */
+.about__photo {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center;
   border-radius: var(--radius);
-  color: var(--texto-secundario);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  text-align: center;
-  padding: 20px;
 }
 
 /* =========================================================
