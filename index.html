@@ -13,8 +13,8 @@
 
 <link rel="stylesheet" href="styles.css">
 
-<!-- Favicon: triángulo de marca (celeste / azul medio), reproducido en SVG -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpolygon points='20,4 4,36 20,36' fill='%235FCBF5'/%3E%3Cpolygon points='20,4 36,36 20,36' fill='%232F86D8'/%3E%3C/svg%3E">
+<!-- Favicon: isotipo oficial de marca -->
+<link rel="icon" type="image/png" href="delta-simbolo.png">
 </head>
 <body>
 
@@ -25,15 +25,7 @@
   <div class="site-header__inner">
 
     <a href="#inicio" class="logo" aria-label="Delta Consultora — inicio">
-      <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true">
-        <polygon points="20,4 4,36 20,36" fill="var(--celeste-delta)"/>
-        <polygon points="20,4 36,36 20,36" fill="var(--azul-medio)"/>
-        <polygon points="20,4 28,36 20,36" fill="var(--navy)" opacity="0.45" style="mix-blend-mode:multiply"/>
-      </svg>
-      <span class="logo__text">
-        <span class="logo__word">Delta</span>
-        <span class="logo__sub">Consultora</span>
-      </span>
+      <img src="delta-logo-consultora.png" alt="Delta Consultora" class="logo__img">
     </a>
 
     <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Abrir menú de navegación">
@@ -227,20 +219,7 @@
       <div class="case-card">
         <div class="case-card__body">
 
-          <!--
-            FALTA: logo de Farriplast.
-            El archivo se pegó como imagen dentro del chat, no como adjunto
-            de archivo, así que no quedó accesible en el sistema de archivos
-            para guardarlo como asset del sitio. Al reenviarlo como adjunto
-            (attach/drag&drop) se puede colocar en assets/farriplast-logo.png
-            (o .svg) y reemplazar el bloque de abajo por:
-            <img src="assets/farriplast-logo.png" alt="Farriplast" class="case-card__logo">
-            La clase .case-card__logo ya está preparada para no deformarlo
-            (max-width + height:auto + object-fit:contain).
-          -->
-          <div class="case-card__logo case-card__logo--placeholder" role="img" aria-label="Logo de Farriplast pendiente de carga">
-            [Falta: logo de Farriplast]
-          </div>
+          <img src="farriplast-logo-claro.png" alt="Farriplast" class="case-card__logo">
 
           <h3>Farriplast</h3>
           <p class="case-card__industry">Reciclado de plástico industrial · AMBA</p>
@@ -368,27 +347,8 @@
 <footer class="site-footer">
   <div class="container site-footer__inner">
 
-    <!--
-      FALTA: reemplazar por el archivo de logo real en tonalidad clara
-      (versión para fondos oscuros) que se adjuntó por chat. Igual que el
-      logo de Farriplast, llegó como imagen pegada en el mensaje y no como
-      adjunto de archivo, así que no quedó accesible para guardarlo como
-      asset. Al reenviarlo como adjunto, colocarlo en
-      assets/delta-logo-light.svg (o .png) y reemplazar el <svg> de abajo por:
-      <img src="assets/delta-logo-light.svg" alt="Delta Consultora" class="logo__mark">
-      (la clase .logo__mark ya preserva el aspect ratio sin deformarlo).
-      Mientras tanto se mantiene una reproducción en SVG con los colores
-      claros del manual de marca para no dejar el footer sin logo.
-    -->
-    <a href="#inicio" class="logo logo--negative" aria-label="Delta Consultora — inicio">
-      <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true">
-        <polygon points="20,4 4,36 20,36" fill="var(--celeste-delta)"/>
-        <polygon points="20,4 36,36 20,36" fill="#ffffff"/>
-      </svg>
-      <span class="logo__text">
-        <span class="logo__word">Delta</span>
-        <span class="logo__sub">Consultora</span>
-      </span>
+    <a href="#inicio" class="logo" aria-label="Delta Consultora — inicio">
+      <img src="delta-logo-negativo (3).png" alt="Delta Consultora" class="logo__img logo__img--footer">
     </a>
 
     <!-- FALTA: reemplazar "#" por las URLs reales de cada red social -->

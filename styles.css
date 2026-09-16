@@ -148,55 +148,23 @@ section {
 }
 
 /* ---------- Logo (usado en header y footer) ---------- */
-/* El símbolo (svg/img) siempre define su tamaño por CSS con ancho y alto
-   iguales (o aspect-ratio explícito para archivos rectangulares), nunca se
-   estira: así se preserva su proporción original en cualquier tamaño. */
+/* Archivos de marca reales (delta-logo-consultora.png / delta-logo-negativo
+   (3).png). Solo se fija la altura y el ancho queda en auto, por lo que la
+   proporción original del archivo nunca se deforma. */
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
   flex-shrink: 0; /* el logo nunca cede espacio frente al menú */
 }
 
-.logo__mark {
-  width: 46px;
-  height: 46px;
-  flex-shrink: 0;
-  aspect-ratio: 1 / 1;
+.logo__img {
+  height: 48px;
+  width: auto;
+  display: block;
 }
 
-.logo__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
-}
-
-.logo__word {
-  font-family: var(--font-principal);
-  font-weight: 700;
-  font-size: 1.7rem;
-  color: var(--azul-delta);
-  margin-left: -4px; /* leve superposición con el símbolo, según manual */
-  white-space: nowrap;
-}
-
-.logo__sub {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: 0.6rem;
-  letter-spacing: 0.34em; /* interletrado definido en el manual de marca */
-  text-transform: uppercase;
-  color: var(--navy);
-  align-self: flex-end;
-  white-space: nowrap;
-}
-
-.logo--negative .logo__word {
-  color: var(--blanco);
-}
-
-.logo--negative .logo__sub {
-  color: var(--celeste-claro);
+.logo__img--footer {
+  height: 34px;
 }
 
 /* =========================================================
@@ -462,21 +430,6 @@ section {
   margin-bottom: 20px;
 }
 
-.case-card__logo--placeholder {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 180px;
-  height: 56px;
-  padding: 0 16px;
-  border: 2px dashed rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: #A9BBD4;
-  text-align: center;
-}
-
 .case-card h3 {
   color: var(--blanco);
   font-size: 1.6rem;
@@ -629,11 +582,6 @@ section {
   align-items: center;
   gap: 24px;
   text-align: center;
-}
-
-.site-footer .logo__mark {
-  width: 36px;
-  height: 36px;
 }
 
 .social-links {
