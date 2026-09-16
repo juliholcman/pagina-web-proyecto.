@@ -1,13 +1,13 @@
 /* =========================================================
    DELTA CONSULTORA — Landing page
-   Interacciones: menú hamburguesa, año dinámico, expandir
-   caso de éxito y envío del formulario de contacto.
+   Interacciones: menú hamburguesa, año dinámico, solapas de
+   casos de éxito (farriplast.html) y envío del formulario de contacto.
    ========================================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   setCurrentYear();
-  initCaseStudyToggle();
+  initTabs();
   initContactForm();
 });
 
@@ -44,22 +44,39 @@ function setCurrentYear() {
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 }
 
-/* ---------- 6. Casos de éxito: expandir detalle ---------- */
-function initCaseStudyToggle() {
-  const button = document.getElementById('case-toggle');
-  const details = document.getElementById('case-details');
-  if (!button || !details) return;
+/* ---------- 6. Casos de éxito: sub-navegación por solapas (farriplast.html) ---------- */
+function initTabs() {
+  document.querySelectorAll('[role="tablist"]').forEach((tablist) => {
+    const tabs = Array.from(tablist.querySelectorAll('.tabs__item'));
 
-  button.addEventListener('click', () => {
-    const isHidden = details.hasAttribute('hidden');
-    if (isHidden) {
-      details.removeAttribute('hidden');
-      button.textContent = 'Ver menos';
-    } else {
-      details.setAttribute('hidden', '');
-      button.textContent = 'Ver más';
-    }
-    button.setAttribute('aria-expanded', String(isHidden));
+    const activate = (tab) => {
+      tabs.forEach((t) => {
+        const isSelected = t === tab;
+        t.classList.toggle('is-active', isSelected);
+        t.setAttribute('aria-selected', String(isSelected));
+        t.tabIndex = isSelected ? 0 : -1;
+        const panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel) panel.hidden = !isSelected;
+      });
+      tab.focus();
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activate(tab));
+
+      tab.addEventListener('keydown', (event) => {
+        let targetIndex = null;
+        if (event.key === 'ArrowRight') targetIndex = (index + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft') targetIndex = (index - 1 + tabs.length) % tabs.length;
+        else if (event.key === 'Home') targetIndex = 0;
+        else if (event.key === 'End') targetIndex = tabs.length - 1;
+
+        if (targetIndex !== null) {
+          event.preventDefault();
+          activate(tabs[targetIndex]);
+        }
+      });
+    });
   });
 }
 

@@ -6,10 +6,12 @@
 <title>Delta Consultora</title>
 <meta name="description" content="Delta Consultora — consultoría en procesos, arquitectura empresarial y gestión organizacional.">
 
-<!-- Tipografías de marca: League Spartan (principal) e IBM Plex Mono (etiquetas/datos), según Manual de Marca Delta v1 -->
+<!-- Tipografías de marca: League Spartan (principal) e IBM Plex Mono (etiquetas/datos), según Manual de Marca Delta v1.
+     Fraunces se suma solo para el título del hero: una serif editorial de peso
+     variable, para que se lea claramente como un titular y no como texto de imprenta. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Fraunces:wght@600;700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css">
 
@@ -111,37 +113,43 @@
         </div>
       </div>
 
-      <div class="cards-grid">
-        <article class="card">
-          <div class="card__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Zm0 9L2 6v11l10 5 10-5V6l-10 5Z" fill="currentColor"/></svg>
-          </div>
-          <h3 class="card__title">Diagnóstico a medida</h3>
-          <p class="card__desc">Cada organización es distinta: relevamos sus procesos reales antes de proponer cualquier solución, sin recetas genéricas.</p>
-        </article>
+      <h2 class="section-title">Nuestros valores</h2>
 
+      <div class="cards-grid">
         <article class="card">
           <div class="card__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 12c5 0 9 2.5 9 5.5V22H3v-2.5C3 16.5 7 14 12 14Z" fill="currentColor"/></svg>
           </div>
-          <h3 class="card__title">Rigor metodológico</h3>
-          <p class="card__desc">Trabajamos con marcos de referencia reconocidos (como ISO 9001) para que cada mapa de procesos sea sólido y auditable.</p>
+          <h3 class="card__title">Servicio Personalizado</h3>
+          <p class="card__desc">Adaptamos cada solución a la realidad y los tiempos de tu negocio, sin recetas estándar.</p>
         </article>
 
         <article class="card">
           <div class="card__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.2 3.8 9.9 9 11 5.2-1.1 9-5.8 9-11V5l-9-4Zm-1 15-4-4 1.4-1.4L11 13.2l6.6-6.6L19 8l-8 8Z" fill="currentColor"/></svg>
           </div>
-          <h3 class="card__title">Comunicación transparente</h3>
-          <p class="card__desc">Mantenemos al cliente informado en cada etapa del proyecto, con entregables claros y objetivos medibles.</p>
+          <h3 class="card__title">Seguridad y Confianza</h3>
+          <p class="card__desc">Tratamos la información de tu empresa con la confidencialidad y el cuidado que merece.</p>
         </article>
 
         <article class="card">
           <div class="card__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 2 1 12h3v9h6v-6h4v6h6v-9h3L12 2Z" fill="currentColor"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M4 4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3v4l5-4h8a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4Z" fill="currentColor"/></svg>
           </div>
-          <h3 class="card__title">Resultados medibles</h3>
-          <p class="card__desc">Traducimos cada recomendación en indicadores concretos, para que el impacto del trabajo se pueda verificar.</p>
+          <h3 class="card__title">Comunicación Clara</h3>
+          <p class="card__desc">Te mantenemos informado en cada etapa del proyecto, con avances concretos y sin tecnicismos.</p>
+        </article>
+
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Impacto Real</h3>
+          <p class="card__desc">Medimos cada resultado para asegurarnos de que la mejora se traduzca en números concretos.</p>
         </article>
       </div>
     </div>
@@ -198,65 +206,14 @@
   <!-- ============================= -->
   <!-- 6. CASOS DE ÉXITO              -->
   <!-- ============================= -->
+  <!-- Versión corta en la home: el detalle completo del caso Farriplast
+       (con sub-navegación por solapas) vive en farriplast.html -->
   <section class="case-study" id="casos-exito">
-    <div class="container">
+    <div class="container case-study__teaser">
       <span class="eyebrow eyebrow--light">Casos de éxito</span>
       <h2 class="section-title section-title--light">Resultados con nuestros clientes</h2>
-
-      <!--
-        Contenido real basado en el relevamiento organizacional y la arquitectura
-        empresarial que Delta Consultora realizó para Farriplast (planta de
-        reciclado de plástico industrial, AMBA), según los documentos de proyecto
-        provistos. Reemplazar/ampliar cuando haya más casos cargados.
-      -->
-      <div class="case-card">
-        <div class="case-card__body">
-
-          <img src="farriplast-logo-claro.png" alt="Farriplast" class="case-card__logo">
-
-          <h3>Farriplast</h3>
-          <p class="case-card__industry">Reciclado de plástico industrial · AMBA</p>
-          <p>
-            Delta Consultora llevó adelante el relevamiento organizacional y el
-            diagnóstico de arquitectura empresarial de Farriplast, una planta de
-            reciclado de plástico postindustrial. A partir del trabajo con el
-            equipo operativo y la dirección, se definieron objetivos estratégicos
-            medibles para acompañar el crecimiento de la compañía.
-          </p>
-
-          <div class="case-card__stats">
-            <div class="stat">
-              <span class="stat__value">−10%</span>
-              <span class="stat__label">Merma sobre material procesado</span>
-            </div>
-            <div class="stat">
-              <span class="stat__value">+10%</span>
-              <span class="stat__label">Margen promedio por kilo procesado</span>
-            </div>
-            <div class="stat">
-              <span class="stat__value">+4</span>
-              <span class="stat__label">Clientes nuevos en 18 meses</span>
-            </div>
-            <div class="stat">
-              <span class="stat__value">+2</span>
-              <span class="stat__label">Nuevos sectores industriales en 24 meses</span>
-            </div>
-          </div>
-
-          <div class="case-card__details" id="case-details" hidden>
-            <h4>Objetivos estratégicos definidos</h4>
-            <ul>
-              <li><strong>Expansión comercial en el AMBA:</strong> sumar 4 nuevos clientes fijos en los sectores de higiene, limpieza y juguetería dentro de los 18 meses posteriores a la adquisición del nuevo galpón.</li>
-              <li><strong>Rentabilidad:</strong> reducir en un 10% la merma y aumentar en un 10% el margen promedio por kilo procesado dentro de los 12 meses posteriores a la implementación.</li>
-              <li><strong>Diversificación de cartera:</strong> incorporar al menos 2 clientes de nuevas industrias (por ejemplo, automotriz o construcción) dentro de los 24 meses posteriores a la puesta en marcha de la nueva planta.</li>
-            </ul>
-          </div>
-
-          <button type="button" class="btn btn--outline" id="case-toggle" aria-expanded="false" aria-controls="case-details">
-            Ver más
-          </button>
-        </div>
-      </div>
+      <p class="case-study__lead">Conocé en detalle cómo acompañamos a Farriplast, planta de reciclado de plástico industrial, en su relevamiento organizacional y en la definición de una hoja de ruta de mejora medible.</p>
+      <a href="farriplast.html" class="btn btn--outline">Conocer más</a>
     </div>
   </section>
 
@@ -267,7 +224,7 @@
     <div class="container contact__grid">
       <div class="contact__intro">
         <span class="eyebrow">Contacto</span>
-        <h2 class="section-title">Hablemos de tu proyecto</h2>
+        <h2 class="section-title">Hablemos de Transformación</h2>
         <!-- FALTA: texto de apoyo para la sección de contacto (opcional) -->
         <p>[Falta contenido: texto breve invitando a contactar a Delta Consultora]</p>
       </div>
@@ -315,9 +272,21 @@
         </div>
 
         <div class="form-field">
-          <!-- FALTA: si se prefiere un selector desplegable, definir la lista real de sectores/servicios de Delta -->
           <label for="sector">Sector de interés</label>
-          <input type="text" id="sector" name="sector" required>
+          <!--
+            FALTA: definir los sectores/industrias reales que atiende Delta
+            Consultora y reemplazar la opción de placeholder de abajo por una
+            lista real, por ejemplo:
+            <option value="industria-manufactura">Industria y manufactura</option>
+            <option value="pymes-servicios">Pymes de servicios</option>
+            <option value="retail-consumo">Retail y consumo</option>
+            <option value="logistica">Logística y distribución</option>
+            Una vez cargadas las opciones reales, volver a agregar el
+            atributo "required" a este <select>.
+          -->
+          <select id="sector" name="sector">
+            <option value="" selected>[Falta definir: opciones de sector]</option>
+          </select>
         </div>
 
         <div class="form-field form-field--full">

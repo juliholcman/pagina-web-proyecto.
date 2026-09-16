@@ -22,6 +22,7 @@
   /* Tipografía */
   --font-principal: 'League Spartan', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-hero: 'Fraunces', Georgia, serif; /* solo para el título del hero */
 
   /* Layout */
   --max-width: 1180px;
@@ -35,6 +36,7 @@
 }
 
 html {
+  font-size: 106.25%; /* ~17px: aumenta levemente el tamaño de letra base del sitio (legibilidad de párrafos/tarjetas) */
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-height);
 }
@@ -298,8 +300,11 @@ section {
 }
 
 .hero__title {
+  font-family: var(--font-hero);
+  font-weight: 700;
   color: var(--blanco);
   font-size: clamp(2rem, 5vw, 3.2rem);
+  letter-spacing: -0.01em;
 }
 
 .hero__subtitle {
@@ -338,6 +343,10 @@ section {
   display: grid;
   gap: 24px;
   margin: 28px 0 48px;
+}
+
+.values .section-title {
+  margin-bottom: 24px;
 }
 
 .mv-block {
@@ -400,17 +409,39 @@ section {
 
 /* =========================================================
    6. CASOS DE ÉXITO
+   (usado tanto por el teaser corto en index.html como por la página
+   dedicada farriplast.html, que comparte este mismo fondo degradado)
    ========================================================= */
 .case-study {
   background: linear-gradient(160deg, var(--azul-profundo), var(--navy));
 }
 
-.case-card {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--radius);
-  padding: 36px;
-  margin-top: 28px;
+.case-study__teaser {
+  max-width: 640px;
+}
+
+.case-study__lead {
+  color: #C9D6E8;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+/* Breadcrumb de vuelta, usado en el banner de farriplast.html */
+.case-hero__back {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--celeste-claro);
+  margin-bottom: 28px;
+}
+
+.case-hero__back:hover {
+  color: var(--blanco);
 }
 
 /* Logo del cliente dentro del caso de éxito: nunca se deforma
@@ -424,12 +455,6 @@ section {
   margin-bottom: 20px;
 }
 
-.case-card h3 {
-  color: var(--blanco);
-  font-size: 1.6rem;
-  margin-bottom: 0.2em;
-}
-
 .case-card__industry {
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -439,8 +464,53 @@ section {
   margin-bottom: 1.2em;
 }
 
-.case-card p {
+/* Sub-navegación por solapas (farriplast.html): preparada para sumar más
+   pestañas a futuro sin tocar esta estructura. */
+.tabs {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  margin: 8px 0 32px;
+  scrollbar-width: thin;
+}
+
+.tabs__item {
+  flex: 0 0 auto;
+  padding: 14px 18px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-family: var(--font-principal);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #A9BBD4;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.tabs__item:hover {
+  color: var(--blanco);
+}
+
+.tabs__item.is-active {
+  color: var(--celeste-delta);
+  border-bottom-color: var(--celeste-delta);
+}
+
+.tab-panel p {
   color: #C9D6E8;
+}
+
+.tab-panel__empty {
+  padding: 48px 0;
+  text-align: center;
+  color: #A9BBD4;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .case-card__stats {
@@ -474,9 +544,10 @@ section {
   margin-bottom: 20px;
 }
 
-.case-card__details h4 {
+.case-card__details h2 {
   color: var(--blanco);
   font-size: 1rem;
+  margin-bottom: 0.8em;
 }
 
 .case-card__details ul {
@@ -540,6 +611,25 @@ section {
   outline: 2px solid var(--azul-delta);
   outline-offset: 1px;
   background: var(--blanco);
+}
+
+/* Dropdown de "Sector de interés": fondo blanco y borde propio (distinto
+   de los inputs de texto) para que se lea como un selector estándar. */
+.form-field select {
+  font-family: var(--font-principal);
+  font-size: 1rem;
+  padding: 12px 14px;
+  border: 1.5px solid var(--azul-delta);
+  border-radius: 10px;
+  background: var(--blanco);
+  color: var(--texto-principal);
+  cursor: pointer;
+}
+
+.form-field select:focus {
+  outline: 2px solid var(--azul-delta);
+  outline-offset: 1px;
+  border-color: var(--navy);
 }
 
 .contact-form__honeypot {
