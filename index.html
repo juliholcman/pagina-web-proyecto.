@@ -113,8 +113,6 @@
         </div>
       </div>
 
-      <h2 class="section-title">Nuestros valores</h2>
-
       <div class="cards-grid">
         <article class="card">
           <div class="card__icon" aria-hidden="true">
@@ -212,7 +210,7 @@
     <div class="container case-study__teaser">
       <span class="eyebrow eyebrow--light">Casos de éxito</span>
       <h2 class="section-title section-title--light">Resultados con nuestros clientes</h2>
-      <p class="case-study__lead">Conocé en detalle cómo acompañamos a Farriplast, planta de reciclado de plástico industrial, en su relevamiento organizacional y en la definición de una hoja de ruta de mejora medible.</p>
+      <p class="case-study__lead">Conocé en detalle cómo acompañamos a nuestros clientes en su relevamiento organizacional y en la definición de hojas de ruta de mejora medibles.</p>
       <a href="farriplast.html" class="btn btn--outline">Conocer más</a>
     </div>
   </section>
@@ -224,9 +222,8 @@
     <div class="container contact__grid">
       <div class="contact__intro">
         <span class="eyebrow">Contacto</span>
-        <h2 class="section-title">Hablemos de Transformación</h2>
-        <!-- FALTA: texto de apoyo para la sección de contacto (opcional) -->
-        <p>[Falta contenido: texto breve invitando a contactar a Delta Consultora]</p>
+        <h2 class="section-title">Hablemos de tu transformación</h2>
+        <p>Dejanos tu consulta para tener un primer contacto y coordinar juntos los próximos pasos.</p>
       </div>
 
       <!--
@@ -273,19 +270,18 @@
 
         <div class="form-field">
           <label for="sector">Sector de interés</label>
-          <!--
-            FALTA: definir los sectores/industrias reales que atiende Delta
-            Consultora y reemplazar la opción de placeholder de abajo por una
-            lista real, por ejemplo:
-            <option value="industria-manufactura">Industria y manufactura</option>
-            <option value="pymes-servicios">Pymes de servicios</option>
-            <option value="retail-consumo">Retail y consumo</option>
-            <option value="logistica">Logística y distribución</option>
-            Una vez cargadas las opciones reales, volver a agregar el
-            atributo "required" a este <select>.
-          -->
-          <select id="sector" name="sector">
-            <option value="" selected>[Falta definir: opciones de sector]</option>
+          <select id="sector" name="sector" required>
+            <option value="" disabled selected>Seleccioná un sector</option>
+            <option value="bancos">Bancos</option>
+            <option value="fintech">Fintech</option>
+            <option value="aseguradoras">Aseguradoras</option>
+            <option value="industria-manufactura">Industria / Manufactura</option>
+            <option value="retail-comercio">Retail / Comercio</option>
+            <option value="salud">Salud</option>
+            <option value="logistica">Logística</option>
+            <option value="tecnologia-software">Tecnología / Software</option>
+            <option value="sector-publico">Sector público</option>
+            <option value="pymes-general">Pymes en general</option>
           </select>
         </div>
 
