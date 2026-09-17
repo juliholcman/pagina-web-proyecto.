@@ -413,6 +413,13 @@ section {
   margin-bottom: 16px;
 }
 
+/* Cuadrantes de ícono de Servicios en celeste de marca, para que tengan
+   más impacto visual que el resto de las tarjetas. */
+.services .card__icon {
+  background: var(--celeste-delta);
+  color: var(--navy);
+}
+
 .card__icon svg {
   width: 24px;
   height: 24px;
