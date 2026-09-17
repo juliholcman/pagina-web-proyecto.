@@ -80,37 +80,34 @@ function initTabs() {
   });
 }
 
-/* ---------- 7. Formulario de contacto ---------- */
+/* ---------- 7. Formulario de contacto ----------
+   Demo sin backend: valida los campos obligatorios con el navegador y,
+   si están completos, muestra el cartel de éxito en vez del formulario.
+   No se envían datos a ningún servicio (ver comentario en el <form>
+   sobre cómo conectarlo de verdad más adelante). */
 function initContactForm() {
   const form = document.getElementById('contact-form');
-  const status = document.getElementById('contact-form-status');
-  if (!form || !status) return;
+  const success = document.getElementById('contact-form-success');
+  const resetButton = document.getElementById('contact-form-reset');
+  if (!form || !success) return;
 
-  form.addEventListener('submit', async (event) => {
+  form.addEventListener('submit', (event) => {
     event.preventDefault();
-    status.textContent = 'Enviando...';
-    status.removeAttribute('data-state');
 
-    try {
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
-      });
-
-      if (response.ok) {
-        status.textContent = '¡Gracias! Tu mensaje fue enviado correctamente.';
-        status.setAttribute('data-state', 'success');
-        form.reset();
-      } else {
-        throw new Error('Respuesta no exitosa del servidor');
-      }
-    } catch (error) {
-      // Si el envío por fetch falla (por ejemplo, endpoint aún no configurado
-      // con un ID/URL real de Formspree o Netlify), se hace un envío tradicional.
-      status.textContent = 'No se pudo confirmar el envío. Reintentando...';
-      status.setAttribute('data-state', 'error');
-      form.submit();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
     }
+
+    form.hidden = true;
+    success.hidden = false;
   });
+
+  if (resetButton) {
+    resetButton.addEventListener('click', () => {
+      form.reset();
+      success.hidden = true;
+      form.hidden = false;
+    });
+  }
 }
