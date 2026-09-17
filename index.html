@@ -241,8 +241,15 @@
 
       <!--
         FORMULARIO DE CONTACTO
-        Configurado por defecto para Netlify Forms (funciona automáticamente
-        al desplegar en Netlify, sin backend adicional).
+        Por ahora el envío es solo de demostración: script.js intercepta el
+        submit, valida los campos obligatorios con el navegador y muestra
+        el cartel de éxito de abajo, sin mandar los datos a ningún lado.
+
+        Queda preparado para Netlify Forms (funciona automáticamente al
+        desplegar en Netlify, sin backend adicional) para cuando se quiera
+        conectar de verdad — en ese momento hay que quitar el
+        event.preventDefault()/lógica de demo en script.js y dejar que el
+        <form> haga el submit real (o volver a agregar el fetch), y:
 
         Para usar Formspree en su lugar:
           1) Eliminar los atributos: data-netlify="true", netlify-honeypot="bot-field"
@@ -252,61 +259,70 @@
           3) Mantener method="POST".
         El endpoint/ID definitivo debe completarse antes de publicar el sitio.
       -->
-      <form
-        class="contact-form"
-        id="contact-form"
-        name="contact"
-        method="POST"
-        action="/gracias.html"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-      >
-        <input type="hidden" name="form-name" value="contact">
-        <p class="contact-form__honeypot" hidden>
-          <label>No completar este campo: <input name="bot-field"></label>
-        </p>
+      <div class="contact-form-panel">
+        <form
+          class="contact-form"
+          id="contact-form"
+          name="contact"
+          method="POST"
+          action="/gracias.html"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+        >
+          <input type="hidden" name="form-name" value="contact">
+          <p class="contact-form__honeypot" hidden>
+            <label>No completar este campo: <input name="bot-field"></label>
+          </p>
 
-        <div class="form-field">
-          <label for="nombre">Nombre completo</label>
-          <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+          <div class="form-field">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+          </div>
+
+          <div class="form-field">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+          </div>
+
+          <div class="form-field">
+            <label for="empresa">Empresa</label>
+            <input type="text" id="empresa" name="empresa" autocomplete="organization" required>
+          </div>
+
+          <div class="form-field">
+            <label for="sector">Sector de interés</label>
+            <select id="sector" name="sector" required>
+              <option value="" disabled selected>Seleccioná un sector</option>
+              <option value="bancos">Bancos</option>
+              <option value="fintech">Fintech</option>
+              <option value="aseguradoras">Aseguradoras</option>
+              <option value="industria-manufactura">Industria / Manufactura</option>
+              <option value="retail-comercio">Retail / Comercio</option>
+              <option value="salud">Salud</option>
+              <option value="logistica">Logística</option>
+              <option value="tecnologia-software">Tecnología / Software</option>
+              <option value="sector-publico">Sector público</option>
+              <option value="pymes-general">Pymes en general</option>
+            </select>
+          </div>
+
+          <div class="form-field form-field--full">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary form-field--full">Enviar mensaje</button>
+        </form>
+
+        <!-- Cartel de éxito: reemplaza al formulario cuando se envía con todos
+             los campos obligatorios completos (ver initContactForm en script.js). -->
+        <div class="contact-form__success" id="contact-form-success" role="status" hidden>
+          <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1.2 14.6-4.4-4.4 1.4-1.4 3 3 6-6 1.4 1.4-7.4 7.4Z" fill="currentColor"/></svg>
+          <h3>¡Mensaje enviado con éxito!</h3>
+          <p>Nos pondremos en contacto a la brevedad.</p>
+          <button type="button" class="btn btn--outline btn--outline-light" id="contact-form-reset">Enviar otro mensaje</button>
         </div>
-
-        <div class="form-field">
-          <label for="email">Correo electrónico</label>
-          <input type="email" id="email" name="email" autocomplete="email" required>
-        </div>
-
-        <div class="form-field">
-          <label for="empresa">Empresa</label>
-          <input type="text" id="empresa" name="empresa" autocomplete="organization" required>
-        </div>
-
-        <div class="form-field">
-          <label for="sector">Sector de interés</label>
-          <select id="sector" name="sector" required>
-            <option value="" disabled selected>Seleccioná un sector</option>
-            <option value="bancos">Bancos</option>
-            <option value="fintech">Fintech</option>
-            <option value="aseguradoras">Aseguradoras</option>
-            <option value="industria-manufactura">Industria / Manufactura</option>
-            <option value="retail-comercio">Retail / Comercio</option>
-            <option value="salud">Salud</option>
-            <option value="logistica">Logística</option>
-            <option value="tecnologia-software">Tecnología / Software</option>
-            <option value="sector-publico">Sector público</option>
-            <option value="pymes-general">Pymes en general</option>
-          </select>
-        </div>
-
-        <div class="form-field form-field--full">
-          <label for="mensaje">Mensaje</label>
-          <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
-        </div>
-
-        <button type="submit" class="btn btn--primary form-field--full">Enviar mensaje</button>
-
-        <p class="contact-form__status" id="contact-form-status" role="status" aria-live="polite"></p>
-      </form>
+      </div>
     </div>
   </section>
 

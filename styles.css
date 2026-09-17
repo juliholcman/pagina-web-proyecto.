@@ -170,6 +170,18 @@ section {
   color: var(--azul-profundo);
 }
 
+/* Variante de .btn--outline para usar sobre fondos claros */
+.btn--outline-light {
+  background: transparent;
+  border-color: var(--azul-delta);
+  color: var(--azul-delta);
+}
+
+.btn--outline-light:hover {
+  background: var(--azul-delta);
+  color: var(--blanco);
+}
+
 /* ---------- Logo (usado en header y footer) ---------- */
 /* Archivos de marca reales (delta-logo-consultora.png / delta-logo-negativo
    (3).png). Solo se fija la altura y el ancho queda en auto, por lo que la
@@ -621,6 +633,13 @@ section {
   gap: 20px;
 }
 
+/* .contact-form y .contact-form__success fijan su propio "display", que
+   por especificidad le gana al display:none que el navegador aplica por
+   el atributo [hidden]; esta regla se lo devuelve. */
+.contact-form-panel [hidden] {
+  display: none;
+}
+
 .form-field {
   display: flex;
   flex-direction: column;
@@ -679,19 +698,28 @@ section {
   left: -9999px;
 }
 
-.contact-form__status {
-  grid-column: 1 / -1;
-  font-size: 0.9rem;
-  min-height: 1.2em;
-  margin: 0;
+/* Cartel de éxito que reemplaza al formulario tras un envío válido */
+.contact-form__success {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 40px;
+  border-radius: var(--radius);
+  background: var(--gris-hielo);
+  border: 1px solid #D4DFEC;
 }
 
-.contact-form__status[data-state="success"] {
+.contact-form__success svg {
   color: #1E8E3E;
 }
 
-.contact-form__status[data-state="error"] {
-  color: #C5221F;
+.contact-form__success h3 {
+  margin: 0;
+}
+
+.contact-form__success p {
+  margin: 0 0 0.6em;
 }
 
 /* =========================================================
