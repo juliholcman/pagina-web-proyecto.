@@ -386,12 +386,25 @@ section {
   height: 100%;
 }
 
+.hero__bg svg,
+.hero__lines {
+  position: absolute;
+  inset: 0;
+}
+
+/* Alineado a la izquierda dentro del ancho máximo del sitio (no centrado
+   en el medio de la pantalla, pero tampoco pegado al borde): en pantallas
+   angostas el margen izquierdo cae a 0 y queda el padding de .container;
+   en pantallas anchas, coincide con el mismo margen izquierdo que usa el
+   resto de las secciones (.container con max-width + margin:auto). */
 .hero__content {
   position: relative;
   z-index: 1;
   max-width: 640px;
   padding-top: 90px;
   padding-bottom: 90px;
+  margin-left: max(0px, calc((100% - var(--max-width)) / 2));
+  margin-right: auto;
 }
 
 .hero__title {
@@ -406,6 +419,40 @@ section {
   color: var(--gris-hielo);
   font-size: 1.1rem;
   margin-bottom: 2rem;
+}
+
+/* Líneas decorativas finas de fondo, sutiles, detrás del texto */
+.hero__lines {
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+}
+
+/* Animación de entrada del Hero, solo en la carga inicial de la página
+   (son @keyframes normales: corren una vez al pintarse el elemento y no
+   se re-disparan al volver a scrollear hasta el Hero, a diferencia del
+   sistema de scroll-reveal por IntersectionObserver que usan las demás
+   secciones). El fondo arranca con zoom sutil y se asienta; el texto
+   aparece con fade + subida, con un delay para que se note primero la
+   imagen y después el texto. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__bg {
+    animation: hero-bg-zoom-out 1.3s ease-out both;
+  }
+
+  .hero__content {
+    animation: hero-content-in 0.9s ease-out 0.7s both;
+  }
+}
+
+@keyframes hero-bg-zoom-out {
+  from { transform: scale(1.1); }
+  to { transform: scale(1); }
+}
+
+@keyframes hero-content-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* =========================================================
@@ -908,6 +955,29 @@ section {
     border-bottom: none;
   }
 
+  /* Subrayado suave al pasar el mouse (excluye el botón de Contacto) */
+  .primary-nav__link:not(.primary-nav__link--cta) {
+    position: relative;
+  }
+
+  .primary-nav__link:not(.primary-nav__link--cta)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 2px;
+    background: var(--azul-delta);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease-out;
+  }
+
+  .primary-nav__link:not(.primary-nav__link--cta):hover::after,
+  .primary-nav__link:not(.primary-nav__link--cta):focus-visible::after {
+    transform: scaleX(1);
+  }
+
   .primary-nav__link--cta {
     background: var(--azul-delta);
     color: var(--blanco);
@@ -962,7 +1032,8 @@ section {
   .about__photo,
   .case-study__photo,
   .logo__img,
-  .site-header {
+  .site-header,
+  .primary-nav__link::after {
     transition: none !important;
   }
 
@@ -977,6 +1048,13 @@ section {
   .btn--outline-light:hover,
   .about__image:hover .about__photo,
   .case-study__image:hover .case-study__photo {
+    transform: none !important;
+  }
+
+  .hero__bg,
+  .hero__content {
+    animation: none !important;
+    opacity: 1 !important;
     transform: none !important;
   }
 }
