@@ -1,7 +1,9 @@
 /* =========================================================
    DELTA CONSULTORA — Landing page
    Interacciones: menú hamburguesa, año dinámico, solapas de
-   casos de éxito (farriplast.html) y envío del formulario de contacto.
+   casos de éxito (farriplast.html), envío del formulario de contacto,
+   transiciones de scroll (fade-in de secciones/tarjetas) y header
+   que se achica al bajar.
    ========================================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setCurrentYear();
   initTabs();
   initContactForm();
+  initScrollReveal();
+  initHeaderScroll();
 });
 
 /* ---------- 1. Menú hamburguesa (header) ---------- */
@@ -110,4 +114,66 @@ function initContactForm() {
       form.hidden = false;
     });
   }
+}
+
+/* ---------- Transiciones al hacer scroll (fade-in de secciones y
+   cascada de tarjetas) ----------
+   Progresivo: si no hay IntersectionObserver o el usuario tiene activado
+   prefers-reduced-motion, se muestra todo de una y no se agrega la clase
+   .js-reveal-ready, que es la que habilita el estado oculto inicial en
+   CSS. Así, si este script no llegara a correr, el contenido nunca queda
+   invisible (las reglas .reveal/.stagger solo ocultan bajo esa clase). */
+function initScrollReveal() {
+  const targets = document.querySelectorAll('.reveal, .stagger');
+  if (!targets.length) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    targets.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
+  document.documentElement.classList.add('js-reveal-ready');
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -10% 0px' }
+  );
+
+  targets.forEach((el) => observer.observe(el));
+}
+
+/* ---------- Header que se achica levemente al bajar el scroll ---------- */
+function initHeaderScroll() {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+
+  const SCROLL_THRESHOLD = 80;
+  let ticking = false;
+
+  const updateHeader = () => {
+    header.classList.toggle('site-header--scrolled', window.scrollY > SCROLL_THRESHOLD);
+    ticking = false;
+  };
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+
+  updateHeader(); // estado correcto si la página carga con scroll ya bajado
 }

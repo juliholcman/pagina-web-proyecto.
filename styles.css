@@ -133,6 +133,50 @@ section {
   padding: 72px 0;
 }
 
+/* =========================================================
+   ANIMACIONES — fade-in al hacer scroll (Intersection Observer)
+   .js-reveal-ready lo agrega script.js en cuanto confirma que puede
+   animar (soporta IntersectionObserver y no hay prefers-reduced-motion).
+   Sin esa clase en <html>, .reveal/.stagger quedan visibles desde el
+   inicio: si JS falla o no corre, el contenido nunca se oculta.
+   ========================================================= */
+.reveal {
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.js-reveal-ready .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.js-reveal-ready .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Aparición escalonada de tarjetas dentro de un contenedor .stagger
+   (Nuestros valores y Nuestros servicios) */
+.stagger .card {
+  transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+}
+
+.js-reveal-ready .stagger .card {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.js-reveal-ready .stagger.is-visible .card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger .card:nth-child(1) { transition-delay: 0s; }
+.stagger .card:nth-child(2) { transition-delay: 0.1s; }
+.stagger .card:nth-child(3) { transition-delay: 0.2s; }
+.stagger .card:nth-child(4) { transition-delay: 0.3s; }
+.stagger .card:nth-child(5) { transition-delay: 0.4s; }
+.stagger .card:nth-child(6) { transition-delay: 0.5s; }
+
 /* ---------- Botones ---------- */
 .btn {
   display: inline-flex;
@@ -156,7 +200,7 @@ section {
 
 .btn--primary:hover {
   background: var(--navy);
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.03);
 }
 
 .btn--outline {
@@ -168,6 +212,7 @@ section {
 .btn--outline:hover {
   background: var(--celeste-claro);
   color: var(--azul-profundo);
+  transform: scale(1.03);
 }
 
 /* Variante de .btn--outline para usar sobre fondos claros */
@@ -180,6 +225,7 @@ section {
 .btn--outline-light:hover {
   background: var(--azul-delta);
   color: var(--blanco);
+  transform: scale(1.03);
 }
 
 /* ---------- Logo (usado en header y footer) ---------- */
@@ -196,6 +242,7 @@ section {
   height: 48px;
   width: auto;
   display: block;
+  transition: height 0.3s ease;
 }
 
 .logo__img--footer {
@@ -215,6 +262,21 @@ section {
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid #E4EBF3;
+  box-shadow: 0 4px 20px -8px rgba(11, 59, 140, 0);
+  transition: height 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* .site-header--scrolled: lo agrega script.js al bajar ~80px de scroll.
+   Redefine --header-height solo dentro de .site-header, así que .primary-nav
+   (que hereda la variable) y el height de abajo se achican en conjunto sin
+   tocar el --header-height global (scroll-padding-top, el alto del hero). */
+.site-header--scrolled {
+  --header-height: 68px;
+  box-shadow: 0 4px 20px -8px rgba(11, 59, 140, 0.18);
+}
+
+.site-header--scrolled .logo__img {
+  height: 40px;
 }
 
 .site-header__inner {
@@ -356,13 +418,24 @@ section {
 
 /* Foto institucional: se recorta de forma responsive (object-fit: cover)
    pero nunca se deforma/estira, ya que mantiene siempre su relación de
-   aspecto original dentro del contenedor. */
+   aspecto original dentro del contenedor. overflow:hidden en el wrapper
+   contiene el zoom sutil del hover sin romper el borde redondeado. */
+.about__image {
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
 .about__photo {
   width: 100%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
   object-position: center;
   border-radius: var(--radius);
+  transition: transform 0.4s ease;
+}
+
+.about__image:hover .about__photo {
+  transform: scale(1.05);
 }
 
 /* =========================================================
@@ -471,13 +544,24 @@ section {
 
 /* Foto del caso de éxito: mismo tratamiento que la foto de "Quiénes somos"
    (se recorta de forma responsive con object-fit: cover, pero nunca se
-   deforma/estira ya que conserva su relación de aspecto original). */
+   deforma/estira ya que conserva su relación de aspecto original), con el
+   mismo hover de zoom sutil contenido por overflow:hidden en el wrapper. */
+.case-study__image {
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
 .case-study__photo {
   width: 100%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
   object-position: center;
   border-radius: var(--radius);
+  transition: transform 0.4s ease;
+}
+
+.case-study__image:hover .case-study__photo {
+  transform: scale(1.05);
 }
 
 /* Breadcrumb de vuelta, usado en el banner de farriplast.html */
@@ -861,5 +945,38 @@ section {
 @media (min-width: 1200px) {
   section {
     padding: 100px 0;
+  }
+}
+
+/* =========================================================
+   ACCESIBILIDAD — prefers-reduced-motion
+   Anula todas las transiciones/animaciones agregadas (scroll reveal,
+   cascada de tarjetas, hover de botones/fotos, achique del header) y
+   deja todo visible en su estado final, para quienes tengan activada
+   esta preferencia de sistema.
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .stagger .card,
+  .btn,
+  .about__photo,
+  .case-study__photo,
+  .logo__img,
+  .site-header {
+    transition: none !important;
+  }
+
+  .js-reveal-ready .reveal,
+  .js-reveal-ready .stagger .card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .btn--primary:hover,
+  .btn--outline:hover,
+  .btn--outline-light:hover,
+  .about__image:hover .about__photo,
+  .case-study__image:hover .case-study__photo {
+    transform: none !important;
   }
 }
