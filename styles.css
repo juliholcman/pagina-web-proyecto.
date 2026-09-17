@@ -413,6 +413,13 @@ section {
   margin-bottom: 16px;
 }
 
+/* Cuadrantes de ícono de Servicios en celeste de marca, para que tengan
+   más impacto visual que el resto de las tarjetas. */
+.services .card__icon {
+  background: var(--celeste-delta);
+  color: var(--navy);
+}
+
 .card__icon svg {
   width: 24px;
   height: 24px;
@@ -458,23 +465,6 @@ section {
   object-fit: cover;
   object-position: center;
   border-radius: var(--radius);
-}
-
-.case-study__image-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  aspect-ratio: 3 / 2;
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px dashed rgba(255, 255, 255, 0.25);
-  border-radius: var(--radius);
-  color: #A9BBD4;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  text-align: center;
-  padding: 20px;
 }
 
 /* Breadcrumb de vuelta, usado en el banner de farriplast.html */
