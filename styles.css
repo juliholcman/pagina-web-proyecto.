@@ -949,6 +949,53 @@ section {
 }
 
 /* =========================================================
+   EFECTO DE SUPERPOSICIÓN AL SCROLLEAR (curtain / stacking sections)
+   Solo en desktop grande (≥1024px) y sin prefers-reduced-motion: cada
+   sección "grande" (Hero, Quiénes somos, Nuestros valores, Servicios,
+   Casos de éxito) queda pegada (position: sticky) justo debajo del
+   header mientras la siguiente sube y la tapa por completo, gracias a
+   un z-index creciente. Contacto queda afuera de este efecto y sigue
+   el scroll normal.
+
+   Cada sección vive dentro de un .stack-wrapper de un viewport de alto
+   (ver index.html), que es lo que define cuánto dura "su turno" antes
+   de que la tape la siguiente. La sección en sí ocupa el resto del
+   viewport (debajo del header) y, si su contenido no entra completo
+   (por ejemplo Servicios, con 6 tarjetas), se puede recorrer con scroll
+   interno (overflow-y: auto) en vez de cortarse — el scroll del mouse
+   primero recorre ese contenido interno y recién después sigue
+   avanzando la página hacia la siguiente sección.
+
+   En mobile/tablet (< 1024px) o con prefers-reduced-motion activado,
+   este bloque completo no aplica y las secciones se comportan como
+   cualquier sección normal en el flujo del documento.
+   ========================================================= */
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .stack-wrapper {
+    position: relative;
+    /* Más alto que 100vh a propósito: la diferencia entre esto y el alto
+       de .stack-section es lo que la mantiene fija (pausada) antes de
+       que la siguiente la tape; con 100vh justos apenas se nota la pausa. */
+    height: 165vh;
+  }
+
+  .stack-section {
+    position: sticky;
+    top: var(--header-height);
+    height: calc(100vh - var(--header-height));
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  /* z-index creciente en orden de aparición: cada sección tapa a la anterior */
+  .stack-wrapper:nth-of-type(1) .stack-section { z-index: 1; }
+  .stack-wrapper:nth-of-type(2) .stack-section { z-index: 2; }
+  .stack-wrapper:nth-of-type(3) .stack-section { z-index: 3; }
+  .stack-wrapper:nth-of-type(4) .stack-section { z-index: 4; }
+  .stack-wrapper:nth-of-type(5) .stack-section { z-index: 5; }
+}
+
+/* =========================================================
    ACCESIBILIDAD — prefers-reduced-motion
    Anula todas las transiciones/animaciones agregadas (scroll reveal,
    cascada de tarjetas, hover de botones/fotos, achique del header) y
