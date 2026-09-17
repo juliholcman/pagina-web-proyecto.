@@ -845,7 +845,7 @@ section {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  /* Servicios: 5 tarjetas se acomodan mejor en 3 columnas (3 + 2) que en 4 */
+  /* Servicios: 6 tarjetas en 3 columnas x 2 filas, sin huecos */
   .cards-grid--services {
     grid-template-columns: repeat(3, 1fr);
   }
