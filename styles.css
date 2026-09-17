@@ -122,6 +122,13 @@ ul {
   color: var(--blanco);
 }
 
+.section-lead {
+  max-width: 640px;
+  font-size: 1.05rem;
+  margin-top: -0.4em;
+  margin-bottom: 2rem;
+}
+
 section {
   padding: 72px 0;
 }
@@ -786,6 +793,11 @@ section {
 
   .cards-grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Servicios: 5 tarjetas se acomodan mejor en 3 columnas (3 + 2) que en 4 */
+  .cards-grid--services {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .contact__grid {
