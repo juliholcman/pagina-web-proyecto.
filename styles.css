@@ -1058,3 +1058,514 @@ section {
     transform: none !important;
   }
 }
+
+/* =========================================================
+   CASO FARRIPLAST (farriplast.html)
+   Banner oscuro con solapas y contenido en fondo claro, alternando
+   blanco y gris hielo como pide el Manual de Marca Delta v1.
+   ========================================================= */
+.case-banner {
+  padding-bottom: 0;
+}
+
+.case-banner .tabs {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.case-body .tab-panel p {
+  color: var(--texto-secundario);
+}
+
+.case-body .tab-panel__empty {
+  color: var(--texto-secundario);
+  padding: 96px 0;
+}
+
+/* Subnavegación interna de la solapa: queda fija debajo del header */
+.case-subnav {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #E4EBF3;
+}
+
+.case-subnav__inner {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  scrollbar-width: none;
+}
+
+.case-subnav__link {
+  flex: 0 0 auto;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--texto-secundario);
+  background: var(--gris-hielo);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.case-subnav__link:hover,
+.case-subnav__link:focus-visible {
+  background: var(--azul-delta);
+  color: var(--blanco);
+}
+
+/* Bloques de contenido */
+.case-block {
+  padding: 72px 0;
+  background: var(--blanco);
+  scroll-margin-top: calc(var(--header-height) + 64px);
+}
+
+.case-block--alt {
+  background: var(--gris-hielo);
+}
+
+.case-block__lead {
+  max-width: 68ch;
+  font-size: 1.08rem;
+  margin-bottom: 36px;
+}
+
+.case-block__subtitle {
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin: 48px 0 20px;
+}
+
+.case-block__note {
+  max-width: 68ch;
+  margin: 24px 0 0;
+  font-size: 0.9rem;
+}
+
+.case-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+}
+
+/* Números destacados */
+.case-stats {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.case-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 22px;
+  border-radius: var(--radius);
+  background: var(--gris-hielo);
+  border-top: 4px solid var(--celeste-delta);
+}
+
+.case-stat__value {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 1.9rem;
+  color: var(--azul-delta);
+  line-height: 1.1;
+}
+
+.case-stat__label {
+  font-size: 0.85rem;
+  color: var(--texto-secundario);
+}
+
+/* Tarjeta general del caso */
+.case-card {
+  background: var(--blanco);
+  border: 1px solid #E4EBF3;
+  border-radius: var(--radius);
+  padding: 26px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.case-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -14px rgba(11, 59, 140, 0.3);
+}
+
+.case-card p {
+  margin: 0;
+}
+
+.case-card__title {
+  font-size: 1.1rem;
+  margin: 0 0 0.5em;
+}
+
+.case-card__tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--azul-medio);
+  margin-bottom: 10px;
+}
+
+/* Objetivos estratégicos */
+.goal-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 26px;
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, var(--azul-delta), var(--navy));
+  color: var(--blanco);
+}
+
+.goal-card__value {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 1.9rem;
+  line-height: 1.1;
+  color: var(--celeste-delta);
+}
+
+.goal-card__title {
+  color: var(--blanco);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.case-body .goal-card p {
+  color: #D6E4F5;
+  font-size: 0.92rem;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.goal-card__term {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--celeste-claro);
+}
+
+/* Etiquetas de prioridad */
+.priority {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.priority--alta {
+  background: var(--azul-delta);
+  color: var(--blanco);
+}
+
+.priority--media {
+  background: var(--celeste-delta);
+  color: var(--azul-profundo);
+}
+
+.priority--baja {
+  background: var(--gris-hielo);
+  color: var(--texto-secundario);
+}
+
+/* Equipo */
+.team-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: var(--radius);
+  background: var(--blanco);
+  border: 1px solid #E4EBF3;
+}
+
+.team-card__avatar {
+  flex: 0 0 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--celeste-delta), var(--azul-delta));
+  color: var(--blanco);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.case-body .team-card__name {
+  margin: 0;
+  font-weight: 700;
+  color: var(--texto-principal);
+}
+
+.case-body .team-card__role {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--azul-delta);
+}
+
+@media (min-width: 640px) {
+  .case-grid--2,
+  .case-grid--3,
+  .case-grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .case-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1040px) {
+  .case-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .case-grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* =========================================================
+   CASO FARRIPLAST · capa visual
+   Íconos en tarjetas, esquema del proceso, aparición al hacer scroll
+   y solapas sin barra de desplazamiento. Colores y tipografías del
+   Manual de Marca Delta v1.
+   ========================================================= */
+
+/* ---------- Solapas: sin barra de scroll ---------- */
+.case-banner .tabs {
+  scrollbar-width: none;
+}
+
+.case-banner .tabs::-webkit-scrollbar {
+  display: none;
+}
+
+/* En celular y tablet las solapas se deslizan; el degradado del borde
+   derecho avisa que hay más opciones. */
+@media (max-width: 1039px) {
+  .case-banner .tabs {
+    -webkit-mask-image: linear-gradient(to right, #000 85%, transparent);
+    mask-image: linear-gradient(to right, #000 85%, transparent);
+  }
+}
+
+/* En escritorio se acomodan en dos filas y se ven todas a la vez. */
+@media (min-width: 1040px) {
+  .case-banner .tabs {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
+
+/* ---------- Íconos en tarjetas ---------- */
+.case-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.case-card__head .case-card__tag,
+.case-card__head .priority {
+  margin: 0;
+}
+
+.case-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  background: var(--gris-hielo);
+  color: var(--azul-delta);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.case-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.case-card:hover .case-icon {
+  background: var(--azul-delta);
+  color: var(--blanco);
+}
+
+/* ---------- Esquema: cómo se procesa el material ---------- */
+.case-flow {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.case-flow__step {
+  position: relative;
+  padding: 18px 18px 18px 70px;
+  background: var(--blanco);
+  border: 1px solid #E4EBF3;
+  border-radius: var(--radius);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.case-flow__step:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px -18px rgba(21, 101, 192, 0.45);
+}
+
+.case-flow__num {
+  position: absolute;
+  left: 18px;
+  top: 16px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--azul-delta);
+  color: var(--blanco);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.case-block .case-flow__step h4 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+
+.case-block .case-flow__step p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Línea vertical que une los pasos (celular) */
+.case-flow__step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 35px;
+  top: 52px;
+  bottom: -30px;
+  width: 2px;
+  background: var(--celeste-delta);
+}
+
+@media (min-width: 1040px) {
+  .case-flow {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+  }
+
+  .case-flow__step {
+    padding: 70px 16px 20px;
+  }
+
+  .case-flow__num {
+    left: 16px;
+    top: 16px;
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Línea horizontal que une los pasos (escritorio) */
+  .case-flow__step:not(:last-child)::after {
+    left: auto;
+    right: -18px;
+    top: 35px;
+    bottom: auto;
+    width: 18px;
+    height: 2px;
+  }
+}
+
+/* ---------- Aparición escalonada al hacer scroll ---------- */
+.stagger .case-stat,
+.stagger .case-card,
+.stagger .goal-card,
+.stagger .team-card,
+.stagger .case-flow__step {
+  transition: opacity 0.55s ease-out, transform 0.55s ease-out, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.js-reveal-ready .stagger .case-stat,
+.js-reveal-ready .stagger .case-card,
+.js-reveal-ready .stagger .goal-card,
+.js-reveal-ready .stagger .team-card,
+.js-reveal-ready .stagger .case-flow__step {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.js-reveal-ready .stagger.is-visible .case-stat,
+.js-reveal-ready .stagger.is-visible .case-card,
+.js-reveal-ready .stagger.is-visible .goal-card,
+.js-reveal-ready .stagger.is-visible .team-card,
+.js-reveal-ready .stagger.is-visible .case-flow__step {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger > :nth-child(1) { transition-delay: 0s; }
+.stagger > :nth-child(2) { transition-delay: 0.1s; }
+.stagger > :nth-child(3) { transition-delay: 0.2s; }
+.stagger > :nth-child(4) { transition-delay: 0.3s; }
+.stagger > :nth-child(5) { transition-delay: 0.4s; }
+.stagger > :nth-child(6) { transition-delay: 0.5s; }
+
+/* Levantar un poco las tarjetas al pasar el mouse (mayor especificidad
+   para que no lo pise la animación de aparición) */
+.goal-card:hover,
+.team-card:hover,
+.case-stat:hover,
+.js-reveal-ready .stagger.is-visible .case-stat:hover,
+.js-reveal-ready .stagger.is-visible .case-card:hover,
+.js-reveal-ready .stagger.is-visible .goal-card:hover,
+.js-reveal-ready .stagger.is-visible .team-card:hover,
+.js-reveal-ready .stagger.is-visible .case-flow__step:hover {
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger .case-stat,
+  .stagger .case-card,
+  .stagger .goal-card,
+  .stagger .team-card,
+  .stagger .case-flow__step {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

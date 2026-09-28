@@ -50,9 +50,9 @@
 <main>
 
   <!-- ============================= -->
-  <!-- BANNER DEL CASO + SUB-NAVEGACIÓN POR SOLAPAS -->
+  <!-- BANNER DEL CASO + SOLAPAS (fondo oscuro) -->
   <!-- ============================= -->
-  <section class="case-study">
+  <section class="case-study case-banner">
     <div class="container">
 
       <a href="index.html#casos-exito" class="case-hero__back">← Volver a Casos de éxito</a>
@@ -61,12 +61,11 @@
 
       <img src="farriplast-logo-claro.png" alt="Farriplast" class="case-card__logo">
       <h1 class="sr-only">Farriplast</h1>
-      <p class="case-card__industry">Reciclado de plástico industrial · AMBA</p>
+      <p class="case-card__industry">Reciclado de plástico postindustrial · Lanús, AMBA</p>
 
       <!--
-        Sub-navegación por solapas. Estructura preparada para sumar más
-        pestañas a futuro (los ejemplos de abajo quedan como "Próximamente"
-        hasta que haya contenido real para cargar en cada una).
+        Solapas del caso. Cada solapa muestra su panel (más abajo, en fondo
+        claro). Las que todavía no tienen contenido quedan en "Próximamente".
       -->
       <div class="tabs" role="tablist" aria-label="Secciones del caso Farriplast">
         <button type="button" class="tabs__item is-active" role="tab" id="tab-relevamiento" aria-selected="true" aria-controls="panel-relevamiento" tabindex="0">Caso de Negocio y Relevamiento</button>
@@ -79,122 +78,237 @@
         <button type="button" class="tabs__item" role="tab" id="tab-documentacion" aria-selected="false" aria-controls="panel-documentacion" tabindex="-1">Documentación</button>
       </div>
 
-      <!-- Solapa 1: Caso de Negocio y Relevamiento.
-           Fuente: templates T-01 (caso de negocio y relevamiento) y T-02
-           (arquitectura empresarial actual) cerrados. -->
-      <div class="tab-panel" id="panel-relevamiento" role="tabpanel" aria-labelledby="tab-relevamiento">
-        <p>
-          Farriplast es una planta de reciclado de plástico postindustrial en
-          Lanús. Compra scrap a fábricas plásticas, lo procesa y lo vende como
-          materia prima. También procesa el scrap que le traen sus clientes.
-          Delta hizo el relevamiento organizacional y el análisis de su
-          arquitectura empresarial para proponer una mejora en la gestión.
-        </p>
-
-        <div class="case-card__stats">
-          <div class="stat">
-            <span class="stat__value">2020</span>
-            <span class="stat__label">En funcionamiento desde julio</span>
-          </div>
-          <div class="stat">
-            <span class="stat__value">5</span>
-            <span class="stat__label">Operarios en planta</span>
-          </div>
-          <div class="stat">
-            <span class="stat__value">21 h</span>
-            <span class="stat__label">De operación por día, en dos turnos</span>
-          </div>
-          <div class="stat">
-            <span class="stat__value">~10</span>
-            <span class="stat__label">Clientes, en su mayoría fijos</span>
-          </div>
-        </div>
-
-        <div class="case-card__details">
-          <h2>Sobre Farriplast</h2>
-          <ul>
-            <li><strong>Venta de material propio:</strong> compra scrap postindustrial, lo clasifica por tipo y color, lo muele o agruma y, si el cliente lo pide, lo extruye y filtra. Lo vende en bolsas de 25 kg o bolsones de 600 kg.</li>
-            <li><strong>Fason:</strong> procesa el material fallado de cada cliente y se lo devuelve listo para reutilizar. Se cobra solo el servicio de procesamiento.</li>
-            <li><strong>Clientes:</strong> empresas de productos de higiene, de limpieza y jugueterías del AMBA.</li>
-          </ul>
-        </div>
-
-        <div class="case-card__details">
-          <h2>Propósito</h2>
-          <ul>
-            <li><strong>Misión:</strong> transformar scrap plástico postindustrial en materia prima de calidad para la industria plástica del AMBA, mediante procesos eficientes, flexibles y basados en su experiencia.</li>
-            <li><strong>Visión:</strong> ser una empresa referente en la recuperación de plástico postindustrial en el AMBA, reconocida por la calidad de sus procesos, la cercanía con sus clientes y su crecimiento sostenible.</li>
-          </ul>
-        </div>
-
-        <div class="case-card__details">
-          <h2>Objetivos estratégicos</h2>
-          <ul>
-            <li><strong>Relación con los clientes:</strong> satisfacción de clientes de 90% o más y retención de 85% o más de los clientes activos, en 18 meses.</li>
-            <li><strong>Reputación:</strong> 95% o más de entregas a tiempo y rechazos por calidad por debajo del 2% del volumen entregado, en 12 meses.</li>
-            <li><strong>Crecimiento comercial:</strong> 20% más de volumen mensual de plástico reciclado comercializado, en 24 meses.</li>
-            <li><strong>Nuevos clientes de molienda y recuperación:</strong> un nuevo galpón alquilado y en funcionamiento, en 12 meses.</li>
-          </ul>
-          <p style="margin-top: 14px; font-size: 0.82rem; color: #A9BBD4;">Las metas las propuso el equipo a partir del diagnóstico y se validan con el dueño.</p>
-        </div>
-
-        <div class="case-card__details">
-          <h2>Diagnóstico</h2>
-          <ul>
-            <li><strong>Gestión centralizada en el dueño:</strong> compras, ventas, cobranzas y stock pasan por una sola persona.</li>
-            <li><strong>Registro manual:</strong> las operaciones se anotan en un cuaderno y después se pasan al WhatsApp de cada cliente o proveedor. La única planilla de Excel controla el stock de un solo cliente de fason.</li>
-            <li><strong>Madurez inicial:</strong> los procesos funcionan, pero se aprendieron en la práctica y no están documentados.</li>
-          </ul>
-        </div>
-
-        <div class="case-card__details">
-          <h2>Requerimientos relevados</h2>
-          <ul>
-            <li><strong>Control de stock (prioridad alta):</strong> saber cuánto material y espacio hay en planta, y de dónde viene y adónde va cada material.</li>
-            <li><strong>Compras, ventas y cobranzas (prioridad alta):</strong> registrarlas y seguirlas para dedicarles menos tiempo y decidir con información confiable.</li>
-            <li><strong>Costos y rentabilidad (prioridad media):</strong> conocer el costo y el margen de cada proceso o material para evaluar inversiones como el nuevo galpón.</li>
-            <li><strong>Registro de mermas (prioridad baja):</strong> medir las pérdidas de material de cada proceso.</li>
-          </ul>
-        </div>
-
-        <div class="case-card__details">
-          <h2>Equipo de Delta</h2>
-          <ul>
-            <li><strong>Belén Casal:</strong> Product Owner</li>
-            <li><strong>Julieta Holcman:</strong> Project Manager</li>
-            <li><strong>Rodrigo Pérez Suzuki:</strong> Scrum Master</li>
-            <li><strong>Sol Beraja:</strong> UX/UI</li>
-            <li><strong>Clara Murature:</strong> Tech Lead</li>
-            <li><strong>Martina Szymsiowicz:</strong> Analista de negocio</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Solapas 2 a 8: preparadas para contenido futuro, sin inventar nada todavía -->
-      <div class="tab-panel" id="panel-innovacion" role="tabpanel" aria-labelledby="tab-innovacion" hidden>
-        <p class="tab-panel__empty">Próximamente</p>
-      </div>
-      <div class="tab-panel" id="panel-estructura" role="tabpanel" aria-labelledby="tab-estructura" hidden>
-        <p class="tab-panel__empty">Próximamente</p>
-      </div>
-      <div class="tab-panel" id="panel-alcance" role="tabpanel" aria-labelledby="tab-alcance" hidden>
-        <p class="tab-panel__empty">Próximamente</p>
-      </div>
-      <div class="tab-panel" id="panel-proveedores" role="tabpanel" aria-labelledby="tab-proveedores" hidden>
-        <p class="tab-panel__empty">Próximamente</p>
-      </div>
-      <div class="tab-panel" id="panel-comercial" role="tabpanel" aria-labelledby="tab-comercial" hidden>
-        <p class="tab-panel__empty">Próximamente</p>
-      </div>
-      <div class="tab-panel" id="panel-proximos-pasos" role="tabpanel" aria-labelledby="tab-proximos-pasos" hidden>
-        <p class="tab-panel__empty">Próximamente</p>
-      </div>
-      <div class="tab-panel" id="panel-documentacion" role="tabpanel" aria-labelledby="tab-documentacion" hidden>
-        <p class="tab-panel__empty">Próximamente</p>
-      </div>
-
     </div>
   </section>
+
+  <!-- ============================= -->
+  <!-- CONTENIDO DE LAS SOLAPAS (fondo claro, según Manual de Marca) -->
+  <!-- ============================= -->
+  <div class="case-body">
+
+    <!-- Solapa 1: Caso de Negocio y Relevamiento.
+         Fuente: templates T-01 y T-02 cerrados. -->
+    <div class="tab-panel" id="panel-relevamiento" role="tabpanel" aria-labelledby="tab-relevamiento">
+
+      <!-- Subnavegación interna de la solapa -->
+      <nav class="case-subnav" aria-label="Secciones de Caso de Negocio y Relevamiento">
+        <div class="container case-subnav__inner">
+          <a href="#cf-sobre" class="case-subnav__link">Sobre Farriplast</a>
+          <a href="#cf-proposito" class="case-subnav__link">Propósito</a>
+          <a href="#cf-objetivos" class="case-subnav__link">Objetivos</a>
+          <a href="#cf-diagnostico" class="case-subnav__link">Diagnóstico</a>
+          <a href="#cf-requerimientos" class="case-subnav__link">Requerimientos</a>
+          <a href="#cf-equipo" class="case-subnav__link">Equipo</a>
+        </div>
+      </nav>
+
+      <!-- 01 · Sobre Farriplast -->
+      <section class="case-block reveal" id="cf-sobre">
+        <div class="container">
+          <span class="eyebrow">01 · Sobre Farriplast</span>
+          <h2 class="section-title">Una planta de reciclado en Lanús</h2>
+          <p class="case-block__lead">
+            Farriplast compra scrap a fábricas plásticas, lo procesa y lo vende
+            como materia prima. También procesa el scrap que le traen sus
+            clientes. Delta hizo el relevamiento organizacional y el análisis de
+            su arquitectura empresarial para proponer una mejora en la gestión.
+          </p>
+
+          <div class="stagger case-stats">
+            <div class="case-stat">
+              <span class="case-stat__value">2020</span>
+              <span class="case-stat__label">En funcionamiento desde julio</span>
+            </div>
+            <div class="case-stat">
+              <span class="case-stat__value">5</span>
+              <span class="case-stat__label">Operarios en planta</span>
+            </div>
+            <div class="case-stat">
+              <span class="case-stat__value">21 h</span>
+              <span class="case-stat__label">De operación por día, en dos turnos</span>
+            </div>
+            <div class="case-stat">
+              <span class="case-stat__value">~10</span>
+              <span class="case-stat__label">Clientes, en su mayoría fijos</span>
+            </div>
+          </div>
+
+          <h3 class="case-block__subtitle">Dos líneas de negocio</h3>
+          <div class="stagger case-grid case-grid--2">
+            <article class="case-card">
+              <div class="case-card__head"><span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span><span class="case-card__tag">Línea A</span></div>
+              <h4 class="case-card__title">Venta de material propio</h4>
+              <p>Compra scrap postindustrial, lo clasifica por tipo y color, lo muele o agruma y, si el cliente lo pide, lo extruye y filtra. Lo vende en bolsas de 25 kg o bolsones de 600 kg.</p>
+            </article>
+            <article class="case-card">
+              <div class="case-card__head"><span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 1 4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="m7 23-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span><span class="case-card__tag">Línea B</span></div>
+              <h4 class="case-card__title">Fason</h4>
+              <p>Procesa el material fallado de cada cliente y se lo devuelve listo para reutilizar. Se cobra solo el servicio de procesamiento.</p>
+            </article>
+          </div>
+          <h3 class="case-block__subtitle">Cómo se procesa el material</h3>
+          <ol class="case-flow stagger">
+            <li class="case-flow__step"><span class="case-flow__num">1</span><h4>Ingreso del scrap</h4><p>Llega en camiones, en bolsones de 600 kg, fardos o bolsas más chicas.</p></li>
+            <li class="case-flow__step"><span class="case-flow__num">2</span><h4>Clasificación</h4><p>Se separa por tipo y color.</p></li>
+            <li class="case-flow__step"><span class="case-flow__num">3</span><h4>Agrumado o molienda</h4><p>El material blando se agruma y el duro se muele.</p></li>
+            <li class="case-flow__step"><span class="case-flow__num">4</span><h4>Extrusión y filtrado</h4><p>Solo cuando el cliente lo necesita.</p></li>
+            <li class="case-flow__step"><span class="case-flow__num">5</span><h4>Embolsado y paletizado</h4><p>En bolsas de 25 kg o bolsones de 600 kg.</p></li>
+          </ol>
+
+          <p class="case-block__note">Sus clientes son empresas de productos de higiene, de limpieza y jugueterías del AMBA.</p>
+        </div>
+      </section>
+
+      <!-- 02 · Propósito -->
+      <section class="case-block case-block--alt reveal" id="cf-proposito">
+        <div class="container">
+          <span class="eyebrow">02 · Propósito</span>
+          <h2 class="section-title">Misión y visión</h2>
+          <div class="stagger case-grid case-grid--2">
+            <div class="mv-block">
+              <h3>Misión</h3>
+              <p>Transformar scrap plástico postindustrial en materia prima de calidad para la industria plástica del AMBA, mediante procesos eficientes, flexibles y basados en su experiencia.</p>
+            </div>
+            <div class="mv-block">
+              <h3>Visión</h3>
+              <p>Ser una empresa referente en la recuperación de plástico postindustrial en el AMBA, reconocida por la calidad de sus procesos, la cercanía con sus clientes y su crecimiento sostenible.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 · Objetivos estratégicos -->
+      <section class="case-block reveal" id="cf-objetivos">
+        <div class="container">
+          <span class="eyebrow">03 · Objetivos estratégicos</span>
+          <h2 class="section-title">Hacia dónde quiere ir</h2>
+          <div class="stagger case-grid case-grid--4">
+            <article class="goal-card">
+              <span class="goal-card__value">≥ 90%</span>
+              <h4 class="goal-card__title">Relación con los clientes</h4>
+              <p>Satisfacción de clientes de 90% o más y retención de 85% o más de los clientes activos.</p>
+              <span class="goal-card__term">18 meses</span>
+            </article>
+            <article class="goal-card">
+              <span class="goal-card__value">≥ 95%</span>
+              <h4 class="goal-card__title">Reputación</h4>
+              <p>Entregas a tiempo de 95% o más y rechazos por calidad por debajo del 2% del volumen entregado.</p>
+              <span class="goal-card__term">12 meses</span>
+            </article>
+            <article class="goal-card">
+              <span class="goal-card__value">+20%</span>
+              <h4 class="goal-card__title">Crecimiento comercial</h4>
+              <p>Más volumen mensual de plástico reciclado comercializado.</p>
+              <span class="goal-card__term">24 meses</span>
+            </article>
+            <article class="goal-card">
+              <span class="goal-card__value">+1 galpón</span>
+              <h4 class="goal-card__title">Nuevos clientes de molienda y recuperación</h4>
+              <p>Un nuevo galpón alquilado y en funcionamiento.</p>
+              <span class="goal-card__term">12 meses</span>
+            </article>
+          </div>
+          <p class="case-block__note">Las metas las propuso el equipo a partir del diagnóstico y se validan con el dueño.</p>
+        </div>
+      </section>
+
+      <!-- 04 · Diagnóstico -->
+      <section class="case-block case-block--alt reveal" id="cf-diagnostico">
+        <div class="container">
+          <span class="eyebrow">04 · Diagnóstico</span>
+          <h2 class="section-title">Cómo funciona hoy</h2>
+          <div class="stagger case-grid case-grid--3">
+            <article class="case-card">
+              <div class="case-card__head"><span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span></div>
+              <h4 class="case-card__title">Gestión centralizada en el dueño</h4>
+              <p>Compras, ventas, cobranzas y stock pasan por una sola persona.</p>
+            </article>
+            <article class="case-card">
+              <div class="case-card__head"><span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span></div>
+              <h4 class="case-card__title">Registro manual</h4>
+              <p>Las operaciones se anotan en un cuaderno y después se pasan al WhatsApp de cada cliente o proveedor. La única planilla de Excel controla el stock de un solo cliente de fason.</p>
+            </article>
+            <article class="case-card">
+              <div class="case-card__head"><span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></span></div>
+              <h4 class="case-card__title">Madurez inicial</h4>
+              <p>Los procesos funcionan, pero se aprendieron en la práctica y no están documentados.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 · Requerimientos -->
+      <section class="case-block reveal" id="cf-requerimientos">
+        <div class="container">
+          <span class="eyebrow">05 · Requerimientos</span>
+          <h2 class="section-title">Qué necesita resolver</h2>
+          <div class="stagger case-grid case-grid--2">
+            <article class="case-card">
+              <div class="case-card__head"><span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 9.4 7.55 4.24"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg></span><span class="priority priority--alta">Prioridad alta</span></div>
+              <h4 class="case-card__title">Control de stock</h4>
+              <p>Saber cuánto material y espacio hay en planta, y de dónde viene y adónde va cada material.</p>
+            </article>
+            <article class="case-card">
+              <div class="case-card__head"><span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><span class="priority priority--alta">Prioridad alta</span></div>
+              <h4 class="case-card__title">Compras, ventas y cobranzas</h4>
+              <p>Registrarlas y seguirlas para dedicarles menos tiempo y decidir con información confiable.</p>
+            </article>
+            <article class="case-card">
+              <div class="case-card__head"><span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg></span><span class="priority priority--media">Prioridad media</span></div>
+              <h4 class="case-card__title">Costos y rentabilidad</h4>
+              <p>Conocer el costo y el margen de cada proceso o material para evaluar inversiones como el nuevo galpón.</p>
+            </article>
+            <article class="case-card">
+              <div class="case-card__head"><span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg></span><span class="priority priority--baja">Prioridad baja</span></div>
+              <h4 class="case-card__title">Registro de mermas</h4>
+              <p>Medir las pérdidas de material de cada proceso.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 · Equipo -->
+      <section class="case-block case-block--alt reveal" id="cf-equipo">
+        <div class="container">
+          <span class="eyebrow">06 · Equipo</span>
+          <h2 class="section-title">Equipo de Delta</h2>
+          <div class="stagger case-grid case-grid--3">
+            <div class="team-card"><span class="team-card__avatar" aria-hidden="true">BC</span><div><p class="team-card__name">Belén Casal</p><p class="team-card__role">Product Owner</p></div></div>
+            <div class="team-card"><span class="team-card__avatar" aria-hidden="true">JH</span><div><p class="team-card__name">Julieta Holcman</p><p class="team-card__role">Project Manager</p></div></div>
+            <div class="team-card"><span class="team-card__avatar" aria-hidden="true">RP</span><div><p class="team-card__name">Rodrigo Pérez Suzuki</p><p class="team-card__role">Scrum Master</p></div></div>
+            <div class="team-card"><span class="team-card__avatar" aria-hidden="true">SB</span><div><p class="team-card__name">Sol Beraja</p><p class="team-card__role">UX/UI</p></div></div>
+            <div class="team-card"><span class="team-card__avatar" aria-hidden="true">CM</span><div><p class="team-card__name">Clara Murature</p><p class="team-card__role">Tech Lead</p></div></div>
+            <div class="team-card"><span class="team-card__avatar" aria-hidden="true">MS</span><div><p class="team-card__name">Martina Szymsiowicz</p><p class="team-card__role">Analista de negocio</p></div></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Solapas 2 a 8: preparadas para contenido futuro, sin inventar nada todavía -->
+    <div class="tab-panel" id="panel-innovacion" role="tabpanel" aria-labelledby="tab-innovacion" hidden>
+      <p class="tab-panel__empty">Próximamente</p>
+    </div>
+    <div class="tab-panel" id="panel-estructura" role="tabpanel" aria-labelledby="tab-estructura" hidden>
+      <p class="tab-panel__empty">Próximamente</p>
+    </div>
+    <div class="tab-panel" id="panel-alcance" role="tabpanel" aria-labelledby="tab-alcance" hidden>
+      <p class="tab-panel__empty">Próximamente</p>
+    </div>
+    <div class="tab-panel" id="panel-proveedores" role="tabpanel" aria-labelledby="tab-proveedores" hidden>
+      <p class="tab-panel__empty">Próximamente</p>
+    </div>
+    <div class="tab-panel" id="panel-comercial" role="tabpanel" aria-labelledby="tab-comercial" hidden>
+      <p class="tab-panel__empty">Próximamente</p>
+    </div>
+    <div class="tab-panel" id="panel-proximos-pasos" role="tabpanel" aria-labelledby="tab-proximos-pasos" hidden>
+      <p class="tab-panel__empty">Próximamente</p>
+    </div>
+    <div class="tab-panel" id="panel-documentacion" role="tabpanel" aria-labelledby="tab-documentacion" hidden>
+      <p class="tab-panel__empty">Próximamente</p>
+    </div>
+
+  </div>
 
 </main>
 
