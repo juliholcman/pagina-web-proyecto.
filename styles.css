@@ -1031,22 +1031,8 @@ section {
 }
 
 /* =========================================================
-   EQUIPO (index.html, continuación de "Quiénes somos")
+   EQUIPO (farriplast.html, bloque 06 de la solapa 01)
    ========================================================= */
-.team-section {
-  padding-top: 0;
-}
-
-/* Línea fina alineada con el texto (dentro del padding del container,
-   a diferencia de un border-top del container, que sobresale) */
-.team-section .container::before {
-  content: '';
-  display: block;
-  height: 1px;
-  background: var(--borde);
-  margin-bottom: 56px;
-}
-
 .team-grid {
   display: grid;
   gap: 16px;
@@ -1091,6 +1077,15 @@ section {
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: var(--azul-delta);
+}
+
+/* Dentro del caso, la regla general .case-body .tab-panel p pisaría estos colores */
+.case-body .tab-panel .team-card__name {
+  color: var(--texto-principal);
+}
+
+.case-body .tab-panel .team-card__role {
   color: var(--azul-delta);
 }
 
