@@ -23,6 +23,7 @@
   --borde: #E4EBF3;
   --borde-medio: #D5E1EE;
   --borde-punteado: #B9C9DC;
+  --celeste-nota: #E8F4FD;   /* fondo de notas chicas (bloque de documentación) */
   --texto-apagado: #5C7086; /* texto secundario chico sobre fondo claro: 4.6:1 sobre gris hielo (WCAG AA) */
 
   /* Tipografía */
@@ -1453,6 +1454,34 @@ section {
   font-size: 0.85rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: var(--texto-secundario);
+}
+
+/* Documentación al pie de cada sección: nota chica y discreta.
+   Clase propia a propósito: .tab-panel__empty marcaría la sección
+   entera como "Próximamente" en el menú. */
+.case-docs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+  margin: 32px 0;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: var(--celeste-nota);
+}
+
+.case-docs__label {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--azul-delta);
+}
+
+.case-docs__text {
+  font-size: 0.9rem;
   color: var(--texto-secundario);
 }
 
