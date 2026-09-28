@@ -1529,8 +1529,7 @@ section {
   line-height: 1.3;
 }
 
-.case-pager__btn:focus-visible,
-.case-subnav__link:focus-visible {
+.case-pager__btn:focus-visible {
   outline: 3px solid var(--azul-delta);
   outline-offset: 2px;
 }
@@ -1543,50 +1542,11 @@ section {
   }
 }
 
-/* ---------- Subnavegación interna del panel (fija debajo del header) ---------- */
-.case-subnav {
-  position: sticky;
-  top: var(--header-height);
-  z-index: 50;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--borde);
-}
-
-.case-subnav__inner {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  scrollbar-width: none;
-}
-
-.case-subnav__inner::-webkit-scrollbar {
-  display: none;
-}
-
-.case-subnav__link {
-  flex: 0 0 auto;
-  padding: 8px 16px;
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 0.88rem;
-  color: var(--texto-secundario);
-  background: var(--gris-hielo);
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
-
-.case-subnav__link:hover {
-  background: var(--azul-delta);
-  color: var(--blanco);
-}
-
 /* ---------- Bloques de contenido ---------- */
 .case-block {
   padding: 72px 0;
   background: var(--blanco);
-  scroll-margin-top: calc(var(--header-height) + 64px);
+  scroll-margin-top: calc(var(--header-height) + 16px);
 }
 
 .case-block--alt {

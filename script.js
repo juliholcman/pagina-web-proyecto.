@@ -261,7 +261,10 @@ function initScrollReveal() {
         }
       });
     },
-    { threshold: 0.12, rootMargin: '0px 0px -10% 0px' }
+    /* Aparece apenas su borde superior entra 40px en pantalla. Un
+       porcentaje del bloque (threshold) no sirve: en celular un bloque
+       alto tardaba en llegar al 12% visible y quedaba en blanco. */
+    { threshold: 0, rootMargin: '0px 0px -40px 0px' }
   );
 
   targets.forEach((el) => observer.observe(el));
