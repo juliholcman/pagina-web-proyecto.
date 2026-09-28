@@ -19,6 +19,12 @@
   --texto-principal: #0F1B2D;
   --texto-secundario: #4A5A70;
 
+  /* Neutros de interfaz (bordes y textos apagados) */
+  --borde: #E4EBF3;
+  --borde-medio: #D5E1EE;
+  --borde-punteado: #B9C9DC;
+  --texto-apagado: #5C7086; /* texto secundario chico sobre fondo claro: 4.6:1 sobre gris hielo (WCAG AA) */
+
   /* Tipografía */
   --font-principal: 'League Spartan', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
@@ -649,41 +655,6 @@ section {
   margin-bottom: 1.2em;
 }
 
-/* Sub-navegación por solapas (farriplast.html): preparada para sumar más
-   pestañas a futuro sin tocar esta estructura. */
-.tabs {
-  display: flex;
-  gap: 4px;
-  overflow-x: auto;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  margin: 8px 0 32px;
-  scrollbar-width: thin;
-}
-
-.tabs__item {
-  flex: 0 0 auto;
-  padding: 14px 18px;
-  background: none;
-  border: none;
-  border-bottom: 3px solid transparent;
-  font-family: var(--font-principal);
-  font-weight: 600;
-  font-size: 0.92rem;
-  color: #A9BBD4;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-
-.tabs__item:hover {
-  color: var(--blanco);
-}
-
-.tabs__item.is-active {
-  color: var(--celeste-delta);
-  border-bottom-color: var(--celeste-delta);
-}
-
 .tab-panel p {
   color: #C9D6E8;
 }
@@ -1060,36 +1031,526 @@ section {
 }
 
 /* =========================================================
+   EQUIPO (index.html, continuación de "Quiénes somos")
+   ========================================================= */
+.team-section {
+  padding-top: 0;
+}
+
+/* Línea fina alineada con el texto (dentro del padding del container,
+   a diferencia de un border-top del container, que sobresale) */
+.team-section .container::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: var(--borde);
+  margin-bottom: 56px;
+}
+
+.team-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+.team-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: var(--radius);
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.team-card__avatar {
+  flex: 0 0 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--celeste-delta), var(--azul-delta));
+  color: var(--blanco);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.team-card__name {
+  margin: 0;
+  font-weight: 700;
+  color: var(--texto-principal);
+  line-height: 1.3;
+}
+
+.team-card__role {
+  margin: 2px 0 0;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--azul-delta);
+}
+
+@media (min-width: 640px) {
+  .team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1040px) {
+  .team-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* =========================================================
    CASO FARRIPLAST (farriplast.html)
-   Banner oscuro con solapas y contenido en fondo claro, alternando
-   blanco y gris hielo como pide el Manual de Marca Delta v1.
+   Banner oscuro con la navegación del caso y contenido en fondo claro,
+   alternando blanco y gris hielo como pide el Manual de Marca Delta v1.
    ========================================================= */
 .case-banner {
-  padding-bottom: 0;
+  padding-bottom: 36px;
 }
 
-.case-banner .tabs {
-  margin-bottom: 0;
-  border-bottom: none;
+/* ---------- Navegación del caso ---------- */
+.case-nav {
+  position: relative;
+  margin-top: 8px;
+  scroll-margin-top: calc(var(--header-height) + 12px);
 }
 
+.case-nav__bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.case-nav__menu-btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 18px 0 16px;
+  border: none;
+  border-radius: 999px;
+  background: var(--blanco);
+  color: var(--azul-profundo);
+  font-family: var(--font-principal);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.case-nav__menu-btn:hover {
+  background: var(--celeste-claro);
+}
+
+.case-nav__burger {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 20px;
+}
+
+.case-nav__burger span {
+  display: block;
+  width: 20px;
+  height: 2.5px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Tres rayitas que se transforman en X (desplazamiento = alto + gap) */
+.case-nav.is-open .case-nav__burger span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.case-nav.is-open .case-nav__burger span:nth-child(2) {
+  opacity: 0;
+}
+
+.case-nav.is-open .case-nav__burger span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+.case-nav__current {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.case-nav__step {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--celeste-claro);
+}
+
+.case-nav__title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.25;
+  color: var(--blanco);
+}
+
+.case-nav__arrows {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 8px;
+}
+
+.case-nav__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  background: transparent;
+  color: var(--blanco);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.case-nav__arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+.case-nav__arrow:hover:not(:disabled) {
+  background: var(--celeste-delta);
+  border-color: var(--celeste-delta);
+  color: var(--azul-profundo);
+}
+
+.case-nav__arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* Barra de progreso: un tramo por sección (lo arma script.js) */
+.case-nav__progress {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.case-nav__seg {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 18px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.case-nav__seg::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 5px;
+  margin-top: -2.5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.22);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.case-nav__seg:hover::before {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.case-nav__seg.is-done::before {
+  background: var(--azul-medio);
+}
+
+.case-nav__seg.is-active::before {
+  background: var(--celeste-delta);
+  transform: scaleY(1.5);
+}
+
+/* Foco visible en los controles del banner */
+.case-nav__menu-btn:focus-visible,
+.case-nav__arrow:focus-visible,
+.case-nav__seg:focus-visible,
+.tabs__item:focus-visible {
+  outline: 3px solid var(--celeste-delta);
+  outline-offset: 2px;
+}
+
+/* ---------- Listado desplegable de secciones ---------- */
+.case-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  z-index: 70; /* por encima de la subnavegación interna (50) */
+  padding: 12px;
+  border-radius: 18px;
+  background: var(--blanco);
+  box-shadow: 0 28px 60px -20px rgba(6, 22, 46, 0.55);
+  animation: case-menu-in 0.18s ease-out;
+}
+
+/* .case-menu fija su propio display (vía la animación y el bloque),
+   así que [hidden] necesita esta regla para ocultarlo */
+.case-menu[hidden] {
+  display: none;
+}
+
+@keyframes case-menu-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+}
+
+.tabs__item {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 12px;
+  width: 100%;
+  min-width: 0;
+  padding: 10px 12px;
+  border: none;
+  border-left: 4px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  font-family: var(--font-principal);
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  text-align: left;
+  color: var(--texto-principal);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.tabs__item:hover {
+  background: var(--gris-hielo);
+}
+
+.tabs__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--gris-hielo);
+  color: var(--azul-delta);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.tabs__name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.tabs__soon {
+  display: none;
+  justify-self: start;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--gris-hielo);
+  color: var(--texto-secundario);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tabs__item.is-soon .tabs__soon {
+  display: inline-block;
+}
+
+.tabs__item.is-active {
+  background: var(--gris-hielo);
+  border-left-color: var(--azul-delta);
+  color: var(--azul-delta);
+}
+
+.tabs__item.is-active .tabs__num {
+  background: var(--azul-delta);
+  color: var(--blanco);
+}
+
+.tabs__item.is-active .tabs__soon {
+  background: var(--blanco);
+}
+
+@media (min-width: 760px) {
+  .tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Celular: la barra en dos filas y "Próximamente" debajo del nombre */
+@media (max-width: 559px) {
+  .case-nav__bar {
+    flex-wrap: wrap;
+    row-gap: 12px;
+  }
+
+  .case-nav__arrows {
+    margin-left: auto;
+  }
+
+  .case-nav__current {
+    order: 3;
+    flex-basis: 100%;
+    padding: 0 4px 2px;
+  }
+
+  .tabs__item {
+    grid-template-columns: 34px minmax(0, 1fr);
+    row-gap: 4px;
+  }
+
+  .tabs__num {
+    grid-row: span 2;
+  }
+
+  .tabs__item:not(.is-soon) .tabs__num {
+    grid-row: auto;
+  }
+}
+
+/* ---------- Paneles ---------- */
+/* La regla general .tab-panel p está pensada para fondo oscuro */
 .case-body .tab-panel p {
   color: var(--texto-secundario);
 }
 
 .case-body .tab-panel__empty {
-  color: var(--texto-secundario);
+  margin: 0;
   padding: 96px 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--texto-secundario);
 }
 
-/* Subnavegación interna de la solapa: queda fija debajo del header */
+/* Pie de cada sección: anterior / siguiente (lo arma script.js) */
+.case-pager {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 40px 0 72px;
+  border-top: 1px solid var(--borde);
+}
+
+.case-pager__btn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 18px 22px;
+  border-radius: var(--radius);
+  font-family: var(--font-principal);
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.case-pager__btn--prev {
+  grid-column: 1;
+  background: var(--blanco);
+  border: 1px solid var(--borde-medio);
+  color: var(--texto-principal);
+}
+
+.case-pager__btn--prev:hover {
+  border-color: var(--azul-delta);
+  transform: translateY(-2px);
+}
+
+.case-pager__btn--next {
+  grid-column: 2;
+  align-items: flex-end;
+  text-align: right;
+  background: var(--azul-delta);
+  border: 1px solid var(--azul-delta);
+  color: var(--blanco);
+}
+
+.case-pager__btn--next:hover {
+  background: var(--navy);
+  border-color: var(--navy);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -16px rgba(21, 101, 192, 0.7);
+}
+
+.case-pager__dir {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.case-pager__btn--prev .case-pager__dir {
+  color: var(--azul-delta);
+}
+
+.case-pager__name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.case-pager__btn:focus-visible,
+.case-subnav__link:focus-visible {
+  outline: 3px solid var(--azul-delta);
+  outline-offset: 2px;
+}
+
+@media (max-width: 639px) {
+  .case-pager {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+}
+
+/* ---------- Subnavegación interna del panel (fija debajo del header) ---------- */
 .case-subnav {
   position: sticky;
   top: var(--header-height);
   z-index: 50;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid #E4EBF3;
+  border-bottom: 1px solid var(--borde);
 }
 
 .case-subnav__inner {
@@ -1101,6 +1562,10 @@ section {
   scrollbar-width: none;
 }
 
+.case-subnav__inner::-webkit-scrollbar {
+  display: none;
+}
+
 .case-subnav__link {
   flex: 0 0 auto;
   padding: 8px 16px;
@@ -1109,16 +1574,15 @@ section {
   font-size: 0.88rem;
   color: var(--texto-secundario);
   background: var(--gris-hielo);
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.case-subnav__link:hover,
-.case-subnav__link:focus-visible {
+.case-subnav__link:hover {
   background: var(--azul-delta);
   color: var(--blanco);
 }
 
-/* Bloques de contenido */
+/* ---------- Bloques de contenido ---------- */
 .case-block {
   padding: 72px 0;
   background: var(--blanco);
@@ -1130,7 +1594,7 @@ section {
 }
 
 .case-block__lead {
-  max-width: 68ch;
+  max-width: 720px;
   font-size: 1.08rem;
   margin-bottom: 36px;
 }
@@ -1142,22 +1606,23 @@ section {
 }
 
 .case-block__note {
-  max-width: 68ch;
+  max-width: 720px;
   margin: 24px 0 0;
   font-size: 0.9rem;
 }
 
+/* ---------- Grillas ---------- */
 .case-grid {
   display: grid;
-  gap: 20px;
-  grid-template-columns: 1fr;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr);
 }
 
-/* Números destacados */
+/* ---------- Datos destacados ---------- */
 .case-stats {
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .case-stat {
@@ -1174,8 +1639,8 @@ section {
   font-family: var(--font-mono);
   font-weight: 600;
   font-size: 1.9rem;
-  color: var(--azul-delta);
   line-height: 1.1;
+  color: var(--azul-delta);
 }
 
 .case-stat__label {
@@ -1183,22 +1648,32 @@ section {
   color: var(--texto-secundario);
 }
 
-/* Tarjeta general del caso */
+/* ---------- Tarjeta ---------- */
 .case-card {
+  display: flex;
+  flex-direction: column;
   background: var(--blanco);
-  border: 1px solid #E4EBF3;
+  border: 1px solid var(--borde);
   border-radius: var(--radius);
-  padding: 26px;
+  padding: 24px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .case-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px -14px rgba(11, 59, 140, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -18px rgba(21, 101, 192, 0.45);
 }
 
-.case-card p {
+.case-body .case-card p {
   margin: 0;
+}
+
+.case-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
 .case-card__title {
@@ -1211,13 +1686,120 @@ section {
   font-family: var(--font-mono);
   font-weight: 600;
   font-size: 0.7rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--azul-medio);
-  margin-bottom: 10px;
+  color: var(--azul-delta);
 }
 
-/* Objetivos estratégicos */
+.case-card__num {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--azul-delta);
+  margin-bottom: 14px;
+}
+
+/* ---------- Ícono ---------- */
+.case-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  background: var(--gris-hielo);
+  color: var(--azul-delta);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.case-icon svg,
+.compare__arrow svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.case-card:hover .case-icon {
+  background: var(--azul-delta);
+  color: var(--blanco);
+}
+
+/* ---------- Lista con tilde ---------- */
+.case-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.case-checks li {
+  position: relative;
+  padding-left: 30px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--texto-secundario);
+}
+
+.case-checks li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gris-hielo) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231565C0' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 12px 12px no-repeat;
+}
+
+/* ---------- Chips "Apoya:" ---------- */
+.case-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.case-chips__label {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--texto-secundario);
+}
+
+.case-chip {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--gris-hielo);
+  color: var(--azul-delta);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.case-card--chips p {
+  margin-bottom: 0;
+}
+
+/* ---------- Misión y visión ---------- */
+.case-body .mv-block {
+  border: 1px solid var(--borde);
+  border-left: 4px solid var(--azul-delta);
+}
+
+.case-body .mv-block p {
+  margin: 0;
+}
+
+/* ---------- Objetivos estratégicos ---------- */
 .goal-card {
   display: flex;
   flex-direction: column;
@@ -1226,6 +1808,7 @@ section {
   border-radius: var(--radius);
   background: linear-gradient(160deg, var(--azul-delta), var(--navy));
   color: var(--blanco);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .goal-card__value {
@@ -1243,36 +1826,36 @@ section {
 }
 
 .case-body .goal-card p {
-  color: #D6E4F5;
-  font-size: 0.92rem;
-  margin: 0;
   flex-grow: 1;
+  margin: 0;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .goal-card__term {
   align-self: flex-start;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--celeste-claro);
   font-family: var(--font-mono);
   font-weight: 600;
   font-size: 0.7rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
-  color: var(--celeste-claro);
 }
 
-/* Etiquetas de prioridad */
+/* ---------- Insignias de prioridad ---------- */
 .priority {
   display: inline-block;
+  padding: 5px 10px;
+  border-radius: 999px;
   font-family: var(--font-mono);
   font-weight: 600;
   font-size: 0.68rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 5px 10px;
-  border-radius: 999px;
-  margin-bottom: 12px;
+  white-space: nowrap;
 }
 
 .priority--alta {
@@ -1287,138 +1870,7 @@ section {
 
 .priority--baja {
   background: var(--gris-hielo);
-  color: var(--texto-secundario);
-}
-
-/* Equipo */
-.team-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 18px 20px;
-  border-radius: var(--radius);
-  background: var(--blanco);
-  border: 1px solid #E4EBF3;
-}
-
-.team-card__avatar {
-  flex: 0 0 52px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--celeste-delta), var(--azul-delta));
-  color: var(--blanco);
-  font-weight: 700;
-  font-size: 1.05rem;
-}
-
-.case-body .team-card__name {
-  margin: 0;
-  font-weight: 700;
-  color: var(--texto-principal);
-}
-
-.case-body .team-card__role {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--azul-delta);
-}
-
-@media (min-width: 640px) {
-  .case-grid--2,
-  .case-grid--3,
-  .case-grid--4 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .case-stats {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (min-width: 1040px) {
-  .case-grid--3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .case-grid--4 {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* =========================================================
-   CASO FARRIPLAST · capa visual
-   Íconos en tarjetas, esquema del proceso, aparición al hacer scroll
-   y solapas sin barra de desplazamiento. Colores y tipografías del
-   Manual de Marca Delta v1.
-   ========================================================= */
-
-/* ---------- Solapas: sin barra de scroll ---------- */
-.case-banner .tabs {
-  scrollbar-width: none;
-}
-
-.case-banner .tabs::-webkit-scrollbar {
-  display: none;
-}
-
-/* En celular y tablet las solapas se deslizan; el degradado del borde
-   derecho avisa que hay más opciones. */
-@media (max-width: 1039px) {
-  .case-banner .tabs {
-    -webkit-mask-image: linear-gradient(to right, #000 85%, transparent);
-    mask-image: linear-gradient(to right, #000 85%, transparent);
-  }
-}
-
-/* En escritorio se acomodan en dos filas y se ven todas a la vez. */
-@media (min-width: 1040px) {
-  .case-banner .tabs {
-    flex-wrap: wrap;
-    overflow-x: visible;
-  }
-}
-
-/* ---------- Íconos en tarjetas ---------- */
-.case-card__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.case-card__head .case-card__tag,
-.case-card__head .priority {
-  margin: 0;
-}
-
-.case-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 46px;
-  height: 46px;
-  flex: 0 0 auto;
-  border-radius: 12px;
-  background: var(--gris-hielo);
-  color: var(--azul-delta);
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.case-icon svg {
-  width: 22px;
-  height: 22px;
-}
-
-.case-card:hover .case-icon {
-  background: var(--azul-delta);
-  color: var(--blanco);
+  color: var(--texto-apagado);
 }
 
 /* ---------- Esquema: cómo se procesa el material ---------- */
@@ -1434,14 +1886,14 @@ section {
   position: relative;
   padding: 18px 18px 18px 70px;
   background: var(--blanco);
-  border: 1px solid #E4EBF3;
+  border: 1px solid var(--borde);
   border-radius: var(--radius);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .case-flow__step:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 30px -18px rgba(21, 101, 192, 0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -18px rgba(21, 101, 192, 0.45);
 }
 
 .case-flow__num {
@@ -1462,30 +1914,215 @@ section {
   font-size: 0.9rem;
 }
 
-.case-block .case-flow__step h4 {
+.case-flow__step h4 {
   margin: 0 0 4px;
   font-size: 1rem;
 }
 
-.case-block .case-flow__step p {
+.case-body .case-flow__step p {
   margin: 0;
   font-size: 0.9rem;
 }
 
-/* Línea vertical que une los pasos (celular) */
+/* Línea vertical que une los círculos (celular) */
 .case-flow__step:not(:last-child)::after {
   content: '';
   position: absolute;
   left: 35px;
   top: 52px;
-  bottom: -30px;
+  bottom: -31px;
   width: 2px;
   background: var(--celeste-delta);
 }
 
+/* ---------- Antes y después ---------- */
+.compare {
+  display: grid;
+  gap: 16px;
+}
+
+.compare__labels {
+  display: none;
+}
+
+.compare__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: stretch;
+  gap: 8px;
+}
+
+.compare__card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 22px;
+  border-radius: var(--radius);
+  line-height: 1.45;
+}
+
+.compare__card--before {
+  background: var(--blanco);
+  border: 1px dashed var(--borde-punteado);
+  color: var(--texto-secundario);
+}
+
+.compare__card--after {
+  background: linear-gradient(160deg, var(--azul-delta), var(--navy));
+  color: var(--blanco);
+  font-weight: 600;
+}
+
+.compare__tag {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--azul-delta);
+}
+
+.compare__card--after .compare__tag {
+  color: var(--celeste-claro);
+}
+
+.compare__arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--azul-delta);
+  transform: rotate(90deg);
+}
+
+/* ---------- Matriz de escenarios ---------- */
+.scenarios {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+.scenarios__corner,
+.scenarios__head {
+  display: none;
+}
+
+.scenario {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px;
+  border-radius: var(--radius);
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+}
+
+.scenario[data-n="1"] { order: 1; }
+.scenario[data-n="2"] { order: 2; }
+.scenario[data-n="3"] { order: 3; }
+.scenario[data-n="4"] { order: 4; }
+
+.scenario__label {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--azul-delta);
+}
+
+.scenario__title {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.scenario__text {
+  flex-grow: 1;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--texto-secundario);
+}
+
+.scenario__status {
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--gris-hielo);
+  color: var(--texto-apagado);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.scenario--chosen {
+  background: linear-gradient(160deg, var(--azul-delta), var(--navy));
+  border-color: transparent;
+  box-shadow: 0 24px 44px -18px rgba(21, 101, 192, 0.75);
+}
+
+.scenario--chosen .scenario__label {
+  color: var(--celeste-claro);
+}
+
+.scenario--chosen .scenario__title {
+  color: var(--blanco);
+}
+
+.scenario--chosen .scenario__text {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.scenario--chosen .scenario__status {
+  background: var(--celeste-delta);
+  color: var(--azul-profundo);
+}
+
+/* ---------- Etapas de implementación ---------- */
+.stage-card {
+  border-top: 5px solid var(--azul-delta);
+}
+
+.stage-card--2 {
+  border-top-color: var(--celeste-delta);
+}
+
+.stage-card .case-card__tag {
+  margin-bottom: 10px;
+}
+
+/* ---------- Responsive del caso ---------- */
+@media (min-width: 640px) {
+  .case-grid--2,
+  .case-grid--3,
+  .case-grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .case-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .case-grid--stages {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (min-width: 1040px) {
+  .case-grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .case-grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  /* Esquema del proceso: 5 columnas con conector horizontal */
   .case-flow {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 18px;
   }
 
@@ -1500,31 +2137,120 @@ section {
     height: 40px;
   }
 
-  /* Línea horizontal que une los pasos (escritorio) */
   .case-flow__step:not(:last-child)::after {
     left: auto;
-    right: -18px;
+    right: -19px;
     top: 35px;
     bottom: auto;
     width: 18px;
     height: 2px;
   }
+
+  /* Antes y después: rótulos arriba, flecha al medio */
+  .compare__labels,
+  .compare__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 56px minmax(0, 1fr);
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .compare__labels {
+    margin-bottom: -4px;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--azul-delta);
+  }
+
+  .compare__card {
+    justify-content: center;
+  }
+
+  /* El rótulo dentro de la tarjeta queda solo para lectores de pantalla */
+  .compare__tag {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .compare__arrow {
+    transform: none;
+  }
+
+  /* Matriz 2x2 con encabezados de fila y columna */
+  .scenarios {
+    grid-template-columns: 130px minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .scenarios__corner {
+    display: block;
+  }
+
+  .scenarios__head {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .scenarios__head--col {
+    justify-content: flex-end;
+    padding: 0 4px;
+  }
+
+  .scenarios__head--row {
+    justify-content: center;
+  }
+
+  .scenarios__name {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--texto-principal);
+  }
+
+  .scenarios__hint {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--azul-delta);
+  }
+
+  .scenario[data-n] {
+    order: 0; /* en escritorio manda el orden del HTML (matriz 2x2) */
+  }
 }
 
-/* ---------- Aparición escalonada al hacer scroll ---------- */
+/* =========================================================
+   APARICIÓN ESCALONADA (.stagger) de los componentes del caso y del equipo
+   Solo ocultan bajo .js-reveal-ready: si el JS no corre, todo se ve.
+   ========================================================= */
 .stagger .case-stat,
 .stagger .case-card,
 .stagger .goal-card,
 .stagger .team-card,
-.stagger .case-flow__step {
-  transition: opacity 0.55s ease-out, transform 0.55s ease-out, box-shadow 0.2s ease, background 0.2s ease;
+.stagger .case-flow__step,
+.stagger .mv-block,
+.stagger .compare__row,
+.stagger .scenario {
+  transition: opacity 0.55s ease-out, transform 0.55s ease-out, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .js-reveal-ready .stagger .case-stat,
 .js-reveal-ready .stagger .case-card,
 .js-reveal-ready .stagger .goal-card,
 .js-reveal-ready .stagger .team-card,
-.js-reveal-ready .stagger .case-flow__step {
+.js-reveal-ready .stagger .case-flow__step,
+.js-reveal-ready .stagger .mv-block,
+.js-reveal-ready .stagger .compare__row,
+.js-reveal-ready .stagger .scenario {
   opacity: 0;
   transform: translateY(24px);
 }
@@ -1533,7 +2259,10 @@ section {
 .js-reveal-ready .stagger.is-visible .case-card,
 .js-reveal-ready .stagger.is-visible .goal-card,
 .js-reveal-ready .stagger.is-visible .team-card,
-.js-reveal-ready .stagger.is-visible .case-flow__step {
+.js-reveal-ready .stagger.is-visible .case-flow__step,
+.js-reveal-ready .stagger.is-visible .mv-block,
+.js-reveal-ready .stagger.is-visible .compare__row,
+.js-reveal-ready .stagger.is-visible .scenario {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1544,18 +2273,25 @@ section {
 .stagger > :nth-child(4) { transition-delay: 0.3s; }
 .stagger > :nth-child(5) { transition-delay: 0.4s; }
 .stagger > :nth-child(6) { transition-delay: 0.5s; }
+.stagger > :nth-child(7) { transition-delay: 0.6s; }
+.stagger > :nth-child(8) { transition-delay: 0.7s; }
+.stagger > :nth-child(9) { transition-delay: 0.8s; }
 
-/* Levantar un poco las tarjetas al pasar el mouse (mayor especificidad
-   para que no lo pise la animación de aparición) */
-.goal-card:hover,
+/* Hover: sube 4px. Mayor especificidad que la regla de aparición para que
+   la animación no lo pise. */
 .team-card:hover,
+.goal-card:hover,
 .case-stat:hover,
-.js-reveal-ready .stagger.is-visible .case-stat:hover,
+.js-reveal-ready .stagger.is-visible .team-card:hover,
 .js-reveal-ready .stagger.is-visible .case-card:hover,
 .js-reveal-ready .stagger.is-visible .goal-card:hover,
-.js-reveal-ready .stagger.is-visible .team-card:hover,
+.js-reveal-ready .stagger.is-visible .case-stat:hover,
 .js-reveal-ready .stagger.is-visible .case-flow__step:hover {
   transform: translateY(-4px);
+}
+
+.js-reveal-ready .stagger.is-visible > :hover {
+  transition-delay: 0s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1563,9 +2299,40 @@ section {
   .stagger .case-card,
   .stagger .goal-card,
   .stagger .team-card,
-  .stagger .case-flow__step {
+  .stagger .case-flow__step,
+  .stagger .mv-block,
+  .stagger .compare__row,
+  .stagger .scenario,
+  .case-card,
+  .team-card,
+  .goal-card,
+  .case-stat,
+  .case-flow__step,
+  .case-pager__btn,
+  .case-nav__burger span,
+  .case-nav__seg::before {
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
+  }
+
+  .case-nav.is-open .case-nav__burger span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg) !important;
+  }
+
+  .case-nav.is-open .case-nav__burger span:nth-child(2) {
+    opacity: 0 !important;
+  }
+
+  .case-nav.is-open .case-nav__burger span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg) !important;
+  }
+
+  .case-nav__seg.is-active::before {
+    transform: scaleY(1.5) !important;
+  }
+
+  .case-menu {
+    animation: none;
   }
 }
