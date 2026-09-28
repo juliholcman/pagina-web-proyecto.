@@ -79,42 +79,93 @@
         <button type="button" class="tabs__item" role="tab" id="tab-documentacion" aria-selected="false" aria-controls="panel-documentacion" tabindex="-1">Documentación</button>
       </div>
 
-      <!-- Solapa 1: contenido real (relevamiento organizacional y arquitectura
-           empresarial que Delta Consultora realizó para Farriplast) -->
+      <!-- Solapa 1: Caso de Negocio y Relevamiento.
+           Fuente: templates T-01 (caso de negocio y relevamiento) y T-02
+           (arquitectura empresarial actual) cerrados. -->
       <div class="tab-panel" id="panel-relevamiento" role="tabpanel" aria-labelledby="tab-relevamiento">
         <p>
-          Delta Consultora llevó adelante el relevamiento organizacional y el
-          diagnóstico de arquitectura empresarial de Farriplast, una planta de
-          reciclado de plástico postindustrial. A partir del trabajo con el
-          equipo operativo y la dirección, se definieron objetivos estratégicos
-          medibles para acompañar el crecimiento de la compañía.
+          Farriplast es una planta de reciclado de plástico postindustrial en
+          Lanús. Compra scrap a fábricas plásticas, lo procesa y lo vende como
+          materia prima. También procesa el scrap que le traen sus clientes.
+          Delta hizo el relevamiento organizacional y el análisis de su
+          arquitectura empresarial para proponer una mejora en la gestión.
         </p>
 
         <div class="case-card__stats">
           <div class="stat">
-            <span class="stat__value">−10%</span>
-            <span class="stat__label">Merma sobre material procesado</span>
+            <span class="stat__value">2020</span>
+            <span class="stat__label">En funcionamiento desde julio</span>
           </div>
           <div class="stat">
-            <span class="stat__value">+10%</span>
-            <span class="stat__label">Margen promedio por kilo procesado</span>
+            <span class="stat__value">5</span>
+            <span class="stat__label">Operarios en planta</span>
           </div>
           <div class="stat">
-            <span class="stat__value">+4</span>
-            <span class="stat__label">Clientes nuevos en 18 meses</span>
+            <span class="stat__value">21 h</span>
+            <span class="stat__label">De operación por día, en dos turnos</span>
           </div>
           <div class="stat">
-            <span class="stat__value">+2</span>
-            <span class="stat__label">Nuevos sectores industriales en 24 meses</span>
+            <span class="stat__value">~10</span>
+            <span class="stat__label">Clientes, en su mayoría fijos</span>
           </div>
         </div>
 
         <div class="case-card__details">
-          <h2>Objetivos estratégicos definidos</h2>
+          <h2>Sobre Farriplast</h2>
           <ul>
-            <li><strong>Expansión comercial en el AMBA:</strong> sumar 4 nuevos clientes fijos en los sectores de higiene, limpieza y juguetería dentro de los 18 meses posteriores a la adquisición del nuevo galpón.</li>
-            <li><strong>Rentabilidad:</strong> reducir en un 10% la merma y aumentar en un 10% el margen promedio por kilo procesado dentro de los 12 meses posteriores a la implementación.</li>
-            <li><strong>Diversificación de cartera:</strong> incorporar al menos 2 clientes de nuevas industrias (por ejemplo, automotriz o construcción) dentro de los 24 meses posteriores a la puesta en marcha de la nueva planta.</li>
+            <li><strong>Venta de material propio:</strong> compra scrap postindustrial, lo clasifica por tipo y color, lo muele o agruma y, si el cliente lo pide, lo extruye y filtra. Lo vende en bolsas de 25 kg o bolsones de 600 kg.</li>
+            <li><strong>Fason:</strong> procesa el material fallado de cada cliente y se lo devuelve listo para reutilizar. Se cobra solo el servicio de procesamiento.</li>
+            <li><strong>Clientes:</strong> empresas de productos de higiene, de limpieza y jugueterías del AMBA.</li>
+          </ul>
+        </div>
+
+        <div class="case-card__details">
+          <h2>Propósito</h2>
+          <ul>
+            <li><strong>Misión:</strong> transformar scrap plástico postindustrial en materia prima de calidad para la industria plástica del AMBA, mediante procesos eficientes, flexibles y basados en su experiencia.</li>
+            <li><strong>Visión:</strong> ser una empresa referente en la recuperación de plástico postindustrial en el AMBA, reconocida por la calidad de sus procesos, la cercanía con sus clientes y su crecimiento sostenible.</li>
+          </ul>
+        </div>
+
+        <div class="case-card__details">
+          <h2>Objetivos estratégicos</h2>
+          <ul>
+            <li><strong>Relación con los clientes:</strong> satisfacción de clientes de 90% o más y retención de 85% o más de los clientes activos, en 18 meses.</li>
+            <li><strong>Reputación:</strong> 95% o más de entregas a tiempo y rechazos por calidad por debajo del 2% del volumen entregado, en 12 meses.</li>
+            <li><strong>Crecimiento comercial:</strong> 20% más de volumen mensual de plástico reciclado comercializado, en 24 meses.</li>
+            <li><strong>Nuevos clientes de molienda y recuperación:</strong> un nuevo galpón alquilado y en funcionamiento, en 12 meses.</li>
+          </ul>
+          <p style="margin-top: 14px; font-size: 0.82rem; color: #A9BBD4;">Las metas las propuso el equipo a partir del diagnóstico y se validan con el dueño.</p>
+        </div>
+
+        <div class="case-card__details">
+          <h2>Diagnóstico</h2>
+          <ul>
+            <li><strong>Gestión centralizada en el dueño:</strong> compras, ventas, cobranzas y stock pasan por una sola persona.</li>
+            <li><strong>Registro manual:</strong> las operaciones se anotan en un cuaderno y después se pasan al WhatsApp de cada cliente o proveedor. La única planilla de Excel controla el stock de un solo cliente de fason.</li>
+            <li><strong>Madurez inicial:</strong> los procesos funcionan, pero se aprendieron en la práctica y no están documentados.</li>
+          </ul>
+        </div>
+
+        <div class="case-card__details">
+          <h2>Requerimientos relevados</h2>
+          <ul>
+            <li><strong>Control de stock (prioridad alta):</strong> saber cuánto material y espacio hay en planta, y de dónde viene y adónde va cada material.</li>
+            <li><strong>Compras, ventas y cobranzas (prioridad alta):</strong> registrarlas y seguirlas para dedicarles menos tiempo y decidir con información confiable.</li>
+            <li><strong>Costos y rentabilidad (prioridad media):</strong> conocer el costo y el margen de cada proceso o material para evaluar inversiones como el nuevo galpón.</li>
+            <li><strong>Registro de mermas (prioridad baja):</strong> medir las pérdidas de material de cada proceso.</li>
+          </ul>
+        </div>
+
+        <div class="case-card__details">
+          <h2>Equipo de Delta</h2>
+          <ul>
+            <li><strong>Belén Casal:</strong> Product Owner</li>
+            <li><strong>Julieta Holcman:</strong> Project Manager</li>
+            <li><strong>Rodrigo Pérez Suzuki:</strong> Scrum Master</li>
+            <li><strong>Sol Beraja:</strong> UX/UI</li>
+            <li><strong>Clara Murature:</strong> Tech Lead</li>
+            <li><strong>Martina Szymsiowicz:</strong> Analista de negocio</li>
           </ul>
         </div>
       </div>
