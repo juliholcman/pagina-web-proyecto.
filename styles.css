@@ -23,7 +23,7 @@
   --borde: #E4EBF3;
   --borde-medio: #D5E1EE;
   --borde-punteado: #B9C9DC;
-  --gris-azulado: #7A8DA6;
+  --texto-apagado: #5C7086; /* texto secundario chico sobre fondo claro: 4.6:1 sobre gris hielo (WCAG AA) */
 
   /* Tipografía */
   --font-principal: 'League Spartan', system-ui, sans-serif;
@@ -1870,7 +1870,7 @@ section {
 
 .priority--baja {
   background: var(--gris-hielo);
-  color: var(--gris-azulado);
+  color: var(--texto-apagado);
 }
 
 /* ---------- Esquema: cómo se procesa el material ---------- */
@@ -2048,7 +2048,7 @@ section {
   padding: 5px 10px;
   border-radius: 999px;
   background: var(--gris-hielo);
-  color: var(--gris-azulado);
+  color: var(--texto-apagado);
   font-family: var(--font-mono);
   font-weight: 600;
   font-size: 0.68rem;
