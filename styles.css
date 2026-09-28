@@ -22,7 +22,7 @@
   /* Tipografía */
   --font-principal: 'League Spartan', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
-  --font-hero: 'Fraunces', Georgia, serif; /* solo para el título del hero */
+  --font-hero: 'League Spartan', system-ui, sans-serif; /* título del hero, tipografía principal del Manual de Marca Delta */
 
   /* Layout */
   --max-width: 1180px;
