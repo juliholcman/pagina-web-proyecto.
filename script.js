@@ -48,39 +48,155 @@ function setCurrentYear() {
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 }
 
-/* ---------- 6. Casos de éxito: sub-navegación por solapas (farriplast.html) ---------- */
+/* ---------- 6. Casos de éxito: navegación por secciones (farriplast.html) ----------
+   Botón "Secciones" con listado desplegable, contador, flechas, barra de
+   progreso y pie de cada sección. Todo se arma a partir de los botones
+   .tabs__item y sus paneles: para sumar una sección alcanza con agregar un
+   botón y un panel en el HTML. La sección abierta queda en la URL
+   (?seccion=<id>). */
 function initTabs() {
+  const nav = document.getElementById('case-nav');
   document.querySelectorAll('[role="tablist"]').forEach((tablist) => {
     const tabs = Array.from(tablist.querySelectorAll('.tabs__item'));
+    if (!tabs.length) return;
 
-    const activate = (tab) => {
-      tabs.forEach((t) => {
-        const isSelected = t === tab;
-        t.classList.toggle('is-active', isSelected);
-        t.setAttribute('aria-selected', String(isSelected));
-        t.tabIndex = isSelected ? 0 : -1;
-        const panel = document.getElementById(t.getAttribute('aria-controls'));
-        if (panel) panel.hidden = !isSelected;
+    const pad = (n) => String(n).padStart(2, '0');
+    const panelOf = (t) => document.getElementById(t.getAttribute('aria-controls'));
+    const slugOf = (t) => t.id.replace(/^tab-/, '');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const menu = document.getElementById('case-menu');
+    const menuBtn = document.getElementById('case-menu-btn');
+    const stepEl = document.getElementById('case-step');
+    const titleEl = document.getElementById('case-title');
+    const prevBtn = document.getElementById('case-prev');
+    const nextBtn = document.getElementById('case-next');
+    const progress = document.getElementById('case-progress');
+
+    /* Numerar cada opción y marcar las que todavía no tienen contenido */
+    const names = tabs.map((t) => t.textContent.trim());
+    tabs.forEach((t, i) => {
+      t.innerHTML =
+        '<span class="tabs__num">' + pad(i + 1) + '</span>' +
+        '<span class="tabs__name">' + names[i] + '</span>' +
+        '<span class="tabs__soon">Próximamente</span>';
+      const panel = panelOf(t);
+      if (panel && panel.querySelector('.tab-panel__empty')) t.classList.add('is-soon');
+    });
+
+    /* Barra de progreso: un tramo por sección */
+    const segs = [];
+    if (progress) {
+      tabs.forEach((t, i) => {
+        const seg = document.createElement('button');
+        seg.type = 'button';
+        seg.className = 'case-nav__seg';
+        seg.setAttribute('aria-label', 'Ir a ' + pad(i + 1) + ', ' + names[i]);
+        seg.title = names[i];
+        seg.addEventListener('click', () => activate(i, { scroll: true }));
+        progress.appendChild(seg);
+        segs.push(seg);
       });
-      tab.focus();
+    }
+
+    /* Pie de cada sección: anterior / siguiente */
+    tabs.forEach((t, i) => {
+      const panel = panelOf(t);
+      if (!panel) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'container';
+      const pager = document.createElement('nav');
+      pager.className = 'case-pager';
+      pager.setAttribute('aria-label', 'Ir a otra sección del caso');
+      const make = (target, dir, cls) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'case-pager__btn ' + cls;
+        b.innerHTML = '<span class="case-pager__dir">' + dir + '</span>' +
+                      '<span class="case-pager__name">' + pad(target + 1) + ' · ' + names[target] + '</span>';
+        b.addEventListener('click', () => activate(target, { scroll: true }));
+        return b;
+      };
+      if (i > 0) pager.appendChild(make(i - 1, '← Anterior', 'case-pager__btn--prev'));
+      if (i < tabs.length - 1) pager.appendChild(make(i + 1, 'Siguiente →', 'case-pager__btn--next'));
+      wrap.appendChild(pager);
+      panel.appendChild(wrap);
+    });
+
+    let current = Math.max(0, tabs.findIndex((t) => t.classList.contains('is-active')));
+
+    const setMenu = (open, returnFocus) => {
+      if (!menu || !menuBtn) return;
+      menu.hidden = !open;
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.setAttribute('aria-label', open ? 'Cerrar el listado de secciones' : 'Abrir el listado de secciones del caso');
+      if (nav) nav.classList.toggle('is-open', open);
+      if (open) tabs[current].focus();
+      else if (returnFocus) menuBtn.focus();
     };
 
+    function activate(i, opts) {
+      opts = opts || {};
+      current = i;
+      tabs.forEach((t, k) => {
+        const on = k === i;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        const panel = panelOf(t);
+        if (panel) panel.hidden = !on;
+      });
+      if (stepEl) stepEl.textContent = pad(i + 1) + ' / ' + pad(tabs.length);
+      if (titleEl) titleEl.textContent = names[i];
+      if (prevBtn) prevBtn.disabled = i === 0;
+      if (nextBtn) nextBtn.disabled = i === tabs.length - 1;
+      segs.forEach((seg, k) => {
+        seg.classList.toggle('is-active', k === i);
+        seg.classList.toggle('is-done', k < i);
+      });
+      if (opts.focusTab) tabs[i].focus();
+      if (opts.closeMenu) setMenu(false, false);
+      if (opts.scroll && nav && nav.getBoundingClientRect().top < 90) {
+        nav.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      }
+      try {
+        history.replaceState(null, '', i === 0 ? location.pathname : location.pathname + '?seccion=' + slugOf(tabs[i]));
+      } catch (e) { /* sin historial (por ejemplo, abierto como archivo): se ignora */ }
+    }
+
     tabs.forEach((tab, index) => {
-      tab.addEventListener('click', () => activate(tab));
+      tab.addEventListener('click', () => activate(index, { scroll: true, closeMenu: true }));
 
       tab.addEventListener('keydown', (event) => {
-        let targetIndex = null;
-        if (event.key === 'ArrowRight') targetIndex = (index + 1) % tabs.length;
-        else if (event.key === 'ArrowLeft') targetIndex = (index - 1 + tabs.length) % tabs.length;
-        else if (event.key === 'Home') targetIndex = 0;
-        else if (event.key === 'End') targetIndex = tabs.length - 1;
-
-        if (targetIndex !== null) {
+        let target = null;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') target = (index + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') target = (index - 1 + tabs.length) % tabs.length;
+        else if (event.key === 'Home') target = 0;
+        else if (event.key === 'End') target = tabs.length - 1;
+        if (target !== null) {
           event.preventDefault();
-          activate(tabs[targetIndex]);
+          activate(target, { focusTab: true });
         }
       });
     });
+
+    if (prevBtn) prevBtn.addEventListener('click', () => { if (current > 0) activate(current - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { if (current < tabs.length - 1) activate(current + 1); });
+
+    if (menuBtn && menu) {
+      menuBtn.addEventListener('click', () => setMenu(menu.hidden, true));
+      document.addEventListener('click', (e) => {
+        if (!menu.hidden && nav && !nav.contains(e.target)) setMenu(false, false);
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !menu.hidden) setMenu(false, true);
+      });
+    }
+
+    /* Abrir directo la sección indicada en la URL (?seccion=estructura) */
+    const wanted = new URLSearchParams(location.search).get('seccion');
+    const start = wanted ? tabs.findIndex((t) => slugOf(t) === wanted) : -1;
+    activate(start >= 0 ? start : current);
   });
 }
 
