@@ -972,7 +972,8 @@ section {
   }
 
   /* Servicios: 6 tarjetas en 3 columnas x 2 filas, sin huecos */
-  .cards-grid--services {
+  .cards-grid--services,
+  .cards-grid--casos {
     grid-template-columns: repeat(3, 1fr);
   }
 
@@ -2210,6 +2211,84 @@ section {
   .scenario[data-n] {
     order: 0; /* en escritorio manda el orden del HTML (matriz 2x2) */
   }
+}
+
+/* =========================================================
+   SELECTOR DE CASOS DE ÉXITO (casos-exito.html)
+   Grilla de tarjetas para elegir el caso a ver, y estilos
+   compartidos por las páginas "Próximamente" (biensentado.html,
+   rxfarma.html).
+   ========================================================= */
+.case-choice-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.case-choice-card__industry {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto-secundario);
+  margin-bottom: 1.6em;
+}
+
+.case-choice-card .btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* Chip claro para logos oscuros o con fondo transparente sobre el
+   banner oscuro del caso (Biensentado, RX Farma) */
+.case-card__logo-chip {
+  display: inline-block;
+  background: var(--blanco);
+  border-radius: 12px;
+  padding: 14px 22px;
+  margin-bottom: 20px;
+}
+
+.case-card__logo-chip .case-card__logo {
+  margin-bottom: 0;
+}
+
+/* Bloque "Próximamente" de las páginas de caso sin contenido todavía */
+.case-coming-soon {
+  padding: 96px 0;
+  text-align: center;
+}
+
+.case-coming-soon__title {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--texto-secundario);
+}
+
+.case-coming-soon__note {
+  margin: 12px 0 0;
+  font-size: 0.92rem;
+  color: var(--texto-secundario);
+}
+
+.case-coming-soon__back {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  margin: 32px auto 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--azul-delta);
+}
+
+.case-coming-soon__back:hover {
+  color: var(--navy);
 }
 
 /* =========================================================

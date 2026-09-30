@@ -1,0 +1,19 @@
+[[redirects]]
+  from = "/casos-exito"
+  to = "/casos-exito.html"
+  status = 200
+
+[[redirects]]
+  from = "/farriplast"
+  to = "/farriplast.html"
+  status = 200
+
+[[redirects]]
+  from = "/biensentado"
+  to = "/biensentado.html"
+  status = 200
+
+[[redirects]]
+  from = "/rxfarma"
+  to = "/rxfarma.html"
+  status = 200
