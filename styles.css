@@ -1053,6 +1053,8 @@ section {
 }
 
 .team-card__avatar {
+  position: relative;
+  overflow: hidden;
   flex: 0 0 52px;
   height: 52px;
   display: flex;
@@ -1063,6 +1065,18 @@ section {
   color: var(--blanco);
   font-weight: 700;
   font-size: 1.05rem;
+}
+
+/* Foto real del integrante, superpuesta sobre las iniciales: si la imagen
+   no carga, su propio onerror la saca del DOM y quedan las iniciales de
+   respaldo (ya presentes como texto del .team-card__avatar). */
+.team-card__avatar-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .team-card__name {
@@ -2345,26 +2359,50 @@ section {
 .casos-hero__stats {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-top: 28px;
+  gap: 14px;
+  margin-top: 24px;
 }
 
+/* Tarjetas "vidrio": fondo blanco muy sutil + borde en el color de acento,
+   sobre el banner oscuro del hero. */
 .casos-hero__stat {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(127, 227, 245, 0.25);
+}
+
+.casos-hero__stat-icon {
+  display: flex;
+  color: var(--celeste-claro);
+}
+
+.casos-hero__stat-icon svg {
+  width: 22px;
+  height: 22px;
 }
 
 .casos-hero__stat-value {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: 1.6rem;
+  font-family: var(--font-principal);
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 1;
   color: var(--celeste-claro);
 }
 
 .casos-hero__stat-label {
   font-size: 0.85rem;
   color: #C9D6E8;
+}
+
+/* Iluminado al pasar el mouse (además del translateY que agrega la
+   animación .stagger compartida, ver más abajo) */
+.casos-hero__stat:hover {
+  border-color: rgba(127, 227, 245, 0.7);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 /* Triángulo decorativo (delta), oculto en mobile para no competir con el texto */
@@ -2375,17 +2413,17 @@ section {
 @media (min-width: 640px) {
   .casos-hero__stats {
     flex-direction: row;
-    gap: 0;
+    align-items: flex-start;
+    gap: 18px;
   }
 
   .casos-hero__stat {
-    padding: 0 28px;
-    border-left: 1px solid rgba(255, 255, 255, 0.18);
+    flex: 1;
   }
 
-  .casos-hero__stat:first-child {
-    padding-left: 0;
-    border-left: none;
+  /* Desfase de la tarjeta del medio para que la fila no se vea tan rígida */
+  .casos-hero__stat--offset {
+    margin-top: 16px;
   }
 }
 
@@ -2425,8 +2463,9 @@ section {
 .stagger .case-flow__step,
 .stagger .mv-block,
 .stagger .compare__row,
-.stagger .scenario {
-  transition: opacity 0.55s ease-out, transform 0.55s ease-out, box-shadow 0.2s ease, background-color 0.2s ease;
+.stagger .scenario,
+.stagger .casos-hero__stat {
+  transition: opacity 0.55s ease-out, transform 0.55s ease-out, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .js-reveal-ready .stagger .case-stat,
@@ -2436,7 +2475,8 @@ section {
 .js-reveal-ready .stagger .case-flow__step,
 .js-reveal-ready .stagger .mv-block,
 .js-reveal-ready .stagger .compare__row,
-.js-reveal-ready .stagger .scenario {
+.js-reveal-ready .stagger .scenario,
+.js-reveal-ready .stagger .casos-hero__stat {
   opacity: 0;
   transform: translateY(24px);
 }
@@ -2448,7 +2488,8 @@ section {
 .js-reveal-ready .stagger.is-visible .case-flow__step,
 .js-reveal-ready .stagger.is-visible .mv-block,
 .js-reveal-ready .stagger.is-visible .compare__row,
-.js-reveal-ready .stagger.is-visible .scenario {
+.js-reveal-ready .stagger.is-visible .scenario,
+.js-reveal-ready .stagger.is-visible .casos-hero__stat {
   opacity: 1;
   transform: translateY(0);
 }
@@ -2468,11 +2509,13 @@ section {
 .team-card:hover,
 .goal-card:hover,
 .case-stat:hover,
+.casos-hero__stat:hover,
 .js-reveal-ready .stagger.is-visible .team-card:hover,
 .js-reveal-ready .stagger.is-visible .case-card:hover,
 .js-reveal-ready .stagger.is-visible .goal-card:hover,
 .js-reveal-ready .stagger.is-visible .case-stat:hover,
-.js-reveal-ready .stagger.is-visible .case-flow__step:hover {
+.js-reveal-ready .stagger.is-visible .case-flow__step:hover,
+.js-reveal-ready .stagger.is-visible .casos-hero__stat:hover {
   transform: translateY(-4px);
 }
 
@@ -2489,11 +2532,13 @@ section {
   .stagger .mv-block,
   .stagger .compare__row,
   .stagger .scenario,
+  .stagger .casos-hero__stat,
   .case-card,
   .team-card,
   .goal-card,
   .case-stat,
   .case-flow__step,
+  .casos-hero__stat,
   .case-pager__btn,
   .case-nav__burger span,
   .case-nav__seg::before {
