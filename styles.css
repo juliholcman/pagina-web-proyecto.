@@ -2078,6 +2078,127 @@ section {
   color: var(--azul-profundo);
 }
 
+/* ---------- Matriz de partes interesadas (poder e interés) ----------
+   En celular, una tarjeta por cuadrante (de más a menos prioridad).
+   Desde 760px, matriz 2x2 con los ejes de poder e interés. */
+.stake-matrix {
+  display: grid;
+  gap: 16px;
+}
+
+.stake-matrix__axis {
+  display: none;
+}
+
+.stake-quad {
+  --stake-color: var(--azul-delta);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 22px;
+  border-radius: var(--radius);
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-top: 5px solid var(--stake-color);
+}
+
+.stake-quad--latentes   { --stake-color: var(--azul-medio); }
+.stake-quad--defensores { --stake-color: var(--celeste-delta); }
+.stake-quad--apaticos   { --stake-color: var(--borde-punteado); }
+
+.stake-quad__axes {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--azul-delta);
+}
+
+.stake-quad__name {
+  margin: 4px 0 0;
+  font-size: 1.2rem;
+}
+
+.stake-quad__treat {
+  align-self: flex-start;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--gris-hielo);
+  color: var(--azul-delta);
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+
+.stake-quad__list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.stake-quad__list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 0;
+  border-top: 1px solid var(--borde);
+}
+
+.stake-quad__who {
+  font-weight: 700;
+  color: var(--texto-principal);
+}
+
+.stake-quad__how {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--texto-secundario);
+}
+
+@media (min-width: 760px) {
+  .stake-matrix {
+    grid-template-columns: 28px minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "y lat pro"
+      "y apa def"
+      ". x   x";
+  }
+
+  .stake-quad--promotores { grid-area: pro; }
+  .stake-quad--latentes   { grid-area: lat; }
+  .stake-quad--defensores { grid-area: def; }
+  .stake-quad--apaticos   { grid-area: apa; }
+
+  .stake-matrix__axis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--azul-delta);
+  }
+
+  /* Poder crece hacia arriba; interés, hacia la derecha */
+  .stake-matrix__axis--y {
+    grid-area: y;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    border-left: 2px solid var(--celeste-delta);
+  }
+
+  .stake-matrix__axis--x {
+    grid-area: x;
+    padding-top: 8px;
+    border-top: 2px solid var(--celeste-delta);
+  }
+
+  .stake-matrix__axis--y::after { content: ' ↑'; }
+  .stake-matrix__axis--x::after { content: ' →'; }
+}
+
 /* ---------- Etapas de implementación ---------- */
 .stage-card {
   border-top: 5px solid var(--azul-delta);
@@ -2464,6 +2585,7 @@ section {
 .stagger .mv-block,
 .stagger .compare__row,
 .stagger .scenario,
+.stagger .stake-quad,
 .stagger .casos-hero__stat {
   transition: opacity 0.55s ease-out, transform 0.55s ease-out, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
@@ -2476,6 +2598,7 @@ section {
 .js-reveal-ready .stagger .mv-block,
 .js-reveal-ready .stagger .compare__row,
 .js-reveal-ready .stagger .scenario,
+.js-reveal-ready .stagger .stake-quad,
 .js-reveal-ready .stagger .casos-hero__stat {
   opacity: 0;
   transform: translateY(24px);
@@ -2489,6 +2612,7 @@ section {
 .js-reveal-ready .stagger.is-visible .mv-block,
 .js-reveal-ready .stagger.is-visible .compare__row,
 .js-reveal-ready .stagger.is-visible .scenario,
+.js-reveal-ready .stagger.is-visible .stake-quad,
 .js-reveal-ready .stagger.is-visible .casos-hero__stat {
   opacity: 1;
   transform: translateY(0);
@@ -2532,6 +2656,7 @@ section {
   .stagger .mv-block,
   .stagger .compare__row,
   .stagger .scenario,
+  .stagger .stake-quad,
   .stagger .casos-hero__stat,
   .case-card,
   .team-card,
