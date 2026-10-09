@@ -2078,6 +2078,21 @@ section {
   color: var(--azul-profundo);
 }
 
+/* ---------- Figura (imagen dentro de un bloque) ---------- */
+.case-figure {
+  margin: 0;
+  text-align: center;
+}
+
+.case-figure img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--borde);
+  border-radius: var(--radius);
+}
+
 /* ---------- Etapas de implementación ---------- */
 .stage-card {
   border-top: 5px solid var(--azul-delta);
