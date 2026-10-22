@@ -2199,6 +2199,122 @@ section {
   .stake-matrix__axis--x::after { content: ' →'; }
 }
 
+/* ---------- Comparación de puntajes (barras) ----------
+   Odoo en azul Delta y Softland en celeste Delta. Los valores van
+   siempre en texto, la barra es un apoyo visual. */
+.score-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px;
+  border-radius: var(--radius);
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+}
+
+.score-row {
+  display: grid;
+  gap: 8px;
+}
+
+.score-row--total {
+  padding-top: 18px;
+  border-top: 1px solid var(--borde);
+}
+
+.score-row__label {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-weight: 700;
+  color: var(--texto-principal);
+}
+
+.score-row__weight {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: var(--azul-delta);
+}
+
+.score-row__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.score-bar {
+  --bar-color: var(--azul-delta);
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 12px;
+}
+
+.score-bar--b {
+  --bar-color: var(--celeste-delta);
+}
+
+.score-bar__name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--texto-secundario);
+}
+
+.score-bar__track {
+  display: block;
+  height: 12px;
+  border-radius: 6px;
+  background: var(--gris-hielo);
+  overflow: hidden;
+}
+
+.score-bar__fill {
+  display: block;
+  width: var(--w);
+  height: 100%;
+  border-radius: 6px;
+  background: var(--bar-color);
+}
+
+.score-bar__value {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-align: right;
+  color: var(--texto-principal);
+}
+
+.score-row--total .score-bar__fill {
+  height: 100%;
+}
+
+/* La barra se llena al aparecer la sección (solo si hay animación) */
+.js-reveal-ready .reveal .score-bar__fill {
+  width: 0;
+  transition: width 0.9s ease-out 0.2s;
+}
+
+.js-reveal-ready .reveal.is-visible .score-bar__fill {
+  width: var(--w);
+}
+
+@media (min-width: 760px) {
+  .score-row {
+    grid-template-columns: 200px minmax(0, 1fr);
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal-ready .reveal .score-bar__fill {
+    width: var(--w);
+    transition: none;
+  }
+}
+
 /* ---------- Etapas de implementación ---------- */
 .stage-card {
   border-top: 5px solid var(--azul-delta);
