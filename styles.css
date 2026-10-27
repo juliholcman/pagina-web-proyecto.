@@ -184,6 +184,55 @@ section {
 .stagger .card:nth-child(5) { transition-delay: 0.4s; }
 .stagger .card:nth-child(6) { transition-delay: 0.5s; }
 
+/* Columna de texto cuyos hijos (eyebrow, título, párrafo) entran en
+   cadena en vez de moverse todos juntos como bloque único (ej. el texto
+   de "Quiénes somos"). Usa el mismo observer/gating que .reveal. */
+.reveal-stack > * {
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.js-reveal-ready .reveal-stack > * {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.js-reveal-ready .reveal-stack.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stack > *:nth-child(1) { transition-delay: 0s; }
+.reveal-stack > *:nth-child(2) { transition-delay: 0.12s; }
+.reveal-stack > *:nth-child(3) { transition-delay: 0.24s; }
+.reveal-stack > *:nth-child(4) { transition-delay: 0.36s; }
+
+/* Imagen que se revela con una máscara (barrido de izquierda a derecha
+   con clip-path) y un leve asentamiento de escala, en vez de un fade
+   plano (ej. la foto de "Quiénes somos" y la de "Casos de éxito"). El
+   zoom va en el wrapper (.about__image/.case-study__image), no en la
+   <img>, para no pisar la transición de zoom que ya tiene esa imagen
+   al pasar el mouse. */
+.reveal-mask {
+  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.js-reveal-ready .reveal-mask {
+  clip-path: inset(0 0 0 100%);
+  transform: scale(1.08);
+}
+
+.js-reveal-ready .reveal-mask.is-visible {
+  clip-path: inset(0 0 0 0%);
+  transform: scale(1);
+}
+
+/* Capa intermedia que recibe el parallax de scroll por JS (ver
+   initParallax en script.js), separada de la <img> para no pisar la
+   transición de zoom del hover de esa imagen. */
+.parallax-layer {
+  will-change: transform;
+}
+
 /* ---------- Botones ---------- */
 .btn {
   display: inline-flex;
@@ -382,10 +431,19 @@ section {
   background: var(--azul-profundo);
 }
 
-.hero__bg {
+/* Envoltorio del fondo que recibe el parallax de scroll (ver initParallax
+   en script.js); separado de .hero__bg para que ese translateY por JS no
+   compita con la animación de zoom de carga, que sigue en .hero__bg. */
+.hero__bg-parallax {
   position: absolute;
   inset: 0;
   z-index: 0;
+  will-change: transform;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
 }
 
 .hero__bg svg {
@@ -439,17 +497,24 @@ section {
    (son @keyframes normales: corren una vez al pintarse el elemento y no
    se re-disparan al volver a scrollear hasta el Hero, a diferencia del
    sistema de scroll-reveal por IntersectionObserver que usan las demás
-   secciones). El fondo arranca con zoom sutil y se asienta; el texto
-   aparece con fade + subida, con un delay para que se note primero la
-   imagen y después el texto. */
+   secciones). El fondo arranca con zoom sutil y se asienta; el título,
+   la bajada y el botón aparecen en cadena (fade + subida), cada uno un
+   poco después del anterior, con un easing "expo-out" más elegante que
+   un ease-out común. */
 @media (prefers-reduced-motion: no-preference) {
   .hero__bg {
-    animation: hero-bg-zoom-out 1.3s ease-out both;
+    animation: hero-bg-zoom-out 1.3s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  .hero__content {
-    animation: hero-content-in 0.9s ease-out 0.7s both;
+  .hero__title,
+  .hero__subtitle,
+  .hero__content .btn {
+    animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
+
+  .hero__title { animation-delay: 0.5s; }
+  .hero__subtitle { animation-delay: 0.68s; }
+  .hero__content .btn { animation-delay: 0.86s; }
 }
 
 @keyframes hero-bg-zoom-out {
@@ -457,8 +522,8 @@ section {
   to { transform: scale(1); }
 }
 
-@keyframes hero-content-in {
-  from { opacity: 0; transform: translateY(24px); }
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(22px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -1025,10 +1090,24 @@ section {
   }
 
   .hero__bg,
-  .hero__content {
+  .hero__title,
+  .hero__subtitle,
+  .hero__content .btn {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .reveal-stack > *,
+  .reveal-mask {
+    transition: none !important;
+  }
+
+  .js-reveal-ready .reveal-stack > *,
+  .js-reveal-ready .reveal-mask {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
   }
 }
 

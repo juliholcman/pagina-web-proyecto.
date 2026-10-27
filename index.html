@@ -57,21 +57,25 @@
     <!-- FALTA: reemplazar el fondo geométrico por una fotografía institucional real.
          Para usar una imagen: en styles.css, en .hero, agregar
          background-image: linear-gradient(...), url('ruta/a/la/imagen.jpg'); -->
-    <div class="hero__bg" aria-hidden="true">
-      <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-        <polygon points="0,600 260,120 520,600" fill="var(--azul-profundo)" opacity="0.9"/>
-        <polygon points="180,600 420,180 660,600" fill="var(--navy)" opacity="0.75"/>
-        <polygon points="380,600 560,260 800,600" fill="var(--azul-medio)" opacity="0.55"/>
-        <polygon points="560,600 700,340 840,600" fill="var(--celeste-delta)" opacity="0.35"/>
-      </svg>
-      <!-- Líneas decorativas finas, sutiles, del lado derecho para no competir con el texto -->
-      <svg class="hero__lines" viewBox="0 0 800 600" preserveAspectRatio="none">
-        <line x1="520" y1="-20" x2="700" y2="620" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1"/>
-        <line x1="580" y1="-20" x2="760" y2="620" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="1"/>
-        <line x1="640" y1="-20" x2="820" y2="620" stroke="var(--celeste-claro)" stroke-opacity="0.1" stroke-width="1"/>
-        <line x1="700" y1="-20" x2="880" y2="620" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="1"/>
-        <line x1="760" y1="-20" x2="940" y2="620" stroke="var(--celeste-claro)" stroke-opacity="0.08" stroke-width="1"/>
-      </svg>
+    <!-- Capa aparte solo para el parallax de scroll: así no compite con la
+         animación de zoom de carga, que sigue viviendo en .hero__bg -->
+    <div class="hero__bg-parallax" data-parallax="scroll">
+      <div class="hero__bg" aria-hidden="true">
+        <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+          <polygon points="0,600 260,120 520,600" fill="var(--azul-profundo)" opacity="0.9"/>
+          <polygon points="180,600 420,180 660,600" fill="var(--navy)" opacity="0.75"/>
+          <polygon points="380,600 560,260 800,600" fill="var(--azul-medio)" opacity="0.55"/>
+          <polygon points="560,600 700,340 840,600" fill="var(--celeste-delta)" opacity="0.35"/>
+        </svg>
+        <!-- Líneas decorativas finas, sutiles, del lado derecho para no competir con el texto -->
+        <svg class="hero__lines" viewBox="0 0 800 600" preserveAspectRatio="none">
+          <line x1="520" y1="-20" x2="700" y2="620" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1"/>
+          <line x1="580" y1="-20" x2="760" y2="620" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="1"/>
+          <line x1="640" y1="-20" x2="820" y2="620" stroke="var(--celeste-claro)" stroke-opacity="0.1" stroke-width="1"/>
+          <line x1="700" y1="-20" x2="880" y2="620" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="1"/>
+          <line x1="760" y1="-20" x2="940" y2="620" stroke="var(--celeste-claro)" stroke-opacity="0.08" stroke-width="1"/>
+        </svg>
+      </div>
     </div>
 
     <div class="container hero__content">
@@ -84,17 +88,19 @@
   <!-- ============================= -->
   <!-- 3. QUIÉNES SOMOS               -->
   <!-- ============================= -->
-  <section class="about reveal" id="quienes-somos">
+  <section class="about" id="quienes-somos">
     <div class="container about__grid">
 
-      <div class="about__text">
+      <div class="about__text reveal-stack">
         <span class="eyebrow">Quiénes somos</span>
         <h2>Conocé a Delta Consultora</h2>
         <p>Somos una empresa de consultoría especializada en procesos, arquitectura empresarial y gestión organizacional. Acompañamos a pymes e industrias que buscan ordenar su operación y sostener su crecimiento, relevando sus procesos de punta a punta y diseñando propuestas de mejora basadas en datos reales de su negocio. Creemos en el trabajo de cerca con cada equipo: no nos quedamos en el informe, nos involucramos hasta que la mejora se implementa de verdad.</p>
       </div>
 
-      <div class="about__image">
-        <img src="Equipo.jpg" alt="Equipo de Delta Consultora trabajando en conjunto" class="about__photo">
+      <div class="about__image reveal-mask">
+        <div class="parallax-layer" data-parallax="center">
+          <img src="Equipo.jpg" alt="Equipo de Delta Consultora trabajando en conjunto" class="about__photo">
+        </div>
       </div>
 
     </div>
@@ -103,12 +109,14 @@
   <!-- ============================= -->
   <!-- 4. NUESTROS VALORES            -->
   <!-- ============================= -->
-  <section class="values reveal" id="valores">
+  <section class="values" id="valores">
     <div class="container">
-      <span class="eyebrow">Nuestros valores</span>
-      <h2 class="section-title">Misión, visión y lo que nos define</h2>
+      <div class="reveal-stack">
+        <span class="eyebrow">Nuestros valores</span>
+        <h2 class="section-title">Misión, visión y lo que nos define</h2>
+      </div>
 
-      <div class="values__mission-vision">
+      <div class="values__mission-vision stagger">
         <div class="mv-block">
           <h3>Misión</h3>
           <p>Ayudamos a las organizaciones a evolucionar, identificando oportunidades en su operación y acompañándolas en la implementación de soluciones tecnológicas que optimicen sus procesos de negocio y potencien su crecimiento.</p>
@@ -162,11 +170,13 @@
   <!-- ============================= -->
   <!-- 5. NUESTROS SERVICIOS          -->
   <!-- ============================= -->
-  <section class="services reveal" id="servicios">
+  <section class="services" id="servicios">
     <div class="container">
-      <span class="eyebrow">Servicios</span>
-      <h2 class="section-title">Nuestros servicios</h2>
-      <p class="section-lead">Acompañamos a empresas que buscan optimizar su operación y evolucionar tecnológicamente, con soluciones a medida y un enfoque cercano en cada etapa del proceso.</p>
+      <div class="reveal-stack">
+        <span class="eyebrow">Servicios</span>
+        <h2 class="section-title">Nuestros servicios</h2>
+        <p class="section-lead">Acompañamos a empresas que buscan optimizar su operación y evolucionar tecnológicamente, con soluciones a medida y un enfoque cercano en cada etapa del proceso.</p>
+      </div>
 
       <div class="cards-grid cards-grid--services stagger">
         <article class="card">
@@ -228,18 +238,20 @@
   <!-- ============================= -->
   <!-- Versión corta en la home: el detalle completo del caso Farriplast
        (con sub-navegación por solapas) vive en farriplast.html -->
-  <section class="case-study reveal" id="casos-exito">
+  <section class="case-study" id="casos-exito">
     <div class="container case-study__grid">
 
-      <div class="case-study__text">
+      <div class="case-study__text reveal-stack">
         <span class="eyebrow eyebrow--light">Casos de éxito</span>
         <h2 class="section-title section-title--light">Resultados con nuestros clientes</h2>
         <p class="case-study__lead">Conocé en detalle cómo acompañamos a nuestros clientes en su relevamiento organizacional y en la definición de hojas de ruta de mejora medibles.</p>
         <a href="/casos-exito" class="btn btn--outline">Conocer más</a>
       </div>
 
-      <div class="case-study__image">
-        <img src="Casos de Exito.jpg" alt="Equipo de Delta Consultora presentando resultados a un cliente" class="case-study__photo">
+      <div class="case-study__image reveal-mask">
+        <div class="parallax-layer" data-parallax="center">
+          <img src="Casos de Exito.jpg" alt="Equipo de Delta Consultora presentando resultados a un cliente" class="case-study__photo">
+        </div>
       </div>
 
     </div>
@@ -248,9 +260,9 @@
   <!-- ============================= -->
   <!-- 7. CONTACTO                    -->
   <!-- ============================= -->
-  <section class="contact reveal" id="contacto">
+  <section class="contact" id="contacto">
     <div class="container contact__grid">
-      <div class="contact__intro">
+      <div class="contact__intro reveal-stack">
         <span class="eyebrow">Contacto</span>
         <h2 class="section-title">Hablemos de tu transformación</h2>
         <p>Dejanos tu consulta para tener un primer contacto y coordinar juntos los próximos pasos.</p>
@@ -276,7 +288,7 @@
           3) Mantener method="POST".
         El endpoint/ID definitivo debe completarse antes de publicar el sitio.
       -->
-      <div class="contact-form-panel">
+      <div class="contact-form-panel reveal">
         <form
           class="contact-form"
           id="contact-form"
