@@ -495,7 +495,7 @@ section {
 .hero__content {
   position: relative;
   z-index: 1;
-  max-width: 640px;
+  max-width: 780px; /* el título en negrita ocupa más: así entra en 2 líneas */
   padding-top: 90px;
   padding-bottom: 90px;
   margin-left: max(0px, calc((100% - var(--max-width)) / 2));
@@ -512,6 +512,7 @@ section {
 }
 
 .hero__subtitle {
+  max-width: 600px;
   color: var(--gris-hielo);
   font-size: 1.1rem;
   margin-bottom: 2rem;
