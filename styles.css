@@ -481,6 +481,13 @@ section {
   height: 100%;
 }
 
+/* Triángulos de marca sobre la foto: un poco translúcidos para que la
+   foto se siga viendo a través */
+.hero__triangles {
+  opacity: 0.85;
+  mix-blend-mode: normal;
+}
+
 .hero__bg svg,
 .hero__lines {
   position: absolute;
