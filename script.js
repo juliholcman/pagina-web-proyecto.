@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initHeaderScroll();
   initParallax();
+  initServiceStack();
 });
 
 /* ---------- 1. Menú hamburguesa (header) ---------- */
@@ -358,5 +359,42 @@ function initParallax() {
     { passive: true }
   );
 
+  update();
+}
+
+/* ---------- Servicios: tarjetas apiladas ----------
+   Las tarjetas son sticky por CSS (se superponen solas). Acá solo se
+   calcula, para cada una, cuánto la está tapando la siguiente (0 a 1) y se
+   pasa como --cover: el CSS la achica un poco y le baja el brillo, para
+   que se lea como que queda "atrás". */
+function initServiceStack() {
+  const cards = Array.from(document.querySelectorAll('.svc-card'));
+  if (cards.length < 2) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let ticking = false;
+
+  const update = () => {
+    for (let i = 0; i < cards.length - 1; i++) {
+      const card = cards[i];
+      const next = cards[i + 1];
+      const stickyTop = parseFloat(getComputedStyle(card).top) || 0;
+      const h = card.offsetHeight;
+      const nextTop = next.getBoundingClientRect().top;
+      const cover = Math.max(0, Math.min(1, (stickyTop + h - nextTop) / h));
+      card.style.setProperty('--cover', cover.toFixed(3));
+    }
+    ticking = false;
+  };
+
+  const onScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
   update();
 }
