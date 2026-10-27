@@ -98,7 +98,7 @@
       </div>
 
       <div class="about__image reveal-mask">
-        <div class="about__parallax" data-parallax="center">
+        <div class="parallax-layer" data-parallax="center">
           <img src="Equipo.jpg" alt="Equipo de Delta Consultora trabajando en conjunto" class="about__photo">
         </div>
       </div>
@@ -109,12 +109,14 @@
   <!-- ============================= -->
   <!-- 4. NUESTROS VALORES            -->
   <!-- ============================= -->
-  <section class="values reveal" id="valores">
+  <section class="values" id="valores">
     <div class="container">
-      <span class="eyebrow">Nuestros valores</span>
-      <h2 class="section-title">Misión, visión y lo que nos define</h2>
+      <div class="reveal-stack">
+        <span class="eyebrow">Nuestros valores</span>
+        <h2 class="section-title">Misión, visión y lo que nos define</h2>
+      </div>
 
-      <div class="values__mission-vision">
+      <div class="values__mission-vision stagger">
         <div class="mv-block">
           <h3>Misión</h3>
           <p>Ayudamos a las organizaciones a evolucionar, identificando oportunidades en su operación y acompañándolas en la implementación de soluciones tecnológicas que optimicen sus procesos de negocio y potencien su crecimiento.</p>
@@ -168,11 +170,13 @@
   <!-- ============================= -->
   <!-- 5. NUESTROS SERVICIOS          -->
   <!-- ============================= -->
-  <section class="services reveal" id="servicios">
+  <section class="services" id="servicios">
     <div class="container">
-      <span class="eyebrow">Servicios</span>
-      <h2 class="section-title">Nuestros servicios</h2>
-      <p class="section-lead">Acompañamos a empresas que buscan optimizar su operación y evolucionar tecnológicamente, con soluciones a medida y un enfoque cercano en cada etapa del proceso.</p>
+      <div class="reveal-stack">
+        <span class="eyebrow">Servicios</span>
+        <h2 class="section-title">Nuestros servicios</h2>
+        <p class="section-lead">Acompañamos a empresas que buscan optimizar su operación y evolucionar tecnológicamente, con soluciones a medida y un enfoque cercano en cada etapa del proceso.</p>
+      </div>
 
       <div class="cards-grid cards-grid--services stagger">
         <article class="card">
@@ -234,18 +238,20 @@
   <!-- ============================= -->
   <!-- Versión corta en la home: el detalle completo del caso Farriplast
        (con sub-navegación por solapas) vive en farriplast.html -->
-  <section class="case-study reveal" id="casos-exito">
+  <section class="case-study" id="casos-exito">
     <div class="container case-study__grid">
 
-      <div class="case-study__text">
+      <div class="case-study__text reveal-stack">
         <span class="eyebrow eyebrow--light">Casos de éxito</span>
         <h2 class="section-title section-title--light">Resultados con nuestros clientes</h2>
         <p class="case-study__lead">Conocé en detalle cómo acompañamos a nuestros clientes en su relevamiento organizacional y en la definición de hojas de ruta de mejora medibles.</p>
         <a href="/casos-exito" class="btn btn--outline">Conocer más</a>
       </div>
 
-      <div class="case-study__image">
-        <img src="Casos de Exito.jpg" alt="Equipo de Delta Consultora presentando resultados a un cliente" class="case-study__photo">
+      <div class="case-study__image reveal-mask">
+        <div class="parallax-layer" data-parallax="center">
+          <img src="Casos de Exito.jpg" alt="Equipo de Delta Consultora presentando resultados a un cliente" class="case-study__photo">
+        </div>
       </div>
 
     </div>
@@ -254,9 +260,9 @@
   <!-- ============================= -->
   <!-- 7. CONTACTO                    -->
   <!-- ============================= -->
-  <section class="contact reveal" id="contacto">
+  <section class="contact" id="contacto">
     <div class="container contact__grid">
-      <div class="contact__intro">
+      <div class="contact__intro reveal-stack">
         <span class="eyebrow">Contacto</span>
         <h2 class="section-title">Hablemos de tu transformación</h2>
         <p>Dejanos tu consulta para tener un primer contacto y coordinar juntos los próximos pasos.</p>
@@ -282,7 +288,7 @@
           3) Mantener method="POST".
         El endpoint/ID definitivo debe completarse antes de publicar el sitio.
       -->
-      <div class="contact-form-panel">
+      <div class="contact-form-panel reveal">
         <form
           class="contact-form"
           id="contact-form"

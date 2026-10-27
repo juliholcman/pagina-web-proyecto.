@@ -204,12 +204,14 @@ section {
 .reveal-stack > *:nth-child(1) { transition-delay: 0s; }
 .reveal-stack > *:nth-child(2) { transition-delay: 0.12s; }
 .reveal-stack > *:nth-child(3) { transition-delay: 0.24s; }
+.reveal-stack > *:nth-child(4) { transition-delay: 0.36s; }
 
 /* Imagen que se revela con una máscara (barrido de izquierda a derecha
    con clip-path) y un leve asentamiento de escala, en vez de un fade
-   plano (ej. la foto de "Quiénes somos"). El zoom va en el wrapper
-   .about__image, no en .about__photo, para no pisar la transición de
-   zoom del hover que ya tiene esa imagen. */
+   plano (ej. la foto de "Quiénes somos" y la de "Casos de éxito"). El
+   zoom va en el wrapper (.about__image/.case-study__image), no en la
+   <img>, para no pisar la transición de zoom que ya tiene esa imagen
+   al pasar el mouse. */
 .reveal-mask {
   transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -222,6 +224,13 @@ section {
 .js-reveal-ready .reveal-mask.is-visible {
   clip-path: inset(0 0 0 0%);
   transform: scale(1);
+}
+
+/* Capa intermedia que recibe el parallax de scroll por JS (ver
+   initParallax en script.js), separada de la <img> para no pisar la
+   transición de zoom del hover de esa imagen. */
+.parallax-layer {
+  will-change: transform;
 }
 
 /* ---------- Botones ---------- */
@@ -533,13 +542,6 @@ section {
 .about__image {
   overflow: hidden;
   border-radius: var(--radius);
-}
-
-/* Capa intermedia que recibe el parallax de scroll por JS (ver
-   initParallax en script.js), separada de .about__photo para no pisar
-   la transición de zoom del hover de esa imagen. */
-.about__parallax {
-  will-change: transform;
 }
 
 .about__photo {
