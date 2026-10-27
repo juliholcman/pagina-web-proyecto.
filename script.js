@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initScrollReveal();
   initHeaderScroll();
+  initParallax();
 });
 
 /* ---------- 1. Menú hamburguesa (header) ---------- */
@@ -240,7 +241,7 @@ function initContactForm() {
    CSS. Así, si este script no llegara a correr, el contenido nunca queda
    invisible (las reglas .reveal/.stagger solo ocultan bajo esa clase). */
 function initScrollReveal() {
-  const targets = document.querySelectorAll('.reveal, .stagger');
+  const targets = document.querySelectorAll('.reveal, .stagger, .reveal-stack, .reveal-mask');
   if (!targets.length) return;
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -295,4 +296,67 @@ function initHeaderScroll() {
   );
 
   updateHeader(); // estado correcto si la página carga con scroll ya bajado
+}
+
+/* ---------- Parallax sutil de scroll (solo desktop, sin prefers-reduced-motion) ----------
+   Dos variantes, elegidas con data-parallax:
+   - "scroll": se corre en proporción al scroll absoluto de la página, acotado
+     a un máximo. Pensado para el fondo del Hero, para que quede "atrás",
+     más lento que el contenido.
+   - "center": se corre según qué tan lejos está su centro del centro de la
+     pantalla, en un rango chico. Pensado para una imagen de contenido (la
+     foto de "Quiénes somos"), para que no se note como un parallax de fondo
+     sino como un acompañamiento sutil del scroll.
+   Se desactiva en mobile a propósito: es el efecto con más costo de layout/
+   scroll y el que menos se nota en una pantalla chica. */
+function initParallax() {
+  const els = Array.from(document.querySelectorAll('[data-parallax]'));
+  if (!els.length) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+  if (prefersReducedMotion || !isDesktop || !('IntersectionObserver' in window)) return;
+
+  const visible = new Set();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visible.add(entry.target);
+        else visible.delete(entry.target);
+      });
+    },
+    { rootMargin: '150px 0px' }
+  );
+
+  els.forEach((el) => observer.observe(el));
+
+  let ticking = false;
+
+  const update = () => {
+    visible.forEach((el) => {
+      if (el.dataset.parallax === 'scroll') {
+        const offset = Math.min(window.scrollY * 0.15, 80);
+        el.style.transform = 'translateY(' + offset + 'px)';
+      } else {
+        const rect = el.getBoundingClientRect();
+        const distanceFromCenter = window.innerHeight / 2 - (rect.top + rect.height / 2);
+        const offset = Math.max(-24, Math.min(24, distanceFromCenter * 0.08));
+        el.style.transform = 'translateY(' + offset + 'px)';
+      }
+    });
+    ticking = false;
+  };
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+
+  update();
 }
