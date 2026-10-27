@@ -27,9 +27,12 @@
   --texto-apagado: #5C7086; /* texto secundario chico sobre fondo claro: 4.6:1 sobre gris hielo (WCAG AA) */
 
   /* Tipografía */
-  --font-principal: 'League Spartan', system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
-  --font-hero: 'League Spartan', system-ui, sans-serif; /* título del hero, tipografía principal del Manual de Marca Delta */
+  /* Una sola familia en todo el sitio (Inter), como la referencia noxcp.com.
+     --font-mono se mantiene como nombre para no tocar cada regla, pero ahora
+     también es Inter: etiquetas, números y datos usan la misma letra. */
+  --font-principal: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-hero: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Layout */
   --max-width: 1180px;
@@ -51,7 +54,7 @@ html {
 body {
   margin: 0;
   font-family: var(--font-principal);
-  font-weight: 500; /* Medium: bajada y texto de cuerpo */
+  font-weight: 400; /* Regular: bajada y texto de cuerpo */
   color: var(--texto-principal);
   background: var(--blanco);
   line-height: 1.6;
@@ -64,10 +67,19 @@ img, svg {
 
 h1, h2, h3, h4 {
   font-family: var(--font-principal);
-  font-weight: 700; /* Bold: títulos */
+  font-weight: 500; /* Medium: títulos chicos (tarjetas, bloques) */
   margin: 0 0 0.6em;
   line-height: 1.2;
+  letter-spacing: -0.01em;
   color: var(--texto-principal);
+}
+
+/* Títulos grandes: Inter en negrita, interlineado ajustado y tracking
+   levemente negativo */
+h1, h2 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
 }
 
 p {
@@ -109,9 +121,9 @@ ul {
 .eyebrow {
   display: inline-block;
   font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: 0.72rem;
-  letter-spacing: 0.28em;
+  font-weight: 500;
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--azul-delta);
   margin-bottom: 0.8rem;
@@ -122,7 +134,7 @@ ul {
 }
 
 .section-title {
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
 }
 
 .section-title--light {
@@ -241,7 +253,7 @@ section {
   padding: 0.85em 1.8em;
   border-radius: 999px;
   font-family: var(--font-principal);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1rem;
   border: 2px solid transparent;
   cursor: pointer;
@@ -409,7 +421,7 @@ section {
 .primary-nav__link {
   display: block;
   padding: 12px 0;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1rem;
   color: var(--texto-principal);
   border-bottom: 1px solid #EEF2F7;
@@ -446,9 +458,34 @@ section {
   inset: 0;
 }
 
+/* Foto de fondo del hero + velo azul de marca para que el texto se lea */
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(6, 22, 46, 0.92) 0%, rgba(6, 22, 46, 0.78) 45%, rgba(11, 59, 140, 0.35) 100%),
+    linear-gradient(0deg, rgba(6, 22, 46, 0.55), rgba(6, 22, 46, 0) 40%);
+}
+
 .hero__bg svg {
   width: 100%;
   height: 100%;
+}
+
+/* Triángulos de marca sobre la foto: un poco translúcidos para que la
+   foto se siga viendo a través */
+.hero__triangles {
+  opacity: 0.85;
+  mix-blend-mode: normal;
 }
 
 .hero__bg svg,
@@ -465,7 +502,7 @@ section {
 .hero__content {
   position: relative;
   z-index: 1;
-  max-width: 640px;
+  max-width: 780px; /* el título en negrita ocupa más: así entra en 2 líneas */
   padding-top: 90px;
   padding-bottom: 90px;
   margin-left: max(0px, calc((100% - var(--max-width)) / 2));
@@ -476,11 +513,13 @@ section {
   font-family: var(--font-hero);
   font-weight: 700;
   color: var(--blanco);
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  letter-spacing: -0.01em;
+  font-size: clamp(2.4rem, 5.6vw, 3.8rem);
+  letter-spacing: -0.03em;
+  line-height: 1.08;
 }
 
 .hero__subtitle {
+  max-width: 600px;
   color: var(--gris-hielo);
   font-size: 1.1rem;
   margin-bottom: 2rem;
@@ -750,7 +789,7 @@ section {
 
 .stat__value {
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.8rem;
   color: var(--celeste-delta);
 }
@@ -819,7 +858,7 @@ section {
 }
 
 .form-field label {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.9rem;
 }
 
@@ -1142,7 +1181,7 @@ section {
   border-radius: 50%;
   background: linear-gradient(135deg, var(--celeste-delta), var(--azul-delta));
   color: var(--blanco);
-  font-weight: 700;
+  font-weight: 500;
   font-size: 1.05rem;
 }
 
@@ -1160,7 +1199,7 @@ section {
 
 .team-card__name {
   margin: 0;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--texto-principal);
   line-height: 1.3;
 }
@@ -1234,7 +1273,7 @@ section {
   background: var(--blanco);
   color: var(--azul-profundo);
   font-family: var(--font-principal);
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.95rem;
   cursor: pointer;
   transition: background-color 0.15s ease;
@@ -1283,7 +1322,7 @@ section {
 
 .case-nav__step {
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.72rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -1291,7 +1330,7 @@ section {
 }
 
 .case-nav__title {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 1.1rem;
   line-height: 1.25;
   color: var(--blanco);
@@ -1431,7 +1470,7 @@ section {
   border-radius: 12px;
   background: transparent;
   font-family: var(--font-principal);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.95rem;
   line-height: 1.3;
   text-align: left;
@@ -1454,7 +1493,7 @@ section {
   background: var(--gris-hielo);
   color: var(--azul-delta);
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.8rem;
 }
 
@@ -1471,7 +1510,7 @@ section {
   background: var(--gris-hielo);
   color: var(--texto-secundario);
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.62rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1567,7 +1606,7 @@ section {
 
 .case-docs__label {
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1631,7 +1670,7 @@ section {
 
 .case-pager__dir {
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.72rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1642,7 +1681,7 @@ section {
 }
 
 .case-pager__name {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 1.05rem;
   line-height: 1.3;
 }
@@ -1678,7 +1717,7 @@ section {
 }
 
 .case-block__subtitle {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.15rem;
   margin: 48px 0 20px;
 }
@@ -1715,7 +1754,7 @@ section {
 
 .case-stat__value {
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.9rem;
   line-height: 1.1;
   color: var(--azul-delta);
@@ -1762,7 +1801,7 @@ section {
 .case-card__tag {
   display: inline-block;
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1771,7 +1810,7 @@ section {
 
 .case-card__num {
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.5rem;
   line-height: 1;
   color: var(--azul-delta);
@@ -1847,7 +1886,7 @@ section {
 
 .case-chips__label {
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.66rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1859,7 +1898,7 @@ section {
   border-radius: 999px;
   background: var(--gris-hielo);
   color: var(--azul-delta);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.8rem;
 }
 
@@ -1891,7 +1930,7 @@ section {
 
 .goal-card__value {
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.9rem;
   line-height: 1.1;
   color: var(--celeste-delta);
@@ -1917,7 +1956,7 @@ section {
   background: rgba(255, 255, 255, 0.15);
   color: var(--celeste-claro);
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1929,7 +1968,7 @@ section {
   padding: 5px 10px;
   border-radius: 999px;
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.68rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1988,7 +2027,7 @@ section {
   background: var(--azul-delta);
   color: var(--blanco);
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.9rem;
 }
 
@@ -2048,12 +2087,12 @@ section {
 .compare__card--after {
   background: linear-gradient(160deg, var(--azul-delta), var(--navy));
   color: var(--blanco);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .compare__tag {
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -2101,7 +2140,7 @@ section {
 
 .scenario__label {
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -2128,7 +2167,7 @@ section {
   background: var(--gris-hielo);
   color: var(--texto-apagado);
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.68rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -2187,7 +2226,7 @@ section {
 
 .stake-quad__axes {
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -2205,7 +2244,7 @@ section {
   border-radius: 999px;
   background: var(--gris-hielo);
   color: var(--azul-delta);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.82rem;
 }
 
@@ -2224,7 +2263,7 @@ section {
 }
 
 .stake-quad__who {
-  font-weight: 700;
+  font-weight: 500;
   color: var(--texto-principal);
 }
 
@@ -2253,7 +2292,7 @@ section {
     align-items: center;
     justify-content: center;
     font-family: var(--font-mono);
-    font-weight: 600;
+    font-weight: 500;
     font-size: 0.72rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -2305,13 +2344,13 @@ section {
   display: flex;
   align-items: baseline;
   gap: 10px;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--texto-principal);
 }
 
 .score-row__weight {
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   color: var(--azul-delta);
@@ -2337,7 +2376,7 @@ section {
 
 .score-bar__name {
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--texto-secundario);
 }
 
@@ -2359,7 +2398,7 @@ section {
 
 .score-bar__value {
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.85rem;
   text-align: right;
   color: var(--texto-principal);
@@ -2473,7 +2512,7 @@ section {
   .compare__labels {
     margin-bottom: -4px;
     font-family: var(--font-mono);
-    font-weight: 600;
+    font-weight: 500;
     font-size: 0.72rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -2524,14 +2563,14 @@ section {
   }
 
   .scenarios__name {
-    font-weight: 700;
+    font-weight: 500;
     font-size: 1.05rem;
     color: var(--texto-principal);
   }
 
   .scenarios__hint {
     font-family: var(--font-mono);
-    font-weight: 600;
+    font-weight: 500;
     font-size: 0.66rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -2703,7 +2742,7 @@ section {
 
 .casos-hero__stat-value {
   font-family: var(--font-principal);
-  font-weight: 700;
+  font-weight: 500;
   font-size: 2.4rem;
   line-height: 1;
   color: var(--celeste-claro);
@@ -2885,5 +2924,193 @@ section {
 
   .case-menu {
     animation: none;
+  }
+}
+
+/* =========================================================
+   5. SERVICIOS — tarjetas apiladas al hacer scroll
+   Referencia: bloque "Fusiones y adquisiciones" de noxcp.com.
+   Cada tarjeta es sticky a la misma altura; al scrollear, la siguiente
+   sube y la tapa. script.js (initServiceStack) achica y oscurece
+   levemente la de abajo según cuánto la cubre la siguiente (--cover).
+   ========================================================= */
+.svc-stack {
+  --svc-top: calc(var(--header-height) + 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 8px;
+  /* margen inferior para que la última tarjeta tenga recorrido sticky */
+  padding-bottom: 24px;
+}
+
+.svc-card {
+  --cover: 0;
+  position: sticky;
+  top: var(--svc-top);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 0;
+  overflow: hidden;
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-left: 2px solid var(--azul-delta);
+  box-shadow: 0 24px 60px -30px rgba(6, 22, 46, 0.35);
+  transform-origin: center top;
+  transform: scale(calc(1 - var(--cover) * 0.06));
+  will-change: transform;
+}
+
+/* Velo que oscurece la tarjeta que va quedando atrás */
+.svc-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--azul-profundo);
+  opacity: calc(var(--cover) * 0.18);
+  pointer-events: none;
+}
+
+.svc-card__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px 28px;
+}
+
+.svc-card__num {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  color: var(--azul-delta);
+  margin-bottom: 22px;
+}
+
+.svc-card__icon {
+  width: 32px;
+  height: 32px;
+  color: var(--texto-principal);
+  margin-bottom: 18px;
+}
+
+.svc-card__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.svc-card__title {
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 0.6em;
+}
+
+.svc-card__desc {
+  max-width: 440px;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Panel visual (lado derecho en desktop): degradado de marca con arcos
+   finos, a modo de la foto + arco de la referencia */
+.svc-card__visual {
+  position: relative;
+  min-height: 200px;
+  overflow: hidden;
+  background: linear-gradient(150deg, var(--navy), var(--azul-profundo));
+}
+
+.svc-card__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Velo azul muy suave sobre la foto, para que todas compartan el tono de marca */
+.svc-card__visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(11, 59, 140, 0.05), rgba(6, 22, 46, 0.35));
+  pointer-events: none;
+}
+
+.svc-card:hover .svc-card__photo {
+  transform: scale(1.04);
+}
+
+.svc-card__ring {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  width: 150%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.svc-card__ring--sm {
+  width: 90%;
+  top: 72%;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.svc-card__big-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 76px;
+  height: 76px;
+  transform: translate(-50%, -50%);
+  color: var(--celeste-delta);
+  opacity: 0.9;
+}
+
+.svc-card__big-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 900px) {
+  .svc-stack {
+    gap: 48px;
+  }
+
+  .svc-card {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    min-height: 380px;
+  }
+
+  .svc-card__body {
+    padding: 48px 52px;
+  }
+
+  .svc-card__visual {
+    min-height: 0;
+  }
+
+  .svc-card__big-icon {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+/* Sin animación: lista normal, sin sticky ni escala */
+@media (prefers-reduced-motion: reduce) {
+  .svc-card {
+    position: relative;
+    top: auto;
+    transform: none !important;
+  }
+
+  .svc-card::after {
+    display: none;
   }
 }
