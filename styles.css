@@ -74,10 +74,10 @@ h1, h2, h3, h4 {
   color: var(--texto-principal);
 }
 
-/* Títulos grandes: Inter regular, interlineado ajustado y tracking
-   levemente negativo, como en la referencia */
+/* Títulos grandes: Inter en negrita, interlineado ajustado y tracking
+   levemente negativo */
 h1, h2 {
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1.15;
 }
@@ -458,6 +458,24 @@ section {
   inset: 0;
 }
 
+/* Foto de fondo del hero + velo azul de marca para que el texto se lea */
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(6, 22, 46, 0.92) 0%, rgba(6, 22, 46, 0.78) 45%, rgba(11, 59, 140, 0.35) 100%),
+    linear-gradient(0deg, rgba(6, 22, 46, 0.55), rgba(6, 22, 46, 0) 40%);
+}
+
 .hero__bg svg {
   width: 100%;
   height: 100%;
@@ -486,7 +504,7 @@ section {
 
 .hero__title {
   font-family: var(--font-hero);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--blanco);
   font-size: clamp(2.4rem, 5.6vw, 3.8rem);
   letter-spacing: -0.03em;
@@ -2973,7 +2991,7 @@ section {
 }
 
 .svc-card__title {
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(1.6rem, 3vw, 2.3rem);
   letter-spacing: -0.02em;
   line-height: 1.15;
@@ -2990,13 +3008,31 @@ section {
    finos, a modo de la foto + arco de la referencia */
 .svc-card__visual {
   position: relative;
-  min-height: 140px;
+  min-height: 200px;
   overflow: hidden;
   background: linear-gradient(150deg, var(--navy), var(--azul-profundo));
 }
 
-.svc-card:nth-child(even) .svc-card__visual {
-  background: linear-gradient(150deg, var(--azul-delta), var(--navy));
+.svc-card__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Velo azul muy suave sobre la foto, para que todas compartan el tono de marca */
+.svc-card__visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(11, 59, 140, 0.05), rgba(6, 22, 46, 0.35));
+  pointer-events: none;
+}
+
+.svc-card:hover .svc-card__photo {
+  transform: scale(1.04);
 }
 
 .svc-card__ring {
@@ -3006,8 +3042,10 @@ section {
   width: 150%;
   aspect-ratio: 1;
   border-radius: 50%;
-  border: 1px solid rgba(127, 227, 245, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .svc-card__ring--sm {

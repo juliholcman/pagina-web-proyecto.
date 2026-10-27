@@ -9,7 +9,7 @@
 <!-- Tipografía única del sitio: Inter (títulos, texto y etiquetas), tomada como referencia de noxcp.com. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css">
 
@@ -54,19 +54,13 @@
   <!-- 2. HERO                        -->
   <!-- ============================= -->
   <section class="hero" id="inicio">
-    <!-- FALTA: reemplazar el fondo geométrico por una fotografía institucional real.
-         Para usar una imagen: en styles.css, en .hero, agregar
-         background-image: linear-gradient(...), url('ruta/a/la/imagen.jpg'); -->
     <!-- Capa aparte solo para el parallax de scroll: así no compite con la
          animación de zoom de carga, que sigue viviendo en .hero__bg -->
     <div class="hero__bg-parallax" data-parallax="scroll">
       <div class="hero__bg" aria-hidden="true">
-        <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-          <polygon points="0,600 260,120 520,600" fill="var(--azul-profundo)" opacity="0.9"/>
-          <polygon points="180,600 420,180 660,600" fill="var(--navy)" opacity="0.75"/>
-          <polygon points="380,600 560,260 800,600" fill="var(--azul-medio)" opacity="0.55"/>
-          <polygon points="560,600 700,340 840,600" fill="var(--celeste-delta)" opacity="0.35"/>
-        </svg>
+        <!-- Foto: Unsplash (licencia libre, servida desde images.unsplash.com) -->
+        <img class="hero__photo" src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&amp;fit=crop&amp;w=1600&amp;q=75" srcset="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&amp;fit=crop&amp;w=900&amp;q=75 900w, https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&amp;fit=crop&amp;w=1600&amp;q=75 1600w, https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&amp;fit=crop&amp;w=2200&amp;q=75 2200w" sizes="100vw" alt="" fetchpriority="high">
+        <div class="hero__overlay"></div>
         <!-- Líneas decorativas finas, sutiles, del lado derecho para no competir con el texto -->
         <svg class="hero__lines" viewBox="0 0 800 600" preserveAspectRatio="none">
           <line x1="520" y1="-20" x2="700" y2="620" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1"/>
@@ -180,7 +174,8 @@
 
       <!-- Servicios como tarjetas apiladas: cada una queda fija (sticky) arriba
            mientras la siguiente sube y la tapa; la anterior se achica y se
-           oscurece un poco (ver initServiceStack en script.js). Referencia:
+           oscurece un poco (ver initServiceStack en script.js). Fotos de
+           Unsplash (licencia libre). Referencia:
            bloque "Fusiones y adquisiciones" de noxcp.com. -->
       <div class="svc-stack" id="svc-stack">
         <article class="svc-card" style="--i:0">
@@ -192,12 +187,9 @@
             <h3 class="svc-card__title">Desarrollo de Software</h3>
             <p class="svc-card__desc">Diseñamos y construimos soluciones a medida que se integran con tus sistemas existentes, con acompañamiento en todas las etapas del proyecto.</p>
           </div>
-          <div class="svc-card__visual" aria-hidden="true">
-            <span class="svc-card__ring"></span>
-            <span class="svc-card__ring svc-card__ring--sm"></span>
-            <div class="svc-card__big-icon">
-              <svg viewBox="0 0 24 24"><path d="m8 6-6 6 6 6M16 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
+          <div class="svc-card__visual">
+            <img class="svc-card__photo" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=900&amp;q=75" srcset="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=600&amp;q=75 600w, https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=900&amp;q=75 900w, https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=1300&amp;q=75 1300w" sizes="(min-width: 900px) 560px, 100vw" alt="Notebook con código abierto sobre un escritorio de trabajo" loading="lazy" decoding="async">
+            <span class="svc-card__ring" aria-hidden="true"></span>
           </div>
         </article>
 
@@ -210,12 +202,9 @@
             <h3 class="svc-card__title">Optimización de Procesos</h3>
             <p class="svc-card__desc">Analizamos tu operación para identificar cuellos de botella y oportunidades de automatización que mejoren la eficiencia de tus equipos.</p>
           </div>
-          <div class="svc-card__visual" aria-hidden="true">
-            <span class="svc-card__ring"></span>
-            <span class="svc-card__ring svc-card__ring--sm"></span>
-            <div class="svc-card__big-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm8.4-3a8.4 8.4 0 0 0-.15-1.55l2.1-1.64-2-3.46-2.48 1a8.6 8.6 0 0 0-2.68-1.55L14.8 2h-4l-.4 2.8a8.6 8.6 0 0 0-2.68 1.55l-2.48-1-2 3.46 2.1 1.64A8.4 8.4 0 0 0 5.2 12c0 .53.05 1.05.15 1.55l-2.1 1.64 2 3.46 2.48-1a8.6 8.6 0 0 0 2.68 1.55L10.8 22h4l.4-2.8a8.6 8.6 0 0 0 2.68-1.55l2.48 1 2-3.46-2.1-1.64c.1-.5.15-1.02.15-1.55Z" fill="currentColor"/></svg>
-            </div>
+          <div class="svc-card__visual">
+            <img class="svc-card__photo" src="https://images.unsplash.com/photo-1598299803204-b73796f43289?auto=format&amp;fit=crop&amp;w=900&amp;q=75" srcset="https://images.unsplash.com/photo-1598299803204-b73796f43289?auto=format&amp;fit=crop&amp;w=600&amp;q=75 600w, https://images.unsplash.com/photo-1598299803204-b73796f43289?auto=format&amp;fit=crop&amp;w=900&amp;q=75 900w, https://images.unsplash.com/photo-1598299803204-b73796f43289?auto=format&amp;fit=crop&amp;w=1300&amp;q=75 1300w" sizes="(min-width: 900px) 560px, 100vw" alt="Operario trabajando con maquinaria industrial en planta" loading="lazy" decoding="async">
+            <span class="svc-card__ring" aria-hidden="true"></span>
           </div>
         </article>
 
@@ -228,12 +217,9 @@
             <h3 class="svc-card__title">Soluciones en la Nube</h3>
             <p class="svc-card__desc">Migramos e implementamos infraestructura en la nube para que tu negocio escale con seguridad, disponibilidad y acceso remoto confiable.</p>
           </div>
-          <div class="svc-card__visual" aria-hidden="true">
-            <span class="svc-card__ring"></span>
-            <span class="svc-card__ring svc-card__ring--sm"></span>
-            <div class="svc-card__big-icon">
-              <svg viewBox="0 0 24 24"><path d="M6.5 18a4.5 4.5 0 0 1-.45-8.98 5.5 5.5 0 0 1 10.78-1.44A4.5 4.5 0 0 1 17.5 18h-11Z" fill="currentColor"/></svg>
-            </div>
+          <div class="svc-card__visual">
+            <img class="svc-card__photo" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&amp;fit=crop&amp;w=900&amp;q=75" srcset="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&amp;fit=crop&amp;w=600&amp;q=75 600w, https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&amp;fit=crop&amp;w=900&amp;q=75 900w, https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&amp;fit=crop&amp;w=1300&amp;q=75 1300w" sizes="(min-width: 900px) 560px, 100vw" alt="Racks de servidores con cableado de red" loading="lazy" decoding="async">
+            <span class="svc-card__ring" aria-hidden="true"></span>
           </div>
         </article>
 
@@ -246,12 +232,9 @@
             <h3 class="svc-card__title">Arquitectura y Transformación Digital</h3>
             <p class="svc-card__desc">Definimos el roadmap tecnológico de tu empresa, alineando cada solución con tus objetivos de negocio a corto y largo plazo.</p>
           </div>
-          <div class="svc-card__visual" aria-hidden="true">
-            <span class="svc-card__ring"></span>
-            <span class="svc-card__ring svc-card__ring--sm"></span>
-            <div class="svc-card__big-icon">
-              <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3V3Zm10 0h8v8h-8V3ZM3 13h8v8H3v-8Zm10 0h8v8h-8v-8Z" fill="currentColor"/></svg>
-            </div>
+          <div class="svc-card__visual">
+            <img class="svc-card__photo" src="https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?auto=format&amp;fit=crop&amp;w=900&amp;q=75" srcset="https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?auto=format&amp;fit=crop&amp;w=600&amp;q=75 600w, https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?auto=format&amp;fit=crop&amp;w=900&amp;q=75 900w, https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?auto=format&amp;fit=crop&amp;w=1300&amp;q=75 1300w" sizes="(min-width: 900px) 560px, 100vw" alt="Dos personas diagramando una estrategia en una pizarra" loading="lazy" decoding="async">
+            <span class="svc-card__ring" aria-hidden="true"></span>
           </div>
         </article>
 
@@ -264,12 +247,9 @@
             <h3 class="svc-card__title">Data &amp; Business Intelligence</h3>
             <p class="svc-card__desc">Transformamos tus datos en información accionable, con dashboards e indicadores que te permiten tomar mejores decisiones sobre tu operación.</p>
           </div>
-          <div class="svc-card__visual" aria-hidden="true">
-            <span class="svc-card__ring"></span>
-            <span class="svc-card__ring svc-card__ring--sm"></span>
-            <div class="svc-card__big-icon">
-              <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
+          <div class="svc-card__visual">
+            <img class="svc-card__photo" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=900&amp;q=75" srcset="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=600&amp;q=75 600w, https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=900&amp;q=75 900w, https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=1300&amp;q=75 1300w" sizes="(min-width: 900px) 560px, 100vw" alt="Pantalla con gráficos e indicadores de negocio" loading="lazy" decoding="async">
+            <span class="svc-card__ring" aria-hidden="true"></span>
           </div>
         </article>
 
@@ -285,15 +265,9 @@
             <h3 class="svc-card__title">Capacitación y Formación de Equipos</h3>
             <p class="svc-card__desc">Entrenamos a tus equipos en las nuevas herramientas y procesos que implementamos, para que la adopción sea real y sostenida en el tiempo.</p>
           </div>
-          <div class="svc-card__visual" aria-hidden="true">
-            <span class="svc-card__ring"></span>
-            <span class="svc-card__ring svc-card__ring--sm"></span>
-            <div class="svc-card__big-icon">
-              <svg viewBox="0 0 24 24">
-              <path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3Z" fill="currentColor"/>
-              <path d="M6 12.5v3.7c0 .4.2.8.55 1C7.9 18.1 9.8 19 12 19s4.1-.9 5.45-1.8c.35-.2.55-.6.55-1v-3.7l-6 3.27-6-3.27Z" fill="currentColor"/>
-            </svg>
-            </div>
+          <div class="svc-card__visual">
+            <img class="svc-card__photo" src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&amp;fit=crop&amp;w=900&amp;q=75" srcset="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&amp;fit=crop&amp;w=600&amp;q=75 600w, https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&amp;fit=crop&amp;w=900&amp;q=75 900w, https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&amp;fit=crop&amp;w=1300&amp;q=75 1300w" sizes="(min-width: 900px) 560px, 100vw" alt="Grupo de personas en una capacitación con proyector" loading="lazy" decoding="async">
+            <span class="svc-card__ring" aria-hidden="true"></span>
           </div>
         </article>
       </div>
