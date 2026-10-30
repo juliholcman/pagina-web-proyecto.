@@ -370,7 +370,8 @@ function initParallax() {
 function initServiceStack() {
   const cards = Array.from(document.querySelectorAll('.svc-card'));
   if (cards.length < 2) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  /* No se corta con prefers-reduced-motion: --cover solo oscurece la
+     tarjeta de atrás (el achique lo anula el CSS en ese caso). */
 
   let ticking = false;
 
