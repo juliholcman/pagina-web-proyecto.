@@ -65,7 +65,7 @@ function initTabs() {
     const pad = (n) => String(n).padStart(2, '0');
     const panelOf = (t) => document.getElementById(t.getAttribute('aria-controls'));
     const slugOf = (t) => t.id.replace(/^tab-/, '');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduceMotion = false; // animaciones siempre activas
 
     const menu = document.getElementById('case-menu');
     const menuBtn = document.getElementById('case-menu-btn');
@@ -236,8 +236,7 @@ function initContactForm() {
 
 /* ---------- Transiciones al hacer scroll (fade-in de secciones y
    cascada de tarjetas) ----------
-   Progresivo: si no hay IntersectionObserver o el usuario tiene activado
-   prefers-reduced-motion, se muestra todo de una y no se agrega la clase
+   Progresivo: si no hay IntersectionObserver se muestra todo de una y no se agrega la clase
    .js-reveal-ready, que es la que habilita el estado oculto inicial en
    CSS. Así, si este script no llegara a correr, el contenido nunca queda
    invisible (las reglas .reveal/.stagger solo ocultan bajo esa clase). */
@@ -245,9 +244,7 @@ function initScrollReveal() {
   const targets = document.querySelectorAll('.reveal, .stagger, .reveal-stack, .reveal-mask');
   if (!targets.length) return;
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+  if (!('IntersectionObserver' in window)) {
     targets.forEach((el) => el.classList.add('is-visible'));
     return;
   }
@@ -299,7 +296,7 @@ function initHeaderScroll() {
   updateHeader(); // estado correcto si la página carga con scroll ya bajado
 }
 
-/* ---------- Parallax sutil de scroll (solo desktop, sin prefers-reduced-motion) ----------
+/* ---------- Parallax sutil de scroll (solo desktop) ----------
    Dos variantes, elegidas con data-parallax:
    - "scroll": se corre en proporción al scroll absoluto de la página, acotado
      a un máximo. Pensado para el fondo del Hero, para que quede "atrás",
@@ -314,9 +311,8 @@ function initParallax() {
   const els = Array.from(document.querySelectorAll('[data-parallax]'));
   if (!els.length) return;
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isDesktop = window.matchMedia('(min-width: 768px)').matches;
-  if (prefersReducedMotion || !isDesktop || !('IntersectionObserver' in window)) return;
+  if (!isDesktop || !('IntersectionObserver' in window)) return;
 
   const visible = new Set();
   const observer = new IntersectionObserver(
@@ -370,8 +366,6 @@ function initParallax() {
 function initServiceStack() {
   const cards = Array.from(document.querySelectorAll('.svc-card'));
   if (cards.length < 2) return;
-  /* No se corta con prefers-reduced-motion: --cover solo oscurece la
-     tarjeta de atrás (el achique lo anula el CSS en ese caso). */
 
   let ticking = false;
 

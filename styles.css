@@ -155,7 +155,8 @@ section {
 /* =========================================================
    ANIMACIONES — fade-in al hacer scroll (Intersection Observer)
    .js-reveal-ready lo agrega script.js en cuanto confirma que puede
-   animar (soporta IntersectionObserver y no hay prefers-reduced-motion).
+   animar (soporta IntersectionObserver). Las animaciones se muestran siempre,
+   aunque el sistema tenga activado "reducir movimiento" (pedido de Juli).
    Sin esa clase en <html>, .reveal/.stagger quedan visibles desde el
    inicio: si JS falla o no corre, el contenido nunca se oculta.
    ========================================================= */
@@ -540,21 +541,19 @@ section {
    la bajada y el botón aparecen en cadena (fade + subida), cada uno un
    poco después del anterior, con un easing "expo-out" más elegante que
    un ease-out común. */
-@media (prefers-reduced-motion: no-preference) {
-  .hero__bg {
-    animation: hero-bg-zoom-out 1.3s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
-  .hero__title,
-  .hero__subtitle,
-  .hero__content .btn {
-    animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
-  .hero__title { animation-delay: 0.5s; }
-  .hero__subtitle { animation-delay: 0.68s; }
-  .hero__content .btn { animation-delay: 0.86s; }
+.hero__bg {
+  animation: hero-bg-zoom-out 1.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
+
+.hero__title,
+.hero__subtitle,
+.hero__content .btn {
+  animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero__title { animation-delay: 0.5s; }
+.hero__subtitle { animation-delay: 0.68s; }
+.hero__content .btn { animation-delay: 0.86s; }
 
 @keyframes hero-bg-zoom-out {
   from { transform: scale(1.1); }
@@ -1092,61 +1091,6 @@ section {
 @media (min-width: 1200px) {
   section {
     padding: 100px 0;
-  }
-}
-
-/* =========================================================
-   ACCESIBILIDAD — prefers-reduced-motion
-   Anula todas las transiciones/animaciones agregadas (scroll reveal,
-   cascada de tarjetas, hover de botones/fotos, achique del header) y
-   deja todo visible en su estado final, para quienes tengan activada
-   esta preferencia de sistema.
-   ========================================================= */
-@media (prefers-reduced-motion: reduce) {
-  .reveal,
-  .stagger .card,
-  .btn,
-  .about__photo,
-  .case-study__photo,
-  .logo__img,
-  .site-header,
-  .primary-nav__link::after {
-    transition: none !important;
-  }
-
-  .js-reveal-ready .reveal,
-  .js-reveal-ready .stagger .card {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .btn--primary:hover,
-  .btn--outline:hover,
-  .btn--outline-light:hover,
-  .about__image:hover .about__photo,
-  .case-study__image:hover .case-study__photo {
-    transform: none !important;
-  }
-
-  .hero__bg,
-  .hero__title,
-  .hero__subtitle,
-  .hero__content .btn {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .reveal-stack > *,
-  .reveal-mask {
-    transition: none !important;
-  }
-
-  .js-reveal-ready .reveal-stack > *,
-  .js-reveal-ready .reveal-mask {
-    opacity: 1 !important;
-    transform: none !important;
-    clip-path: none !important;
   }
 }
 
@@ -2426,13 +2370,6 @@ section {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .js-reveal-ready .reveal .score-bar__fill {
-    width: var(--w);
-    transition: none;
-  }
-}
-
 /* ---------- Etapas de implementación ---------- */
 .stage-card {
   border-top: 5px solid var(--azul-delta);
@@ -2881,52 +2818,6 @@ section {
   transition-delay: 0s;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .stagger .case-stat,
-  .stagger .case-card,
-  .stagger .goal-card,
-  .stagger .team-card,
-  .stagger .case-flow__step,
-  .stagger .mv-block,
-  .stagger .compare__row,
-  .stagger .scenario,
-  .stagger .stake-quad,
-  .stagger .casos-hero__stat,
-  .case-card,
-  .team-card,
-  .goal-card,
-  .case-stat,
-  .case-flow__step,
-  .casos-hero__stat,
-  .case-pager__btn,
-  .case-nav__burger span,
-  .case-nav__seg::before {
-    transition: none !important;
-    transform: none !important;
-    opacity: 1 !important;
-  }
-
-  .case-nav.is-open .case-nav__burger span:nth-child(1) {
-    transform: translateY(6.5px) rotate(45deg) !important;
-  }
-
-  .case-nav.is-open .case-nav__burger span:nth-child(2) {
-    opacity: 0 !important;
-  }
-
-  .case-nav.is-open .case-nav__burger span:nth-child(3) {
-    transform: translateY(-6.5px) rotate(-45deg) !important;
-  }
-
-  .case-nav__seg.is-active::before {
-    transform: scaleY(1.5) !important;
-  }
-
-  .case-menu {
-    animation: none;
-  }
-}
-
 /* =========================================================
    5. SERVICIOS — tarjetas apiladas al hacer scroll
    Referencia: bloque "Fusiones y adquisiciones" de noxcp.com.
@@ -3102,12 +2993,3 @@ section {
   }
 }
 
-/* Con "reducir movimiento" activado en el sistema (en Windows: Accesibilidad
-   > Efectos visuales > Efectos de animación desactivados) se mantiene el
-   apilado, porque solo se mueve cuando la persona scrollea; se quita
-   únicamente el achique de la tarjeta de atrás. */
-@media (prefers-reduced-motion: reduce) {
-  .svc-card {
-    transform: none !important;
-  }
-}
