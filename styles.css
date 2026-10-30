@@ -3102,15 +3102,12 @@ section {
   }
 }
 
-/* Sin animación: lista normal, sin sticky ni escala */
+/* Con "reducir movimiento" activado en el sistema (en Windows: Accesibilidad
+   > Efectos visuales > Efectos de animación desactivados) se mantiene el
+   apilado, porque solo se mueve cuando la persona scrollea; se quita
+   únicamente el achique de la tarjeta de atrás. */
 @media (prefers-reduced-motion: reduce) {
   .svc-card {
-    position: relative;
-    top: auto;
     transform: none !important;
-  }
-
-  .svc-card::after {
-    display: none;
   }
 }
