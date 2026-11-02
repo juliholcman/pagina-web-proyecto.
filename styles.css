@@ -3309,8 +3309,9 @@ section {
   animation: assistant-in 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.assistant__panel[hidden] {
-  display: none;
+/* Los bloques del panel fijan su propio display: [hidden] necesita ganarle */
+.assistant [hidden] {
+  display: none !important;
 }
 
 @keyframes assistant-in {
@@ -3381,7 +3382,7 @@ section {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-height: min(60vh, 420px);
+  max-height: min(420px, calc(100vh - 260px)); /* nunca se sale por arriba en pantallas bajas */
   overflow-y: auto;
   padding: 16px;
   background: var(--gris-hielo);
