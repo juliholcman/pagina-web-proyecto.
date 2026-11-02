@@ -1117,8 +1117,8 @@ section {
 .team-card__avatar {
   position: relative;
   overflow: hidden;
-  flex: 0 0 52px;
-  height: 52px;
+  flex: 0 0 76px; /* más grande para que se reconozca la cara */
+  height: 76px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1138,7 +1138,7 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center; /* las fotos ya vienen recortadas centradas en la cara */
 }
 
 .team-card__name {
