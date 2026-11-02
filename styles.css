@@ -2993,3 +2993,230 @@ section {
   }
 }
 
+
+/* =========================================================
+   CASO FARRIPLAST — recorrido por etapas (reemplaza el menú "Secciones")
+   Las 11 secciones quedan siempre a la vista, agrupadas en las 4 etapas
+   del proyecto. La sección abierta se marca en celeste y su etapa se
+   resalta. Debajo del banner, una barra fija muestra la sección abierta
+   con flechas para pasar a la anterior o la siguiente.
+   ========================================================= */
+.journey {
+  margin-top: 28px;
+}
+
+.journey__intro {
+  margin: 0 0 18px;
+  color: #C9D6E8;
+  font-size: 0.95rem;
+}
+
+.journey__track {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  counter-reset: stage;
+}
+
+.journey__stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 16px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.journey__stage.is-current {
+  background: rgba(95, 203, 245, 0.10);
+  border-color: rgba(95, 203, 245, 0.55);
+}
+
+.journey__head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 4px;
+}
+
+.journey__num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--celeste-claro);
+}
+
+.journey__name {
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  color: var(--blanco);
+}
+
+.journey__q {
+  font-size: 0.85rem;
+  color: #A9BBD4;
+}
+
+.journey__items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Botones de sección dentro del recorrido (sobre fondo oscuro) */
+.journey .tabs__item {
+  grid-template-columns: 30px minmax(0, 1fr);
+  column-gap: 10px;
+  row-gap: 3px;
+  padding: 8px 8px;
+  border-left: none;
+  border-radius: 10px;
+  background: transparent;
+  color: #DCE6F3;
+  font-weight: 500;
+  font-size: 0.92rem;
+}
+
+.journey .tabs__item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.journey .tabs__num,
+.journey .tabs__item:not(.is-soon) .tabs__num {
+  grid-row: span 2;
+  align-self: center;
+  width: 30px;
+  height: 30px;
+  font-size: 0.74rem;
+  background: rgba(255, 255, 255, 0.10);
+  color: var(--celeste-claro);
+}
+
+.journey .tabs__item.is-active {
+  background: var(--blanco);
+  color: var(--azul-profundo);
+}
+
+.journey .tabs__item.is-active .tabs__num {
+  background: var(--azul-delta);
+  color: var(--blanco);
+}
+
+.journey .tabs__item.is-soon {
+  color: #8FA3BF;
+}
+
+.journey .tabs__item.is-soon .tabs__num {
+  background: transparent;
+  border: 1px dashed rgba(255, 255, 255, 0.28);
+  color: #8FA3BF;
+}
+
+.journey .tabs__soon {
+  grid-column: 2;
+  justify-self: start;
+  background: rgba(255, 255, 255, 0.08);
+  color: #A9BBD4;
+  font-size: 0.58rem;
+}
+
+.journey .tabs__item.is-active .tabs__soon {
+  background: var(--gris-hielo);
+  color: var(--texto-secundario);
+}
+
+/* Barra fija con la sección abierta */
+.case-current {
+  position: sticky;
+  top: 68px; /* alto del header achicado al scrollear */
+  z-index: 60;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--borde);
+}
+
+.case-current__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 60px;
+}
+
+.case-current__text {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  min-width: 0;
+}
+
+.case-current__step {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  color: var(--azul-delta);
+}
+
+.case-current__title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--texto-principal);
+}
+
+.case-current__arrows {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 8px;
+}
+
+.case-current .case-nav__arrow {
+  width: 38px;
+  height: 38px;
+  border-color: var(--borde-medio);
+  color: var(--azul-delta);
+}
+
+.case-current .case-nav__arrow:hover:not(:disabled) {
+  background: var(--azul-delta);
+  border-color: var(--azul-delta);
+  color: var(--blanco);
+}
+
+.case-body {
+  scroll-margin-top: calc(68px + 60px);
+}
+
+@media (min-width: 760px) {
+  .journey__track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .journey__track {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  /* Flecha fina entre etapas: se lee como un recorrido de izquierda a derecha */
+  .journey__stage:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 34px;
+    right: -11px;
+    width: 8px;
+    height: 8px;
+    border-top: 1.5px solid rgba(127, 227, 245, 0.7);
+    border-right: 1.5px solid rgba(127, 227, 245, 0.7);
+    transform: rotate(45deg);
+  }
+}
