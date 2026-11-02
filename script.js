@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();
   initParallax();
   initServiceStack();
+  initAssistant();
 });
 
 /* ---------- 1. Menú hamburguesa (header) ---------- */
@@ -401,4 +402,116 @@ function initServiceStack() {
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   update();
+}
+
+/* ---------- Asistente: botón flotante que lleva al equipo comercial ----------
+   Aparece en todas las páginas (abajo a la derecha, por encima del cartel de
+   Netlify). Abre un panel con opciones; las que piden contacto llevan al
+   formulario de la home con el mensaje ya escrito (?tema=...#contacto).
+   No hay chat en vivo ni backend: todo termina en el formulario de contacto.
+   FALTA: si Delta tiene WhatsApp o mail comercial, sumarlo como opción acá. */
+function initAssistant() {
+  const SERVICES = [
+    'Desarrollo de Software',
+    'Optimización de Procesos',
+    'Soluciones en la Nube',
+    'Arquitectura y Transformación Digital',
+    'Data & Business Intelligence',
+    'Capacitación y Formación de Equipos'
+  ];
+  const isHome = !!document.getElementById('contact-form');
+  const home = isHome ? '' : '/';
+
+  /* Si llegamos a la home con ?tema=..., se completa el mensaje del formulario */
+  const prefill = (tema) => {
+    const msg = document.getElementById('mensaje');
+    if (!msg || !tema) return;
+    if (!msg.value.trim()) {
+      msg.value = 'Hola, quiero hablar con el equipo comercial de Delta sobre: ' + tema + '.';
+    }
+  };
+  const goContact = (tema) => {
+    if (isHome) {
+      prefill(tema);
+      const contact = document.getElementById('contacto');
+      if (contact) contact.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const name = document.getElementById('nombre');
+      if (name) setTimeout(() => name.focus({ preventScroll: true }), 700);
+      close();
+    } else {
+      location.href = home + '?tema=' + encodeURIComponent(tema) + '#contacto';
+    }
+  };
+  try {
+    const tema = new URLSearchParams(location.search).get('tema');
+    if (tema && isHome) prefill(tema.slice(0, 120));
+  } catch (e) { /* sin parámetros: nada que completar */ }
+
+  const wrap = document.createElement('div');
+  wrap.className = 'assistant';
+  wrap.innerHTML =
+    '<div class="assistant__panel" id="assistant-panel" role="dialog" aria-modal="false" aria-labelledby="assistant-title" hidden>' +
+      '<div class="assistant__head">' +
+        '<img src="delta-simbolo.png" alt="" class="assistant__logo">' +
+        '<div><p class="assistant__title" id="assistant-title">Asistente Delta</p>' +
+        '<p class="assistant__sub">Te conectamos con el equipo comercial</p></div>' +
+        '<button type="button" class="assistant__close" aria-label="Cerrar el asistente">' +
+          '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>' +
+        '</button>' +
+      '</div>' +
+      '<div class="assistant__body">' +
+        '<p class="assistant__bubble">¡Hola! ¿En qué te podemos ayudar?</p>' +
+        '<div class="assistant__options" data-view="main">' +
+          '<button type="button" class="assistant__opt assistant__opt--main" data-action="comercial">Hablar con el equipo comercial</button>' +
+          '<button type="button" class="assistant__opt" data-action="servicios">Consultar por un servicio</button>' +
+          '<a class="assistant__opt" href="/casos-exito">Ver casos de éxito</a>' +
+          '<a class="assistant__opt" href="' + home + '#quienes-somos">Conocer a Delta</a>' +
+        '</div>' +
+        '<div class="assistant__options" data-view="servicios" hidden>' +
+          '<p class="assistant__bubble assistant__bubble--small">¿Cuál te interesa?</p>' +
+          SERVICES.map((sv) => '<button type="button" class="assistant__opt" data-service="' + sv + '">' + sv + '</button>').join('') +
+          '<button type="button" class="assistant__back" data-action="volver">← Volver</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+    '<button type="button" class="assistant__toggle" id="assistant-toggle" aria-expanded="false" aria-controls="assistant-panel">' +
+      '<span class="assistant__dot" aria-hidden="true"></span>' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-7l-5 4v-4H6a2 2 0 0 1-2-2V5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>' +
+      '<span>Asistente</span>' +
+    '</button>';
+  document.body.appendChild(wrap);
+
+  const panel = wrap.querySelector('.assistant__panel');
+  const toggle = wrap.querySelector('.assistant__toggle');
+  const views = wrap.querySelectorAll('[data-view]');
+  const show = (name) => views.forEach((v) => { v.hidden = v.dataset.view !== name; });
+
+  function open() {
+    panel.hidden = false;
+    toggle.setAttribute('aria-expanded', 'true');
+    wrap.classList.add('is-open');
+    show('main');
+    const first = panel.querySelector('.assistant__opt');
+    if (first) first.focus();
+  }
+  function close(returnFocus) {
+    panel.hidden = true;
+    toggle.setAttribute('aria-expanded', 'false');
+    wrap.classList.remove('is-open');
+    if (returnFocus) toggle.focus();
+  }
+
+  toggle.addEventListener('click', () => (panel.hidden ? open() : close(true)));
+  wrap.querySelector('.assistant__close').addEventListener('click', () => close(true));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !panel.hidden) close(true); });
+  document.addEventListener('click', (e) => { if (!panel.hidden && !wrap.contains(e.target)) close(false); });
+
+  panel.addEventListener('click', (e) => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    if (b.dataset.action === 'comercial') goContact('una consulta comercial');
+    else if (b.dataset.action === 'servicios') { show('servicios'); const f = panel.querySelector('[data-service]'); if (f) f.focus(); }
+    else if (b.dataset.action === 'volver') show('main');
+    else if (b.dataset.service) goContact('el servicio de ' + b.dataset.service);
+  });
 }
