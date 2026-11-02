@@ -64,54 +64,85 @@
       <p class="case-card__industry">Reciclado de plástico postindustrial · Lanús, AMBA</p>
 
       <!--
-        Navegación del caso. Numeración, contador, progreso, estado
-        "Próximamente" y pie de cada sección los arma script.js a partir de
-        los botones .tabs__item y sus paneles: para sumar una sección alcanza
-        con agregar un botón acá y un panel en .case-body.
+        Recorrido del caso: las 11 secciones agrupadas en 4 etapas del
+        proyecto, siempre visibles. Numeración, "Próximamente", contador,
+        flechas y pie de cada sección los arma script.js (initTabs) a partir
+        de los botones .tabs__item: para sumar una sección alcanza con un
+        botón acá (con data-short) y su panel en .case-body.
       -->
-      <div class="case-nav" id="case-nav">
-        <div class="case-nav__bar">
-          <button type="button" class="case-nav__menu-btn" id="case-menu-btn" aria-expanded="false" aria-controls="case-menu" aria-label="Abrir el listado de secciones del caso">
-            <span class="case-nav__burger" aria-hidden="true"><span></span><span></span><span></span></span>
-            Secciones
-          </button>
-
-          <div class="case-nav__current" aria-live="polite">
-            <span class="case-nav__step" id="case-step">01 / 11</span>
-            <span class="case-nav__title" id="case-title">Caso de Negocio y Relevamiento</span>
+      <div class="case-nav journey" id="case-nav">
+        <p class="journey__intro">El recorrido del proyecto, de punta a punta. Elegí una sección para verla.</p>
+        <div class="journey__track" role="tablist" aria-label="Secciones del caso Farriplast">
+          <div class="journey__stage" data-stage="1">
+            <div class="journey__head">
+              <span class="journey__num">Etapa 1</span>
+              <span class="journey__name">Diagnóstico</span>
+              <span class="journey__q">Cómo está hoy</span>
+            </div>
+            <div class="journey__items">
+              <button type="button" class="tabs__item is-active" role="tab" id="tab-relevamiento" aria-selected="true" aria-controls="panel-relevamiento" tabindex="0" data-short="Caso de negocio y relevamiento">Caso de Negocio y Relevamiento</button>
+              <button type="button" class="tabs__item" role="tab" id="tab-arquitectura-actual" aria-selected="false" aria-controls="panel-arquitectura-actual" tabindex="-1" data-short="Arquitectura actual">Arquitectura Empresarial Actual</button>
+            </div>
           </div>
-
-          <div class="case-nav__arrows">
-            <button type="button" class="case-nav__arrow" id="case-prev" aria-label="Sección anterior">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-            </button>
-            <button type="button" class="case-nav__arrow" id="case-next" aria-label="Sección siguiente">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-            </button>
+          <div class="journey__stage" data-stage="2">
+            <div class="journey__head">
+              <span class="journey__num">Etapa 2</span>
+              <span class="journey__name">Diseño de la solución</span>
+              <span class="journey__q">A dónde tiene que llegar</span>
+            </div>
+            <div class="journey__items">
+              <button type="button" class="tabs__item" role="tab" id="tab-arquitectura-destino" aria-selected="false" aria-controls="panel-arquitectura-destino" tabindex="-1" data-short="Arquitectura destino">Visión de Arquitectura Empresarial Destino</button>
+              <button type="button" class="tabs__item" role="tab" id="tab-brechas-escenarios" aria-selected="false" aria-controls="panel-brechas-escenarios" tabindex="-1" data-short="Brechas y escenarios">Matriz de Brechas y Análisis de Escenarios</button>
+            </div>
           </div>
-        </div>
-
-        <div class="case-nav__progress" id="case-progress"></div>
-
-        <div class="case-menu" id="case-menu" hidden>
-          <div class="tabs" role="tablist" aria-label="Secciones del caso Farriplast">
-            <button type="button" class="tabs__item is-active" role="tab" id="tab-relevamiento" aria-selected="true" aria-controls="panel-relevamiento" tabindex="0">Caso de Negocio y Relevamiento</button>
-            <button type="button" class="tabs__item" role="tab" id="tab-arquitectura-actual" aria-selected="false" aria-controls="panel-arquitectura-actual" tabindex="-1">Arquitectura Empresarial Actual</button>
-            <button type="button" class="tabs__item" role="tab" id="tab-arquitectura-destino" aria-selected="false" aria-controls="panel-arquitectura-destino" tabindex="-1">Visión de Arquitectura Empresarial Destino</button>
-            <button type="button" class="tabs__item" role="tab" id="tab-brechas-escenarios" aria-selected="false" aria-controls="panel-brechas-escenarios" tabindex="-1">Matriz de Brechas y Análisis de Escenarios</button>
-            <button type="button" class="tabs__item" role="tab" id="tab-alcance-mercado" aria-selected="false" aria-controls="panel-alcance-mercado" tabindex="-1">Alcance y Análisis del Mercado de Soluciones</button>
-            <button type="button" class="tabs__item" role="tab" id="tab-matriz-rfp" aria-selected="false" aria-controls="panel-matriz-rfp" tabindex="-1">Matriz RFP</button>
-            <button type="button" class="tabs__item" role="tab" id="tab-cumplimiento-evaluacion" aria-selected="false" aria-controls="panel-cumplimiento-evaluacion" tabindex="-1">Comparación de Cumplimiento y Evaluación Económica</button>
-            <button type="button" class="tabs__item" role="tab" id="tab-propuesta-comercial" aria-selected="false" aria-controls="panel-propuesta-comercial" tabindex="-1">Análisis de la Propuesta Comercial y Conclusiones de la Selección</button>
-            <button type="button" class="tabs__item" role="tab" id="tab-innovacion-ia" aria-selected="false" aria-controls="panel-innovacion-ia" tabindex="-1">Oportunidad de innovación con IA Generativa</button>
-            <button type="button" class="tabs__item" role="tab" id="tab-diseno-ia" aria-selected="false" aria-controls="panel-diseno-ia" tabindex="-1">Diseño y validación de la solución de IA Generativa</button>
-            <button type="button" class="tabs__item" role="tab" id="tab-cierre" aria-selected="false" aria-controls="panel-cierre" tabindex="-1">Carpeta de Cierre del Proyecto</button>
+          <div class="journey__stage" data-stage="3">
+            <div class="journey__head">
+              <span class="journey__num">Etapa 3</span>
+              <span class="journey__name">Selección del proveedor</span>
+              <span class="journey__q">Con qué sistema</span>
+            </div>
+            <div class="journey__items">
+              <button type="button" class="tabs__item" role="tab" id="tab-alcance-mercado" aria-selected="false" aria-controls="panel-alcance-mercado" tabindex="-1" data-short="Alcance y mercado">Alcance y Análisis del Mercado de Soluciones</button>
+              <button type="button" class="tabs__item" role="tab" id="tab-matriz-rfp" aria-selected="false" aria-controls="panel-matriz-rfp" tabindex="-1" data-short="Matriz RFP">Matriz RFP</button>
+              <button type="button" class="tabs__item" role="tab" id="tab-cumplimiento-evaluacion" aria-selected="false" aria-controls="panel-cumplimiento-evaluacion" tabindex="-1" data-short="Comparación y costos">Comparación de Cumplimiento y Evaluación Económica</button>
+              <button type="button" class="tabs__item" role="tab" id="tab-propuesta-comercial" aria-selected="false" aria-controls="panel-propuesta-comercial" tabindex="-1" data-short="Propuesta y conclusiones">Análisis de la Propuesta Comercial y Conclusiones de la Selección</button>
+            </div>
+          </div>
+          <div class="journey__stage" data-stage="4">
+            <div class="journey__head">
+              <span class="journey__num">Etapa 4</span>
+              <span class="journey__name">Innovación y cierre</span>
+              <span class="journey__q">Qué sigue</span>
+            </div>
+            <div class="journey__items">
+              <button type="button" class="tabs__item" role="tab" id="tab-innovacion-ia" aria-selected="false" aria-controls="panel-innovacion-ia" tabindex="-1" data-short="Oportunidad con IA">Oportunidad de innovación con IA Generativa</button>
+              <button type="button" class="tabs__item" role="tab" id="tab-diseno-ia" aria-selected="false" aria-controls="panel-diseno-ia" tabindex="-1" data-short="Diseño de la solución IA">Diseño y validación de la solución de IA Generativa</button>
+              <button type="button" class="tabs__item" role="tab" id="tab-cierre" aria-selected="false" aria-controls="panel-cierre" tabindex="-1" data-short="Cierre del proyecto">Carpeta de Cierre del Proyecto</button>
+            </div>
           </div>
         </div>
       </div>
 
     </div>
   </section>
+
+  <!-- Barra fija con la sección abierta y flechas (la completa script.js) -->
+  <div class="case-current" id="case-current">
+    <div class="container case-current__inner">
+      <div class="case-current__text" aria-live="polite">
+        <span class="case-current__step" id="case-step">01 / 11</span>
+        <span class="case-current__title" id="case-title">Caso de Negocio y Relevamiento</span>
+      </div>
+      <div class="case-current__arrows">
+        <button type="button" class="case-nav__arrow" id="case-prev" aria-label="Sección anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button type="button" class="case-nav__arrow" id="case-next" aria-label="Sección siguiente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- ============================= -->
   <!-- CONTENIDO DE LAS SECCIONES (fondo claro, según Manual de Marca) -->

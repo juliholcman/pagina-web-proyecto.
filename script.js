@@ -77,10 +77,12 @@ function initTabs() {
 
     /* Numerar cada opción y marcar las que todavía no tienen contenido */
     const names = tabs.map((t) => t.textContent.trim());
+    const shorts = tabs.map((t, i) => t.dataset.short || names[i]);
     tabs.forEach((t, i) => {
+      if (t.dataset.short) t.title = names[i];
       t.innerHTML =
         '<span class="tabs__num">' + pad(i + 1) + '</span>' +
-        '<span class="tabs__name">' + names[i] + '</span>' +
+        '<span class="tabs__name">' + shorts[i] + '</span>' +
         '<span class="tabs__soon">Próximamente</span>';
       const panel = panelOf(t);
       if (panel && panel.querySelector('.tab-panel__empty')) t.classList.add('is-soon');
@@ -158,9 +160,16 @@ function initTabs() {
       });
       if (opts.focusTab) tabs[i].focus();
       if (opts.closeMenu) setMenu(false, false);
-      if (opts.scroll && nav && nav.getBoundingClientRect().top < 90) {
-        nav.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      /* Al cambiar de sección se vuelve al comienzo del contenido */
+      const body = document.querySelector('.case-body');
+      const anchor = opts.scroll ? (body || nav) : null;
+      if (anchor && anchor.getBoundingClientRect().top < 0) {
+        anchor.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
       }
+      /* Marca la etapa que contiene la sección abierta */
+      document.querySelectorAll('.journey__stage').forEach((st) => {
+        st.classList.toggle('is-current', st.contains(tabs[i]));
+      });
       try {
         history.replaceState(null, '', i === 0 ? location.pathname : location.pathname + '?seccion=' + slugOf(tabs[i]));
       } catch (e) { /* sin historial (por ejemplo, abierto como archivo): se ignora */ }
