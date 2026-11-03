@@ -534,6 +534,7 @@ function initCaseExtras() {
   initGantt();
   initValuesWheel();
   initCountUp();
+  initNeeds();
 }
 
 /* Un solo globo de ayuda para glosario y gráficos */
@@ -864,4 +865,33 @@ function initCountUp() {
     requestAnimationFrame(step);
   }), { threshold: 0.4 });
   els.forEach((el) => io.observe(el));
+}
+
+/* Diagnóstico: al tocar un problema se iluminan sus necesidades y aparece la solución */
+function initNeeds() {
+  const box = document.querySelector('.needs');
+  if (!box) return;
+  const rows = Array.from(box.querySelectorAll('.needs__row'));
+  const select = (row) => {
+    const on = row && !row.classList.contains('is-active');
+    box.classList.toggle('has-active', on);
+    rows.forEach((r) => {
+      const active = on && r === row;
+      r.classList.toggle('is-active', active);
+      const pain = r.querySelector('.pain');
+      pain.setAttribute('aria-pressed', String(active));
+      r.querySelector('.needs__sol').hidden = !active;
+    });
+  };
+  rows.forEach((r) => {
+    const pain = r.querySelector('.pain');
+    pain.addEventListener('click', () => select(r));
+    pain.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(r); }
+    });
+  });
+  box.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click', () => {
+    const tab = document.getElementById('tab-' + b.dataset.go);
+    if (tab) tab.click();
+  }));
 }
