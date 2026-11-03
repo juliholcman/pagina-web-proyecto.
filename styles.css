@@ -5454,3 +5454,14 @@ section {
     gap: 10px;
   }
 }
+
+.case-body .needs__strengths,
+.case-body .needs__note {
+  margin: 4px 0 0;
+  font-size: 0.88rem;
+  color: var(--texto-secundario);
+}
+
+.needs__strengths b {
+  color: #1E6B34;
+}

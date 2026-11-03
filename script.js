@@ -646,6 +646,7 @@ const GLOSSARY = [
   ['tablero de indicadores', 'Tablero de indicadores', 'Una pantalla que resume los números clave del negocio.'],
   ['brechas?', 'Brecha', 'La diferencia entre cómo funciona la empresa hoy y cómo debería funcionar.'],
   ['ponderado', 'Ponderado', 'Cada puntaje se multiplica por el peso de su aspecto y después se suman.'],
+  ['MoSCoW', 'MoSCoW', 'Método para priorizar: lo imprescindible (Must), lo importante (Should), lo deseable (Could) y lo que queda para más adelante (Won\'t).'],
   ['acuerdo de nivel de servicio', 'Acuerdo de nivel de servicio', 'El compromiso por escrito del proveedor sobre disponibilidad y tiempos de respuesta (en inglés, SLA).']
 ];
 
