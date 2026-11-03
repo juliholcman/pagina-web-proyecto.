@@ -5413,3 +5413,44 @@ section {
 
 .needs__to .need--media::before { background: linear-gradient(180deg, var(--celeste-delta), var(--azul-medio)); }
 .needs__to .need--baja::before { background: var(--celeste-delta); }
+
+/* Diagnóstico en dos columnas unidas por una sola flecha */
+.needs--cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 90px minmax(0, 1fr);
+  align-items: center;
+  gap: 0;
+}
+
+.needs__col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.case-body .needs__col-title {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--stage-ink, var(--azul-delta));
+}
+
+.needs__pains {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.needs__arrow--big {
+  height: 5px;
+}
+
+@media (max-width: 759px) {
+  .needs--cols {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+}
