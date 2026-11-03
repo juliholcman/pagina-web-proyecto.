@@ -156,6 +156,12 @@ function initTabs() {
       });
       if (stepEl) stepEl.textContent = pad(i + 1) + ' / ' + pad(tabs.length);
       if (titleEl) titleEl.textContent = names[i];
+      const stageEl = document.getElementById('case-stage');
+      const st = tabs[i].closest('.journey__stage');
+      if (stageEl && st) {
+        stageEl.textContent = st.querySelector('.journey__num').textContent + ' · ' + st.querySelector('.journey__name').textContent;
+        stageEl.dataset.stage = st.dataset.stage;
+      }
       if (prevBtn) prevBtn.disabled = i === 0;
       if (nextBtn) nextBtn.disabled = i === tabs.length - 1;
       segs.forEach((seg, k) => {
@@ -521,7 +527,7 @@ function initAssistant() {
    Todo se arma sobre el HTML que ya existe: si este script no corre, la
    página se lee igual (los gráficos quedan con sus valores fijos). */
 function initCaseExtras() {
-  if (!document.querySelector('.case-body')) return;
+  if (!document.querySelector('.case-body')) { initCountUp(); return; }
   const tip = createTip();
   initStageIntros();
   initGlossary(tip);
@@ -609,7 +615,7 @@ function initStageIntros() {
         '<span class="panel-intro__q">' + q + '</span>' +
         '<span class="panel-intro__pos">Sección ' + String(i + 1).padStart(2, '0') + ' de ' + panels.length + '</span>' +
       '</div>';
-    panel.insertBefore(intro, panel.firstChild);
+    /* La etapa se muestra en la barra fija (case-stage); la franja ya no se agrega. */
   });
 }
 
