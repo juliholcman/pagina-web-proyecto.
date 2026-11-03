@@ -890,7 +890,7 @@ function initRoadmap() {
       return vertical ? d.top + d.height / 2 - lr.top : d.left + d.width / 2 - lr.left;
     });
     stops.forEach((st) => st.classList.remove('is-reached'));
-    const dur = 3800, t0 = performance.now();
+    const dur = 5200, t0 = performance.now();
     const step = (t) => {
       const p = Math.min(1, (t - t0) / dur);
       const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
