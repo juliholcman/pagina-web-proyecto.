@@ -230,7 +230,7 @@
           <h2 class="section-title">Hacia dónde quiere ir</h2>
           <p class="case-block__lead">Las metas las propuso el equipo a partir del diagnóstico y se validan con Mariano.</p>
           <div class="roadmap">
-            <div class="roadmap__line" aria-hidden="true"><span class="roadmap__fill"></span></div>
+            <div class="roadmap__line" aria-hidden="true"><span class="roadmap__fill"></span><span class="roadmap__runner"></span></div>
             <ol class="roadmap__stops">
               <li class="roadmap__stop roadmap__stop--start"><span class="roadmap__dot"></span><span class="roadmap__when">Hoy</span>
                 <div class="roadmap__goal roadmap__goal--now"><b>Punto de partida</b><span>70 t por mes y sin indicadores medidos</span></div></li>
@@ -242,6 +242,7 @@
               <li class="roadmap__stop roadmap__stop--end"><span class="roadmap__dot"></span><span class="roadmap__when">24 meses</span>
                 <div class="roadmap__goal"><b>Crecimiento</b><span class="roadmap__kpi">+20%</span><span>de volumen mensual, unas 84 t</span></div></li>
             </ol>
+            <button type="button" class="roadmap__replay">↻ Ver el recorrido de nuevo</button>
           </div>
         </div>
       </section>
@@ -251,23 +252,20 @@
         <div class="container">
           <span class="eyebrow">04 · Diagnóstico</span>
           <h2 class="section-title">Cómo funciona hoy y qué necesita resolver</h2>
-          <div class="needs needs--cols">
-            <div class="needs__col">
-              <p class="needs__col-title">Cómo funciona hoy</p>
-              <div class="needs__pains stagger">
-                <div class="pain"><span class="pain__num">01</span><span class="pain__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h12l4 4v12H4z"/><path d="M8 10h8M8 14h8M8 18h5"/></svg></span><strong>Todo es manual</strong><ul><li>Compras, ventas, cobranzas, proveedores y stock se manejan sin ningún sistema</li><li>El stock es una estimación</li></ul></div>
-                <div class="pain"><span class="pain__num">02</span><span class="pain__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><path d="M3 12h3M18 12h3"/></svg></span><strong>Todo pasa por Mariano</strong><ul><li>Concentra todas las decisiones comerciales y financieras</li><li>Se le va el día en lo operativo y no puede decidir con datos sobre el galpón o nuevos clientes</li></ul></div>
-                <div class="pain"><span class="pain__num">03</span><span class="pain__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 6h6a3 3 0 0 1 0 6h-2a3 3 0 0 0 0 6h6"/><path d="M14 4l2 2-2 2" opacity=".4"/></svg></span><strong>No se sigue el material</strong><ul><li>No hay registro del recorrido de cada material, de las mermas ni del stock real</li></ul></div>
-                <div class="pain"><span class="pain__num">04</span><span class="pain__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21c-4-3-7-6-7-10a7 7 0 0 1 14 0c0 4-3 7-7 10Z"/><path d="M12 8v4"/><circle cx="12" cy="15" r=".6"/></svg></span><strong>Madurez inicial</strong><ul><li>Los procesos se aprendieron de forma artesanal y no están documentados</li><li>Depende de los 5 operarios, sin reemplazo</li></ul></div>
-              </div>
-              <p class="needs__strengths"><b>A favor:</b> personal estable que conoce todo el proceso, pocas mermas pese a la informalidad y un dueño que conoce a fondo el negocio.</p>
+          <div class="dmap">
+            <p class="dmap__label dmap__label--now">Cómo funciona hoy</p>
+            <div class="dmap__row dmap__row--now stagger">
+              <div class="pain"><span class="pain__num">01</span><span class="pain__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h12l4 4v12H4z"/><path d="M8 10h8M8 14h8M8 18h5"/></svg></span><strong>Todo es manual</strong><ul><li>Compras, ventas, cobranzas, proveedores y stock se manejan sin ningún sistema</li><li>El stock es una estimación</li></ul></div><div class="pain"><span class="pain__num">02</span><span class="pain__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><path d="M3 12h3M18 12h3"/></svg></span><strong>Todo pasa por Mariano</strong><ul><li>Concentra todas las decisiones comerciales y financieras</li><li>Se le va el día en lo operativo y no puede decidir con datos sobre el galpón o nuevos clientes</li></ul></div><div class="pain"><span class="pain__num">03</span><span class="pain__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 6h6a3 3 0 0 1 0 6h-2a3 3 0 0 0 0 6h6"/><path d="M14 4l2 2-2 2" opacity=".4"/></svg></span><strong>No se sigue el material</strong><ul><li>No hay registro del recorrido de cada material, de las mermas ni del stock real</li></ul></div><div class="pain"><span class="pain__num">04</span><span class="pain__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21c-4-3-7-6-7-10a7 7 0 0 1 14 0c0 4-3 7-7 10Z"/><path d="M12 8v4"/><circle cx="12" cy="15" r=".6"/></svg></span><strong>Madurez inicial</strong><ul><li>Los procesos se aprendieron de forma artesanal y no están documentados</li><li>Depende de los 5 operarios, sin reemplazo</li></ul></div>
             </div>
-            <span class="needs__arrow needs__arrow--big" aria-hidden="true"></span>
-            <div class="needs__col">
-              <p class="needs__col-title">Qué necesita resolver</p>
-              <ul class="needs__to stagger"><li class="need need--alta"><span class="need__meter" aria-label="Prioridad: Imprescindible"><i class="on"></i><i class="on"></i><i class="on"></i><em>Imprescindible</em></span><strong>Control de stock</strong><span>Saber cuánto material y espacio hay, y de dónde viene, dónde está y adónde va</span></li><li class="need need--alta"><span class="need__meter" aria-label="Prioridad: Imprescindible"><i class="on"></i><i class="on"></i><i class="on"></i><em>Imprescindible</em></span><strong>Compras, ventas y cobranzas</strong><span>Registrarlas y seguirlas para dedicarles menos tiempo y decidir con información confiable</span></li><li class="need need--media"><span class="need__meter" aria-label="Prioridad: Importante"><i class="on"></i><i class="on"></i><i class=""></i><em>Importante</em></span><strong>Costos y rentabilidad</strong><span>Conocer el costo y el margen de cada proceso o material para evaluar inversiones como el galpón</span></li><li class="need need--baja"><span class="need__meter" aria-label="Prioridad: Deseable"><i class="on"></i><i class=""></i><i class=""></i><em>Deseable</em></span><strong>Registro de mermas</strong><span>Identificar dónde se pierde material. Mariano indicó que hoy la merma es baja</span></li></ul>
-              <p class="needs__note">Prioridades definidas con el método MoSCoW, a validar con Mariano.</p>
+            <p class="needs__strengths"><b>A favor:</b> personal estable que conoce todo el proceso, pocas mermas pese a la informalidad y un dueño que conoce a fondo el negocio.</p>
+            <div class="dmap__link" aria-hidden="true">
+              <svg class="dmap__lines dmap__lines--in" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M12.5 0 C 12.5 26, 50 14, 50 40"/><path d="M37.5 0 C 37.5 26, 50 14, 50 40"/><path d="M62.5 0 C 62.5 26, 50 14, 50 40"/><path d="M87.5 0 C 87.5 26, 50 14, 50 40"/></svg>
+              <span class="dmap__hub">Por eso necesita</span>
+              <svg class="dmap__lines dmap__lines--out" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M50 0 C 50 26, 12.5 14, 12.5 40"/><path d="M50 0 C 50 26, 37.5 14, 37.5 40"/><path d="M50 0 C 50 26, 62.5 14, 62.5 40"/><path d="M50 0 C 50 26, 87.5 14, 87.5 40"/></svg>
             </div>
+            <p class="dmap__label dmap__label--need">Qué necesita resolver</p>
+            <ul class="dmap__row dmap__row--needs stagger"><li class="need need--alta"><span class="need__meter" aria-label="Prioridad: Imprescindible"><i class="on"></i><i class="on"></i><i class="on"></i><em>Imprescindible</em></span><strong>Control de stock</strong><span>Saber cuánto material y espacio hay, y de dónde viene, dónde está y adónde va</span></li><li class="need need--alta"><span class="need__meter" aria-label="Prioridad: Imprescindible"><i class="on"></i><i class="on"></i><i class="on"></i><em>Imprescindible</em></span><strong>Compras, ventas y cobranzas</strong><span>Registrarlas y seguirlas para dedicarles menos tiempo y decidir con información confiable</span></li><li class="need need--media"><span class="need__meter" aria-label="Prioridad: Importante"><i class="on"></i><i class="on"></i><i class=""></i><em>Importante</em></span><strong>Costos y rentabilidad</strong><span>Conocer el costo y el margen de cada proceso o material para evaluar inversiones como el galpón</span></li><li class="need need--baja"><span class="need__meter" aria-label="Prioridad: Deseable"><i class="on"></i><i class=""></i><i class=""></i><em>Deseable</em></span><strong>Registro de mermas</strong><span>Identificar dónde se pierde material. Mariano indicó que hoy la merma es baja</span></li></ul>
+            <p class="needs__note">Prioridades definidas con el método MoSCoW, a validar con Mariano.</p>
           </div>
         </div>
       </section>

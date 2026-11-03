@@ -534,6 +534,7 @@ function initCaseExtras() {
   initGantt();
   initValuesWheel();
   initCountUp();
+  initRoadmap();
 }
 
 /* Un solo globo de ayuda para glosario y gráficos */
@@ -865,4 +866,47 @@ function initCountUp() {
     requestAnimationFrame(step);
   }), { threshold: 0.4 });
   els.forEach((el) => io.observe(el));
+}
+
+/* Objetivos: un punto recorre la línea de Hoy a 24 meses y cada meta
+   aparece cuando el punto llega a su fecha. */
+function initRoadmap() {
+  const box = document.querySelector('.roadmap');
+  if (!box) return;
+  const line = box.querySelector('.roadmap__line');
+  const fill = box.querySelector('.roadmap__fill');
+  const runner = box.querySelector('.roadmap__runner');
+  const stops = Array.from(box.querySelectorAll('.roadmap__stop'));
+  const replay = box.querySelector('.roadmap__replay');
+  box.classList.add('is-js');
+  let raf = null;
+  const run = () => {
+    cancelAnimationFrame(raf);
+    const vertical = getComputedStyle(line).width === '4px';
+    const lr = line.getBoundingClientRect();
+    const len = vertical ? lr.height : lr.width;
+    const marks = stops.map((st) => {
+      const d = st.querySelector('.roadmap__dot').getBoundingClientRect();
+      return vertical ? d.top + d.height / 2 - lr.top : d.left + d.width / 2 - lr.left;
+    });
+    stops.forEach((st) => st.classList.remove('is-reached'));
+    const dur = 3800, t0 = performance.now();
+    const step = (t) => {
+      const p = Math.min(1, (t - t0) / dur);
+      const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      const pos = e * len;
+      if (vertical) { runner.style.transform = 'translate(-50%, ' + pos + 'px)'; fill.style.transform = 'scaleY(' + e + ')'; }
+      else { runner.style.transform = 'translate(' + pos + 'px, -50%)'; fill.style.transform = 'scaleX(' + e + ')'; }
+      marks.forEach((m, i) => { if (pos >= m - 4) stops[i].classList.add('is-reached'); });
+      if (p < 1) raf = requestAnimationFrame(step);
+      else box.classList.add('is-done');
+    };
+    box.classList.remove('is-done');
+    raf = requestAnimationFrame(step);
+  };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { io.disconnect(); run(); } }), { threshold: 0.35 });
+    io.observe(box);
+  } else run();
+  if (replay) replay.addEventListener('click', run);
 }
