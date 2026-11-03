@@ -647,6 +647,9 @@ const GLOSSARY = [
   ['tablero de indicadores', 'Tablero de indicadores', 'Una pantalla que resume los números clave del negocio.'],
   ['brechas?', 'Brecha', 'La diferencia entre cómo funciona la empresa hoy y cómo debería funcionar.'],
   ['ponderado', 'Ponderado', 'Cada puntaje se multiplica por el peso de su aspecto y después se suman.'],
+  ['Must Have', 'Must Have', 'Imprescindible: sin esto el sistema no sirve. Va en la primera etapa.'],
+  ['Should Have', 'Should Have', 'Importante: suma mucho valor, pero no frena la operación diaria si llega después.'],
+  ['Could Have', 'Could Have', 'Deseable: aporta, pero puede esperar si hace falta priorizar.'],
   ['MoSCoW', 'MoSCoW', 'Método para priorizar: lo imprescindible (Must), lo importante (Should), lo deseable (Could) y lo que queda para más adelante (Won\'t).'],
   ['acuerdo de nivel de servicio', 'Acuerdo de nivel de servicio', 'El compromiso por escrito del proveedor sobre disponibilidad y tiempos de respuesta (en inglés, SLA).']
 ];

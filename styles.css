@@ -5688,3 +5688,10 @@ section {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Etiqueta MoSCoW subrayada dentro del medidor de prioridad */
+.need__meter em .term {
+  font-family: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+}
