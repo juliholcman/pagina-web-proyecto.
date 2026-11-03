@@ -4368,7 +4368,7 @@ section {
 }
 
 .farri-facts__nums strong {
-  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -4389,7 +4389,11 @@ section {
 
 @media (min-width: 1000px) {
   .farri-facts {
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  }
+
+  .farri-facts__donuts {
+    justify-content: flex-end;
   }
 }
 
@@ -4615,6 +4619,8 @@ section {
   .process__step {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto;
+    align-content: start;
+    align-items: start;
     justify-items: center;
     text-align: center;
     row-gap: 6px;
@@ -4685,7 +4691,7 @@ section {
 /* Rueda de valores */
 .values-wheel__ring {
   position: relative;
-  width: min(100%, 520px);
+  width: min(100%, 440px);
   aspect-ratio: 1;
   max-width: 100%;
   margin: 0 auto;
@@ -4708,7 +4714,7 @@ section {
   background: none;
   font-family: var(--font-principal);
   cursor: pointer;
-  transform: translate(-50%, -50%) rotate(var(--a)) translate(clamp(120px, 34vw, 205px)) rotate(calc(-1 * var(--a)));
+  transform: translate(-50%, -50%) rotate(var(--a)) translate(clamp(110px, 30vw, 168px)) rotate(calc(-1 * var(--a)));
 }
 
 .values-wheel__icon {
@@ -4783,7 +4789,7 @@ section {
 }
 
 @keyframes value-swap {
-  from { opacity: 0; transform: translate(-50%, -42%); }
+  from { opacity: 0.25; transform: translate(-50%, -44%); }
   to { opacity: 1; transform: translate(-50%, -50%); }
 }
 
