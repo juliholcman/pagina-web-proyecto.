@@ -656,7 +656,7 @@ function initGlossary(tip) {
     re: new RegExp('(^|[^' + letters + '])(' + pat + ')(?![' + letters + '])', /[A-Z]{2,}/.test(pat) ? '' : 'i'),
     title, def
   }));
-  const skip = 'h1,h2,h3,button,a,.eyebrow,.case-card__tag,.panel-intro,.term,.score-bar,.gantt,.weights,.gap-tag,.ae-chip,.case-docs,.case-pager,.tip';
+  const skip = 'h1,h2,h3,h4,button,a,.eyebrow,.case-card__tag,.score-row__label,.cap-chart,.panel-intro,.term,.score-bar,.gantt,.weights,.gap-tag,.ae-chip,.case-docs,.case-pager,.tip';
   panels.forEach((panel) => {
     const used = new Set();
     const walker = document.createTreeWalker(panel, NodeFilter.SHOW_TEXT, {
