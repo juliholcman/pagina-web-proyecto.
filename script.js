@@ -540,6 +540,7 @@ function initCaseExtras() {
   initCountUp();
   initRoadmap();
   initFlips();
+  initPmx();
 }
 
 /* Un solo globo de ayuda para glosario y gráficos */
@@ -772,10 +773,21 @@ function initWeights() {
   const box = document.querySelector('[data-weights]');
   if (!box) return;
   const data = [
-    { name: 'Proveedor', w: 20, why: 'Farriplast depende del proveedor durante los 24 meses, por eso lo que más pesa es que acompañe la implementación.', cats: [['Implementación y capacitación', 40], ['Soporte y validación previa', 35], ['Trayectoria y adecuación al cliente', 25]] },
-    { name: 'Funcional', w: 35, why: 'Es el aspecto que más pesa: sin el núcleo de la fase 1 no se puede dejar el cuaderno.', cats: [['Núcleo operativo, fase 1', 45], ['Producción y control del servicio, fase 2', 30], ['Análisis y trazabilidad, fases 3 y 4', 25]] },
-    { name: 'Técnico', w: 25, why: 'La facilidad de uso es la prioridad de Mariano: los operarios nunca usaron un sistema de gestión.', cats: [['Usabilidad y acceso', 45], ['Infraestructura y continuidad', 30], ['Datos e integración', 25]] },
-    { name: 'Económico', w: 20, why: 'La cuota pesa más que la puesta en marcha porque compite todos los meses con la inversión en la planta.', cats: [['Costo inicial', 40], ['Costo recurrente', 60]] }
+    { name: 'Proveedor', w: 20, cats: [
+      ['Implementación y capacitación', 40, [['Implementación por fases', 50], ['Capacitación en el puesto', 50]]],
+      ['Soporte y validación previa', 35, [['Demostración previa y período de prueba', 40], ['Soporte remoto por WhatsApp', 40], ['Tiempos de respuesta del soporte', 20]]],
+      ['Trayectoria y adecuación al cliente', 25, [['Presencia y trayectoria en Argentina', 30], ['Implementaciones en el rubro', 40], ['Experiencia con empresas de tamaño similar', 30]]]] },
+    { name: 'Funcional', w: 35, cats: [
+      ['Núcleo operativo · fase 1', 45, [['Compras y recepción', 15], ['Stock y trazabilidad por lote', 25], ['Ventas, remitos y entregas', 15], ['Facturación electrónica y cumplimiento fiscal', 10], ['Cuentas corrientes y cobranzas', 20], ['Reporte al cliente de fasón', 15]]],
+      ['Producción y control del servicio · fase 2', 30, [['Producción por etapa', 25], ['Costos y rentabilidad', 35], ['Entregas y rechazos', 20], ['Gastos generales y cierre mensual', 15], ['Registro de mermas', 5]]],
+      ['Análisis y trazabilidad · fases 3 y 4', 25, [['Tablero de indicadores', 35], ['Identificación de lotes', 20], ['Balanza conectada', 20], ['Conciliación bancaria', 25]]]] },
+    { name: 'Técnico', w: 25, cats: [
+      ['Usabilidad y acceso', 45, [['Facilidad de uso y curva de aprendizaje', 45], ['Uso desde celular y computadora', 20], ['Perfiles de acceso', 35]]],
+      ['Infraestructura y continuidad', 30, [['Operación en la nube', 20], ['Resguardo automático', 40], ['Tolerancia a conectividad limitada', 40]]],
+      ['Datos e integración', 25, [['Portabilidad de los datos', 55], ['Exportación a Excel', 45]]]] },
+    { name: 'Económico', w: 20, cats: [
+      ['Costo inicial', 40, [['Implementación y puesta en marcha', 60], ['Capacitación', 20], ['Equipos a comprar', 20]]],
+      ['Costo recurrente', 60, [['Cuota mensual de la fase 1', 50], ['Variación de la cuota por fase', 35], ['Mantenimiento y soporte no incluidos', 15]]]] }
   ];
   const detail = box.querySelector('.weights__detail');
   const segs = Array.from(box.querySelectorAll('.weights__seg'));
@@ -784,12 +796,15 @@ function initWeights() {
     segs.forEach((s, k) => { s.setAttribute('aria-selected', String(k === i)); s.tabIndex = k === i ? 0 : -1; });
     box.querySelectorAll('.weights__slice').forEach((c, k) => c.classList.toggle('is-on', k === i));
     detail.dataset.aspect = String(i + 1);
+    const n = a.cats.reduce((t, c) => t + c[2].length, 0);
     detail.innerHTML =
-      '<p class="weights__title"><strong>' + a.name + '</strong> vale ' + a.w + ' de los 100 puntos</p>' +
-      '<div class="weights__cats">' + a.cats.map(([n, p]) =>
-        '<div class="weights__cat"><span class="weights__cat-name">' + n + '</span>' +
-        '<span class="weights__cat-track"><span class="weights__cat-fill" style="--p:' + p + '%"></span></span>' +
-        '<span class="weights__cat-val">' + p + '% · ' + fmt1(a.w * p / 100) + ' pts</span></div>').join('') +
+      '<p class="weights__title"><strong>' + a.name + '</strong> vale ' + a.w + ' de los 100 puntos · ' + a.cats.length + ' categorías y ' + n + ' requisitos</p>' +
+      '<div class="weights__cats">' + a.cats.map(([cn, cp, items]) =>
+        '<div class="weights__cat"><span class="weights__cat-name">' + cn + '</span>' +
+        '<span class="weights__cat-track"><span class="weights__cat-fill" style="--p:' + cp + '%"></span></span>' +
+        '<span class="weights__cat-val">' + cp + '% · ' + fmt1(a.w * cp / 100) + ' pts</span>' +
+        '<ul class="weights__items">' + items.map(([iname, ip]) =>
+          '<li><span>' + iname + '</span><b>' + fmt1(a.w * cp * ip / 10000) + ' pts</b></li>').join('') + '</ul></div>').join('') +
       '</div>';
   };
   segs.forEach((s, i) => {
@@ -965,4 +980,22 @@ function initFlips() {
     }), { threshold: 0.3 });
     io.observe(box);
   }
+}
+
+/* Matrices de 3 x 3 (riesgos y partes interesadas): al tocar un nombre se ve su detalle */
+function initPmx() {
+  document.querySelectorAll('[data-pmx]').forEach((box) => {
+    const chips = Array.from(box.querySelectorAll('.pmx__chip'));
+    const detail = box.querySelector('.pmx__detail');
+    const show = (c) => {
+      chips.forEach((x) => { const on = x === c; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', String(on)); });
+      detail.innerHTML =
+        '<span class="pmx__tag">' + c.dataset.tag + '</span>' +
+        '<p class="pmx__name">' + c.textContent + '</p>' +
+        '<div class="pmx__cols"><div><span>' + detail.dataset.l1 + '</span><p>' + c.dataset.t1 + '</p></div>' +
+        '<div><span>' + detail.dataset.l2 + '</span><p>' + c.dataset.t2 + '</p></div></div>';
+    };
+    chips.forEach((c) => c.addEventListener('click', () => show(c)));
+    if (chips[0]) show(chips[0]);
+  });
 }
