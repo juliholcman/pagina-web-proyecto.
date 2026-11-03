@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initParallax();
   initServiceStack();
   initAssistant();
+  initCaseExtras();
 });
 
 /* ---------- 1. Menú hamburguesa (header) ---------- */
@@ -80,7 +81,9 @@ function initTabs() {
     const names = tabs.map((t) => t.textContent.trim());
     const shorts = tabs.map((t, i) => t.dataset.short || names[i]);
     tabs.forEach((t, i) => {
-      if (t.dataset.short) t.title = names[i];
+      /* Al pasar el mouse se ve de qué template sale cada sección */
+      if (t.dataset.template) t.title = t.dataset.template;
+      else if (t.dataset.short) t.title = names[i];
       t.innerHTML =
         '<span class="tabs__num">' + pad(i + 1) + '</span>' +
         '<span class="tabs__name">' + shorts[i] + '</span>' +
@@ -514,4 +517,311 @@ function initAssistant() {
     else if (b.dataset.action === 'volver') show('main');
     else if (b.dataset.service) goContact('el servicio de ' + b.dataset.service);
   });
+}
+
+/* ---------- Caso Farriplast: glosario, gráficos interactivos y encabezado por etapa ----------
+   Todo se arma sobre el HTML que ya existe: si este script no corre, la
+   página se lee igual (los gráficos quedan con sus valores fijos). */
+function initCaseExtras() {
+  if (!document.querySelector('.case-body')) return;
+  const tip = createTip();
+  initStageIntros();
+  initGlossary(tip);
+  initChartTips(tip);
+  initScoreToggle();
+  initCostToggle();
+  initWeights();
+  initGantt();
+}
+
+/* Un solo globo de ayuda para glosario y gráficos */
+function createTip() {
+  const el = document.createElement('div');
+  el.className = 'tip';
+  el.setAttribute('role', 'tooltip');
+  el.id = 'case-tip';
+  el.hidden = true;
+  document.body.appendChild(el);
+  let owner = null;
+  const place = (target) => {
+    const r = target.getBoundingClientRect();
+    el.style.left = '0px';
+    el.style.top = '0px';
+    const w = el.offsetWidth, h = el.offsetHeight;
+    let x = r.left + r.width / 2 - w / 2;
+    x = Math.max(12, Math.min(x, window.innerWidth - w - 12));
+    let y = r.top - h - 10;
+    el.classList.toggle('tip--below', y < 80);
+    if (y < 80) y = r.bottom + 10;
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+  };
+  const show = (target, html) => {
+    owner = target;
+    el.innerHTML = html;
+    el.hidden = false;
+    target.setAttribute('aria-describedby', 'case-tip');
+    place(target);
+  };
+  const hide = () => {
+    if (owner) owner.removeAttribute('aria-describedby');
+    owner = null;
+    el.hidden = true;
+  };
+  window.addEventListener('scroll', () => { if (owner) place(owner); }, { passive: true });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
+  document.addEventListener('click', (e) => {
+    if (owner && !owner.contains(e.target) && !el.contains(e.target)) hide();
+  });
+  return {
+    bind(target, getHtml) {
+      target.addEventListener('mouseenter', () => show(target, getHtml()));
+      target.addEventListener('mouseleave', hide);
+      target.addEventListener('focus', () => show(target, getHtml()));
+      target.addEventListener('blur', hide);
+      target.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (owner === target) hide(); else show(target, getHtml());
+      });
+    },
+    hide
+  };
+}
+
+/* Encabezado de color al principio de cada sección: etapa y posición */
+function initStageIntros() {
+  const panels = Array.from(document.querySelectorAll('.tab-panel[data-stage]'));
+  panels.forEach((panel, i) => {
+    const tab = document.getElementById(panel.getAttribute('aria-labelledby'));
+    const stage = tab ? tab.closest('.journey__stage') : null;
+    if (!stage || panel.querySelector('.tab-panel__empty')) return;
+    const num = stage.querySelector('.journey__num').textContent;
+    const name = stage.querySelector('.journey__name').textContent;
+    const q = stage.querySelector('.journey__q').textContent;
+    const title = tab.dataset.short ? tab.querySelector('.tabs__name') : null;
+    const intro = document.createElement('div');
+    intro.className = 'panel-intro';
+    intro.innerHTML =
+      '<div class="container panel-intro__inner">' +
+        '<span class="panel-intro__stage">' + num + ' · ' + name + '</span>' +
+        '<span class="panel-intro__q">' + q + '</span>' +
+        '<span class="panel-intro__pos">Sección ' + String(i + 1).padStart(2, '0') + ' de ' + panels.length + '</span>' +
+      '</div>';
+    panel.insertBefore(intro, panel.firstChild);
+  });
+}
+
+/* Glosario: la primera vez que aparece un término en cada sección queda
+   subrayado y, al pasar el mouse o tocarlo, explica qué significa. */
+const GLOSSARY = [
+  ['arquitectura empresarial', 'Arquitectura empresarial', 'El mapa de cómo funciona la empresa por dentro: sus procesos, su información, sus herramientas y sus equipos.'],
+  ['relevamiento', 'Relevamiento', 'La etapa en la que entrevistamos y observamos para entender cómo se trabaja hoy.'],
+  ['scrap', 'Scrap', 'Descartes y sobrantes de plástico que dejan las fábricas y se pueden volver a usar.'],
+  ['fasón', 'Fasón', 'Servicio en el que Farriplast procesa el material de un cliente y se lo devuelve. Cobra solo el trabajo.'],
+  ['agruma', 'Agrumar', 'Compactar el plástico blando, como el film, en grumos para poder procesarlo.'],
+  ['agrumado', 'Agrumado', 'Compactar el plástico blando, como el film, en grumos para poder procesarlo.'],
+  ['extruye', 'Extrusión', 'Fundir el plástico y pasarlo por un molde para obtener un material uniforme.'],
+  ['extrusión', 'Extrusión', 'Fundir el plástico y pasarlo por un molde para obtener un material uniforme.'],
+  ['mermas?', 'Merma', 'El material que se pierde durante el proceso.'],
+  ['trazabilidad', 'Trazabilidad', 'Poder seguir cada lote de material desde que entra hasta que sale.'],
+  ['ERP', 'ERP', 'Sistema de gestión que reúne en un solo lugar compras, ventas, stock y cuentas.'],
+  ['SaaS', 'SaaS', 'Software como servicio: se usa por internet, se paga una cuota y el proveedor se encarga de mantenerlo.'],
+  ['On-premises', 'On-premises', 'Software instalado en servidores propios de la empresa, que ella misma tiene que mantener.'],
+  ['Big Bang', 'Big Bang', 'Implementación de una sola vez: todos los módulos y todos los usuarios arrancan el mismo día.'],
+  ['Doblin', 'Modelo de Doblin', 'Un modelo que mira diez aspectos de un negocio para ver en cuáles impacta una innovación.'],
+  ['RFP', 'RFP', 'Solicitud de propuesta: el cuadro con lo que el cliente necesita, para comparar proveedores con los mismos criterios.'],
+  ['partes interesadas', 'Partes interesadas', 'Las personas o grupos a los que afecta el proyecto (en inglés, stakeholders).'],
+  ['sponsor', 'Sponsor', 'Quien impulsa y aprueba el proyecto del lado del cliente. En este caso, Mariano.'],
+  ['Success Pack', 'Success Pack', 'Paquete de horas de consultoría de Odoo para configurar el sistema y capacitar a los usuarios.'],
+  ['IoT Box', 'IoT Box', 'Un dispositivo de Odoo que conecta equipos físicos, como la balanza, con el sistema.'],
+  ['CTS', 'CTS', 'Costo total del servicio: todo lo que se paga en 3 años por un sistema en la nube.'],
+  ['CTP', 'CTP o TCO', 'Costo total de propiedad: lo mismo que el CTS, pero para un software que se compra e instala en servidores propios.'],
+  ['partner', 'Partner', 'Empresa autorizada por un proveedor para vender e implementar su sistema.'],
+  ['localización argentina', 'Localización argentina', 'La adaptación del sistema a las normas del país, como la factura electrónica.'],
+  ['ARCA', 'ARCA', 'Agencia de Recaudación y Control Aduanero, el organismo fiscal nacional (ex AFIP).'],
+  ['conciliación bancaria', 'Conciliación bancaria', 'Comparar lo registrado en el sistema con los movimientos del banco.'],
+  ['usuarios concurrentes', 'Usuarios concurrentes', 'Se paga por la cantidad de personas conectadas al mismo tiempo, no por cada persona.'],
+  ['cuentas corrientes', 'Cuentas corrientes', 'Lo que debe o tiene a favor cada cliente y cada proveedor.'],
+  ['remitos?', 'Remito', 'El documento que acompaña cada entrega de material.'],
+  ['tablero de indicadores', 'Tablero de indicadores', 'Una pantalla que resume los números clave del negocio.'],
+  ['brechas?', 'Brecha', 'La diferencia entre cómo funciona la empresa hoy y cómo debería funcionar.'],
+  ['ponderado', 'Ponderado', 'Cada puntaje se multiplica por el peso de su aspecto y después se suman.'],
+  ['acuerdo de nivel de servicio', 'Acuerdo de nivel de servicio', 'El compromiso por escrito del proveedor sobre disponibilidad y tiempos de respuesta (en inglés, SLA).']
+];
+
+function initGlossary(tip) {
+  const panels = document.querySelectorAll('.tab-panel');
+  const letters = 'A-Za-zÁÉÍÓÚÜÑáéíóúüñ';
+  const terms = GLOSSARY.map(([pat, title, def]) => ({
+    re: new RegExp('(^|[^' + letters + '])(' + pat + ')(?![' + letters + '])', /[A-Z]{2,}/.test(pat) ? '' : 'i'),
+    title, def
+  }));
+  const skip = 'h1,h2,h3,h4,button,a,.eyebrow,.case-card__tag,.score-row__label,.cap-chart,.panel-intro,.term,.score-bar,.gantt,.weights,.gap-tag,.ae-chip,.case-docs,.case-pager,.tip';
+  panels.forEach((panel) => {
+    const used = new Set();
+    const walker = document.createTreeWalker(panel, NodeFilter.SHOW_TEXT, {
+      acceptNode: (n) => (!n.nodeValue.trim() || n.parentElement.closest(skip)) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((node) => {
+      let current = node;
+      /* En cada tramo de texto se busca el término no usado que aparece primero */
+      while (current && current.parentNode) {
+        let best = null;
+        terms.forEach((t) => {
+          if (used.has(t.title)) return;
+          const m = t.re.exec(current.nodeValue);
+          if (m && (!best || m.index + m[1].length < best.start)) best = { t, start: m.index + m[1].length, len: m[2].length };
+        });
+        if (!best) break;
+        used.add(best.t.title);
+        const after = current.splitText(best.start);
+        const rest = after.splitText(best.len);
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'term';
+        btn.textContent = after.nodeValue;
+        btn.setAttribute('aria-label', after.nodeValue + ': ver qué significa');
+        after.parentNode.replaceChild(btn, after);
+        const t = best.t;
+        tip.bind(btn, () => '<strong>' + t.title + '</strong>' + t.def);
+        current = rest;
+      }
+    });
+  });
+  /* Aviso en la banda de color de cada sección que tiene términos explicados */
+  document.querySelectorAll('.tab-panel').forEach((panel) => {
+    const inner = panel.querySelector('.panel-intro__inner');
+    if (!inner || !panel.querySelector('.term')) return;
+    const hint = document.createElement('span');
+    hint.className = 'panel-intro__hint';
+    hint.innerHTML = '<span class="panel-intro__hint-line" aria-hidden="true"></span>Las palabras subrayadas tienen explicación: pasá el mouse o tocalas.';
+    inner.appendChild(hint);
+  });
+}
+
+/* Barras de los gráficos con detalle al pasar el mouse o tocar */
+function initChartTips(tip) {
+  document.querySelectorAll('[data-tip]').forEach((el) => {
+    if (!el.hasAttribute('tabindex')) el.tabIndex = 0;
+    tip.bind(el, () => el.dataset.tip);
+  });
+}
+
+function setToggle(group, btn) {
+  group.querySelectorAll('.chart-toggle__btn').forEach((b) => {
+    const on = b === btn;
+    b.classList.toggle('is-on', on);
+    b.setAttribute('aria-pressed', String(on));
+  });
+}
+const fmt1 = (n) => n.toFixed(1).replace('.', ',');
+const fmtUsd = (n) => Math.round(n).toLocaleString('es-AR');
+
+/* Puntajes: sobre 100 por aspecto, o puntos que aporta cada aspecto al total */
+function initScoreToggle() {
+  const chart = document.querySelector('.js-score');
+  if (!chart) return;
+  const toggle = chart.previousElementSibling;
+  toggle.addEventListener('click', (e) => {
+    const btn = e.target.closest('.chart-toggle__btn');
+    if (!btn) return;
+    setToggle(toggle, btn);
+    const weighted = btn.dataset.view === 'weighted';
+    chart.classList.toggle('is-weighted', weighted);
+    chart.querySelectorAll('.score-row:not(.score-row--total)').forEach((row) => {
+      const w = Number(row.dataset.weight);
+      row.querySelectorAll('.score-bar').forEach((bar) => {
+        const v = weighted ? Number(bar.dataset.weighted) : Number(bar.dataset.raw);
+        /* en "aporte", la barra llena es el peso del aspecto: así se ve cuánto pierde cada uno */
+        bar.querySelector('.score-bar__fill').style.setProperty('--w', (weighted ? v / 35 * 100 : v) + '%');
+        bar.querySelector('.score-bar__track').style.setProperty('--max', weighted ? (w / 35 * 100) + '%' : '100%');
+        bar.querySelector('.score-bar__value').textContent = fmt1(v) + (weighted ? ' de ' + w : '');
+      });
+    });
+  });
+}
+
+/* Costos: lo que se paga cada año o el acumulado */
+function initCostToggle() {
+  const chart = document.querySelector('.js-cost');
+  if (!chart) return;
+  const toggle = chart.previousElementSibling;
+  toggle.addEventListener('click', (e) => {
+    const btn = e.target.closest('.chart-toggle__btn');
+    if (!btn) return;
+    setToggle(toggle, btn);
+    const view = btn.dataset.view;
+    chart.querySelectorAll('.score-row:not(.score-row--total)').forEach((row) => {
+      const note = row.querySelector('.score-row__weight');
+      note.textContent = note.dataset[view];
+      row.querySelectorAll('.score-bar').forEach((bar) => {
+        const v = Number(bar.dataset[view]);
+        bar.querySelector('.score-bar__fill').style.setProperty('--w', (v / 15044 * 100) + '%');
+        bar.querySelector('.score-bar__value').textContent = fmtUsd(v);
+        bar.dataset.tip = view === 'cum' ? bar.dataset.tipCum : bar.dataset.tipYear;
+      });
+    });
+  });
+}
+
+/* Matriz RFP: cuánto pesa cada aspecto y en qué se divide */
+function initWeights() {
+  const box = document.querySelector('[data-weights]');
+  if (!box) return;
+  const data = [
+    { name: 'Proveedor', w: 20, why: 'Farriplast depende del proveedor durante los 24 meses, por eso lo que más pesa es que acompañe la implementación.', cats: [['Implementación y capacitación', 40], ['Soporte y validación previa', 35], ['Trayectoria y adecuación al cliente', 25]] },
+    { name: 'Funcional', w: 35, why: 'Es el aspecto que más pesa: sin el núcleo de la fase 1 no se puede dejar el cuaderno.', cats: [['Núcleo operativo, fase 1', 45], ['Producción y control del servicio, fase 2', 30], ['Análisis y trazabilidad, fases 3 y 4', 25]] },
+    { name: 'Técnico', w: 25, why: 'La facilidad de uso es la prioridad de Mariano: los operarios nunca usaron un sistema de gestión.', cats: [['Usabilidad y acceso', 45], ['Infraestructura y continuidad', 30], ['Datos e integración', 25]] },
+    { name: 'Económico', w: 20, why: 'La cuota pesa más que la puesta en marcha porque compite todos los meses con la inversión en la planta.', cats: [['Costo inicial', 40], ['Costo recurrente', 60]] }
+  ];
+  const detail = box.querySelector('.weights__detail');
+  const segs = Array.from(box.querySelectorAll('.weights__seg'));
+  const render = (i) => {
+    const a = data[i];
+    segs.forEach((s, k) => { s.setAttribute('aria-selected', String(k === i)); s.tabIndex = k === i ? 0 : -1; });
+    detail.dataset.aspect = String(i + 1);
+    detail.innerHTML =
+      '<p class="weights__title"><strong>' + a.name + '</strong> vale ' + a.w + ' de los 100 puntos</p>' +
+      '<p class="weights__why">' + a.why + '</p>' +
+      '<div class="weights__cats">' + a.cats.map(([n, p]) =>
+        '<div class="weights__cat"><span class="weights__cat-name">' + n + '</span>' +
+        '<span class="weights__cat-track"><span class="weights__cat-fill" style="--p:' + p + '%"></span></span>' +
+        '<span class="weights__cat-val">' + p + '% · ' + fmt1(a.w * p / 100) + ' pts</span></div>').join('') +
+      '</div>';
+  };
+  segs.forEach((s, i) => {
+    s.addEventListener('click', () => render(i));
+    s.addEventListener('keydown', (e) => {
+      let t = null;
+      if (e.key === 'ArrowRight') t = (i + 1) % segs.length;
+      if (e.key === 'ArrowLeft') t = (i - 1 + segs.length) % segs.length;
+      if (t !== null) { e.preventDefault(); render(t); segs[t].focus(); }
+    });
+  });
+  render(1);
+}
+
+/* Cronograma: al tocar una fase se ve qué incluye */
+function initGantt() {
+  const box = document.querySelector('[data-gantt]');
+  if (!box) return;
+  const phases = [
+    ['Fase 1 · Meses 1 a 6', 'Núcleo operativo', ['Stock, compras, ventas y remitos', 'Cuentas corrientes y cobranzas', 'Facturación electrónica', 'Control mensual del stock de fasón']],
+    ['Fase 2 · Meses 7 a 12', 'Producción y costos', ['Producción por etapa', 'Costo y margen por kilo', 'Entregas y rechazos', 'Gastos generales y reporte de fin de mes']],
+    ['Fase 3 · Meses 13 a 18', 'Análisis y trazabilidad', ['Tablero de indicadores', 'Reporte de fasón para todos los clientes', 'QR por lote y balanza conectada', 'Conciliación bancaria']],
+    ['Fase 4 · Meses 19 a 24', 'Consolidación', ['Consolidar el uso del sistema', 'Seguimiento de las metas', 'Evaluar el costo de la solución', 'Evaluar que carguen más operarios']]
+  ];
+  const rows = Array.from(box.querySelectorAll('.gantt__row'));
+  const detail = box.querySelector('.gantt__detail');
+  const render = (i) => {
+    rows.forEach((r, k) => { r.setAttribute('aria-pressed', String(k === i)); r.classList.toggle('is-on', k === i); });
+    const [when, name, items] = phases[i];
+    detail.dataset.phase = String(i + 1);
+    detail.innerHTML = '<p class="gantt__detail-when">' + when + '</p><p class="gantt__detail-name">' + name + '</p><ul>' +
+      items.map((it) => '<li>' + it + '</li>').join('') + '</ul>';
+  };
+  rows.forEach((r, i) => r.addEventListener('click', () => render(i)));
+  render(0);
 }
