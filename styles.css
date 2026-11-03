@@ -3463,3 +3463,292 @@ section {
     height: 46px;
   }
 }
+
+/* =========================================================
+   CASO FARRIPLAST — piezas agregadas con los templates actualizados
+   ========================================================= */
+
+/* Recuadro "¿Qué es la arquitectura empresarial?" */
+.ae-explainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 0 28px;
+  padding: 22px 24px;
+  border-radius: var(--radius);
+  background: var(--celeste-nota);
+  border: 1px solid var(--borde-medio);
+}
+
+.ae-explainer__title {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--azul-profundo);
+}
+
+.case-body .ae-explainer p {
+  margin: 0;
+  max-width: 68ch;
+}
+
+.ae-explainer__layers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: 10px 20px;
+  margin: 4px 0 0;
+}
+
+.ae-explainer__layers div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: 12px;
+  border-left: 3px solid var(--azul-delta);
+}
+
+.ae-explainer__layers dt {
+  font-weight: 700;
+  color: var(--texto-principal);
+}
+
+.ae-explainer__layers dd {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--texto-secundario);
+}
+
+/* Leyenda y columnas de "Qué pasa con lo que se usa hoy" */
+.ae-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin: 0 0 18px;
+  font-size: 0.88rem;
+  color: var(--texto-secundario);
+}
+
+.ae-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ae-chip {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ae-chip--keep { background: #E3F2E6; color: #1E6B34; }
+.ae-chip--better { background: var(--celeste-nota); color: var(--navy); }
+.ae-chip--new { background: var(--azul-delta); color: var(--blanco); }
+.ae-chip--drop { background: #E6E9EE; color: #5A6475; }
+
+.ae-changes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 16px;
+}
+
+.ae-changes__col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 20px;
+  border-radius: var(--radius);
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+}
+
+.case-body .ae-changes__head {
+  margin: 0;
+}
+
+.ae-changes ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ae-changes li {
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--texto-principal);
+}
+
+.ae-changes li.is-drop {
+  color: #6B7585;
+  text-decoration: line-through;
+  text-decoration-color: rgba(107, 117, 133, 0.6);
+}
+
+/* Gráfico de costos: mismas barras que el de puntajes, con montos */
+.score-compare--money .score-row__weight {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.case-block__note--top {
+  margin: -8px 0 16px;
+}
+
+/* Barras contra el máximo de Mariano */
+.cap-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px 24px;
+  border-radius: var(--radius);
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+}
+
+.cap-chart__row {
+  display: grid;
+  grid-template-columns: minmax(0, 190px) minmax(0, 1fr) 64px;
+  align-items: center;
+  gap: 14px;
+}
+
+.cap-chart__label {
+  font-size: 0.9rem;
+  color: var(--texto-principal);
+}
+
+.cap-chart__track {
+  position: relative;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--gris-hielo);
+}
+
+.cap-chart__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--w);
+  border-radius: 999px;
+  background: var(--azul-delta);
+}
+
+.cap-chart__fill--ok { background: #2E8B57; }
+.cap-chart__fill--b { background: var(--celeste-delta); }
+
+.cap-chart__cap {
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  left: var(--c);
+  width: 2px;
+  background: var(--azul-profundo);
+}
+
+.cap-chart__value {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--texto-principal);
+}
+
+.case-body .cap-chart__legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+}
+
+.cap-chart__legend-line {
+  display: inline-block;
+  width: 2px;
+  height: 16px;
+  background: var(--azul-profundo);
+}
+
+@media (max-width: 559px) {
+  .cap-chart__row {
+    grid-template-columns: minmax(0, 1fr) 56px;
+  }
+
+  .cap-chart__label {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Lista de desventajas: guion en lugar de tilde */
+.case-checks--minus li::before {
+  background: #F3E9E7 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A14A3B' stroke-width='3' stroke-linecap='round'%3E%3Cline x1='6' y1='12' x2='18' y2='12'/%3E%3C/svg%3E") center / 12px 12px no-repeat;
+}
+
+/* Tabla de brechas de Odoo */
+.gap-table {
+  overflow-x: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--borde);
+  background: var(--blanco);
+}
+
+.gap-table table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.gap-table th,
+.gap-table td {
+  padding: 14px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--borde);
+}
+
+.gap-table thead th {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--azul-delta);
+  background: var(--gris-hielo);
+}
+
+.gap-table tbody th {
+  font-weight: 700;
+  color: var(--texto-principal);
+  white-space: nowrap;
+}
+
+.gap-table td {
+  color: var(--texto-secundario);
+}
+
+.gap-table td:nth-child(2) {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--texto-principal);
+}
+
+.gap-table tbody tr:last-child th,
+.gap-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.gap-tag {
+  display: inline-block;
+  margin: 0 4px 4px 0;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--gris-hielo);
+  color: var(--azul-delta);
+  font-weight: 500;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}

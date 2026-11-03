@@ -80,7 +80,9 @@ function initTabs() {
     const names = tabs.map((t) => t.textContent.trim());
     const shorts = tabs.map((t, i) => t.dataset.short || names[i]);
     tabs.forEach((t, i) => {
-      if (t.dataset.short) t.title = names[i];
+      /* Al pasar el mouse se ve de qué template sale cada sección */
+      if (t.dataset.template) t.title = t.dataset.template;
+      else if (t.dataset.short) t.title = names[i];
       t.innerHTML =
         '<span class="tabs__num">' + pad(i + 1) + '</span>' +
         '<span class="tabs__name">' + shorts[i] + '</span>' +
