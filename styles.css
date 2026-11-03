@@ -5382,3 +5382,17 @@ section {
     to { background-position: 0 28px; }
   }
 }
+
+/* La tarjeta de necesidad pisa el estilo anterior de la lista */
+.needs__to .need {
+  border: 2px solid transparent;
+  border-left: 2px solid transparent;
+  padding: 16px 18px 16px 20px;
+}
+
+@media (min-width: 760px) {
+  .needs__head,
+  .needs__row {
+    grid-template-columns: minmax(0, 1fr) 90px minmax(0, 1fr);
+  }
+}
