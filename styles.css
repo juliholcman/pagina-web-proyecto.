@@ -5552,3 +5552,8 @@ section {
   outline: 3px solid var(--celeste-claro);
   outline-offset: 2px;
 }
+
+/* Lugar para el aviso "Tocar" sin pisar el texto */
+.pain {
+  padding-bottom: 48px;
+}
