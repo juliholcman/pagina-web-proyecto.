@@ -254,7 +254,7 @@ function initContactForm() {
    CSS. Así, si este script no llegara a correr, el contenido nunca queda
    invisible (las reglas .reveal/.stagger solo ocultan bajo esa clase). */
 function initScrollReveal() {
-  const targets = document.querySelectorAll('.reveal, .stagger, .reveal-stack, .reveal-mask');
+  const targets = document.querySelectorAll('.reveal, .stagger, .reveal-stack, .reveal-mask, .replay');
   if (!targets.length) return;
 
   if (!('IntersectionObserver' in window)) {
@@ -267,10 +267,8 @@ function initScrollReveal() {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
+        /* Cada vez que el bloque vuelve a la pantalla se repite la animación */
+        entry.target.classList.toggle('is-visible', entry.isIntersecting);
       });
     },
     /* Aparece apenas su borde superior entra 40px en pantalla. Un
@@ -858,10 +856,10 @@ function initCountUp() {
   const els = document.querySelectorAll('[data-count]');
   if (!els.length || !('IntersectionObserver' in window)) return;
   const io = new IntersectionObserver((es) => es.forEach((e) => {
-    if (!e.isIntersecting) return;
-    io.unobserve(e.target);
     const el = e.target, end = Number(el.dataset.count), suf = el.dataset.suffix || '';
-    const from = end > 1000 ? end - 30 : 0, t0 = performance.now(), dur = 1100;
+    const from = end > 1000 ? end - 30 : 0;
+    if (!e.isIntersecting) { el.textContent = from + suf; return; }
+    const t0 = performance.now(), dur = 1100;
     const step = (t) => {
       const p = Math.min(1, (t - t0) / dur), v = Math.round(from + (end - from) * (1 - Math.pow(1 - p, 3)));
       el.textContent = v + suf;
@@ -909,7 +907,15 @@ function initRoadmap() {
     raf = requestAnimationFrame(step);
   };
   if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { io.disconnect(); run(); } }), { threshold: 0.35 });
+    /* Se repite cada vez que la línea vuelve a la pantalla */
+    const reset = () => {
+      cancelAnimationFrame(raf);
+      stops.forEach((st) => st.classList.remove('is-reached'));
+      box.classList.remove('is-done');
+      runner.style.transform = '';
+      fill.style.transform = '';
+    };
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) run(); else reset(); }), { threshold: 0.35 });
     io.observe(box);
   } else run();
   if (replay) replay.addEventListener('click', run);
@@ -940,13 +946,16 @@ function initFlips() {
     setTimeout(syncToggle, cards.length * 90 + 50);
   });
   if ('IntersectionObserver' in window) {
+    /* Cada vez que vuelven a la pantalla arrancan en Hoy y se dan vuelta */
+    let timers = [];
+    const clear = () => { timers.forEach(clearTimeout); timers = []; };
     const io = new IntersectionObserver((es) => es.forEach((e) => {
-      if (!e.isIntersecting) return;
-      io.disconnect();
-      setTimeout(() => {
-        cards.forEach((c, i) => setTimeout(() => setCard(c, true), i * 260));
-        setTimeout(syncToggle, cards.length * 260 + 50);
-      }, 900);
+      clear();
+      if (!e.isIntersecting) { cards.forEach((c) => setCard(c, false)); syncToggle(); return; }
+      timers.push(setTimeout(() => {
+        cards.forEach((c, i) => timers.push(setTimeout(() => setCard(c, true), i * 260)));
+        timers.push(setTimeout(syncToggle, cards.length * 260 + 50));
+      }, 900));
     }), { threshold: 0.3 });
     io.observe(box);
   }
