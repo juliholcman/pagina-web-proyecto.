@@ -532,6 +532,9 @@ function initCaseExtras() {
   initCostToggle();
   initWeights();
   initGantt();
+  initValuesWheel();
+  initCountUp();
+  initRoadmap();
 }
 
 /* Un solo globo de ayuda para glosario y gráficos */
@@ -618,10 +621,8 @@ const GLOSSARY = [
   ['relevamiento', 'Relevamiento', 'La etapa en la que entrevistamos y observamos para entender cómo se trabaja hoy.'],
   ['scrap', 'Scrap', 'Descartes y sobrantes de plástico que dejan las fábricas y se pueden volver a usar.'],
   ['fasón', 'Fasón', 'Servicio en el que Farriplast procesa el material de un cliente y se lo devuelve. Cobra solo el trabajo.'],
-  ['agruma', 'Agrumar', 'Compactar el plástico blando, como el film, en grumos para poder procesarlo.'],
-  ['agrumado', 'Agrumado', 'Compactar el plástico blando, como el film, en grumos para poder procesarlo.'],
-  ['extruye', 'Extrusión', 'Fundir el plástico y pasarlo por un molde para obtener un material uniforme.'],
-  ['extrusión', 'Extrusión', 'Fundir el plástico y pasarlo por un molde para obtener un material uniforme.'],
+  ['agrum(?:ado|ar|a)', 'Agrumado', 'Compactar el plástico blando, como el film, en grumos para poder procesarlo.'],
+  ['extru(?:sión|ye)', 'Extrusión', 'Fundir el plástico y pasarlo por un molde para obtener un material uniforme.'],
   ['mermas?', 'Merma', 'El material que se pierde durante el proceso.'],
   ['trazabilidad', 'Trazabilidad', 'Poder seguir cada lote de material desde que entra hasta que sale.'],
   ['ERP', 'ERP', 'Sistema de gestión que reúne en un solo lugar compras, ventas, stock y cuentas.'],
@@ -646,6 +647,10 @@ const GLOSSARY = [
   ['tablero de indicadores', 'Tablero de indicadores', 'Una pantalla que resume los números clave del negocio.'],
   ['brechas?', 'Brecha', 'La diferencia entre cómo funciona la empresa hoy y cómo debería funcionar.'],
   ['ponderado', 'Ponderado', 'Cada puntaje se multiplica por el peso de su aspecto y después se suman.'],
+  ['Must Have', 'Must Have', 'Imprescindible: sin esto el sistema no sirve. Va en la primera etapa.'],
+  ['Should Have', 'Should Have', 'Importante: suma mucho valor, pero no frena la operación diaria si llega después.'],
+  ['Could Have', 'Could Have', 'Deseable: aporta, pero puede esperar si hace falta priorizar.'],
+  ['MoSCoW', 'MoSCoW', 'Método para priorizar: lo imprescindible (Must), lo importante (Should), lo deseable (Could) y lo que queda para más adelante (Won\'t).'],
   ['acuerdo de nivel de servicio', 'Acuerdo de nivel de servicio', 'El compromiso por escrito del proveedor sobre disponibilidad y tiempos de respuesta (en inglés, SLA).']
 ];
 
@@ -689,15 +694,6 @@ function initGlossary(tip) {
         current = rest;
       }
     });
-  });
-  /* Aviso en la banda de color de cada sección que tiene términos explicados */
-  document.querySelectorAll('.tab-panel').forEach((panel) => {
-    const inner = panel.querySelector('.panel-intro__inner');
-    if (!inner || !panel.querySelector('.term')) return;
-    const hint = document.createElement('span');
-    hint.className = 'panel-intro__hint';
-    hint.innerHTML = '<span class="panel-intro__hint-line" aria-hidden="true"></span>Las palabras subrayadas tienen explicación: pasá el mouse o tocalas.';
-    inner.appendChild(hint);
   });
 }
 
@@ -781,10 +777,10 @@ function initWeights() {
   const render = (i) => {
     const a = data[i];
     segs.forEach((s, k) => { s.setAttribute('aria-selected', String(k === i)); s.tabIndex = k === i ? 0 : -1; });
+    box.querySelectorAll('.weights__slice').forEach((c, k) => c.classList.toggle('is-on', k === i));
     detail.dataset.aspect = String(i + 1);
     detail.innerHTML =
       '<p class="weights__title"><strong>' + a.name + '</strong> vale ' + a.w + ' de los 100 puntos</p>' +
-      '<p class="weights__why">' + a.why + '</p>' +
       '<div class="weights__cats">' + a.cats.map(([n, p]) =>
         '<div class="weights__cat"><span class="weights__cat-name">' + n + '</span>' +
         '<span class="weights__cat-track"><span class="weights__cat-fill" style="--p:' + p + '%"></span></span>' +
@@ -800,6 +796,7 @@ function initWeights() {
       if (t !== null) { e.preventDefault(); render(t); segs[t].focus(); }
     });
   });
+  box.querySelectorAll('.weights__slice').forEach((c) => c.addEventListener('click', () => render(Number(c.dataset.aspect))));
   render(1);
 }
 
@@ -824,4 +821,95 @@ function initGantt() {
   };
   rows.forEach((r, i) => r.addEventListener('click', () => render(i)));
   render(0);
+}
+
+/* Valores: rueda que rota sola; al tocar uno se detiene en ese */
+function initValuesWheel() {
+  const box = document.querySelector('[data-values]');
+  if (!box) return;
+  const nodes = Array.from(box.querySelectorAll('.values-wheel__node'));
+  const data = Array.from(box.querySelectorAll('.values-wheel__data li'));
+  const title = box.querySelector('.values-wheel__title');
+  const desc = box.querySelector('.values-wheel__desc');
+  const center = box.querySelector('.values-wheel__center');
+  let i = 0, timer = null;
+  const show = (k) => {
+    i = k;
+    nodes.forEach((n, j) => { n.setAttribute('aria-pressed', String(j === k)); n.classList.toggle('is-on', j === k); });
+    center.classList.remove('is-swap'); void center.offsetWidth; center.classList.add('is-swap');
+    title.textContent = data[k].dataset.name;
+    desc.textContent = data[k].textContent;
+  };
+  const start = () => { timer = setInterval(() => show((i + 1) % nodes.length), 3500); };
+  const stop = () => { clearInterval(timer); timer = null; };
+  nodes.forEach((n, k) => n.addEventListener('click', () => { stop(); show(k); }));
+  box.addEventListener('mouseenter', stop);
+  box.addEventListener('mouseleave', () => { if (!timer) start(); });
+  /* rota solo mientras está a la vista */
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { if (!timer) start(); } else stop(); })).observe(box);
+  } else start();
+  show(0);
+}
+
+/* Números que cuentan hacia arriba al aparecer */
+function initCountUp() {
+  const els = document.querySelectorAll('[data-count]');
+  if (!els.length || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting) return;
+    io.unobserve(e.target);
+    const el = e.target, end = Number(el.dataset.count), suf = el.dataset.suffix || '';
+    const from = end > 1000 ? end - 30 : 0, t0 = performance.now(), dur = 1100;
+    const step = (t) => {
+      const p = Math.min(1, (t - t0) / dur), v = Math.round(from + (end - from) * (1 - Math.pow(1 - p, 3)));
+      el.textContent = v + suf;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }), { threshold: 0.4 });
+  els.forEach((el) => io.observe(el));
+}
+
+/* Objetivos: un punto recorre la línea de Hoy a 24 meses y cada meta
+   aparece cuando el punto llega a su fecha. */
+function initRoadmap() {
+  const box = document.querySelector('.roadmap');
+  if (!box) return;
+  const line = box.querySelector('.roadmap__line');
+  const fill = box.querySelector('.roadmap__fill');
+  const runner = box.querySelector('.roadmap__runner');
+  const stops = Array.from(box.querySelectorAll('.roadmap__stop'));
+  const replay = box.querySelector('.roadmap__replay');
+  box.classList.add('is-js');
+  let raf = null;
+  const run = () => {
+    cancelAnimationFrame(raf);
+    const vertical = getComputedStyle(line).width === '4px';
+    const lr = line.getBoundingClientRect();
+    const len = vertical ? lr.height : lr.width;
+    const marks = stops.map((st) => {
+      const d = st.querySelector('.roadmap__dot').getBoundingClientRect();
+      return vertical ? d.top + d.height / 2 - lr.top : d.left + d.width / 2 - lr.left;
+    });
+    stops.forEach((st) => st.classList.remove('is-reached'));
+    const dur = 5200, t0 = performance.now();
+    const step = (t) => {
+      const p = Math.min(1, (t - t0) / dur);
+      const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      const pos = e * len;
+      if (vertical) { runner.style.transform = 'translate(-50%, ' + pos + 'px)'; fill.style.transform = 'scaleY(' + e + ')'; }
+      else { runner.style.transform = 'translate(' + pos + 'px, -50%)'; fill.style.transform = 'scaleX(' + e + ')'; }
+      marks.forEach((m, i) => { if (pos >= m - 4) stops[i].classList.add('is-reached'); });
+      if (p < 1) raf = requestAnimationFrame(step);
+      else box.classList.add('is-done');
+    };
+    box.classList.remove('is-done');
+    raf = requestAnimationFrame(step);
+  };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { io.disconnect(); run(); } }), { threshold: 0.35 });
+    io.observe(box);
+  } else run();
+  if (replay) replay.addEventListener('click', run);
 }
