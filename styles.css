@@ -6743,6 +6743,8 @@ section {
 /* =========================================================
    Casos de éxito · números del encabezado sin cajas
    ========================================================= */
+.casos-hero .casos-hero__text { max-width: 720px; }
+
 .hero-stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -6771,10 +6773,12 @@ section {
 }
 
 .hero-stat__value {
-  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  align-self: flex-start;
+  padding-right: 0.12em;
+  font-size: clamp(2.6rem, 5vw, 3.8rem);
   font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.03em;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   background: linear-gradient(120deg, #FFFFFF 10%, var(--celeste-delta) 90%);
   -webkit-background-clip: text;
   background-clip: text;
