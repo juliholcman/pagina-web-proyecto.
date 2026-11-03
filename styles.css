@@ -3589,9 +3589,19 @@ section {
 }
 
 /* Gráfico de costos: mismas barras que el de puntajes, con montos */
+.score-compare--money .score-row__label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  white-space: nowrap;
+}
+
 .score-compare--money .score-row__weight {
+  margin: 0;
   text-transform: none;
   letter-spacing: 0;
+  white-space: normal;
 }
 
 .case-block__note--top {
