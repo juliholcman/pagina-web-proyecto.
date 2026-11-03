@@ -7109,8 +7109,8 @@ section {
 }
 
 .smx__ban--col { grid-column: 2; grid-row: 2 / span 2; }
-.smx__ban--row { grid-column: 2 / span 2; grid-row: 2; align-items: center; justify-content: flex-end; }
-.smx__ban--row span { margin: 0 -10px 0 0; }
+.smx__ban--row { grid-column: 2 / span 2; grid-row: 2; align-items: flex-start; justify-content: flex-end; }
+.smx__ban--row span { margin: -13px 16px 0 0; }
 
 .smx__cell:not(.smx__cell--chosen) { opacity: 0.55; filter: grayscale(0.6); }
 
