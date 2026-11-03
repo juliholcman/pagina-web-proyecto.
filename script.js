@@ -540,6 +540,9 @@ function initCaseExtras() {
   initCountUp();
   initRoadmap();
   initFlips();
+  initPmx();
+  initPmap();
+  initTryscore();
 }
 
 /* Un solo globo de ayuda para glosario y gráficos */
@@ -770,13 +773,26 @@ function initCostToggle() {
 /* Matriz RFP: cuánto pesa cada aspecto y en qué se divide */
 function initWeights() {
   const box = document.querySelector('[data-weights]');
-  if (!box) return;
+  const aspx = document.querySelector('[data-aspx]');
+  if (!box && !aspx) return;
   const data = [
-    { name: 'Proveedor', w: 20, why: 'Farriplast depende del proveedor durante los 24 meses, por eso lo que más pesa es que acompañe la implementación.', cats: [['Implementación y capacitación', 40], ['Soporte y validación previa', 35], ['Trayectoria y adecuación al cliente', 25]] },
-    { name: 'Funcional', w: 35, why: 'Es el aspecto que más pesa: sin el núcleo de la fase 1 no se puede dejar el cuaderno.', cats: [['Núcleo operativo, fase 1', 45], ['Producción y control del servicio, fase 2', 30], ['Análisis y trazabilidad, fases 3 y 4', 25]] },
-    { name: 'Técnico', w: 25, why: 'La facilidad de uso es la prioridad de Mariano: los operarios nunca usaron un sistema de gestión.', cats: [['Usabilidad y acceso', 45], ['Infraestructura y continuidad', 30], ['Datos e integración', 25]] },
-    { name: 'Económico', w: 20, why: 'La cuota pesa más que la puesta en marcha porque compite todos los meses con la inversión en la planta.', cats: [['Costo inicial', 40], ['Costo recurrente', 60]] }
+    { name: 'Proveedor', w: 20, cats: [
+      ['Implementación y capacitación', 40, [['Implementación por fases', 50], ['Capacitación en el puesto', 50]]],
+      ['Soporte y validación previa', 35, [['Demostración previa y período de prueba', 40], ['Soporte remoto por WhatsApp', 40], ['Tiempos de respuesta del soporte', 20]]],
+      ['Trayectoria y adecuación al cliente', 25, [['Presencia y trayectoria en Argentina', 30], ['Implementaciones en el rubro', 40], ['Experiencia con empresas de tamaño similar', 30]]]] },
+    { name: 'Funcional', w: 35, cats: [
+      ['Núcleo operativo · fase 1', 45, [['Compras y recepción', 15], ['Stock y trazabilidad por lote', 25], ['Ventas, remitos y entregas', 15], ['Facturación electrónica y cumplimiento fiscal', 10], ['Cuentas corrientes y cobranzas', 20], ['Reporte al cliente de fasón', 15]]],
+      ['Producción y control del servicio · fase 2', 30, [['Producción por etapa', 25], ['Costos y rentabilidad', 35], ['Entregas y rechazos', 20], ['Gastos generales y cierre mensual', 15], ['Registro de mermas', 5]]],
+      ['Análisis y trazabilidad · fases 3 y 4', 25, [['Tablero de indicadores', 35], ['Identificación de lotes', 20], ['Balanza conectada', 20], ['Conciliación bancaria', 25]]]] },
+    { name: 'Técnico', w: 25, cats: [
+      ['Usabilidad y acceso', 45, [['Facilidad de uso y curva de aprendizaje', 45], ['Uso desde celular y computadora', 20], ['Perfiles de acceso', 35]]],
+      ['Infraestructura y continuidad', 30, [['Operación en la nube', 20], ['Resguardo automático', 40], ['Tolerancia a conectividad limitada', 40]]],
+      ['Datos e integración', 25, [['Portabilidad de los datos', 55], ['Exportación a Excel', 45]]]] },
+    { name: 'Económico', w: 20, cats: [
+      ['Costo inicial', 40, [['Implementación y puesta en marcha', 60], ['Capacitación', 20], ['Equipos a comprar', 20]]],
+      ['Costo recurrente', 60, [['Cuota mensual de la fase 1', 50], ['Variación de la cuota por fase', 35], ['Mantenimiento y soporte no incluidos', 15]]]] }
   ];
+  if (aspx) { initAspx(aspx, data); return; }
   const detail = box.querySelector('.weights__detail');
   const segs = Array.from(box.querySelectorAll('.weights__seg'));
   const render = (i) => {
@@ -784,12 +800,15 @@ function initWeights() {
     segs.forEach((s, k) => { s.setAttribute('aria-selected', String(k === i)); s.tabIndex = k === i ? 0 : -1; });
     box.querySelectorAll('.weights__slice').forEach((c, k) => c.classList.toggle('is-on', k === i));
     detail.dataset.aspect = String(i + 1);
+    const n = a.cats.reduce((t, c) => t + c[2].length, 0);
     detail.innerHTML =
-      '<p class="weights__title"><strong>' + a.name + '</strong> vale ' + a.w + ' de los 100 puntos</p>' +
-      '<div class="weights__cats">' + a.cats.map(([n, p]) =>
-        '<div class="weights__cat"><span class="weights__cat-name">' + n + '</span>' +
-        '<span class="weights__cat-track"><span class="weights__cat-fill" style="--p:' + p + '%"></span></span>' +
-        '<span class="weights__cat-val">' + p + '% · ' + fmt1(a.w * p / 100) + ' pts</span></div>').join('') +
+      '<p class="weights__title"><strong>' + a.name + '</strong> vale ' + a.w + ' de los 100 puntos · ' + a.cats.length + ' categorías y ' + n + ' requisitos</p>' +
+      '<div class="weights__cats">' + a.cats.map(([cn, cp, items]) =>
+        '<div class="weights__cat"><span class="weights__cat-name">' + cn + '</span>' +
+        '<span class="weights__cat-track"><span class="weights__cat-fill" style="--p:' + cp + '%"></span></span>' +
+        '<span class="weights__cat-val">' + cp + '% · ' + fmt1(a.w * cp / 100) + ' pts</span>' +
+        '<ul class="weights__items">' + items.map(([iname, ip]) =>
+          '<li><span>' + iname + '</span><b>' + fmt1(a.w * cp * ip / 10000) + ' pts</b></li>').join('') + '</ul></div>').join('') +
       '</div>';
   };
   segs.forEach((s, i) => {
@@ -810,21 +829,26 @@ function initGantt() {
   const box = document.querySelector('[data-gantt]');
   if (!box) return;
   const phases = [
-    ['Fase 1 · Meses 1 a 6', 'Núcleo operativo', ['Stock, compras, ventas y remitos', 'Cuentas corrientes y cobranzas', 'Facturación electrónica', 'Control mensual del stock de fasón']],
-    ['Fase 2 · Meses 7 a 12', 'Producción y costos', ['Producción por etapa', 'Costo y margen por kilo', 'Entregas y rechazos', 'Gastos generales y reporte de fin de mes']],
-    ['Fase 3 · Meses 13 a 18', 'Análisis y trazabilidad', ['Tablero de indicadores', 'Reporte de fasón para todos los clientes', 'QR por lote y balanza conectada', 'Conciliación bancaria']],
-    ['Fase 4 · Meses 19 a 24', 'Consolidación', ['Consolidar el uso del sistema', 'Seguimiento de las metas', 'Evaluar el costo de la solución', 'Evaluar que carguen más operarios']]
+    ['Fase 1 · Meses 1 a 6', 'Núcleo operativo', ['Stock, compras, ventas y remitos', 'Cuentas corrientes y cobranzas', 'Facturación electrónica', 'Control mensual del stock de fasón'],
+      [['Quién lo usa', 'Mariano y Samuel'], ['Arranque', 'Mariano carga los saldos iniciales de stock, cuentas corrientes y cheques'], ['Qué ve Samuel', 'Stock y movimientos en cantidades, sin precios ni saldos'], ['Turno noche', 'Se anota en la pizarra y Samuel lo carga al día siguiente. Si no está, lo hace Mariano'], ['Cuaderno', 'Sigue en paralelo hasta que coincida el primer cierre mensual, como máximo 3 meses'], ['Se compra', 'Una computadora o tablet y un teléfono para el sistema']]],
+    ['Fase 2 · Meses 7 a 12', 'Producción y costos', ['Producción por etapa', 'Costo y margen por kilo', 'Entregas y rechazos', 'Gastos generales y reporte de fin de mes'],
+      [['Quién lo usa', 'Mariano y Samuel'], ['Para qué sirve', 'Medir la meta de reputación y decidir sobre el galpón, ambas a 12 meses']]],
+    ['Fase 3 · Meses 13 a 18', 'Análisis y trazabilidad', ['Tablero de indicadores', 'Reporte de fasón para todos los clientes', 'QR por lote y balanza conectada', 'Conciliación bancaria'],
+      [['Se compra', 'Una balanza que se conecta al sistema: la actual no admite conexión ni impresión'], ['Para qué sirve', 'Seguir la meta de retención y satisfacción de clientes, a 18 meses'], ['Equipo', 'Samuel capacita al resto de los operarios para cargar información']]],
+    ['Fase 4 · Meses 19 a 24', 'Consolidación', ['Consolidar el uso del sistema', 'Seguimiento de las metas', 'Evaluar el costo de la solución', 'Evaluar que carguen más operarios'],
+      [['Para qué sirve', 'Seguir la meta de crecer 20% en volumen, con la información ya consolidada']]]
   ];
   const rows = Array.from(box.querySelectorAll('.gantt__row'));
   const detail = box.querySelector('.gantt__detail');
   const render = (i) => {
     rows.forEach((r, k) => { r.setAttribute('aria-pressed', String(k === i)); r.classList.toggle('is-on', k === i); });
-    const [when, name, items] = phases[i];
+    const [when, name, items, how] = phases[i];
     detail.dataset.phase = String(i + 1);
-    detail.innerHTML = '<p class="gantt__detail-when">' + when + '</p><p class="gantt__detail-name">' + name + '</p><ul>' +
-      items.map((it) => '<li>' + it + '</li>').join('') + '</ul>';
+    detail.innerHTML = '<p class="gantt__detail-when">' + when + '</p><p class="gantt__detail-name">' + name + '</p>' +
+      '<div class="gantt__cols"><div><span class="gantt__h">Qué incluye</span><ul>' + items.map((it) => '<li>' + it + '</li>').join('') + '</ul></div>' +
+      '<div><span class="gantt__h">Cómo se trabaja</span><dl class="gantt__how">' + how.map(([k, v]) => '<div><dt>' + k + '</dt><dd>' + v + '</dd></div>').join('') + '</dl></div></div>';
   };
-  rows.forEach((r, i) => r.addEventListener('click', () => render(i)));
+  rows.forEach((r, i) => { r.addEventListener('click', () => render(i)); r.addEventListener('mouseenter', () => render(i)); r.addEventListener('focus', () => render(i)); });
   render(0);
 }
 
@@ -965,4 +989,82 @@ function initFlips() {
     }), { threshold: 0.3 });
     io.observe(box);
   }
+}
+
+/* Matrices de 3 x 3 (riesgos y partes interesadas): al tocar un nombre se ve su detalle */
+function initPmx() {
+  document.querySelectorAll('[data-pmx]').forEach((box) => {
+    const chips = Array.from(box.querySelectorAll('.pmx__chip'));
+    const detail = box.querySelector('.pmx__detail');
+    const show = (c) => {
+      chips.forEach((x) => { const on = x === c; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', String(on)); });
+      detail.innerHTML =
+        '<span class="pmx__tag">' + c.dataset.tag + '</span>' +
+        '<p class="pmx__name">' + c.textContent + '</p>' +
+        '<div class="pmx__cols"><div><span>' + detail.dataset.l1 + '</span><p>' + c.dataset.t1 + '</p></div>' +
+        '<div><span>' + detail.dataset.l2 + '</span><p>' + c.dataset.t2 + '</p></div></div>';
+    };
+    chips.forEach((c) => c.addEventListener('click', () => show(c)));
+    if (chips[0]) show(chips[0]);
+  });
+}
+
+/* Qué se mira en cada aspecto: categorías y requisitos del aspecto elegido */
+function initAspx(box, data) {
+  const what = [
+    'Si el proveedor acompaña: demostración, soporte, capacitación e implementación por fases.',
+    'Si el sistema cubre lo que Farriplast necesita, fase por fase.',
+    'Si es fácil de usar y funciona en la nube, desde el celular y con perfiles de acceso.',
+    'Cuánto cuesta a tres años: la puesta en marcha y la cuota.'
+  ];
+  const segs = Array.from(box.querySelectorAll('.aspx__seg'));
+  const detail = box.querySelector('.aspx__detail');
+  const render = (i) => {
+    const a = data[i];
+    segs.forEach((s, k) => { s.setAttribute('aria-selected', String(k === i)); s.classList.toggle('is-on', k === i); });
+    detail.dataset.a = String(i + 1);
+    detail.innerHTML =
+      '<div class="aspx__top"><span class="aspx__big">' + a.w + '<small>de 100 puntos</small></span><div><strong>' + a.name + '</strong><p>' + what[i] + '</p></div></div>' +
+      '<div class="aspx__cats">' + a.cats.map(([cn, cp, items], k) =>
+        '<div class="aspx__cat" style="--i:' + k + ';--p:' + cp + '"><div class="aspx__cathead"><b>' + cp + '%</b><span>' + cn + '</span></div>' +
+        '<span class="aspx__catbar"><i></i></span>' +
+        '<ul>' + items.map(([n]) => '<li>' + n + '</li>').join('') + '</ul></div>').join('') + '</div>';
+  };
+  segs.forEach((s, i) => s.addEventListener('click', () => render(i)));
+  render(1);
+}
+
+/* Mapa de procesos: al tocar un proceso se lee de qué se trata */
+function initPmap() {
+  const box = document.querySelector('[data-pmap]');
+  if (!box) return;
+  const btns = Array.from(box.querySelectorAll('.pmap__p'));
+  const detail = box.querySelector('.pmap__detail');
+  const show = (b) => {
+    btns.forEach((x) => x.classList.toggle('is-on', x.textContent === b.textContent));
+    detail.innerHTML = '<strong>' + b.textContent + '</strong><p>' + b.dataset.desc + '</p>';
+  };
+  btns.forEach((b) => { b.addEventListener('click', () => show(b)); b.addEventListener('mouseenter', () => show(b)); });
+  show(btns[2]);
+}
+
+/* Cómo se puntúa: el ejemplo cambia según la calificación elegida */
+function initTryscore() {
+  const box = document.querySelector('[data-tryscore]');
+  if (!box) return;
+  const btns = Array.from(box.querySelectorAll('[data-v]'));
+  const arc = box.querySelector('.tryscore__arc');
+  const val = box.querySelector('.tryscore__val b');
+  const txt = box.querySelector('.tryscore__txt');
+  const msg = { 100: 'Se lleva todos sus puntos.', 50: 'Se lleva la mitad de sus puntos.', 25: 'Se lleva un cuarto de sus puntos.', 0: 'No suma puntos.' };
+  const set = (b) => {
+    const v = Number(b.dataset.v);
+    btns.forEach((x) => { const on = x === b; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', String(on)); });
+    arc.setAttribute('stroke-dasharray', v + ' ' + (100 - v));
+    arc.style.stroke = v >= 100 ? '#0B3B8C' : v >= 50 ? '#1565C0' : v > 0 ? '#2F86D8' : 'transparent';
+    val.textContent = { 100: '3,9', 50: '1,95', 25: '0,98', 0: '0' }[v];
+    txt.textContent = msg[v];
+  };
+  btns.forEach((b) => b.addEventListener('click', () => set(b)));
+  set(btns.find((b) => b.getAttribute('aria-pressed') === 'true') || btns[0]);
 }
