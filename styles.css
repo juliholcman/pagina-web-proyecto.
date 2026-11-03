@@ -5106,3 +5106,10 @@ section {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
   gap: 10px 24px;
 }
+
+.roadmap__stops,
+.process {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
