@@ -150,7 +150,7 @@
   <div class="case-body">
 
     <!-- 01 · Caso de Negocio y Relevamiento -->
-    <div class="tab-panel" id="panel-relevamiento" role="tabpanel" aria-labelledby="tab-relevamiento">
+    <div class="tab-panel" id="panel-relevamiento" data-stage="1" role="tabpanel" aria-labelledby="tab-relevamiento">
 
       <!-- 01 · Sobre Farriplast -->
       <section class="case-block reveal" id="sobre-farriplast">
@@ -393,7 +393,7 @@
     </div>
 
     <!-- 02 · Arquitectura Empresarial Actual -->
-    <div class="tab-panel" id="panel-arquitectura-actual" role="tabpanel" aria-labelledby="tab-arquitectura-actual" hidden>
+    <div class="tab-panel" id="panel-arquitectura-actual" data-stage="1" role="tabpanel" aria-labelledby="tab-arquitectura-actual" hidden>
 
       <!-- 01 · Arquitectura actual -->
       <section class="case-block reveal" id="dimensiones-actuales">
@@ -474,7 +474,7 @@
     </div>
 
     <!-- 03 · Visión de Arquitectura Empresarial Destino -->
-    <div class="tab-panel" id="panel-arquitectura-destino" role="tabpanel" aria-labelledby="tab-arquitectura-destino" hidden>
+    <div class="tab-panel" id="panel-arquitectura-destino" data-stage="2" role="tabpanel" aria-labelledby="tab-arquitectura-destino" hidden>
 
       <!-- 01 · La propuesta -->
       <section class="case-block reveal" id="propuesta">
@@ -708,7 +708,7 @@
     </div>
 
     <!-- 04 · Matriz de Brechas y Análisis de Escenarios -->
-    <div class="tab-panel" id="panel-brechas-escenarios" role="tabpanel" aria-labelledby="tab-brechas-escenarios" hidden>
+    <div class="tab-panel" id="panel-brechas-escenarios" data-stage="2" role="tabpanel" aria-labelledby="tab-brechas-escenarios" hidden>
 
       <!-- 01 · Escenarios -->
       <section class="case-block reveal" id="escenarios">
@@ -847,7 +847,7 @@
     </div>
 
     <!-- 05 · Alcance y Análisis del Mercado de Soluciones -->
-    <div class="tab-panel" id="panel-alcance-mercado" role="tabpanel" aria-labelledby="tab-alcance-mercado" hidden>
+    <div class="tab-panel" id="panel-alcance-mercado" data-stage="3" role="tabpanel" aria-labelledby="tab-alcance-mercado" hidden>
 
       <!-- 01 · Objetivo -->
       <section class="case-block reveal" id="objetivo">
@@ -935,6 +935,19 @@
               </ul>
             </article>
           </div>
+          <h3 class="case-block__subtitle">Cronograma de las 4 fases (24 meses)</h3>
+          <div class="gantt" data-gantt>
+            <div class="gantt__scale" aria-hidden="true"><span>Mes 1</span><span>6</span><span>12</span><span>18</span><span>24</span></div>
+            <button type="button" class="gantt__row" data-phase="0" aria-pressed="true"><span class="gantt__name">Fase 1 · Núcleo operativo</span><span class="gantt__track"><span class="gantt__bar gantt__bar--1" style="--s:0;--e:6">Meses 1 a 6</span></span></button>
+            <button type="button" class="gantt__row" data-phase="1" aria-pressed="false"><span class="gantt__name">Fase 2 · Producción y costos</span><span class="gantt__track"><span class="gantt__bar gantt__bar--2" style="--s:6;--e:12">Meses 7 a 12</span></span></button>
+            <button type="button" class="gantt__row" data-phase="2" aria-pressed="false"><span class="gantt__name">Fase 3 · Análisis y trazabilidad</span><span class="gantt__track"><span class="gantt__bar gantt__bar--3" style="--s:12;--e:18">Meses 13 a 18</span></span></button>
+            <button type="button" class="gantt__row" data-phase="3" aria-pressed="false"><span class="gantt__name">Fase 4 · Consolidación</span><span class="gantt__track"><span class="gantt__bar gantt__bar--4" style="--s:18;--e:24">Meses 19 a 24</span></span></button>
+            <div class="gantt__marks" aria-hidden="true">
+              <span class="gantt__mark" style="--m:3" data-tip="Mes 3: a más tardar, se deja el cuaderno">Fin del cuaderno</span>
+            </div>
+            <div class="gantt__detail" aria-live="polite"></div>
+          </div>
+          <p class="chart-hint">Tocá una fase para ver qué incluye.</p>
           <p class="case-block__note">Al inicio lo usan Mariano y Samuel. De noche se anota en la pizarra y Samuel lo carga al día siguiente. Si Samuel no está, lo reemplaza Mariano. El cuaderno sigue en paralelo hasta que el primer cierre mensual coincida, con un máximo de 3 meses.</p>
         </div>
       </section>
@@ -1206,7 +1219,7 @@
     </div>
 
     <!-- 06 · Matriz RFP -->
-    <div class="tab-panel" id="panel-matriz-rfp" role="tabpanel" aria-labelledby="tab-matriz-rfp" hidden>
+    <div class="tab-panel" id="panel-matriz-rfp" data-stage="3" role="tabpanel" aria-labelledby="tab-matriz-rfp" hidden>
 
       <!-- 01 · Estructura -->
       <section class="case-block reveal" id="estructura-matriz">
@@ -1251,6 +1264,17 @@
               </ul>
             </article>
           </div>
+          <h3 class="case-block__subtitle">Cuánto pesa cada cosa en la nota final</h3>
+          <div class="weights" data-weights>
+            <div class="weights__bar" role="tablist" aria-label="Aspectos de la matriz">
+              <button type="button" role="tab" class="weights__seg weights__seg--1" style="--p:20" aria-selected="true" data-aspect="0"><span>Proveedor</span><b>20%</b></button>
+              <button type="button" role="tab" class="weights__seg weights__seg--2" style="--p:35" aria-selected="false" data-aspect="1"><span>Funcional</span><b>35%</b></button>
+              <button type="button" role="tab" class="weights__seg weights__seg--3" style="--p:25" aria-selected="false" data-aspect="2"><span>Técnico</span><b>25%</b></button>
+              <button type="button" role="tab" class="weights__seg weights__seg--4" style="--p:20" aria-selected="false" data-aspect="3"><span>Económico</span><b>20%</b></button>
+            </div>
+            <div class="weights__detail" aria-live="polite"></div>
+          </div>
+          <p class="chart-hint">Tocá un aspecto para ver en qué se divide y cuántos puntos de los 100 vale cada parte.</p>
           <p class="case-block__note">Los pesos de los aspectos se definieron en el alcance del proyecto. Los de las categorías y los requisitos son una propuesta del equipo.</p>
         </div>
       </section>
@@ -1391,7 +1415,7 @@
     </div>
 
     <!-- 07 · Comparación de Cumplimiento y Evaluación Económica -->
-    <div class="tab-panel" id="panel-cumplimiento-evaluacion" role="tabpanel" aria-labelledby="tab-cumplimiento-evaluacion" hidden>
+    <div class="tab-panel" id="panel-cumplimiento-evaluacion" data-stage="3" role="tabpanel" aria-labelledby="tab-cumplimiento-evaluacion" hidden>
 
       <!-- 01 · Resultado -->
       <section class="case-block reveal" id="resultado">
@@ -1412,43 +1436,48 @@
             </article>
           </div>
           <h3 class="case-block__subtitle">Puntaje por aspecto</h3>
-          <div class="score-compare" role="group" aria-label="Puntaje de Odoo y Softland por aspecto, sobre 100">
-            <div class="score-row">
-              <span class="score-row__label">Proveedor<span class="score-row__weight">20%</span></span>
+          <div class="chart-toggle" role="group" aria-label="Cómo ver el puntaje">
+            <button type="button" class="chart-toggle__btn is-on" data-view="raw" aria-pressed="true">Puntaje de cada aspecto (sobre 100)</button>
+            <button type="button" class="chart-toggle__btn" data-view="weighted" aria-pressed="false">Puntos que aporta al total</button>
+          </div>
+          <div class="score-compare js-score" role="group" aria-label="Puntaje de Odoo y Softland por aspecto">
+            <div class="score-row" data-weight="20">
+              <span class="score-row__label">Proveedor<span class="score-row__weight">pesa 20%</span></span>
               <div class="score-row__bars">
-                <div class="score-bar"><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:93.0%"></span></span><span class="score-bar__value">93,0</span></div>
-                <div class="score-bar score-bar--b"><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:96.5%"></span></span><span class="score-bar__value">96,5</span></div>
+                <div class="score-bar" data-raw="93.0" data-weighted="18.60" data-tip="Odoo · Proveedor: 93,0 de 100. Con su peso de 20%, aporta 18,6 puntos al total."><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:93.0%"></span></span><span class="score-bar__value">93,0</span></div>
+                <div class="score-bar score-bar--b" data-raw="96.5" data-weighted="19.30" data-tip="Softland · Proveedor: 96,5 de 100. Con su peso de 20%, aporta 19,3 puntos al total."><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:96.5%"></span></span><span class="score-bar__value">96,5</span></div>
               </div>
             </div>
-            <div class="score-row">
-              <span class="score-row__label">Funcional<span class="score-row__weight">35%</span></span>
+            <div class="score-row" data-weight="35">
+              <span class="score-row__label">Funcional<span class="score-row__weight">pesa 35%</span></span>
               <div class="score-row__bars">
-                <div class="score-bar"><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:100.0%"></span></span><span class="score-bar__value">100,0</span></div>
-                <div class="score-bar score-bar--b"><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:90.6%"></span></span><span class="score-bar__value">90,6</span></div>
+                <div class="score-bar" data-raw="100.0" data-weighted="35.00" data-tip="Odoo · Funcional: 100,0 de 100. Con su peso de 35%, aporta 35,0 puntos al total."><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:100.0%"></span></span><span class="score-bar__value">100,0</span></div>
+                <div class="score-bar score-bar--b" data-raw="90.6" data-weighted="31.71" data-tip="Softland · Funcional: 90,6 de 100. Con su peso de 35%, aporta 31,7 puntos al total."><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:90.6%"></span></span><span class="score-bar__value">90,6</span></div>
               </div>
             </div>
-            <div class="score-row">
-              <span class="score-row__label">Técnico<span class="score-row__weight">25%</span></span>
+            <div class="score-row" data-weight="25">
+              <span class="score-row__label">Técnico<span class="score-row__weight">pesa 25%</span></span>
               <div class="score-row__bars">
-                <div class="score-bar"><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:83.9%"></span></span><span class="score-bar__value">83,9</span></div>
-                <div class="score-bar score-bar--b"><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:100.0%"></span></span><span class="score-bar__value">100,0</span></div>
+                <div class="score-bar" data-raw="83.9" data-weighted="20.98" data-tip="Odoo · Técnico: 83,9 de 100. Con su peso de 25%, aporta 21,0 puntos al total."><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:83.9%"></span></span><span class="score-bar__value">83,9</span></div>
+                <div class="score-bar score-bar--b" data-raw="100.0" data-weighted="25.00" data-tip="Softland · Técnico: 100,0 de 100. Con su peso de 25%, aporta 25,0 puntos al total."><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:100.0%"></span></span><span class="score-bar__value">100,0</span></div>
               </div>
             </div>
-            <div class="score-row">
-              <span class="score-row__label">Económico<span class="score-row__weight">20%</span></span>
+            <div class="score-row" data-weight="20">
+              <span class="score-row__label">Económico<span class="score-row__weight">pesa 20%</span></span>
               <div class="score-row__bars">
-                <div class="score-bar"><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:98.0%"></span></span><span class="score-bar__value">98,0</span></div>
-                <div class="score-bar score-bar--b"><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:49.0%"></span></span><span class="score-bar__value">49,0</span></div>
+                <div class="score-bar" data-raw="98.0" data-weighted="19.60" data-tip="Odoo · Económico: 98,0 de 100. Con su peso de 20%, aporta 19,6 puntos al total."><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:98.0%"></span></span><span class="score-bar__value">98,0</span></div>
+                <div class="score-bar score-bar--b" data-raw="49.0" data-weighted="9.80" data-tip="Softland · Económico: 49,0 de 100. Con su peso de 20%, aporta 9,8 puntos al total."><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:49.0%"></span></span><span class="score-bar__value">49,0</span></div>
               </div>
             </div>
             <div class="score-row score-row--total">
-              <span class="score-row__label">Total ponderado<span class="score-row__weight"></span></span>
+              <span class="score-row__label">Total ponderado<span class="score-row__weight">suma de los aportes</span></span>
               <div class="score-row__bars">
-                <div class="score-bar"><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:94.2%"></span></span><span class="score-bar__value">94,2</span></div>
-                <div class="score-bar score-bar--b"><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:85.8%"></span></span><span class="score-bar__value">85,8</span></div>
+                <div class="score-bar" data-raw="94.2" data-weighted="94.2" data-tip="Odoo: 94,2 puntos sobre 100."><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:94.2%"></span></span><span class="score-bar__value">94,2</span></div>
+                <div class="score-bar score-bar--b" data-raw="85.8" data-weighted="85.8" data-tip="Softland: 85,8 puntos sobre 100."><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:85.8%"></span></span><span class="score-bar__value">85,8</span></div>
               </div>
             </div>
           </div>
+          <p class="chart-hint">Pasá el mouse o tocá una barra para ver el detalle. Con “Puntos que aporta al total” se ve por qué gana Odoo: lo económico le da casi 10 puntos más.</p>
           <p class="case-block__note">El puntaje es una base objetiva, pero no decide por sí solo la elección.</p>
         </div>
       </section>
@@ -1580,43 +1609,48 @@
             </article>
           </div>
           <h3 class="case-block__subtitle">Cuánto se paga cada año (USD)</h3>
-          <div class="score-compare score-compare--money" role="group" aria-label="Desembolso por año y total a tres años de Odoo y Softland, en dólares">
+          <div class="chart-toggle" role="group" aria-label="Cómo ver los costos">
+            <button type="button" class="chart-toggle__btn is-on" data-view="year" aria-pressed="true">Lo que se paga cada año</button>
+            <button type="button" class="chart-toggle__btn" data-view="cum" aria-pressed="false">Acumulado</button>
+          </div>
+          <div class="score-compare score-compare--money js-cost" role="group" aria-label="Costos de Odoo y Softland por año, en dólares">
             <div class="score-row">
-              <span class="score-row__label">Año 1<span class="score-row__weight">implementación y equipos</span></span>
+              <span class="score-row__label">Año 1<span class="score-row__weight" data-year="implementación y equipos" data-cum="acumulado">implementación y equipos</span></span>
               <div class="score-row__bars">
-                <div class="score-bar"><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:46.4%"></span></span><span class="score-bar__value">6.980</span></div>
-                <div class="score-bar score-bar--b"><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:57.2%"></span></span><span class="score-bar__value">8.598</span></div>
+                <div class="score-bar" data-year="6980" data-cum="6980" data-tip-year="Odoo, año 1: USD 6.980" data-tip-cum="Odoo, acumulado hasta el año 1: USD 6.980" data-tip="Odoo, año 1: USD 6.980"><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:46.4%"></span></span><span class="score-bar__value">6.980</span></div>
+                <div class="score-bar score-bar--b" data-year="8598" data-cum="8598" data-tip-year="Softland, año 1: USD 8.598" data-tip-cum="Softland, acumulado hasta el año 1: USD 8.598" data-tip="Softland, año 1: USD 8.598"><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:57.2%"></span></span><span class="score-bar__value">8.598</span></div>
               </div>
             </div>
             <div class="score-row">
-              <span class="score-row__label">Año 2<span class="score-row__weight">suma la balanza</span></span>
+              <span class="score-row__label">Año 2<span class="score-row__weight" data-year="suma la balanza" data-cum="acumulado">suma la balanza</span></span>
               <div class="score-row__bars">
-                <div class="score-bar"><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:16.1%"></span></span><span class="score-bar__value">2.422</span></div>
-                <div class="score-bar score-bar--b"><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:26.9%"></span></span><span class="score-bar__value">4.046</span></div>
+                <div class="score-bar" data-year="2422" data-cum="9402" data-tip-year="Odoo, año 2: USD 2.422" data-tip-cum="Odoo, acumulado hasta el año 2: USD 9.402" data-tip="Odoo, año 2: USD 2.422"><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:16.1%"></span></span><span class="score-bar__value">2.422</span></div>
+                <div class="score-bar score-bar--b" data-year="4046" data-cum="12644" data-tip-year="Softland, año 2: USD 4.046" data-tip-cum="Softland, acumulado hasta el año 2: USD 12.644" data-tip="Softland, año 2: USD 4.046"><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:26.9%"></span></span><span class="score-bar__value">4.046</span></div>
               </div>
             </div>
             <div class="score-row">
-              <span class="score-row__label">Año 3<span class="score-row__weight">solo cuotas</span></span>
+              <span class="score-row__label">Año 3<span class="score-row__weight" data-year="solo cuotas" data-cum="acumulado">solo cuotas</span></span>
               <div class="score-row__bars">
-                <div class="score-bar"><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:5.2%"></span></span><span class="score-bar__value">776</span></div>
-                <div class="score-bar score-bar--b"><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:16.0%"></span></span><span class="score-bar__value">2.400</span></div>
+                <div class="score-bar" data-year="776" data-cum="10178" data-tip-year="Odoo, año 3: USD 776" data-tip-cum="Odoo, acumulado hasta el año 3: USD 10.178" data-tip="Odoo, año 3: USD 776"><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:5.2%"></span></span><span class="score-bar__value">776</span></div>
+                <div class="score-bar score-bar--b" data-year="2400" data-cum="15044" data-tip-year="Softland, año 3: USD 2.400" data-tip-cum="Softland, acumulado hasta el año 3: USD 15.044" data-tip="Softland, año 3: USD 2.400"><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:16.0%"></span></span><span class="score-bar__value">2.400</span></div>
               </div>
             </div>
             <div class="score-row score-row--total">
               <span class="score-row__label">Total a 3 años<span class="score-row__weight">con equipos</span></span>
               <div class="score-row__bars">
-                <div class="score-bar"><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:67.7%"></span></span><span class="score-bar__value">10.178</span></div>
-                <div class="score-bar score-bar--b"><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:100.0%"></span></span><span class="score-bar__value">15.044</span></div>
+                <div class="score-bar" data-tip="Odoo, total a 3 años con equipos: USD 10.178"><span class="score-bar__name">Odoo</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:67.7%"></span></span><span class="score-bar__value">10.178</span></div>
+                <div class="score-bar score-bar--b" data-tip="Softland, total a 3 años con equipos: USD 15.044"><span class="score-bar__name">Softland</span><span class="score-bar__track"><span class="score-bar__fill" style="--w:100%"></span></span><span class="score-bar__value">15.044</span></div>
               </div>
             </div>
           </div>
+          <p class="chart-hint">Montos en USD. Cambiá a “Acumulado” para ver cómo se va separando Softland año a año.</p>
           <p class="case-block__note">Todas las barras usan la misma escala. Las dos alternativas son servicios en la nube (SaaS), por eso calculamos el <strong>costo total del servicio (CTS)</strong> y no el costo total de propiedad (CTP o TCO), que se usa cuando la empresa compra e instala el software en servidores propios. Se calcula igual: costo inicial más costos recurrentes a 3 años.</p>
           <h3 class="case-block__subtitle">Frente al máximo de USD 5.000 que fijó Mariano</h3>
           <p class="case-block__note case-block__note--top">El máximo es para licencias e implementación, sin equipos.</p>
           <div class="cap-chart" role="group" aria-label="Costo a tres años sin equipos frente al máximo de 5.000 dólares">
-            <div class="cap-chart__row"><span class="cap-chart__label">Odoo con pack de 25 h</span><span class="cap-chart__track"><span class="cap-chart__fill cap-chart__fill--ok" style="--w:38.9%"></span><span class="cap-chart__cap" style="--c:39.4%"></span></span><span class="cap-chart__value">4.943</span></div>
-            <div class="cap-chart__row"><span class="cap-chart__label">Odoo con pack de 50 h</span><span class="cap-chart__track"><span class="cap-chart__fill" style="--w:61.7%"></span><span class="cap-chart__cap" style="--c:39.4%"></span></span><span class="cap-chart__value">7.833</span></div>
-            <div class="cap-chart__row"><span class="cap-chart__label">Softland</span><span class="cap-chart__track"><span class="cap-chart__fill cap-chart__fill--b" style="--w:100%"></span><span class="cap-chart__cap" style="--c:39.4%"></span></span><span class="cap-chart__value">12.700</span></div>
+            <div class="cap-chart__row"><span class="cap-chart__label">Odoo con pack de 25 h</span><span class="cap-chart__track" data-tip="Odoo con 25 horas de consultoría: USD 4.943 sin equipos. Queda USD 57 por debajo del máximo."><span class="cap-chart__fill cap-chart__fill--ok" style="--w:38.9%"></span><span class="cap-chart__cap" style="--c:39.4%"></span></span><span class="cap-chart__value">4.943</span></div>
+            <div class="cap-chart__row"><span class="cap-chart__label">Odoo con pack de 50 h</span><span class="cap-chart__track" data-tip="Odoo con 50 horas de consultoría: USD 7.833 sin equipos, 1,6 veces el máximo. Es la opción que recomienda el equipo por el acompañamiento."><span class="cap-chart__fill" style="--w:61.7%"></span><span class="cap-chart__cap" style="--c:39.4%"></span></span><span class="cap-chart__value">7.833</span></div>
+            <div class="cap-chart__row"><span class="cap-chart__label">Softland</span><span class="cap-chart__track" data-tip="Softland: USD 12.700 sin equipos, 2,5 veces el máximo."><span class="cap-chart__fill cap-chart__fill--b" style="--w:100%"></span><span class="cap-chart__cap" style="--c:39.4%"></span></span><span class="cap-chart__value">12.700</span></div>
             <p class="cap-chart__legend"><span class="cap-chart__legend-line" aria-hidden="true"></span> Máximo de Mariano: USD 5.000</p>
           </div>
           <p class="case-block__note">Con el pack de 50 horas, Odoo supera el máximo 1,6 veces y Softland 2,5 veces. Odoo queda por debajo si se contrata el pack de 25 horas. Mariano aceptaría pasarse un poco si los beneficios son importantes.</p>
@@ -1709,7 +1743,7 @@
     </div>
 
     <!-- 08 · Análisis de la Propuesta Comercial y Conclusiones de la Selección -->
-    <div class="tab-panel" id="panel-propuesta-comercial" role="tabpanel" aria-labelledby="tab-propuesta-comercial" hidden>
+    <div class="tab-panel" id="panel-propuesta-comercial" data-stage="3" role="tabpanel" aria-labelledby="tab-propuesta-comercial" hidden>
 
       <section class="case-block reveal" id="recomendacion">
         <div class="container">
@@ -1840,7 +1874,7 @@
     </div>
 
     <!-- 09 · Oportunidad de innovación con IA Generativa -->
-    <div class="tab-panel" id="panel-innovacion-ia" role="tabpanel" aria-labelledby="tab-innovacion-ia" hidden>
+    <div class="tab-panel" id="panel-innovacion-ia" data-stage="4" role="tabpanel" aria-labelledby="tab-innovacion-ia" hidden>
       <p class="tab-panel__empty">Próximamente</p>
       <!-- Documentación de la sección -->
       <div class="container">
@@ -1852,7 +1886,7 @@
     </div>
 
     <!-- 10 · Diseño y validación de la solución de IA Generativa -->
-    <div class="tab-panel" id="panel-diseno-ia" role="tabpanel" aria-labelledby="tab-diseno-ia" hidden>
+    <div class="tab-panel" id="panel-diseno-ia" data-stage="4" role="tabpanel" aria-labelledby="tab-diseno-ia" hidden>
       <p class="tab-panel__empty">Próximamente</p>
       <!-- Documentación de la sección -->
       <div class="container">
@@ -1864,7 +1898,7 @@
     </div>
 
     <!-- 11 · Carpeta de Cierre del Proyecto -->
-    <div class="tab-panel" id="panel-cierre" role="tabpanel" aria-labelledby="tab-cierre" hidden>
+    <div class="tab-panel" id="panel-cierre" data-stage="4" role="tabpanel" aria-labelledby="tab-cierre" hidden>
       <p class="tab-panel__empty">Próximamente</p>
       <!-- Documentación de la sección -->
       <div class="container">
