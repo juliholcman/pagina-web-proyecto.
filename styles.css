@@ -5873,7 +5873,7 @@ section {
   background: linear-gradient(140deg, #E2694A, #B4432A);
   color: var(--blanco);
   font-weight: 700;
-  transform: translate(-50%, -50%);
+  margin: -54px 0 0 -54px;
   box-shadow: 0 0 0 10px rgba(226, 105, 74, 0.15), 0 16px 34px -14px rgba(180, 67, 42, 0.8);
   animation: hub-pulse 2.4s ease-in-out infinite;
 }
