@@ -541,6 +541,8 @@ function initCaseExtras() {
   initRoadmap();
   initFlips();
   initPmx();
+  initPmap();
+  initTryscore();
 }
 
 /* Un solo globo de ayuda para glosario y gráficos */
@@ -771,7 +773,8 @@ function initCostToggle() {
 /* Matriz RFP: cuánto pesa cada aspecto y en qué se divide */
 function initWeights() {
   const box = document.querySelector('[data-weights]');
-  if (!box) return;
+  const aspx = document.querySelector('[data-aspx]');
+  if (!box && !aspx) return;
   const data = [
     { name: 'Proveedor', w: 20, cats: [
       ['Implementación y capacitación', 40, [['Implementación por fases', 50], ['Capacitación en el puesto', 50]]],
@@ -789,6 +792,7 @@ function initWeights() {
       ['Costo inicial', 40, [['Implementación y puesta en marcha', 60], ['Capacitación', 20], ['Equipos a comprar', 20]]],
       ['Costo recurrente', 60, [['Cuota mensual de la fase 1', 50], ['Variación de la cuota por fase', 35], ['Mantenimiento y soporte no incluidos', 15]]]] }
   ];
+  if (aspx) { initAspx(aspx, data); return; }
   const detail = box.querySelector('.weights__detail');
   const segs = Array.from(box.querySelectorAll('.weights__seg'));
   const render = (i) => {
@@ -825,21 +829,26 @@ function initGantt() {
   const box = document.querySelector('[data-gantt]');
   if (!box) return;
   const phases = [
-    ['Fase 1 · Meses 1 a 6', 'Núcleo operativo', ['Stock, compras, ventas y remitos', 'Cuentas corrientes y cobranzas', 'Facturación electrónica', 'Control mensual del stock de fasón']],
-    ['Fase 2 · Meses 7 a 12', 'Producción y costos', ['Producción por etapa', 'Costo y margen por kilo', 'Entregas y rechazos', 'Gastos generales y reporte de fin de mes']],
-    ['Fase 3 · Meses 13 a 18', 'Análisis y trazabilidad', ['Tablero de indicadores', 'Reporte de fasón para todos los clientes', 'QR por lote y balanza conectada', 'Conciliación bancaria']],
-    ['Fase 4 · Meses 19 a 24', 'Consolidación', ['Consolidar el uso del sistema', 'Seguimiento de las metas', 'Evaluar el costo de la solución', 'Evaluar que carguen más operarios']]
+    ['Fase 1 · Meses 1 a 6', 'Núcleo operativo', ['Stock, compras, ventas y remitos', 'Cuentas corrientes y cobranzas', 'Facturación electrónica', 'Control mensual del stock de fasón'],
+      [['Quién lo usa', 'Mariano y Samuel'], ['Arranque', 'Mariano carga los saldos iniciales de stock, cuentas corrientes y cheques'], ['Qué ve Samuel', 'Stock y movimientos en cantidades, sin precios ni saldos'], ['Turno noche', 'Se anota en la pizarra y Samuel lo carga al día siguiente. Si no está, lo hace Mariano'], ['Cuaderno', 'Sigue en paralelo hasta que coincida el primer cierre mensual, como máximo 3 meses'], ['Se compra', 'Una computadora o tablet y un teléfono para el sistema']]],
+    ['Fase 2 · Meses 7 a 12', 'Producción y costos', ['Producción por etapa', 'Costo y margen por kilo', 'Entregas y rechazos', 'Gastos generales y reporte de fin de mes'],
+      [['Quién lo usa', 'Mariano y Samuel'], ['Para qué sirve', 'Medir la meta de reputación y decidir sobre el galpón, ambas a 12 meses']]],
+    ['Fase 3 · Meses 13 a 18', 'Análisis y trazabilidad', ['Tablero de indicadores', 'Reporte de fasón para todos los clientes', 'QR por lote y balanza conectada', 'Conciliación bancaria'],
+      [['Se compra', 'Una balanza que se conecta al sistema: la actual no admite conexión ni impresión'], ['Para qué sirve', 'Seguir la meta de retención y satisfacción de clientes, a 18 meses'], ['Equipo', 'Samuel capacita al resto de los operarios para cargar información']]],
+    ['Fase 4 · Meses 19 a 24', 'Consolidación', ['Consolidar el uso del sistema', 'Seguimiento de las metas', 'Evaluar el costo de la solución', 'Evaluar que carguen más operarios'],
+      [['Para qué sirve', 'Seguir la meta de crecer 20% en volumen, con la información ya consolidada']]]
   ];
   const rows = Array.from(box.querySelectorAll('.gantt__row'));
   const detail = box.querySelector('.gantt__detail');
   const render = (i) => {
     rows.forEach((r, k) => { r.setAttribute('aria-pressed', String(k === i)); r.classList.toggle('is-on', k === i); });
-    const [when, name, items] = phases[i];
+    const [when, name, items, how] = phases[i];
     detail.dataset.phase = String(i + 1);
-    detail.innerHTML = '<p class="gantt__detail-when">' + when + '</p><p class="gantt__detail-name">' + name + '</p><ul>' +
-      items.map((it) => '<li>' + it + '</li>').join('') + '</ul>';
+    detail.innerHTML = '<p class="gantt__detail-when">' + when + '</p><p class="gantt__detail-name">' + name + '</p>' +
+      '<div class="gantt__cols"><div><span class="gantt__h">Qué incluye</span><ul>' + items.map((it) => '<li>' + it + '</li>').join('') + '</ul></div>' +
+      '<div><span class="gantt__h">Cómo se trabaja</span><dl class="gantt__how">' + how.map(([k, v]) => '<div><dt>' + k + '</dt><dd>' + v + '</dd></div>').join('') + '</dl></div></div>';
   };
-  rows.forEach((r, i) => r.addEventListener('click', () => render(i)));
+  rows.forEach((r, i) => { r.addEventListener('click', () => render(i)); r.addEventListener('mouseenter', () => render(i)); r.addEventListener('focus', () => render(i)); });
   render(0);
 }
 
@@ -998,4 +1007,64 @@ function initPmx() {
     chips.forEach((c) => c.addEventListener('click', () => show(c)));
     if (chips[0]) show(chips[0]);
   });
+}
+
+/* Qué se mira en cada aspecto: categorías y requisitos del aspecto elegido */
+function initAspx(box, data) {
+  const what = [
+    'Si el proveedor acompaña: demostración, soporte, capacitación e implementación por fases.',
+    'Si el sistema cubre lo que Farriplast necesita, fase por fase.',
+    'Si es fácil de usar y funciona en la nube, desde el celular y con perfiles de acceso.',
+    'Cuánto cuesta a tres años: la puesta en marcha y la cuota.'
+  ];
+  const segs = Array.from(box.querySelectorAll('.aspx__seg'));
+  const detail = box.querySelector('.aspx__detail');
+  const render = (i) => {
+    const a = data[i];
+    segs.forEach((s, k) => { s.setAttribute('aria-selected', String(k === i)); s.classList.toggle('is-on', k === i); });
+    detail.dataset.a = String(i + 1);
+    detail.innerHTML =
+      '<div class="aspx__top"><span class="aspx__big">' + a.w + '<small>de 100 puntos</small></span><div><strong>' + a.name + '</strong><p>' + what[i] + '</p></div></div>' +
+      '<div class="aspx__cats">' + a.cats.map(([cn, cp, items], k) =>
+        '<div class="aspx__cat" style="--i:' + k + ';--p:' + cp + '"><div class="aspx__cathead"><b>' + cp + '%</b><span>' + cn + '</span></div>' +
+        '<span class="aspx__catbar"><i></i></span>' +
+        '<ul>' + items.map(([n]) => '<li>' + n + '</li>').join('') + '</ul></div>').join('') + '</div>';
+  };
+  segs.forEach((s, i) => s.addEventListener('click', () => render(i)));
+  render(1);
+}
+
+/* Mapa de procesos: al tocar un proceso se lee de qué se trata */
+function initPmap() {
+  const box = document.querySelector('[data-pmap]');
+  if (!box) return;
+  const btns = Array.from(box.querySelectorAll('.pmap__p'));
+  const detail = box.querySelector('.pmap__detail');
+  const show = (b) => {
+    btns.forEach((x) => x.classList.toggle('is-on', x.textContent === b.textContent));
+    detail.innerHTML = '<strong>' + b.textContent + '</strong><p>' + b.dataset.desc + '</p>';
+  };
+  btns.forEach((b) => { b.addEventListener('click', () => show(b)); b.addEventListener('mouseenter', () => show(b)); });
+  show(btns[2]);
+}
+
+/* Cómo se puntúa: el ejemplo cambia según la calificación elegida */
+function initTryscore() {
+  const box = document.querySelector('[data-tryscore]');
+  if (!box) return;
+  const btns = Array.from(box.querySelectorAll('[data-v]'));
+  const arc = box.querySelector('.tryscore__arc');
+  const val = box.querySelector('.tryscore__val b');
+  const txt = box.querySelector('.tryscore__txt');
+  const msg = { 100: 'Se lleva todos sus puntos.', 50: 'Se lleva la mitad de sus puntos.', 25: 'Se lleva un cuarto de sus puntos.', 0: 'No suma puntos.' };
+  const set = (b) => {
+    const v = Number(b.dataset.v);
+    btns.forEach((x) => { const on = x === b; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', String(on)); });
+    arc.setAttribute('stroke-dasharray', v + ' ' + (100 - v));
+    arc.style.stroke = v >= 100 ? '#0B3B8C' : v >= 50 ? '#1565C0' : v > 0 ? '#2F86D8' : 'transparent';
+    val.textContent = { 100: '3,9', 50: '1,95', 25: '0,98', 0: '0' }[v];
+    txt.textContent = msg[v];
+  };
+  btns.forEach((b) => b.addEventListener('click', () => set(b)));
+  set(btns.find((b) => b.getAttribute('aria-pressed') === 'true') || btns[0]);
 }

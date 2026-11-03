@@ -325,33 +325,28 @@
             </div>
           </div>
           <h3 class="case-block__subtitle">Mapa de procesos</h3>
-          <div class="pmap replay">
-            <div class="pmap__band pmap__band--est" style="--i:0"><span class="pmap__label">Estratégicos</span><div class="pmap__items"><span>Planificación estratégica y crecimiento</span><span>Continuidad y sucesión del negocio</span></div></div>
+          <div class="pmap replay" data-pmap>
+            <div class="pmap__band pmap__band--est" style="--i:0"><span class="pmap__label">Estratégicos</span><div class="pmap__items"><button type="button" class="pmap__p" data-desc="Objetivos de crecimiento, como mudarse a un galpón más grande o comprar equipos, uso de la capacidad instalada y análisis de rentabilidad.">Planificación estratégica y crecimiento</button><button type="button" class="pmap__p" data-desc="Decisiones para delegar y bajar el riesgo de que todo dependa de Mariano, ordenando la gestión para que la empresa pueda crecer.">Continuidad y sucesión del negocio</button></div></div>
             <div class="pmap__band pmap__band--op" style="--i:1"><span class="pmap__label">Operativos</span>
               <div class="pmap__lines">
-                <div class="pmap__line"><b>Línea A · Material propio</b><ol><li>Compra de scrap</li><li>Producción</li><li>Venta y cobranza</li></ol></div>
-                <div class="pmap__line"><b>Línea B · Fasón</b><ol><li>Recepción</li><li>Producción</li><li>Entrega y cobranza</li></ol></div>
+                <div class="pmap__line"><b>Línea A · Material propio</b><div class="pmap__chev"><button type="button" class="pmap__p" data-desc="Mariano busca y negocia con fábricas de inyección, soplado o extrusión. El scrap llega en camiones, en bolsones de 600 kg, fardos o bolsas.">Compra de scrap</button><button type="button" class="pmap__p" data-desc="Clasificación por tipo y color, agrumado del material blando o molienda del duro, extrusión y filtrado si el cliente lo pide, y embolsado en bolsas de 25 kg o bolsones de 600 kg.">Producción</button><button type="button" class="pmap__p" data-desc="Venta de la materia prima reciclada a empresas de higiene, limpieza y jugueterías. Mariano negocia, acuerda el pago, cobra y busca nuevos clientes.">Venta y cobranza</button></div></div>
+                <div class="pmap__line"><b>Línea B · Fasón</b><div class="pmap__chev"><button type="button" class="pmap__p" data-desc="Ingresa el scrap fallado que es propiedad del cliente y se registra lo recibido, que después se devuelve procesado.">Recepción</button><button type="button" class="pmap__p" data-desc="Clasificación por tipo y color, agrumado del material blando o molienda del duro, extrusión y filtrado si el cliente lo pide, y embolsado en bolsas de 25 kg o bolsones de 600 kg.">Producción</button><button type="button" class="pmap__p" data-desc="El cliente retira o recibe su material procesado. Se cobra solo el servicio de procesamiento, no la materia prima.">Entrega y cobranza</button></div></div>
               </div>
             </div>
-            <div class="pmap__band pmap__band--apo" style="--i:2"><span class="pmap__label">Apoyo</span><div class="pmap__items"><span>Logística</span><span>Control de stock (manual)</span><span>Liquidación de sueldos (contador externo)</span></div></div>
+            <div class="pmap__band pmap__band--apo" style="--i:2"><span class="pmap__label">Apoyo</span><div class="pmap__items"><button type="button" class="pmap__p" data-desc="Coordinación de los viajes para retirar scrap y entregar producto. En general lo acuerda o lo hace el cliente.">Logística</button><button type="button" class="pmap__p" data-desc="Control del scrap disponible, el material en proceso, el espacio en planta y el producto terminado, sin ningún sistema.">Control de stock (manual)</button><button type="button" class="pmap__p" data-desc="Los sueldos de los 5 operarios los liquida un contador externo.">Liquidación de sueldos (contador externo)</button></div></div>
+            <div class="pmap__detail" aria-live="polite"></div>
           </div>
 
-          <h3 class="case-block__subtitle">Qué herramienta usa cada proceso</h3>
-          <div class="cover replay" role="table" aria-label="Herramientas que usa cada proceso">
-            <div class="cover__row cover__row--head" role="row"><span role="columnheader">Proceso</span><span role="columnheader">WhatsApp</span><span role="columnheader">Excel</span><span role="columnheader">Cámara y galería</span><span role="columnheader">Home banking</span><span role="columnheader">Sistemas de terceros</span></div>
-            <div class="cover__row cover__row--none" role="row" style="--i:0"><span role="rowheader">Planificación estratégica y crecimiento</span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span></div>
-            <div class="cover__row cover__row--none" role="row" style="--i:1"><span role="rowheader">Continuidad y sucesión del negocio</span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span></div>
-            <div class="cover__row" role="row" style="--i:2"><span role="rowheader">Compra de scrap (Línea A)</span><span role="cell" class="is-on" aria-label="usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="is-on" aria-label="usa"></span><span role="cell" class="" aria-label="no usa"></span></div>
-            <div class="cover__row cover__row--none" role="row" style="--i:3"><span role="rowheader">Producción</span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span></div>
-            <div class="cover__row" role="row" style="--i:4"><span role="rowheader">Venta y cobranza (Línea A)</span><span role="cell" class="is-on" aria-label="usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="is-on" aria-label="usa"></span><span role="cell" class="is-on" aria-label="usa"></span><span role="cell" class="is-on" aria-label="usa"></span></div>
-            <div class="cover__row" role="row" style="--i:5"><span role="rowheader">Recepción de material (Línea B)</span><span role="cell" class="is-on" aria-label="usa"></span><span role="cell" class="is-on" aria-label="usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span></div>
-            <div class="cover__row" role="row" style="--i:6"><span role="rowheader">Entrega y cobranza (Línea B)</span><span role="cell" class="is-on" aria-label="usa"></span><span role="cell" class="is-on" aria-label="usa"></span><span role="cell" class="is-on" aria-label="usa"></span><span role="cell" class="is-on" aria-label="usa"></span><span role="cell" class="is-on" aria-label="usa"></span></div>
-            <div class="cover__row" role="row" style="--i:7"><span role="rowheader">Logística</span><span role="cell" class="is-on" aria-label="usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span></div>
-            <div class="cover__row" role="row" style="--i:8"><span role="rowheader">Control de stock</span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="is-on" aria-label="usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span></div>
-            <div class="cover__row" role="row" style="--i:9"><span role="rowheader">Cuentas corrientes y cobranzas</span><span role="cell" class="is-on" aria-label="usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="is-on" aria-label="usa"></span><span role="cell" class="is-on" aria-label="usa"></span><span role="cell" class="is-on" aria-label="usa"></span></div>
-            <div class="cover__row" role="row" style="--i:10"><span role="rowheader">Liquidación de sueldos</span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="" aria-label="no usa"></span><span role="cell" class="is-on" aria-label="usa"></span></div>
+          <h3 class="case-block__subtitle">En qué procesos se usa cada herramienta</h3>
+          <div class="tools replay">
+            <div class="tool" style="--i:0;--n:6"><span class="tool__name">WhatsApp</span><span class="tool__bar"><b>6</b><i>de 11 procesos</i></span><span class="tool__ps"><em>Compra de scrap</em><em>Venta y cobranza</em><em>Recepción de fasón</em><em>Entrega de fasón</em><em>Logística</em><em>Cuentas corrientes</em></span></div>
+            <div class="tool" style="--i:1;--n:4"><span class="tool__name">Home banking</span><span class="tool__bar"><b>4</b><i>de 11 procesos</i></span><span class="tool__ps"><em>Compra de scrap</em><em>Venta y cobranza</em><em>Entrega de fasón</em><em>Cuentas corrientes</em></span></div>
+            <div class="tool" style="--i:2;--n:4"><span class="tool__name">Sistemas de terceros</span><span class="tool__bar"><b>4</b><i>de 11 procesos</i></span><span class="tool__ps"><em>Venta y cobranza</em><em>Entrega de fasón</em><em>Cuentas corrientes</em><em>Liquidación de sueldos</em></span></div>
+            <div class="tool" style="--i:3;--n:3"><span class="tool__name">Excel</span><span class="tool__bar"><b>3</b><i>de 11 procesos</i></span><span class="tool__ps"><em>Recepción de fasón</em><em>Entrega de fasón</em><em>Control de stock</em></span></div>
+            <div class="tool" style="--i:4;--n:3"><span class="tool__name">Cámara y galería</span><span class="tool__bar"><b>3</b><i>de 11 procesos</i></span><span class="tool__ps"><em>Venta y cobranza</em><em>Entrega de fasón</em><em>Cuentas corrientes</em></span></div>
+            <div class="tool tool--none" style="--i:5;--n:3"><span class="tool__name">Ninguna herramienta</span><span class="tool__bar"><b>3</b><i>procesos</i></span><span class="tool__ps"><em>Producción</em><em>Planificación estratégica</em><em>Continuidad del negocio</em></span></div>
           </div>
-          <p class="cover__note">Producción y los procesos estratégicos no tienen ninguna herramienta de apoyo.</p>
+          <p class="tools__note">Los sistemas de terceros son los de los clientes y el del contador: Farriplast solo recibe lo que le informan.</p>
 
           <div class="hub replay">
             <p class="hub__title">El cuello de botella</p>
@@ -474,26 +469,63 @@
         <div class="container">
           <span class="eyebrow">04 · Riesgos</span>
           <h2 class="section-title">Qué puede salir mal y cómo lo evitamos</h2>
-          <div class="pmx replay" data-pmx aria-label="Riesgos según probabilidad e impacto">
-            <div class="pmx__grid">
-              <span class="pmx__axis pmx__axis--y">Impacto →</span><span class="pmx__axis pmx__axis--x">Probabilidad →</span>
-              <span class="pmx__tick pmx__tick--y" style="grid-row:1">Alto</span>
-              <span class="pmx__tick pmx__tick--y" style="grid-row:2">Medio</span>
-              <span class="pmx__tick pmx__tick--y" style="grid-row:3">Bajo</span>
-              <span class="pmx__tick pmx__tick--x" style="grid-column:2">Bajo</span>
-              <span class="pmx__tick pmx__tick--x" style="grid-column:3">Medio</span>
-              <span class="pmx__tick pmx__tick--x" style="grid-column:4">Alto</span>
-              <div class="pmx__cell" style="grid-column:2;grid-row:1;--h:4"><button type="button" class="pmx__chip" style="--k:0" data-tag="Probabilidad baja · Impacto alto" data-t1="Pérdida o inconsistencia de la información durante la migración." data-t2="Hacer un corte con saldos iniciales validados y conservar el papel hasta cerrar el primer período en el sistema." aria-pressed="false">Perder el histórico al migrar</button></div>
-              <div class="pmx__cell" style="grid-column:3;grid-row:1;--h:5"><button type="button" class="pmx__chip" style="--k:1" data-tag="Probabilidad media · Impacto alto" data-t1="Que el sistema no distinga bien el material propio del de fasón y obligue a llevar registros paralelos." data-t2="Validar con Mariano el modelo de material propio y de terceros antes de elegir el sistema." aria-pressed="false">Un modelo de datos que no refleje la operación</button></div>
-              <div class="pmx__cell" style="grid-column:4;grid-row:1;--h:6"><button type="button" class="pmx__chip" style="--k:2" data-tag="Probabilidad alta · Impacto alto" data-t1="El método actual le funciona, sus clientes están habituados y su liderazgo es autocrático y centralizado." data-t2="Transición gradual, empezando por las cuentas corrientes. El cuaderno sigue en paralelo hasta una fecha de corte acordada con él." aria-pressed="false">Resistencia al cambio del dueño</button><button type="button" class="pmx__chip" style="--k:3" data-tag="Probabilidad alta · Impacto alto" data-t1="Que registrar en el sistema se agregue al trabajo actual en lugar de reemplazarlo." data-t2="Registro en el punto de origen, con el mínimo de campos obligatorios. Medir las horas administrativas antes y después." aria-pressed="false">La carga de datos se suma al trabajo</button><button type="button" class="pmx__chip" style="--k:4" data-tag="Probabilidad alta · Impacto alto" data-t1="Que nadie sostenga el uso del sistema cuando termine el proyecto." data-t2="Designar un referente entre los operarios, capacitarlo y documentar los procedimientos en lenguaje simple." aria-pressed="false">Sin responsable interno</button><button type="button" class="pmx__chip" style="--k:5" data-tag="Probabilidad alta · Impacto alto" data-t1="Mariano y los operarios tienen baja capacitación en herramientas tecnológicas." data-t2="Capacitar en el puesto con el cuaderno en paralelo, y tomar la curva de aprendizaje como criterio de selección." aria-pressed="false">Poca experiencia con tecnología</button></div>
-              <div class="pmx__cell" style="grid-column:2;grid-row:2;--h:3"></div>
-              <div class="pmx__cell" style="grid-column:3;grid-row:2;--h:4"><button type="button" class="pmx__chip" style="--k:6" data-tag="Probabilidad media · Impacto medio" data-t1="La cuota mensual pesa en un contexto de márgenes ajustados." data-t2="Dimensionar la solución al alcance mínimo (las dos historias Must Have) y comparar el costo con las horas que libera." aria-pressed="false">Costo de la suscripción</button><button type="button" class="pmx__chip" style="--k:7" data-tag="Probabilidad media · Impacto medio" data-t1="Dificultad para migrar a otro sistema en el futuro." data-t2="Exigir portabilidad y exportación completa de los datos como requisito de selección." aria-pressed="false">Quedar atado al proveedor</button><button type="button" class="pmx__chip" style="--k:8" data-tag="Probabilidad media · Impacto medio" data-t1="Los procesos dependen del conocimiento individual de los cinco operarios y no están documentados." data-t2="Aprovechar la definición del registro para documentar los procedimientos de cada etapa." aria-pressed="false">Conocimiento solo en los operarios</button><button type="button" class="pmx__chip" style="--k:9" data-tag="Probabilidad media · Impacto medio" data-t1="Que la transformación no ataque la gestión manual y la falta de información para decidir." data-t2="Dejar claro con Mariano que el sistema no amplía el galpón: aporta la información para decidir con fundamento." aria-pressed="false">Que no resuelva el problema de fondo</button></div>
-              <div class="pmx__cell" style="grid-column:4;grid-row:2;--h:5"><button type="button" class="pmx__chip" style="--k:10" data-tag="Probabilidad alta · Impacto medio" data-t1="Que las metas de clientes y reputación no puedan medirse porque hoy no hay datos de partida." data-t2="Definir con Mariano qué es un cliente activo y una entrega a tiempo, y registrar entregas y rechazos desde el primer día." aria-pressed="false">Metas sin línea de base</button></div>
-              <div class="pmx__cell" style="grid-column:2;grid-row:3;--h:2"></div>
-              <div class="pmx__cell" style="grid-column:3;grid-row:3;--h:3"></div>
-              <div class="pmx__cell" style="grid-column:4;grid-row:3;--h:4"></div>
+          <div class="risks replay">
+            <div class="risks__head" aria-hidden="true"><span>Riesgo</span><span></span><span>Cómo lo evitamos</span></div>
+            <div class="risk risk--hi" style="--i:0">
+              <div class="risk__q"><strong>Resistencia al cambio del dueño</strong><span>El método actual le funciona, sus clientes están habituados y su liderazgo es autocrático y centralizado.</span><span class="risk__lv"><span>Probabilidad <b class="risk__m"><i class="on"></i><i class="on"></i><i class="on"></i></b></span><span>Impacto <b class="risk__m"><i class="on"></i><i class="on"></i><i class="on"></i></b></span></span></div>
+              <span class="risk__arrow" aria-hidden="true"></span>
+              <div class="risk__a">Transición gradual, empezando por las cuentas corrientes. El cuaderno sigue en paralelo hasta una fecha de corte acordada con él.</div>
             </div>
-            <div class="pmx__detail" aria-live="polite" data-l1="Riesgo" data-l2="Cómo lo mitigamos"></div>
+            <div class="risk risk--hi" style="--i:1">
+              <div class="risk__q"><strong>La carga de datos se suma al trabajo</strong><span>Que registrar en el sistema se agregue al trabajo actual en lugar de reemplazarlo.</span><span class="risk__lv"><span>Probabilidad <b class="risk__m"><i class="on"></i><i class="on"></i><i class="on"></i></b></span><span>Impacto <b class="risk__m"><i class="on"></i><i class="on"></i><i class="on"></i></b></span></span></div>
+              <span class="risk__arrow" aria-hidden="true"></span>
+              <div class="risk__a">Registro en el punto de origen, con el mínimo de campos obligatorios. Medir las horas administrativas antes y después.</div>
+            </div>
+            <div class="risk risk--hi" style="--i:2">
+              <div class="risk__q"><strong>Sin responsable interno</strong><span>Que nadie sostenga el uso del sistema cuando termine el proyecto.</span><span class="risk__lv"><span>Probabilidad <b class="risk__m"><i class="on"></i><i class="on"></i><i class="on"></i></b></span><span>Impacto <b class="risk__m"><i class="on"></i><i class="on"></i><i class="on"></i></b></span></span></div>
+              <span class="risk__arrow" aria-hidden="true"></span>
+              <div class="risk__a">Designar un referente entre los operarios, capacitarlo y documentar los procedimientos en lenguaje simple.</div>
+            </div>
+            <div class="risk risk--hi" style="--i:3">
+              <div class="risk__q"><strong>Poca experiencia con tecnología</strong><span>Mariano y los operarios tienen baja capacitación en herramientas tecnológicas.</span><span class="risk__lv"><span>Probabilidad <b class="risk__m"><i class="on"></i><i class="on"></i><i class="on"></i></b></span><span>Impacto <b class="risk__m"><i class="on"></i><i class="on"></i><i class="on"></i></b></span></span></div>
+              <span class="risk__arrow" aria-hidden="true"></span>
+              <div class="risk__a">Capacitar en el puesto con el cuaderno en paralelo, y tomar la curva de aprendizaje como criterio de selección.</div>
+            </div>
+            <div class="risk risk--mid" style="--i:4">
+              <div class="risk__q"><strong>Un modelo de datos que no refleje la operación</strong><span>Que el sistema no distinga bien el material propio del de fasón y obligue a llevar registros paralelos.</span><span class="risk__lv"><span>Probabilidad <b class="risk__m"><i class="on"></i><i class="on"></i><i class=""></i></b></span><span>Impacto <b class="risk__m"><i class="on"></i><i class="on"></i><i class="on"></i></b></span></span></div>
+              <span class="risk__arrow" aria-hidden="true"></span>
+              <div class="risk__a">Validar con Mariano el modelo de material propio y de terceros antes de elegir el sistema.</div>
+            </div>
+            <div class="risk risk--mid" style="--i:5">
+              <div class="risk__q"><strong>Metas sin línea de base</strong><span>Que las metas de clientes y reputación no puedan medirse porque hoy no hay datos de partida.</span><span class="risk__lv"><span>Probabilidad <b class="risk__m"><i class="on"></i><i class="on"></i><i class="on"></i></b></span><span>Impacto <b class="risk__m"><i class="on"></i><i class="on"></i><i class=""></i></b></span></span></div>
+              <span class="risk__arrow" aria-hidden="true"></span>
+              <div class="risk__a">Definir con Mariano qué es un cliente activo y una entrega a tiempo, y registrar entregas y rechazos desde el primer día.</div>
+            </div>
+            <div class="risk risk--mid" style="--i:6">
+              <div class="risk__q"><strong>Costo de la suscripción</strong><span>La cuota mensual pesa en un contexto de márgenes ajustados.</span><span class="risk__lv"><span>Probabilidad <b class="risk__m"><i class="on"></i><i class="on"></i><i class=""></i></b></span><span>Impacto <b class="risk__m"><i class="on"></i><i class="on"></i><i class=""></i></b></span></span></div>
+              <span class="risk__arrow" aria-hidden="true"></span>
+              <div class="risk__a">Dimensionar la solución al alcance mínimo (las dos historias Must Have) y comparar el costo con las horas que libera.</div>
+            </div>
+            <div class="risk risk--mid" style="--i:7">
+              <div class="risk__q"><strong>Quedar atado al proveedor</strong><span>Dificultad para migrar a otro sistema en el futuro.</span><span class="risk__lv"><span>Probabilidad <b class="risk__m"><i class="on"></i><i class="on"></i><i class=""></i></b></span><span>Impacto <b class="risk__m"><i class="on"></i><i class="on"></i><i class=""></i></b></span></span></div>
+              <span class="risk__arrow" aria-hidden="true"></span>
+              <div class="risk__a">Exigir portabilidad y exportación completa de los datos como requisito de selección.</div>
+            </div>
+            <div class="risk risk--mid" style="--i:8">
+              <div class="risk__q"><strong>Conocimiento solo en los operarios</strong><span>Los procesos dependen del conocimiento individual de los cinco operarios y no están documentados.</span><span class="risk__lv"><span>Probabilidad <b class="risk__m"><i class="on"></i><i class="on"></i><i class=""></i></b></span><span>Impacto <b class="risk__m"><i class="on"></i><i class="on"></i><i class=""></i></b></span></span></div>
+              <span class="risk__arrow" aria-hidden="true"></span>
+              <div class="risk__a">Aprovechar la definición del registro para documentar los procedimientos de cada etapa.</div>
+            </div>
+            <div class="risk risk--mid" style="--i:9">
+              <div class="risk__q"><strong>Que no resuelva el problema de fondo</strong><span>Que la transformación no ataque la gestión manual y la falta de información para decidir.</span><span class="risk__lv"><span>Probabilidad <b class="risk__m"><i class="on"></i><i class="on"></i><i class=""></i></b></span><span>Impacto <b class="risk__m"><i class="on"></i><i class="on"></i><i class=""></i></b></span></span></div>
+              <span class="risk__arrow" aria-hidden="true"></span>
+              <div class="risk__a">Dejar claro con Mariano que el sistema no amplía el galpón: aporta la información para decidir con fundamento.</div>
+            </div>
+            <div class="risk risk--lo" style="--i:10">
+              <div class="risk__q"><strong>Perder el histórico al migrar</strong><span>Pérdida o inconsistencia de la información durante la migración.</span><span class="risk__lv"><span>Probabilidad <b class="risk__m"><i class="on"></i><i class=""></i><i class=""></i></b></span><span>Impacto <b class="risk__m"><i class="on"></i><i class="on"></i><i class="on"></i></b></span></span></div>
+              <span class="risk__arrow" aria-hidden="true"></span>
+              <div class="risk__a">Hacer un corte con saldos iniciales validados y conservar el papel hasta cerrar el primer período en el sistema.</div>
+            </div>
           </div>
         </div>
       </section>
@@ -718,7 +750,7 @@
         <div class="container">
           <span class="eyebrow">02 · Plan en 4 fases</span>
           <h2 class="section-title">Cómo se implementa en 24 meses</h2>
-          <p class="case-block__lead">Plan definido por el equipo a partir de las decisiones validadas con Mariano.</p>
+          <p class="case-block__lead">Plan definido por el equipo a partir de las decisiones validadas con Mariano. Pasá por cada fase para ver qué incluye y cómo se trabaja.</p>
           <h3 class="case-block__subtitle">Cronograma de las 4 fases (24 meses)</h3>
           <div class="gantt replay" data-gantt>
             <div class="gantt__scale" aria-hidden="true"><span>Mes 1</span><span>6</span><span>12</span><span>18</span><span>24</span></div>
@@ -731,14 +763,6 @@
             </div>
             <div class="gantt__detail" aria-live="polite"></div>
           </div>
-          <ul class="case-points case-points--after">
-            <li>Al inicio lo usan Mariano y Samuel. Mariano carga los saldos iniciales de stock, cuentas corrientes y cheques</li>
-            <li>Samuel ve stock y movimientos en cantidades, sin precios ni saldos</li>
-            <li>De noche se anota en la pizarra y Samuel lo carga al día siguiente</li>
-            <li>Si Samuel no está, lo reemplaza Mariano</li>
-            <li>El cuaderno sigue en paralelo hasta que el primer cierre mensual coincida, con un máximo de 3 meses</li>
-            <li>Se compran una computadora o tablet y un teléfono para el sistema, y en la fase 3 una balanza que se conecta</li>
-          </ul>
         </div>
       </section>
 
@@ -947,11 +971,14 @@
             <i class="level__arrow" aria-hidden="true"></i>
             <div class="level" style="--i:2"><span class="level__n"><b data-count="37">37</b> requisitos</span><strong>El punto concreto que se puntúa</strong><span class="level__ex">Dentro del núcleo: <em>Stock y trazabilidad por lote</em>, que vale 25% de la categoría</span></div>
           </div>
-          <div class="calc replay">
-            <span class="calc__lbl">Cuánto vale ese requisito en la nota final</span>
-            <div class="calc__eq"><span>35%</span><i>×</i><span>45%</span><i>×</i><span>25%</span><i>=</i><b>3,9 <small>de 100 puntos</small></b></div>
-            <div class="calc__bar" aria-hidden="true"><span style="--p:35"></span><span style="--p:15.75"></span><span style="--p:3.9"></span></div>
-            <p class="calc__note">En cada nivel, los pesos suman 100%.</p>
+          <div class="waffle replay">
+            <div class="waffle__grid" aria-hidden="true"><i class="w3" style="--n:0"></i><i class="w3" style="--n:1"></i><i class="w3" style="--n:2"></i><i class="w3" style="--n:3"></i><i class="w2" style="--n:4"></i><i class="w2" style="--n:5"></i><i class="w2" style="--n:6"></i><i class="w2" style="--n:7"></i><i class="w2" style="--n:8"></i><i class="w2" style="--n:9"></i><i class="w2" style="--n:10"></i><i class="w2" style="--n:11"></i><i class="w2" style="--n:12"></i><i class="w2" style="--n:13"></i><i class="w2" style="--n:14"></i><i class="w2" style="--n:15"></i><i class="w1" style="--n:16"></i><i class="w1" style="--n:17"></i><i class="w1" style="--n:18"></i><i class="w1" style="--n:19"></i><i class="w1" style="--n:20"></i><i class="w1" style="--n:21"></i><i class="w1" style="--n:22"></i><i class="w1" style="--n:23"></i><i class="w1" style="--n:24"></i><i class="w1" style="--n:25"></i><i class="w1" style="--n:26"></i><i class="w1" style="--n:27"></i><i class="w1" style="--n:28"></i><i class="w1" style="--n:29"></i><i class="w1" style="--n:30"></i><i class="w1" style="--n:31"></i><i class="w1" style="--n:32"></i><i class="w1" style="--n:33"></i><i class="w1" style="--n:34"></i><i class="" style="--n:35"></i><i class="" style="--n:36"></i><i class="" style="--n:37"></i><i class="" style="--n:38"></i><i class="" style="--n:39"></i><i class="" style="--n:40"></i><i class="" style="--n:41"></i><i class="" style="--n:42"></i><i class="" style="--n:43"></i><i class="" style="--n:44"></i><i class="" style="--n:45"></i><i class="" style="--n:46"></i><i class="" style="--n:47"></i><i class="" style="--n:48"></i><i class="" style="--n:49"></i><i class="" style="--n:50"></i><i class="" style="--n:51"></i><i class="" style="--n:52"></i><i class="" style="--n:53"></i><i class="" style="--n:54"></i><i class="" style="--n:55"></i><i class="" style="--n:56"></i><i class="" style="--n:57"></i><i class="" style="--n:58"></i><i class="" style="--n:59"></i><i class="" style="--n:60"></i><i class="" style="--n:61"></i><i class="" style="--n:62"></i><i class="" style="--n:63"></i><i class="" style="--n:64"></i><i class="" style="--n:65"></i><i class="" style="--n:66"></i><i class="" style="--n:67"></i><i class="" style="--n:68"></i><i class="" style="--n:69"></i><i class="" style="--n:70"></i><i class="" style="--n:71"></i><i class="" style="--n:72"></i><i class="" style="--n:73"></i><i class="" style="--n:74"></i><i class="" style="--n:75"></i><i class="" style="--n:76"></i><i class="" style="--n:77"></i><i class="" style="--n:78"></i><i class="" style="--n:79"></i><i class="" style="--n:80"></i><i class="" style="--n:81"></i><i class="" style="--n:82"></i><i class="" style="--n:83"></i><i class="" style="--n:84"></i><i class="" style="--n:85"></i><i class="" style="--n:86"></i><i class="" style="--n:87"></i><i class="" style="--n:88"></i><i class="" style="--n:89"></i><i class="" style="--n:90"></i><i class="" style="--n:91"></i><i class="" style="--n:92"></i><i class="" style="--n:93"></i><i class="" style="--n:94"></i><i class="" style="--n:95"></i><i class="" style="--n:96"></i><i class="" style="--n:97"></i><i class="" style="--n:98"></i><i class="" style="--n:99"></i></div>
+            <ul class="waffle__keys">
+              <li class="w1"><b>35</b><span>de los 100 puntos son del aspecto <em>Funcional</em></span></li>
+              <li class="w2"><b>15,8</b><span>de esos son de la categoría <em>Núcleo operativo</em></span></li>
+              <li class="w3"><b>3,9</b><span>de esos son del requisito <em>Stock y trazabilidad por lote</em></span></li>
+            </ul>
+            <p class="waffle__note">Cada cuadradito es un punto de la nota final. En cada nivel, los pesos suman 100%.</p>
           </div>
 
         </div>
@@ -962,17 +989,15 @@
         <div class="container">
           <span class="eyebrow">02 · Requisitos</span>
           <h2 class="section-title">Qué se mira en cada aspecto</h2>
-          <p class="case-block__lead">Elegí un aspecto: aparecen sus categorías y los requisitos de cada una, con los puntos que suman a la nota final.</p>
-          <div class="weights" data-weights>
-            <div class="weights__top"><div class="weights__donut donut__chart"><svg viewBox="0 0 42 42" role="img" aria-label="Peso de cada aspecto en la nota final: proveedor 20%, funcional 35%, técnico 25%, económico 20%"><circle class="donut__seg weights__slice" cx="21" cy="21" r="15.915" fill="none" stroke="#1C8FC9" stroke-width="7" stroke-dasharray="19.4 80.6" stroke-dashoffset="25" data-aspect="0" style="--i:0"></circle><circle class="donut__seg weights__slice" cx="21" cy="21" r="15.915" fill="none" stroke="#1565C0" stroke-width="7" stroke-dasharray="34.4 65.6" stroke-dashoffset="5" data-aspect="1" style="--i:1"></circle><circle class="donut__seg weights__slice" cx="21" cy="21" r="15.915" fill="none" stroke="#0B3B8C" stroke-width="7" stroke-dasharray="24.4 75.6" stroke-dashoffset="-30" data-aspect="2" style="--i:2"></circle><circle class="donut__seg weights__slice" cx="21" cy="21" r="15.915" fill="none" stroke="#06162E" stroke-width="7" stroke-dasharray="19.4 80.6" stroke-dashoffset="-55" data-aspect="3" style="--i:3"></circle></svg><div class="donut__center"><strong>100</strong><span>puntos</span></div></div>
-            <div class="weights__bar" role="tablist" aria-label="Aspectos de la matriz">
-              <button type="button" role="tab" class="weights__seg weights__seg--1" style="--p:20" aria-selected="true" data-aspect="0"><span>Proveedor</span><b>20%</b></button>
-              <button type="button" role="tab" class="weights__seg weights__seg--2" style="--p:35" aria-selected="false" data-aspect="1"><span>Funcional</span><b>35%</b></button>
-              <button type="button" role="tab" class="weights__seg weights__seg--3" style="--p:25" aria-selected="false" data-aspect="2"><span>Técnico</span><b>25%</b></button>
-              <button type="button" role="tab" class="weights__seg weights__seg--4" style="--p:20" aria-selected="false" data-aspect="3"><span>Económico</span><b>20%</b></button>
+          <p class="case-block__lead">Los 100 puntos se reparten en cuatro aspectos. Elegí uno para ver qué se mira adentro.</p>
+          <div class="aspx" data-aspx>
+            <div class="aspx__bar" role="tablist" aria-label="Aspectos de la matriz">
+              <button type="button" role="tab" class="aspx__seg aspx__seg--1" style="--p:20" data-a="0" aria-selected="false"><b>20</b><span>Proveedor</span></button>
+              <button type="button" role="tab" class="aspx__seg aspx__seg--2" style="--p:35" data-a="1" aria-selected="true"><b>35</b><span>Funcional</span></button>
+              <button type="button" role="tab" class="aspx__seg aspx__seg--3" style="--p:25" data-a="2" aria-selected="false"><b>25</b><span>Técnico</span></button>
+              <button type="button" role="tab" class="aspx__seg aspx__seg--4" style="--p:20" data-a="3" aria-selected="false"><b>20</b><span>Económico</span></button>
             </div>
-            </div>
-            <div class="weights__detail" aria-live="polite"></div>
+            <div class="aspx__detail" aria-live="polite"></div>
           </div>
           <p class="case-block__note">Los pesos de los aspectos se definieron en el alcance del proyecto. Los de las categorías y los requisitos son una propuesta del equipo.</p>
         </div>
@@ -983,14 +1008,25 @@
         <div class="container">
           <span class="eyebrow">03 · Escalas</span>
           <h2 class="section-title">Cómo se puntúa cada requisito</h2>
-          <div class="howscore replay">
-            <div class="howscore__step" style="--i:0"><b>1</b><span>Cada requisito tiene su peso en puntos</span><em>Stock por lote: 3,9 puntos</em></div>
-            <i class="level__arrow" aria-hidden="true"></i>
-            <div class="howscore__step" style="--i:1"><b>2</b><span>Según lo que ofrece el proveedor, la escala le da un porcentaje</span><em>Cumple parcialmente: 50%</em></div>
-            <i class="level__arrow" aria-hidden="true"></i>
-            <div class="howscore__step howscore__step--total" style="--i:2"><b>3</b><span>Suma el peso por ese porcentaje</span><em>3,9 × 50% = 1,95 puntos</em></div>
+          <p class="case-block__lead">Cada requisito se califica con la escala de su aspecto. Según la calificación, se lleva todos sus puntos, una parte o ninguno.</p>
+          <div class="tryscore" data-tryscore>
+            <div class="tryscore__case">
+              <span class="tryscore__tag">Ejemplo · Funcional</span>
+              <strong>Stock y trazabilidad por lote</strong>
+              <span>Vale 3,9 puntos de la nota final</span>
+              <div class="tryscore__opts" role="group" aria-label="Elegí cómo cumple el proveedor">
+                <button type="button" data-v="100" aria-pressed="false">Cumple nativamente</button>
+                <button type="button" data-v="50" aria-pressed="true">Cumple parcialmente</button>
+                <button type="button" data-v="25" aria-pressed="false">Cumple con desarrollo</button>
+                <button type="button" data-v="0" aria-pressed="false">No cumple</button>
+              </div>
+            </div>
+            <div class="tryscore__result">
+              <div class="tryscore__gauge"><svg viewBox="0 0 42 42" aria-hidden="true"><circle cx="21" cy="21" r="15.915" fill="none" stroke="#E3EBF4" stroke-width="6"/><circle class="tryscore__arc" cx="21" cy="21" r="15.915" fill="none" stroke-width="6" stroke-dasharray="50 50" stroke-dashoffset="25"/></svg><div class="tryscore__val"><b>1,95</b><span>de 3,9 puntos</span></div></div>
+              <p class="tryscore__txt">Se lleva la mitad de sus puntos.</p>
+            </div>
           </div>
-          <p class="case-block__lead">Cada aspecto tiene su propia escala.</p>
+          <h3 class="case-block__subtitle">Las cuatro escalas</h3>
           <div class="scales replay">
             <div class="scale scale--1"><span class="reqs__tag">Proveedor</span><strong>Cumplimiento</strong><ul><li style="--v:100;--j:0"><span class="scale__name">Cumple totalmente<small>Ofrece lo que pide el requisito y lo respalda con información verificable</small></span><span class="scale__track"><i></i></span><b>100%</b></li><li style="--v:50;--j:1"><span class="scale__name">Cumple parcialmente<small>Ofrece una parte, o lo ofrece con limitaciones</small></span><span class="scale__track"><i></i></span><b>50%</b></li><li style="--v:0;--j:2"><span class="scale__name">No cumple<small>No ofrece lo que pide el requisito</small></span><span class="scale__track"><i></i></span><b>0%</b></li></ul></div>
             <div class="scale scale--2"><span class="reqs__tag">Funcional</span><strong>Cobertura</strong><ul><li style="--v:100;--j:0"><span class="scale__name">Cumple nativamente<small>El producto lo cubre completo, sin adaptaciones</small></span><span class="scale__track"><i></i></span><b>100%</b></li><li style="--v:50;--j:1"><span class="scale__name">Cumple parcialmente<small>Lo cubre en parte, o con configuración</small></span><span class="scale__track"><i></i></span><b>50%</b></li><li style="--v:25;--j:2"><span class="scale__name">Cumple con desarrollo<small>Solo con un desarrollo o un complemento de terceros</small></span><span class="scale__track"><i></i></span><b>25%</b></li><li style="--v:0;--j:3"><span class="scale__name">No cumple<small>No se puede cubrir</small></span><span class="scale__track"><i></i></span><b>0%</b></li></ul></div>
