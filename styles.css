@@ -8450,3 +8450,6 @@ section {
   .howscore { grid-template-columns: minmax(0, 1fr); }
   .howscore .level__arrow { transform: rotate(90deg); }
 }
+
+.doblin__svg .doblin__seg.is-high { stroke: var(--azul-delta); }
+.case-body .pmx__detail .pmx__name { color: #fff; }
