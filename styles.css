@@ -7445,3 +7445,27 @@ section {
   .doblin { grid-template-columns: minmax(0, 1fr); justify-items: center; }
   .doblin__chart { width: min(100%, 300px); }
 }
+
+/* Etapa dentro de la barra fija: una sola línea con etapa + sección */
+.case-current__text { align-items: center; }
+
+.case-current__stage {
+  flex: 0 0 auto;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--celeste-delta);
+  color: var(--azul-profundo);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.case-current__stage[data-stage="2"] { background: var(--azul-medio); color: #fff; }
+.case-current__stage[data-stage="3"] { background: var(--azul-delta); color: #fff; }
+.case-current__stage[data-stage="4"] { background: var(--navy); color: #fff; }
+
+@media (max-width: 699px) {
+  .case-current__stage { display: none; }
+}
