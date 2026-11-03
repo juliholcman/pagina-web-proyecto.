@@ -4323,3 +4323,18 @@ section {
     margin-left: 0;
   }
 }
+
+.panel-intro__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-basis: 100%;
+  font-size: 0.82rem;
+  opacity: 0.92;
+}
+
+.panel-intro__hint-line {
+  display: inline-block;
+  width: 22px;
+  border-bottom: 2px dotted currentColor;
+}

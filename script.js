@@ -666,33 +666,39 @@ function initGlossary(tip) {
     while (walker.nextNode()) nodes.push(walker.currentNode);
     nodes.forEach((node) => {
       let current = node;
-      terms.forEach((t) => {
-        if (used.has(t.title) || !current || !current.parentNode) return;
-        const m = t.re.exec(current.nodeValue);
-        if (!m) return;
-        used.add(t.title);
-        const start = m.index + m[1].length;
-        const after = current.splitText(start);
-        const rest = after.splitText(m[2].length);
+      /* En cada tramo de texto se busca el término no usado que aparece primero */
+      while (current && current.parentNode) {
+        let best = null;
+        terms.forEach((t) => {
+          if (used.has(t.title)) return;
+          const m = t.re.exec(current.nodeValue);
+          if (m && (!best || m.index + m[1].length < best.start)) best = { t, start: m.index + m[1].length, len: m[2].length };
+        });
+        if (!best) break;
+        used.add(best.t.title);
+        const after = current.splitText(best.start);
+        const rest = after.splitText(best.len);
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'term';
         btn.textContent = after.nodeValue;
         btn.setAttribute('aria-label', after.nodeValue + ': ver qué significa');
         after.parentNode.replaceChild(btn, after);
+        const t = best.t;
         tip.bind(btn, () => '<strong>' + t.title + '</strong>' + t.def);
         current = rest;
-      });
+      }
     });
   });
-  const first = document.querySelector('.tab-panel .term');
-  if (first) {
-    const body = document.querySelector('.case-body');
-    const hint = document.createElement('p');
-    hint.className = 'glossary-hint container';
-    hint.innerHTML = '<span class="term term--sample" aria-hidden="true">Subrayado</span> Las palabras subrayadas tienen explicación: pasá el mouse o tocalas.';
-    body.insertBefore(hint, body.firstChild);
-  }
+  /* Aviso en la banda de color de cada sección que tiene términos explicados */
+  document.querySelectorAll('.tab-panel').forEach((panel) => {
+    const inner = panel.querySelector('.panel-intro__inner');
+    if (!inner || !panel.querySelector('.term')) return;
+    const hint = document.createElement('span');
+    hint.className = 'panel-intro__hint';
+    hint.innerHTML = '<span class="panel-intro__hint-line" aria-hidden="true"></span>Las palabras subrayadas tienen explicación: pasá el mouse o tocalas.';
+    inner.appendChild(hint);
+  });
 }
 
 /* Barras de los gráficos con detalle al pasar el mouse o tocar */
