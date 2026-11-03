@@ -535,6 +535,7 @@ function initCaseExtras() {
   initValuesWheel();
   initCountUp();
   initRoadmap();
+  initFlips();
 }
 
 /* Un solo globo de ayuda para glosario y gráficos */
@@ -912,4 +913,41 @@ function initRoadmap() {
     io.observe(box);
   } else run();
   if (replay) replay.addEventListener('click', run);
+}
+
+/* Frentes: tarjetas que se dan vuelta entre Hoy y Con la propuesta.
+   Al aparecer la sección se dan vuelta solas, una tras otra. */
+function initFlips() {
+  const box = document.querySelector('[data-fronts]');
+  if (!box) return;
+  const cards = Array.from(box.querySelectorAll('.flip'));
+  const toggle = box.previousElementSibling;
+  const setCard = (c, on) => { c.classList.toggle('is-new', on); c.setAttribute('aria-pressed', String(on)); };
+  const syncToggle = () => {
+    const allNew = cards.every((c) => c.classList.contains('is-new'));
+    const allNow = cards.every((c) => !c.classList.contains('is-new'));
+    toggle.querySelectorAll('.chart-toggle__btn').forEach((b) => {
+      const on = (b.dataset.flip === 'new' && allNew) || (b.dataset.flip === 'now' && allNow);
+      b.classList.toggle('is-on', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+  };
+  cards.forEach((c) => c.addEventListener('click', () => { setCard(c, !c.classList.contains('is-new')); syncToggle(); }));
+  toggle.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-flip]');
+    if (!b) return;
+    cards.forEach((c, i) => setTimeout(() => setCard(c, b.dataset.flip === 'new'), i * 90));
+    setTimeout(syncToggle, cards.length * 90 + 50);
+  });
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      setTimeout(() => {
+        cards.forEach((c, i) => setTimeout(() => setCard(c, true), i * 260));
+        setTimeout(syncToggle, cards.length * 260 + 50);
+      }, 900);
+    }), { threshold: 0.3 });
+    io.observe(box);
+  }
 }

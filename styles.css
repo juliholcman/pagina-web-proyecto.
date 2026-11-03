@@ -5695,3 +5695,484 @@ section {
   letter-spacing: inherit;
   text-transform: inherit;
 }
+
+/* =========================================================
+   CASO FARRIPLAST — secciones 02 y 03: capas, cuello de botella,
+   frentes que se dan vuelta y carriles de tecnologías
+   ========================================================= */
+
+/* Capas de la arquitectura, apiladas de lo que hace a lo que la sostiene */
+.layers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.layer {
+  --c: #1C8FC9;
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  align-items: stretch;
+  margin-left: calc(var(--i) * 18px);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--blanco);
+  box-shadow: 0 14px 30px -22px rgba(6, 22, 46, 0.6);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.layer:hover {
+  transform: translateX(6px);
+}
+
+.layer--1 { --c: #5FCBF5; }
+.layer--2 { --c: #2F86D8; }
+.layer--3 { --c: #1565C0; }
+.layer--4 { --c: #0B3B8C; }
+
+.layer__name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  background: var(--c);
+  color: var(--blanco);
+}
+
+.layer--1 .layer__name { color: var(--azul-profundo); }
+
+.layer__name b {
+  display: block;
+  font-size: 1.1rem;
+}
+
+.layer__name small {
+  display: block;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  opacity: 0.9;
+}
+
+.layer__icon {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.layer__icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.layer__state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 14px 20px;
+  border-left: 4px solid var(--c);
+}
+
+.layer__state strong {
+  color: var(--azul-profundo);
+  font-size: 1.02rem;
+}
+
+.layer__state ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+}
+
+.layer__state li {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--gris-hielo);
+  font-size: 0.85rem;
+  color: var(--texto-secundario);
+}
+
+.layers--now .layer__state li {
+  background: #FBEDE8;
+  color: #7A3A2C;
+}
+
+.layers--dest .layer__state li {
+  background: #E6F3EA;
+  color: #1E5A31;
+}
+
+/* Las capas entran de a una desde la izquierda */
+.js-reveal-ready .stagger.layers .layer {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i) * 0.15s);
+}
+
+.js-reveal-ready .stagger.layers.is-visible .layer {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 759px) {
+  .layer {
+    grid-template-columns: minmax(0, 1fr);
+    margin-left: 0;
+  }
+
+  .layer__state {
+    border-left: none;
+    border-top: 4px solid var(--c);
+  }
+}
+
+/* Cuello de botella: Mariano en el centro */
+.hub {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.case-body .hub__title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--azul-profundo);
+}
+
+.hub__map {
+  position: relative;
+  width: min(100%, 420px);
+  aspect-ratio: 1.6;
+}
+
+.hub__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background: linear-gradient(140deg, #E2694A, #B4432A);
+  color: var(--blanco);
+  font-weight: 700;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 10px rgba(226, 105, 74, 0.15), 0 16px 34px -14px rgba(180, 67, 42, 0.8);
+  animation: hub-pulse 2.4s ease-in-out infinite;
+}
+
+.hub__node {
+  --a: calc(var(--k) * 60deg - 90deg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--blanco);
+  border: 1.5px solid #E2694A;
+  color: var(--texto-principal);
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transform: translate(-50%, -50%) translate(calc(cos(var(--a)) * min(42vw, 170px)), calc(sin(var(--a)) * min(26vw, 104px)));
+}
+
+.hub__node--ops {
+  border-style: dashed;
+}
+
+/* Líneas punteadas desde cada nodo hacia Mariano */
+.hub__map::before {
+  content: '';
+  position: absolute;
+  inset: 12% 14%;
+  border: 2px dashed rgba(226, 105, 74, 0.35);
+  border-radius: 50%;
+}
+
+.case-body .hub__caption {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--texto-secundario);
+}
+
+/* Frentes con tarjetas que se dan vuelta */
+.fronts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.front {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.front__head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 2px 6px;
+  border-bottom: 3px solid var(--stage, var(--azul-medio));
+}
+
+.front__num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--stage-ink, var(--azul-delta));
+}
+
+.front__head strong {
+  font-size: 1.2rem;
+  color: var(--azul-profundo);
+}
+
+.front__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.front__apoya {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--texto-apagado);
+}
+
+.front .case-chip {
+  font-size: 0.72rem;
+  padding: 3px 9px;
+}
+
+.flip {
+  display: block;
+  width: 100%;
+  min-height: 128px;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  perspective: 900px;
+}
+
+.flip__inner {
+  position: relative;
+  display: grid;
+  min-height: 128px;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flip.is-new .flip__inner {
+  transform: rotateY(180deg);
+}
+
+.flip__face {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  backface-visibility: hidden;
+  font-size: 0.93rem;
+  line-height: 1.45;
+}
+
+.flip__face em {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.flip__face--now {
+  background: var(--blanco);
+  border: 1.5px dashed #E2A08E;
+  color: var(--texto-secundario);
+}
+
+.flip__face--now em {
+  color: #B4432A;
+}
+
+.flip__face--new {
+  transform: rotateY(180deg);
+  background: linear-gradient(150deg, var(--azul-delta), var(--navy));
+  color: var(--blanco);
+  font-weight: 500;
+  box-shadow: 0 14px 30px -18px rgba(21, 101, 192, 0.8);
+}
+
+.flip__face--new em {
+  color: var(--celeste-claro);
+}
+
+.flip:focus-visible {
+  outline: 3px solid var(--celeste-delta);
+  outline-offset: 3px;
+  border-radius: 14px;
+}
+
+@media (max-width: 999px) {
+  .fronts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 599px) {
+  .fronts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Lo que se usa hoy: pastillas en lugar de cajas */
+.tab-panel .ae-changes__col {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.tab-panel .ae-changes ul {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tab-panel .ae-changes li {
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  box-shadow: 0 6px 16px -12px rgba(6, 22, 46, 0.4);
+  font-size: 0.86rem;
+}
+
+.tab-panel .ae-changes li.is-drop {
+  background: #EEF0F3;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+/* Carriles de tecnologías: núcleo → incorporar → más adelante */
+.lanes {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.lanes::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 12px;
+  right: 12px;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(to right, var(--navy), var(--azul-delta), var(--celeste-delta));
+}
+
+.lane {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lane__head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lane__dot {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 8px;
+  border-radius: 50%;
+  background: var(--blanco);
+  border: 6px solid var(--navy);
+  box-shadow: 0 0 0 6px rgba(95, 203, 245, 0.18);
+}
+
+.lane--2 .lane__dot { border-color: var(--azul-delta); }
+.lane--3 .lane__dot { border-color: var(--celeste-delta); }
+
+.lane__head strong {
+  font-size: 1.15rem;
+  color: var(--azul-profundo);
+}
+
+.lane__head small {
+  font-size: 0.85rem;
+  color: var(--texto-apagado);
+}
+
+.lane__items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lane__item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: var(--stage-soft, var(--gris-hielo));
+  border-left: 4px solid var(--navy);
+  font-size: 0.9rem;
+  color: var(--texto-secundario);
+  transition: transform 0.25s ease;
+}
+
+.lane__item:hover {
+  transform: translateY(-3px);
+}
+
+.lane--2 .lane__item { border-left-color: var(--azul-delta); }
+.lane--3 .lane__item { border-left-color: var(--celeste-delta); }
+
+.lane__item b {
+  font-size: 1rem;
+  color: var(--azul-profundo);
+}
+
+@media (max-width: 759px) {
+  .lanes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lanes::before {
+    display: none;
+  }
+}

@@ -305,65 +305,37 @@
         <div class="container">
           <span class="eyebrow">01 · Arquitectura actual</span>
           <h2 class="section-title">Así opera Farriplast hoy</h2>
-          <p class="case-block__lead">El diagnóstico de partida, ordenado en las cuatro capas con las que se mira cómo funciona una empresa por dentro.</p>
-          <aside class="ae-explainer" aria-labelledby="ae-explainer-title">
-            <h3 class="ae-explainer__title" id="ae-explainer-title">¿Qué es la arquitectura empresarial?</h3>
-            <dl class="ae-explainer__layers">
-              <div><dt>Negocio</dt><dd>Los procesos y quién hace cada tarea.</dd></div>
-              <div><dt>Datos</dt><dd>Qué información se registra y dónde queda.</dd></div>
-              <div><dt>Aplicaciones</dt><dd>Las herramientas que se usan para registrar y consultar.</dd></div>
-              <div><dt>Tecnología</dt><dd>Los equipos y la conexión que sostienen todo lo anterior.</dd></div>
-            </dl>
-          </aside>
-          <div class="case-grid case-grid--4 stagger">
-            <article class="case-card">
-              <div class="case-card__head">
-                <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
-                <span class="case-card__tag">Negocio</span>
-              </div>
-              <h3 class="case-card__title">Todo pasa por una sola persona</h3>
-              <ul class="case-checks">
-                <li>Procesos estratégicos, operativos y de apoyo sin dividir tareas</li>
-                <li>Compra, venta y cobranza concentradas en Mariano</li>
-                <li>5 operarios en planta, sin backup si Mariano falta</li>
-              </ul>
-            </article>
-            <article class="case-card">
-              <div class="case-card__head">
-                <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
-                <span class="case-card__tag">Datos</span>
-              </div>
-              <h3 class="case-card__title">Un cuaderno como única fuente</h3>
-              <ul class="case-checks">
-                <li>Registro en papel, volcado después a WhatsApp</li>
-                <li>Cuentas corrientes actualizadas a mano una vez por semana</li>
-                <li>Un solo cliente con control de stock en Excel</li>
-              </ul>
-            </article>
-            <article class="case-card">
-              <div class="case-card__head">
-                <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
-                <span class="case-card__tag">Aplicaciones</span>
-              </div>
-              <h3 class="case-card__title">Herramientas personales, no de gestión</h3>
-              <ul class="case-checks">
-                <li>WhatsApp, Excel, cámara y home banking</li>
-                <li>Sin ERP, CRM ni sistema de facturación</li>
-                <li>Cobertura parcial, solo en ventas y cobranzas</li>
-              </ul>
-            </article>
-            <article class="case-card">
-              <div class="case-card__head">
-                <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></span>
-                <span class="case-card__tag">Tecnología</span>
-              </div>
-              <h3 class="case-card__title">Sin infraestructura corporativa</h3>
-              <ul class="case-checks">
-                <li>El celular de Mariano concentra la operación</li>
-                <li>Maquinaria sin control digital ni sensores</li>
-                <li>Sin servidores, red ni soporte técnico contratado</li>
-              </ul>
-            </article>
+          <p class="case-block__lead">Una empresa se puede mirar en cuatro capas, de lo que hace a lo que la sostiene. Así está cada una en Farriplast.</p>
+          <div class="layers layers--now stagger">
+            <div class="layer layer--1" style="--i:0">
+              <div class="layer__name"><span class="layer__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span><span><b>Negocio</b><small>Los procesos y quién hace cada tarea</small></span></div>
+              <div class="layer__state"><strong>Todo pasa por una sola persona</strong><ul><li>Procesos estratégicos, operativos y de apoyo sin dividir tareas</li><li>Compra, venta y cobranza concentradas en Mariano</li><li>5 operarios en planta, sin backup si Mariano falta</li></ul></div>
+            </div>
+            <div class="layer layer--2" style="--i:1">
+              <div class="layer__name"><span class="layer__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span><span><b>Datos</b><small>Qué información se registra y dónde queda</small></span></div>
+              <div class="layer__state"><strong>Un cuaderno como única fuente</strong><ul><li>Registro en papel, volcado después a WhatsApp</li><li>Cuentas corrientes actualizadas a mano una vez por semana</li><li>Un solo cliente con control de stock en Excel</li></ul></div>
+            </div>
+            <div class="layer layer--3" style="--i:2">
+              <div class="layer__name"><span class="layer__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span><b>Aplicaciones</b><small>Las herramientas que se usan para registrar y consultar</small></span></div>
+              <div class="layer__state"><strong>Herramientas personales, no de gestión</strong><ul><li>WhatsApp, Excel, cámara y home banking</li><li>Sin ERP, CRM ni sistema de facturación</li><li>Cobertura parcial, solo en ventas y cobranzas</li></ul></div>
+            </div>
+            <div class="layer layer--4" style="--i:3">
+              <div class="layer__name"><span class="layer__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></span><span><b>Tecnología</b><small>Los equipos y la conexión que sostienen todo</small></span></div>
+              <div class="layer__state"><strong>Sin infraestructura corporativa</strong><ul><li>El celular de Mariano concentra la operación</li><li>Maquinaria sin control digital ni sensores</li><li>Sin servidores, red ni soporte técnico contratado</li></ul></div>
+            </div>
+          </div>
+          <div class="hub" aria-label="Todo pasa por Mariano">
+            <p class="hub__title">El cuello de botella</p>
+            <div class="hub__map">
+              <span class="hub__center">Mariano</span>
+              <span class="hub__node" style="--k:0">Compras</span>
+              <span class="hub__node" style="--k:1">Ventas</span>
+              <span class="hub__node" style="--k:2">Cobranzas</span>
+              <span class="hub__node" style="--k:3">Stock</span>
+              <span class="hub__node" style="--k:4">Proveedores</span>
+              <span class="hub__node hub__node--ops" style="--k:5">5 operarios</span>
+            </div>
+            <p class="hub__caption">Todo lo de gestión pasa por una sola persona, sin backup.</p>
           </div>
         </div>
       </section>
@@ -380,139 +352,61 @@
     <!-- 03 · Visión de Arquitectura Empresarial Destino -->
     <div class="tab-panel" id="panel-arquitectura-destino" data-stage="2" role="tabpanel" aria-labelledby="tab-arquitectura-destino" hidden>
 
-      <!-- 01 · La propuesta -->
+      <!-- 01 · La propuesta: frentes y qué cambia en el día a día -->
       <section class="case-block reveal" id="propuesta">
         <div class="container">
           <span class="eyebrow">01 · La propuesta</span>
           <h2 class="section-title">Mismo negocio, mejor información</h2>
-          <p class="case-block__lead">En dos o tres años Farriplast mantiene su producto y su modelo de negocio. Lo que cambia es cómo registra y usa su información.</p>
-          <div class="case-grid case-grid--2 stagger">
-            <article class="case-card case-card--chips">
-              <div class="case-card__head">
-                <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>
-                <span class="case-card__tag">Frente 1</span>
-              </div>
-              <h3 class="case-card__title">Procesos</h3>
-              <p>Pasar del registro manual y duplicado a un registro único, cargado una sola vez en el lugar y en el momento en que ocurre.</p>
-              <div class="case-chips"><span class="case-chips__label">Apoya:</span><span class="case-chip">Crecimiento comercial</span></div>
-            </article>
-            <article class="case-card case-card--chips">
-              <div class="case-card__head">
-                <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-                <span class="case-card__tag">Frente 2</span>
-              </div>
-              <h3 class="case-card__title">Estructura</h3>
-              <p>Desconcentrar la gestión. Los operarios registran los movimientos de material en planta y Mariano controla desvíos y toma decisiones.</p>
-              <div class="case-chips"><span class="case-chips__label">Apoya:</span><span class="case-chip">Los 4 objetivos</span></div>
-            </article>
-            <article class="case-card case-card--chips">
-              <div class="case-card__head">
-                <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
-                <span class="case-card__tag">Frente 3</span>
-              </div>
-              <h3 class="case-card__title">Servicio</h3>
-              <p>Convertir la trazabilidad en un servicio. El reporte que hoy recibe un solo cliente de fasón se extiende a todos.</p>
-              <div class="case-chips"><span class="case-chips__label">Apoya:</span><span class="case-chip">Relación con los clientes</span><span class="case-chip">Crecimiento comercial</span></div>
-            </article>
-            <article class="case-card case-card--chips">
-              <div class="case-card__head">
-                <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
-                <span class="case-card__tag">Frente 4</span>
-              </div>
-              <h3 class="case-card__title">Crecimiento</h3>
-              <p>Usar la información para crecer. Saber qué materiales, clientes y líneas dejan mejor margen, sumar clientes de molienda y recuperación y evaluar con datos un nuevo galpón.</p>
-              <div class="case-chips"><span class="case-chips__label">Apoya:</span><span class="case-chip">Crecimiento comercial</span><span class="case-chip">Nuevos clientes de molienda y recuperación</span></div>
-            </article>
+          <p class="case-block__lead">En dos o tres años Farriplast mantiene su producto y su modelo de negocio. Lo que cambia es cómo registra y usa su información, en cuatro frentes.</p>
+          <div class="flip-toggle chart-toggle" role="group" aria-label="Ver cómo es hoy o con la propuesta">
+            <button type="button" class="chart-toggle__btn is-on" data-flip="now" aria-pressed="true">Hoy</button>
+            <button type="button" class="chart-toggle__btn" data-flip="new" aria-pressed="false">Con la propuesta</button>
           </div>
+          <div class="fronts" data-fronts>
+            <div class="front">
+              <div class="front__head"><span class="front__num">Frente 1</span><strong>Procesos</strong><span class="front__chips"><span class="front__apoya">Apoya:</span><span class="case-chip">Crecimiento comercial</span></span></div>
+              <button type="button" class="flip" aria-pressed="false"><span class="flip__inner"><span class="flip__face flip__face--now"><em>Hoy</em>Cada operación se anota dos veces: en el cuaderno y en el WhatsApp.</span><span class="flip__face flip__face--new"><em>Con la propuesta</em>Cada operación se registra una sola vez, donde ocurre.</span></span></button><button type="button" class="flip" aria-pressed="false"><span class="flip__inner"><span class="flip__face flip__face--now"><em>Hoy</em>Las cuentas corrientes se arman a mano los lunes.</span><span class="flip__face flip__face--new"><em>Con la propuesta</em>El saldo de cada cliente está disponible en el momento.</span></span></button><button type="button" class="flip" aria-pressed="false"><span class="flip__inner"><span class="flip__face flip__face--now"><em>Hoy</em>El stock se calcula a ojo.</span><span class="flip__face flip__face--new"><em>Con la propuesta</em>El stock se conoce por tipo de material, estado y propiedad.</span></span></button>
+            </div>
+            <div class="front">
+              <div class="front__head"><span class="front__num">Frente 2</span><strong>Estructura</strong><span class="front__chips"><span class="front__apoya">Apoya:</span><span class="case-chip">Los 4 objetivos</span></span></div>
+              <button type="button" class="flip" aria-pressed="false"><span class="flip__inner"><span class="flip__face flip__face--now"><em>Hoy</em>Mariano es el único que compra, vende, cobra y controla el stock.</span><span class="flip__face flip__face--new"><em>Con la propuesta</em>Los operarios registran en planta y Mariano controla desvíos y decide.</span></span></button>
+            </div>
+            <div class="front">
+              <div class="front__head"><span class="front__num">Frente 3</span><strong>Servicio</strong><span class="front__chips"><span class="front__apoya">Apoya:</span><span class="case-chip">Relación con los clientes</span><span class="case-chip">Crecimiento comercial</span></span></div>
+              <button type="button" class="flip" aria-pressed="false"><span class="flip__inner"><span class="flip__face flip__face--now"><em>Hoy</em>El reporte de stock lo recibe un solo cliente de fasón.</span><span class="flip__face flip__face--new"><em>Con la propuesta</em>El reporte se extiende a todos los clientes de fasón.</span></span></button>
+            </div>
+            <div class="front">
+              <div class="front__head"><span class="front__num">Frente 4</span><strong>Crecimiento</strong><span class="front__chips"><span class="front__apoya">Apoya:</span><span class="case-chip">Crecimiento comercial</span><span class="case-chip">Nuevos clientes de molienda y recuperación</span></span></div>
+              <button type="button" class="flip" aria-pressed="false"><span class="flip__inner"><span class="flip__face flip__face--now"><em>Hoy</em>No se sabe qué material, cliente o línea deja mejor margen.</span><span class="flip__face flip__face--new"><em>Con la propuesta</em>Se sabe qué deja mejor margen y el galpón se evalúa con datos.</span></span></button>
+            </div>
+          </div>
+          <p class="chart-hint">Tocá una tarjeta para darla vuelta, o cambiá todas juntas con Hoy / Con la propuesta.</p>
         </div>
       </section>
 
-      <!-- 02 · Antes y después -->
-      <section class="case-block case-block--alt reveal" id="antes-y-despues">
+      <!-- 02 · Arquitectura destino -->
+      <section class="case-block case-block--alt reveal" id="dimensiones-destino">
         <div class="container">
-          <span class="eyebrow">02 · Antes y después</span>
-          <h2 class="section-title">Qué cambia en el día a día</h2>
-          <div class="compare stagger">
-            <div class="compare__labels" aria-hidden="true"><span>Hoy</span><span></span><span>Con la propuesta</span></div>
-            <div class="compare__row">
-              <div class="compare__card compare__card--before"><span class="compare__tag">Hoy</span><span>Cada operación se anota dos veces: en el cuaderno y en el WhatsApp.</span></div>
-              <span class="compare__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-              <div class="compare__card compare__card--after"><span class="compare__tag">Con la propuesta</span><span>Cada operación se registra una sola vez, donde ocurre.</span></div>
-            </div>
-            <div class="compare__row">
-              <div class="compare__card compare__card--before"><span class="compare__tag">Hoy</span><span>Las cuentas corrientes se arman a mano los lunes.</span></div>
-              <span class="compare__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-              <div class="compare__card compare__card--after"><span class="compare__tag">Con la propuesta</span><span>El saldo de cada cliente está disponible en el momento.</span></div>
-            </div>
-            <div class="compare__row">
-              <div class="compare__card compare__card--before"><span class="compare__tag">Hoy</span><span>El stock se calcula a ojo.</span></div>
-              <span class="compare__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-              <div class="compare__card compare__card--after"><span class="compare__tag">Con la propuesta</span><span>El stock se conoce por tipo de material, estado y propiedad.</span></div>
-            </div>
-            <div class="compare__row">
-              <div class="compare__card compare__card--before"><span class="compare__tag">Hoy</span><span>Mariano es el único que compra, vende, cobra y controla el stock.</span></div>
-              <span class="compare__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-              <div class="compare__card compare__card--after"><span class="compare__tag">Con la propuesta</span><span>Los operarios registran en planta y Mariano controla desvíos.</span></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 03 · Arquitectura destino -->
-      <section class="case-block reveal" id="dimensiones-destino">
-        <div class="container">
-          <span class="eyebrow">03 · Arquitectura destino</span>
+          <span class="eyebrow">02 · Arquitectura destino</span>
           <h2 class="section-title">Cómo tendría que funcionar</h2>
-          <p class="case-block__lead">Lo que Farriplast necesita poder hacer en cada una de las cuatro dimensiones de su arquitectura empresarial.</p>
-          <div class="case-grid case-grid--4 stagger">
-            <article class="case-card">
-              <div class="case-card__head">
-                <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
-                <span class="case-card__tag">Negocio</span>
-              </div>
-              <h3 class="case-card__title">Procesos formalizados</h3>
-              <ul class="case-checks">
-                <li>Stock y trazabilidad ordenados</li>
-                <li>Cuentas corrientes y cobranzas al día</li>
-                <li>Control de gestión, costos e indicadores</li>
-              </ul>
-            </article>
-            <article class="case-card">
-              <div class="case-card__head">
-                <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
-                <span class="case-card__tag">Datos</span>
-              </div>
-              <h3 class="case-card__title">Una sola fuente de verdad</h3>
-              <ul class="case-checks">
-                <li>Cada lote seguido desde el ingreso hasta la salida</li>
-                <li>Material propio y de fasón diferenciados</li>
-                <li>WhatsApp solo como canal de comunicación</li>
-              </ul>
-            </article>
-            <article class="case-card">
-              <div class="case-card__head">
-                <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
-                <span class="case-card__tag">Aplicaciones</span>
-              </div>
-              <h3 class="case-card__title">Diez capacidades</h3>
-              <ul class="case-checks">
-                <li>De compras y recepción a tablero de indicadores</li>
-                <li>Remitos que distinguen material propio y fasón</li>
-                <li>Reporte mensual para el cliente de fasón</li>
-              </ul>
-            </article>
-            <article class="case-card">
-              <div class="case-card__head">
-                <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></span>
-                <span class="case-card__tag">Tecnología</span>
-              </div>
-              <h3 class="case-card__title">En la nube y simple de usar</h3>
-              <ul class="case-checks">
-                <li>Desde el celular y desde la computadora</li>
-                <li>Sigue funcionando con conexión intermitente</li>
-                <li>Respaldo automático y perfiles de acceso</li>
-              </ul>
-            </article>
+          <p class="case-block__lead">Las mismas cuatro capas, con lo que Farriplast necesita poder hacer en cada una.</p>
+          <div class="layers layers--dest stagger">
+            <div class="layer layer--1" style="--i:0">
+              <div class="layer__name"><span class="layer__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span><span><b>Negocio</b><small>Los procesos y quién hace cada tarea</small></span></div>
+              <div class="layer__state"><strong>Procesos formalizados</strong><ul><li>Stock y trazabilidad ordenados</li><li>Cuentas corrientes y cobranzas al día</li><li>Control de gestión, costos e indicadores</li></ul></div>
+            </div>
+            <div class="layer layer--2" style="--i:1">
+              <div class="layer__name"><span class="layer__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span><span><b>Datos</b><small>Qué información se registra y dónde queda</small></span></div>
+              <div class="layer__state"><strong>Una sola fuente de verdad</strong><ul><li>Cada lote seguido desde el ingreso hasta la salida</li><li>Material propio y de fasón diferenciados</li><li>WhatsApp solo como canal de comunicación</li></ul></div>
+            </div>
+            <div class="layer layer--3" style="--i:2">
+              <div class="layer__name"><span class="layer__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span><b>Aplicaciones</b><small>Las herramientas que se usan para registrar y consultar</small></span></div>
+              <div class="layer__state"><strong>Diez capacidades</strong><ul><li>De compras y recepción a tablero de indicadores</li><li>Remitos que distinguen material propio y fasón</li><li>Reporte mensual para el cliente de fasón</li></ul></div>
+            </div>
+            <div class="layer layer--4" style="--i:3">
+              <div class="layer__name"><span class="layer__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></span><span><b>Tecnología</b><small>Los equipos y la conexión que sostienen todo</small></span></div>
+              <div class="layer__state"><strong>En la nube y simple de usar</strong><ul><li>Desde el celular y desde la computadora</li><li>Sigue funcionando con conexión intermitente</li><li>Respaldo automático y perfiles de acceso</li></ul></div>
+            </div>
           </div>
           <h3 class="case-block__subtitle">Qué pasa con lo que se usa hoy</h3>
           <ul class="ae-legend" aria-label="Referencias">
@@ -561,43 +455,25 @@
         </div>
       </section>
 
-      <!-- 04 · Tecnologías -->
-      <section class="case-block case-block--alt reveal" id="tecnologias">
+      <!-- 03 · Tecnologías -->
+      <section class="case-block reveal" id="tecnologias">
         <div class="container">
-          <span class="eyebrow">04 · Tecnologías</span>
+          <span class="eyebrow">03 · Tecnologías</span>
           <h2 class="section-title">Las tecnologías que conviene sumar</h2>
-          <p class="case-block__lead">Evaluamos qué tan probadas están y qué tan realistas son para una empresa del tamaño de Farriplast.</p>
-          <div class="case-grid case-grid--3 stagger">
-            <article class="case-card">
-              <span class="case-card__tag">Núcleo</span>
-              <h3 class="case-card__title">Software de gestión en la nube</h3>
-              <p>La única opción viable sin servidores, red ni soporte técnico propio. El proveedor se encarga del resguardo.</p>
-            </article>
-            <article class="case-card">
-              <span class="case-card__tag">Incorporar</span>
-              <h3 class="case-card__title">Facturación electrónica</h3>
-              <p>Es una obligación fiscal y se conecta de forma natural con las ventas.</p>
-            </article>
-            <article class="case-card">
-              <span class="case-card__tag">Incorporar</span>
-              <h3 class="case-card__title">Aplicaciones móviles</h3>
-              <p>El celular ya es la herramienta de trabajo. Permite registrar en planta.</p>
-            </article>
-            <article class="case-card">
-              <span class="case-card__tag">Más adelante</span>
-              <h3 class="case-card__title">Lotes con código QR</h3>
-              <p>Permite seguir cada lote sin sumar trabajo administrativo al operario.</p>
-            </article>
-            <article class="case-card">
-              <span class="case-card__tag">Más adelante</span>
-              <h3 class="case-card__title">Balanza conectada</h3>
-              <p>Evita pasar el peso a mano, hoy una causa habitual de diferencias con los clientes.</p>
-            </article>
-            <article class="case-card">
-              <span class="case-card__tag">Más adelante</span>
-              <h3 class="case-card__title">Tablero de indicadores</h3>
-              <p>Convierte el dato en decisiones. Se suma cuando el registro de base ya funciona.</p>
-            </article>
+          <p class="case-block__lead">Evaluamos qué tan probadas están y qué tan realistas son para una empresa del tamaño de Farriplast. Se suman en este orden.</p>
+          <div class="lanes">
+            <div class="lane lane--1">
+              <div class="lane__head"><span class="lane__dot"></span><strong>Núcleo</strong><small>Desde el inicio</small></div>
+              <ul class="lane__items"><li class="lane__item" style="--i:0"><b>Software de gestión en la nube</b><span>La única opción viable sin servidores, red ni soporte técnico propio. El proveedor se encarga del resguardo.</span></li></ul>
+            </div>
+            <div class="lane lane--2">
+              <div class="lane__head"><span class="lane__dot"></span><strong>Incorporar</strong><small>En las primeras fases</small></div>
+              <ul class="lane__items"><li class="lane__item" style="--i:0"><b>Facturación electrónica</b><span>Es una obligación fiscal y se conecta de forma natural con las ventas.</span></li><li class="lane__item" style="--i:1"><b>Aplicaciones móviles</b><span>El celular ya es la herramienta de trabajo. Permite registrar en planta.</span></li></ul>
+            </div>
+            <div class="lane lane--3">
+              <div class="lane__head"><span class="lane__dot"></span><strong>Más adelante</strong><small>Cuando el registro ya funciona</small></div>
+              <ul class="lane__items"><li class="lane__item" style="--i:0"><b>Lotes con código QR</b><span>Permite seguir cada lote sin sumar trabajo administrativo al operario.</span></li><li class="lane__item" style="--i:1"><b>Balanza conectada</b><span>Evita pasar el peso a mano, hoy una causa habitual de diferencias con los clientes.</span></li><li class="lane__item" style="--i:2"><b>Tablero de indicadores</b><span>Convierte el dato en decisiones. Se suma cuando el registro de base ya funciona.</span></li></ul>
+            </div>
           </div>
         </div>
       </section>
