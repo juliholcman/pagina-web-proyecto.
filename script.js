@@ -521,7 +521,7 @@ function initAssistant() {
    Todo se arma sobre el HTML que ya existe: si este script no corre, la
    página se lee igual (los gráficos quedan con sus valores fijos). */
 function initCaseExtras() {
-  if (!document.querySelector('.case-body')) return;
+  if (!document.querySelector('.case-body')) { initCountUp(); return; }
   const tip = createTip();
   initStageIntros();
   initGlossary(tip);
