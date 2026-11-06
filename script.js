@@ -1047,7 +1047,7 @@ function initPmap() {
     const band = b.closest('.pmap__band');
     const group = band ? band.querySelector('.pmap__label').firstChild.textContent : '';
     detail.classList.remove('is-in'); void detail.offsetWidth; detail.classList.add('is-in');
-    detail.innerHTML = '<span class="pmap__group">Proceso ' + group.toLowerCase() + '</span><strong>' + b.textContent + '</strong><p>' + b.dataset.desc + '</p><i class="pmap__timer"></i>';
+    detail.innerHTML = '<span class="pmap__group">' + ({ 'Estratégicos': 'Proceso estratégico', 'Operativos': 'Proceso operativo', 'Apoyo': 'Proceso de apoyo' }[group.trim()] || '') + '</span><strong>' + b.textContent + '</strong><p>' + b.dataset.desc + '</p><i class="pmap__timer"></i>';
   };
   /* Recorrido automático por los procesos mientras el mapa está a la vista */
   let idx = 2, timer = null, paused = false, resume = null;
