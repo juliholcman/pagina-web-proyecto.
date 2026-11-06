@@ -543,6 +543,7 @@ function initCaseExtras() {
   initPmx();
   initPmap();
   initTryscore();
+  initRiskFlips();
 }
 
 /* Un solo globo de ayuda para glosario y gráficos */
@@ -625,6 +626,7 @@ function initStageIntros() {
 /* Glosario: la primera vez que aparece un término en cada sección queda
    subrayado y, al pasar el mouse o tocarlo, explica qué significa. */
 const GLOSSARY = [
+  ['ISO 9001', 'ISO 9001', 'Norma internacional de gestión de la calidad. Propone ordenar los procesos de una empresa en tres grupos: estratégicos (los que marcan el rumbo), operativos (los que generan lo que se vende) y de apoyo (los que sostienen a los demás).'],
   ['arquitectura empresarial', 'Arquitectura empresarial', 'El mapa de cómo funciona la empresa por dentro: sus procesos, su información, sus herramientas y sus equipos.'],
   ['relevamiento', 'Relevamiento', 'La etapa en la que entrevistamos y observamos para entender cómo se trabaja hoy.'],
   ['scrap', 'Scrap', 'Descartes y sobrantes de plástico que dejan las fábricas y se pueden volver a usar.'],
@@ -1042,10 +1044,25 @@ function initPmap() {
   const detail = box.querySelector('.pmap__detail');
   const show = (b) => {
     btns.forEach((x) => x.classList.toggle('is-on', x.textContent === b.textContent));
-    detail.innerHTML = '<strong>' + b.textContent + '</strong><p>' + b.dataset.desc + '</p>';
+    const band = b.closest('.pmap__band');
+    const group = band ? band.querySelector('.pmap__label').firstChild.textContent : '';
+    detail.classList.remove('is-in'); void detail.offsetWidth; detail.classList.add('is-in');
+    detail.innerHTML = '<span class="pmap__group">' + ({ 'Estratégicos': 'Proceso estratégico', 'Operativos': 'Proceso operativo', 'Apoyo': 'Proceso de apoyo' }[group.trim()] || '') + '</span><strong>' + b.textContent + '</strong><p>' + b.dataset.desc + '</p><i class="pmap__timer"></i>';
   };
-  btns.forEach((b) => { b.addEventListener('click', () => show(b)); b.addEventListener('mouseenter', () => show(b)); });
-  show(btns[2]);
+  /* Recorrido automático por los procesos mientras el mapa está a la vista */
+  let idx = 2, timer = null, paused = false, resume = null;
+  const next = () => { if (paused) return; idx = (idx + 1) % btns.length; show(btns[idx]); };
+  const start = () => { clearInterval(timer); timer = setInterval(next, 3200); };
+  const stop = () => clearInterval(timer);
+  const pause = (b) => {
+    paused = true; idx = btns.indexOf(b); show(b);
+    clearTimeout(resume); resume = setTimeout(() => { paused = false; }, 9000);
+  };
+  btns.forEach((b) => { b.addEventListener('click', () => pause(b)); b.addEventListener('mouseenter', () => pause(b)); });
+  show(btns[idx]);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? start() : stop())), { threshold: 0.3 }).observe(box);
+  }
 }
 
 /* Cómo se puntúa: el ejemplo cambia según la calificación elegida */
@@ -1067,4 +1084,22 @@ function initTryscore() {
   };
   btns.forEach((b) => b.addEventListener('click', () => set(b)));
   set(btns.find((b) => b.getAttribute('aria-pressed') === 'true') || btns[0]);
+}
+
+/* Riesgos: las tarjetas se dan vuelta solas, una tras otra, y también al tocarlas */
+function initRiskFlips() {
+  const box = document.querySelector('[data-rflips]');
+  if (!box) return;
+  const cards = Array.from(box.querySelectorAll('.rflip'));
+  const set = (c, on) => { c.classList.toggle('is-new', on); c.setAttribute('aria-pressed', String(on)); };
+  cards.forEach((c) => c.addEventListener('click', () => set(c, !c.classList.contains('is-new'))));
+  let timers = [];
+  const clear = () => { timers.forEach(clearTimeout); timers = []; };
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((es) => es.forEach((e) => {
+      clear();
+      if (!e.isIntersecting) { cards.forEach((c) => set(c, false)); return; }
+      cards.forEach((c, i) => timers.push(setTimeout(() => set(c, true), 1400 + i * 700)));
+    }), { threshold: 0.35 }).observe(box);
+  }
 }

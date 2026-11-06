@@ -8737,3 +8737,169 @@ section {
 .case-body .tryscore__txt { margin: 0; font-weight: 700; color: var(--azul-delta); }
 
 @media (max-width: 759px) { .tryscore { grid-template-columns: minmax(0, 1fr); } }
+
+/* Mapa de procesos con formato de mapa (ISO 9001) */
+.pmap-head { margin-bottom: 16px; }
+.pmap-head .case-block__subtitle { margin-bottom: 6px; }
+.case-body .pmap-head p { margin: 0; max-width: 760px; color: var(--texto-secundario); }
+
+.pmap-frame {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 56px;
+  gap: 12px;
+  align-items: stretch;
+  padding: 18px;
+  border: 2px solid #C9D8E8;
+  border-radius: 24px;
+  background: #F6F9FC;
+  margin-bottom: 40px;
+}
+
+.pmap-frame .pmap { margin-bottom: 0; position: relative; }
+
+.pmap-io {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--celeste-delta), var(--azul-delta));
+  color: #fff;
+}
+
+.pmap-io span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pmap-io--out { background: linear-gradient(180deg, var(--azul-delta), var(--navy)); }
+.pmap-io--out span { transform: none; }
+
+.pmap-io::after {
+  content: '';
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 12px solid var(--azul-delta);
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+
+.pmap-io--out::after { display: none; }
+.pmap-frame .pmap__band--op { position: relative; }
+.pmap-frame .pmap__band--op::after {
+  content: '';
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 12px solid var(--navy);
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+
+.pmap__label small { display: block; margin-top: 4px; font-size: 0.72rem; letter-spacing: 0; text-transform: none; font-weight: 500; color: var(--texto-apagado); }
+
+/* Flechas entre bandas: lo estratégico guía y el apoyo sostiene */
+.pmap-frame .pmap__band--op::before,
+.pmap-frame .pmap__band--apo::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -12px;
+  width: 3px;
+  height: 12px;
+  background: #9CC3E8;
+}
+
+.pmap-frame .pmap__band--apo { position: relative; }
+
+@media (max-width: 759px) {
+  .pmap-frame { grid-template-columns: minmax(0, 1fr); }
+  .pmap-io { padding: 10px; }
+  .pmap-io span, .pmap-io--out span { writing-mode: horizontal-tb; transform: none; }
+  .pmap-io::after { right: 50%; top: auto; bottom: -12px; transform: translateX(50%) rotate(90deg); }
+  .pmap-frame .pmap__band--op::after { display: none; }
+}
+
+/* ===== Mapa de procesos: más vivo ===== */
+.pmap__group { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800; color: var(--celeste-delta); }
+.pmap__detail { position: relative; overflow: hidden; }
+.pmap__detail.is-in { animation: pmap-in 0.45s cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes pmap-in { from { opacity: 0; transform: translateY(10px); } }
+
+.pmap__timer { position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: var(--celeste-delta); transform-origin: left; animation: pmap-timer 3.2s linear; }
+@keyframes pmap-timer { from { transform: scaleX(0); } }
+
+.pmap__p.is-on { animation: pmap-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 0 0 4px rgba(95, 203, 245, 0.35); }
+@keyframes pmap-pop { 50% { transform: scale(1.08); } }
+
+/* El material recorre la cadena de valor */
+.pmap__chev { position: relative; }
+.pmap__chev::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.35), 0 0 14px #5FCBF5;
+  animation: pmap-travel 4.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  pointer-events: none;
+}
+.pmap__line:nth-child(2) .pmap__chev::after { animation-delay: 2.2s; }
+@keyframes pmap-travel {
+  0% { left: 0; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { left: calc(100% - 12px); opacity: 0; }
+}
+
+/* Entrada y salida que laten */
+.pmap-io { animation: pmap-glow 2.6s ease-in-out infinite; }
+.pmap-io--out { animation-delay: 1.3s; }
+@keyframes pmap-glow { 50% { box-shadow: 0 0 0 6px rgba(95, 203, 245, 0.25); } }
+
+/* Conectores entre bandas con flujo */
+.pmap-frame .pmap__band--op::before,
+.pmap-frame .pmap__band--apo::before {
+  background: repeating-linear-gradient(180deg, var(--azul-medio) 0 3px, transparent 3px 6px);
+  background-size: 3px 12px;
+  animation: pmap-dash 0.8s linear infinite;
+}
+@keyframes pmap-dash { to { background-position: 0 12px; } }
+
+/* ===== Riesgos: tarjetas que se dan vuelta ===== */
+.rflips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.rflip, .rflip .flip__inner { min-height: 230px; }
+.rflip .flip__face { gap: 8px; padding: 20px; }
+.rflip .flip__face strong { font-size: 1.1rem; line-height: 1.25; }
+.rflip .flip__face--now { background: #fff; border: 2px solid #F0C9BD; color: var(--texto-secundario); }
+.rflip .flip__face--now strong { color: var(--azul-profundo); }
+.rflip .flip__face--new strong { color: #fff; }
+.rflip .flip__face--new span { color: rgba(255, 255, 255, 0.92); }
+.rflip__icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; background: #FCEDE7; color: #B4432A; }
+.rflip__icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.rothers { display: flex; flex-direction: column; gap: 10px; margin-top: 26px; }
+.rothers__title { font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800; color: var(--azul-delta); }
+.rothers__list { display: flex; flex-wrap: wrap; gap: 8px; }
+.rothers__chip { padding: 8px 14px; border-radius: 999px; background: #fff; border: 1px solid #DCE7F2; font-size: 0.88rem; color: var(--azul-profundo); cursor: help; transition: transform 0.2s ease, border-color 0.2s ease; }
+.rothers__chip:hover, .rothers__chip:focus { transform: translateY(-2px); border-color: var(--azul-medio); outline: none; }
+
+.js-reveal-ready .rothers.replay .rothers__chip { opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease, transform 0.4s ease; transition-delay: calc(0.4s + var(--i) * 0.08s); }
+.js-reveal-ready .rothers.replay.is-visible .rothers__chip { opacity: 1; transform: none; }
+
+@media (max-width: 999px) { .rflips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 599px) { .rflips { grid-template-columns: minmax(0, 1fr); } }
+
+/* Sin el punto que recorre las líneas del mapa */
+.pmap__chev::after { content: none; }
