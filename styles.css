@@ -8737,3 +8737,92 @@ section {
 .case-body .tryscore__txt { margin: 0; font-weight: 700; color: var(--azul-delta); }
 
 @media (max-width: 759px) { .tryscore { grid-template-columns: minmax(0, 1fr); } }
+
+/* Mapa de procesos con formato de mapa (ISO 9001) */
+.pmap-head { margin-bottom: 16px; }
+.pmap-head .case-block__subtitle { margin-bottom: 6px; }
+.case-body .pmap-head p { margin: 0; max-width: 760px; color: var(--texto-secundario); }
+
+.pmap-frame {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 56px;
+  gap: 12px;
+  align-items: stretch;
+  padding: 18px;
+  border: 2px solid #C9D8E8;
+  border-radius: 24px;
+  background: #F6F9FC;
+  margin-bottom: 40px;
+}
+
+.pmap-frame .pmap { margin-bottom: 0; position: relative; }
+
+.pmap-io {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--celeste-delta), var(--azul-delta));
+  color: #fff;
+}
+
+.pmap-io span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pmap-io--out { background: linear-gradient(180deg, var(--azul-delta), var(--navy)); }
+.pmap-io--out span { transform: none; }
+
+.pmap-io::after {
+  content: '';
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 12px solid var(--azul-delta);
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+
+.pmap-io--out::after { display: none; }
+.pmap-frame .pmap__band--op { position: relative; }
+.pmap-frame .pmap__band--op::after {
+  content: '';
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 12px solid var(--navy);
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+
+.pmap__label small { display: block; margin-top: 4px; font-size: 0.72rem; letter-spacing: 0; text-transform: none; font-weight: 500; color: var(--texto-apagado); }
+
+/* Flechas entre bandas: lo estratégico guía y el apoyo sostiene */
+.pmap-frame .pmap__band--op::before,
+.pmap-frame .pmap__band--apo::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -12px;
+  width: 3px;
+  height: 12px;
+  background: #9CC3E8;
+}
+
+.pmap-frame .pmap__band--apo { position: relative; }
+
+@media (max-width: 759px) {
+  .pmap-frame { grid-template-columns: minmax(0, 1fr); }
+  .pmap-io { padding: 10px; }
+  .pmap-io span, .pmap-io--out span { writing-mode: horizontal-tb; transform: none; }
+  .pmap-io::after { right: 50%; top: auto; bottom: -12px; transform: translateX(50%) rotate(90deg); }
+  .pmap-frame .pmap__band--op::after { display: none; }
+}

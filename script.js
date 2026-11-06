@@ -625,6 +625,7 @@ function initStageIntros() {
 /* Glosario: la primera vez que aparece un término en cada sección queda
    subrayado y, al pasar el mouse o tocarlo, explica qué significa. */
 const GLOSSARY = [
+  ['ISO 9001', 'ISO 9001', 'Norma internacional de gestión de la calidad. Propone ordenar los procesos de una empresa en tres grupos: estratégicos (los que marcan el rumbo), operativos (los que generan lo que se vende) y de apoyo (los que sostienen a los demás).'],
   ['arquitectura empresarial', 'Arquitectura empresarial', 'El mapa de cómo funciona la empresa por dentro: sus procesos, su información, sus herramientas y sus equipos.'],
   ['relevamiento', 'Relevamiento', 'La etapa en la que entrevistamos y observamos para entender cómo se trabaja hoy.'],
   ['scrap', 'Scrap', 'Descartes y sobrantes de plástico que dejan las fábricas y se pueden volver a usar.'],
