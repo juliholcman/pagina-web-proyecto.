@@ -8900,3 +8900,6 @@ section {
 
 @media (max-width: 999px) { .rflips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 599px) { .rflips { grid-template-columns: minmax(0, 1fr); } }
+
+/* Sin el punto que recorre las líneas del mapa */
+.pmap__chev::after { content: none; }
