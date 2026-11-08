@@ -1019,20 +1019,39 @@ function initAspx(box, data) {
     'Si es fácil de usar y funciona en la nube, desde el celular y con perfiles de acceso.',
     'Cuánto cuesta a tres años: la puesta en marcha y la cuota.'
   ];
+  /* Puntos de cada categoría, redondeados para que sumen el peso del aspecto */
+  const cells = [[8, 7, 5], [16, 10, 9], [11, 8, 6], [8, 12]];
   const segs = Array.from(box.querySelectorAll('.aspx__seg'));
   const detail = box.querySelector('.aspx__detail');
+  const waffle = box.querySelector('.aspx__waffle');
+  let html = '', n = 0;
+  cells.forEach((cats, ai) => cats.forEach((c, ci) => {
+    for (let k = 0; k < c; k++) html += '<i class="a' + (ai + 1) + '" data-a="' + ai + '" data-c="' + ci + '" style="--n:' + (n++) + '"></i>';
+  }));
+  waffle.innerHTML = html;
+  const squares = Array.from(waffle.children);
+  const light = (ai, ci) => squares.forEach((q) => {
+    const inA = Number(q.dataset.a) === ai;
+    q.classList.toggle('is-off', !inA);
+    q.classList.toggle('is-dim', inA && ci !== undefined && Number(q.dataset.c) !== ci);
+  });
   const render = (i) => {
     const a = data[i];
     segs.forEach((s, k) => { s.setAttribute('aria-selected', String(k === i)); s.classList.toggle('is-on', k === i); });
     detail.dataset.a = String(i + 1);
+    light(i);
     detail.innerHTML =
       '<div class="aspx__top"><span class="aspx__big">' + a.w + '<small>de 100 puntos</small></span><div><strong>' + a.name + '</strong><p>' + what[i] + '</p></div></div>' +
       '<div class="aspx__cats">' + a.cats.map(([cn, cp, items], k) =>
-        '<div class="aspx__cat" style="--i:' + k + ';--p:' + cp + '"><div class="aspx__cathead"><b>' + cp + '%</b><span>' + cn + '</span></div>' +
-        '<span class="aspx__catbar"><i></i></span>' +
-        '<ul>' + items.map(([n]) => '<li>' + n + '</li>').join('') + '</ul></div>').join('') + '</div>';
+        '<div class="aspx__cat" data-c="' + k + '" style="--i:' + k + ';--p:' + cp + '"><div class="aspx__cathead"><b>' + cells[i][k] + '<small> pts</small></b><span>' + cn + '</span></div>' +
+        '<ul>' + items.map(([nm]) => '<li>' + nm + '</li>').join('') + '</ul></div>').join('') + '</div>';
+    detail.querySelectorAll('.aspx__cat').forEach((c) => {
+      c.addEventListener('mouseenter', () => light(i, Number(c.dataset.c)));
+      c.addEventListener('mouseleave', () => light(i));
+    });
   };
   segs.forEach((s, i) => s.addEventListener('click', () => render(i)));
+  squares.forEach((q) => q.addEventListener('click', () => render(Number(q.dataset.a))));
   render(1);
 }
 

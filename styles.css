@@ -8903,3 +8903,29 @@ section {
 
 /* Sin el punto que recorre las líneas del mapa */
 .pmap__chev::after { content: none; }
+
+/* ===== Matriz unificada: cuadraditos + aspectos ===== */
+.aspx__body { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; }
+
+.aspx__waffle { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; padding: 16px; border-radius: 20px; background: #fff; box-shadow: 0 18px 40px -30px rgba(6, 22, 46, 0.6); position: sticky; top: 140px; }
+.aspx__waffle i { aspect-ratio: 1; border-radius: 4px; cursor: pointer; transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease; }
+.aspx__waffle i.a1 { background: #1C8FC9; }
+.aspx__waffle i.a2 { background: #1565C0; }
+.aspx__waffle i.a3 { background: #0B3B8C; }
+.aspx__waffle i.a4 { background: #06162E; }
+.aspx__waffle i.is-off { opacity: 0.14; }
+.aspx__waffle i.is-dim { opacity: 0.4; }
+.aspx__waffle i:not(.is-off):not(.is-dim) { transform: scale(1.04); }
+
+.aspx__cathead b small { font-size: 0.8rem; font-weight: 600; }
+.aspx__cat { transition: box-shadow 0.2s ease, transform 0.2s ease; }
+.aspx__cat:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -16px rgba(6, 22, 46, 0.6); }
+.case-body .aspx__note { margin: 14px 0 0; font-size: 0.9rem; font-weight: 600; color: var(--azul-delta); }
+
+.js-reveal-ready .reveal:not(.is-visible) .aspx__waffle i { transform: scale(0.2); opacity: 0; }
+.js-reveal-ready .reveal.is-visible .aspx__waffle i { transition-delay: calc(var(--n) * 0.008s); }
+
+@media (max-width: 859px) {
+  .aspx__body { grid-template-columns: minmax(0, 1fr); }
+  .aspx__waffle { position: static; max-width: 300px; }
+}
