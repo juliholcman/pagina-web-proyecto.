@@ -8930,3 +8930,11 @@ section {
   .aspx__waffle { position: static; max-width: 300px; }
 }
 .aspx__cathead b { white-space: nowrap; }
+
+/* Tarjetas de niveles con su contenido */
+.level__list { display: flex; flex-direction: column; gap: 4px; margin: 4px 0 0; padding: 0; list-style: none; font-size: 0.86rem; }
+.level__list li { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.18); }
+.level__list li:last-child { border-bottom: none; }
+.level__list em { font-style: normal; font-weight: 800; }
+.level__list--cats li { display: block; font-size: 0.8rem; line-height: 1.35; opacity: 0.95; }
+.level__list--cats b { display: block; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; }
