@@ -8929,3 +8929,4 @@ section {
   .aspx__body { grid-template-columns: minmax(0, 1fr); }
   .aspx__waffle { position: static; max-width: 300px; }
 }
+.aspx__cathead b { white-space: nowrap; }
