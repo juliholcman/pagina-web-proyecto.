@@ -8938,3 +8938,8 @@ section {
 .level__list em { font-style: normal; font-weight: 800; }
 .level__list--cats li { display: block; font-size: 0.8rem; line-height: 1.35; opacity: 0.95; }
 .level__list--cats b { display: block; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; }
+
+/* Peso de cada requisito */
+.aspx__cat ul.aspx__reqs li { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.aspx__reqs li b { flex: 0 0 auto; padding: 1px 8px; border-radius: 999px; background: #fff; color: var(--ac); font-size: 0.8rem; font-weight: 800; }
+.case-body .aspx__legend { margin: 0; font-size: 0.82rem; color: var(--texto-apagado); }

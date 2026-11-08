@@ -1043,8 +1043,9 @@ function initAspx(box, data) {
     detail.innerHTML =
       '<div class="aspx__top"><span class="aspx__big">' + a.w + '<small>de 100 puntos</small></span><div><strong>' + a.name + '</strong><p>' + what[i] + '</p></div></div>' +
       '<div class="aspx__cats">' + a.cats.map(([cn, cp, items], k) =>
-        '<div class="aspx__cat" data-c="' + k + '" style="--i:' + k + ';--p:' + cp + '"><div class="aspx__cathead"><b>' + cells[i][k] + '<small> pts</small></b><span>' + cn + '</span></div>' +
-        '<ul>' + items.map(([nm]) => '<li>' + nm + '</li>').join('') + '</ul></div>').join('') + '</div>';
+        '<div class="aspx__cat" data-c="' + k + '" style="--i:' + k + ';--p:' + cp + '"><div class="aspx__cathead"><b>' + fmt1(a.w * cp / 100) + '<small> pts</small></b><span>' + cn + '</span></div>' +
+        '<ul class="aspx__reqs">' + items.map(([nm, ip]) => '<li><span>' + nm + '</span><b>' + fmt1(a.w * cp * ip / 10000) + '</b></li>').join('') + '</ul></div>').join('') + '</div>' +
+      '<p class="aspx__legend">Los números de cada requisito son los puntos que vale en la nota final, sobre 100.</p>';
     detail.querySelectorAll('.aspx__cat').forEach((c) => {
       c.addEventListener('mouseenter', () => light(i, Number(c.dataset.c)));
       c.addEventListener('mouseleave', () => light(i));
