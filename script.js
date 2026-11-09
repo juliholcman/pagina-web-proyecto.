@@ -544,6 +544,7 @@ function initCaseExtras() {
   initPmap();
   initTryscore();
   initRiskFlips();
+  initDash();
 }
 
 /* Un solo globo de ayuda para glosario y gráficos */
@@ -1123,5 +1124,32 @@ function initRiskFlips() {
       if (!e.isIntersecting) { cards.forEach((c) => set(c, false)); return; }
       cards.forEach((c, i) => timers.push(setTimeout(() => set(c, true), 1400 + i * 700)));
     }), { threshold: 0.35 }).observe(box);
+  }
+}
+
+/* Tablero del retorno: la línea de tiempo enciende los indicadores que ya se pueden medir */
+function initDash() {
+  const box = document.querySelector('[data-dash]');
+  if (!box) return;
+  const btns = Array.from(box.querySelectorAll('[data-m]'));
+  const tiles = Array.from(box.querySelectorAll('.dash__tile'));
+  const fill = box.querySelector('.dash__fill');
+  let idx = 0, timer = null, user = false;
+  const set = (i) => {
+    idx = i;
+    const m = Number(btns[i].dataset.m);
+    btns.forEach((b, k) => b.classList.toggle('is-on', k === i));
+    fill.style.width = (i / (btns.length - 1) * 100) + '%';
+    tiles.forEach((t) => t.classList.toggle('is-live', Number(t.dataset.from) <= m));
+  };
+  btns.forEach((b, i) => b.addEventListener('click', () => { user = true; clearInterval(timer); set(i); }));
+  set(0);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((es) => es.forEach((e) => {
+      clearInterval(timer);
+      if (!e.isIntersecting) { if (!user) set(0); return; }
+      if (user) return;
+      timer = setInterval(() => set((idx + 1) % btns.length), 2200);
+    }), { threshold: 0.3 }).observe(box);
   }
 }

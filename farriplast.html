@@ -1020,39 +1020,28 @@
         <div class="container">
           <span class="eyebrow">04 · Retorno</span>
           <h2 class="section-title">Cómo vamos a medir el retorno</h2>
-          <p class="case-block__lead">Todavía no se puede cuantificar el beneficio. Por eso definimos los indicadores que van a mostrar si el proyecto funciona.</p>
-          <div class="case-grid case-grid--3 stagger">
-            <article class="case-card">
-              <span class="case-card__tag">Tiempo</span>
-              <h3 class="case-card__title">Gestión de Mariano</h3>
-              <p>Horas semanales que dedica a cuentas corrientes y entregas, antes y después del sistema. Hoy son unas 18 horas por semana.</p>
-            </article>
-            <article class="case-card">
-              <span class="case-card__tag">Clientes · 18 meses</span>
-              <h3 class="case-card__title">Retención y satisfacción</h3>
-              <p>Retención de 85% o más y satisfacción de 90% o más.</p>
-            </article>
-            <article class="case-card">
-              <span class="case-card__tag">Crecimiento · 24 meses</span>
-              <h3 class="case-card__title">Más volumen</h3>
-              <p>20% más de volumen, desde 70 toneladas por mes. Se mide en kilos entregados.</p>
-            </article>
-            <article class="case-card">
-              <span class="case-card__tag">Galpón · 12 meses</span>
-              <h3 class="case-card__title">Decisión con datos</h3>
-              <p>Que Mariano cuente con la información de ocupación, rotación y margen para decidir. La decisión es suya y depende también del contexto del país.</p>
-            </article>
-            <article class="case-card">
-              <span class="case-card__tag">Reputación · 12 meses</span>
-              <h3 class="case-card__title">Entregas y rechazos</h3>
-              <p>Entregas a tiempo de 95% o más y rechazos de menos de 2%. La línea de base se fija con los primeros meses de registro.</p>
-            </article>
-            <article class="case-card">
-              <span class="case-card__tag">Costos</span>
-              <h3 class="case-card__title">Margen por kilo</h3>
-              <p>Margen por kilo y por tipo de material, para orientar compras, ventas y capacidad.</p>
-            </article>
+          <p class="ret-lead">Así va a ver Mariano el retorno en el tablero del sistema. Cada indicador tiene su meta y el momento en que se empieza a medir.</p>
+          <div class="dash" data-dash>
+            <div class="dash__chrome" aria-hidden="true"><i></i><i></i><i></i><span>Tablero de Farriplast</span></div>
+            <div class="dash__time" role="group" aria-label="Momento del proyecto">
+              <span class="dash__track"><span class="dash__fill"></span></span>
+              <button type="button" data-m="0" class="is-on">Hoy</button>
+              <button type="button" data-m="12">Mes 12</button>
+              <button type="button" data-m="18">Mes 18</button>
+              <button type="button" data-m="24">Mes 24</button>
+            </div>
+            <div class="dash__grid">
+              <article class="dash__tile" data-from="0" style="--i:0"><div class="dash__head"><span class="dash__tag">Tiempo</span><span class="dash__when">Desde hoy</span></div><strong>Horas de gestión de Mariano</strong><div class="dash__body"><span class="dash__big">18 h</span><span class="dash__sub">por semana hoy, en cuentas corrientes y entregas</span></div><span class="dash__foot">Se mide antes y después del sistema</span></article>
+              <article class="dash__tile" data-from="7" style="--i:1"><div class="dash__head"><span class="dash__tag">Costos</span><span class="dash__when">Mes 7</span></div><strong>Margen por kilo</strong><div class="dash__body"><div class="dash__mini"><i style="--h:55"></i><i style="--h:80"></i><i style="--h:40"></i><i style="--h:65"></i></div><span class="dash__sub">por tipo de material, desde la fase 2</span></div><span class="dash__foot">Orienta compras, ventas y capacidad</span></article>
+              <article class="dash__tile" data-from="12" style="--i:2"><div class="dash__head"><span class="dash__tag">Reputación</span><span class="dash__when">Mes 12</span></div><strong>Entregas a tiempo</strong><div class="dash__body"><svg class="dash__gauge" viewBox="0 0 120 70" aria-hidden="true"><path d="M10 62 A50 50 0 0 1 110 62" fill="none" stroke="#E3EBF4" stroke-width="12" stroke-linecap="round"/><path class="dash__arc" d="M10 62 A50 50 0 0 1 110 62" fill="none" stroke-width="12" stroke-linecap="round" pathLength="100" style="--v:95"/></svg><span class="dash__big">95%</span></div><span class="dash__foot">Meta: 95% o más</span></article>
+              <article class="dash__tile" data-from="12" style="--i:3"><div class="dash__head"><span class="dash__tag">Reputación</span><span class="dash__when">Mes 12</span></div><strong>Rechazos</strong><div class="dash__body"><svg class="dash__gauge" viewBox="0 0 120 70" aria-hidden="true"><path d="M10 62 A50 50 0 0 1 110 62" fill="none" stroke="#E3EBF4" stroke-width="12" stroke-linecap="round"/><path class="dash__arc" d="M10 62 A50 50 0 0 1 110 62" fill="none" stroke-width="12" stroke-linecap="round" pathLength="100" style="--v:2"/></svg><span class="dash__big">2%</span></div><span class="dash__foot">Meta: menos de 2%</span></article>
+              <article class="dash__tile" data-from="12" style="--i:4"><div class="dash__head"><span class="dash__tag">Galpón</span><span class="dash__when">Mes 12</span></div><strong>Decisión con datos</strong><div class="dash__body"><span class="dash__chip">Ocupación · Rotación · Margen</span><span class="dash__sub">La decisión es de Mariano y depende también del contexto del país</span></div><span class="dash__foot">Información lista al mes 12</span></article>
+              <article class="dash__tile" data-from="18" style="--i:5"><div class="dash__head"><span class="dash__tag">Clientes</span><span class="dash__when">Mes 18</span></div><strong>Retención y satisfacción</strong><div class="dash__body"><svg class="dash__gauge" viewBox="0 0 120 70" aria-hidden="true"><path d="M10 62 A50 50 0 0 1 110 62" fill="none" stroke="#E3EBF4" stroke-width="12" stroke-linecap="round"/><path class="dash__arc" d="M10 62 A50 50 0 0 1 110 62" fill="none" stroke-width="12" stroke-linecap="round" pathLength="100" style="--v:85"/></svg><span class="dash__big">85% · 90%</span></div><span class="dash__foot">Meta: retención 85% y satisfacción 90% o más</span></article>
+              <article class="dash__tile" data-from="24" style="--i:6"><div class="dash__head"><span class="dash__tag">Crecimiento</span><span class="dash__when">Mes 24</span></div><strong>Volumen por mes</strong><div class="dash__body"><div class="dash__vol"><span style="--v:70"><b>70 t</b>hoy</span><span style="--v:84"><b>84 t</b>meta</span></div></div><span class="dash__foot">Meta: 20% más, en kilos entregados</span></article>
+            </div>
           </div>
+          <p class="case-block__note">Son metas: el tablero va a mostrar el valor real cuando haya registros. La línea de base de entregas y rechazos se fija con los primeros meses.</p>
+        </div>
         </div>
       </section>
 
