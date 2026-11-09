@@ -8943,3 +8943,12 @@ section {
 .aspx__cat ul.aspx__reqs li { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
 .aspx__reqs li b { flex: 0 0 auto; padding: 1px 8px; border-radius: 999px; background: #fff; color: var(--ac); font-size: 0.8rem; font-weight: 800; }
 .case-body .aspx__legend { margin: 0; font-size: 0.82rem; color: var(--texto-apagado); }
+
+/* De qué se compone el requisito del ejemplo */
+.tryscore__path { display: flex; flex-wrap: wrap; align-items: stretch; gap: 6px; margin: 6px 0 4px; padding: 0; list-style: none; }
+.tryscore__path li { position: relative; display: flex; flex-direction: column; gap: 2px; padding: 8px 22px 8px 12px; border-radius: 12px; background: #fff; border: 1px solid #DCE7F2; font-size: 0.8rem; color: var(--texto-secundario); max-width: 190px; }
+.tryscore__path li b { font-size: 1.05rem; color: var(--azul-delta); }
+.tryscore__path li:nth-child(2) b { color: var(--azul-medio); }
+.tryscore__path li:nth-child(3) { background: var(--navy); border-color: var(--navy); color: rgba(255, 255, 255, 0.9); }
+.tryscore__path li:nth-child(3) b { color: var(--celeste-delta); }
+.tryscore__path li:not(:last-child)::after { content: '›'; position: absolute; right: 7px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: var(--azul-medio); }
