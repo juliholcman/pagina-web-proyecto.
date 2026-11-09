@@ -889,12 +889,14 @@ function initCountUp() {
   if (!els.length || !('IntersectionObserver' in window)) return;
   const io = new IntersectionObserver((es) => es.forEach((e) => {
     const el = e.target, end = Number(el.dataset.count), suf = el.dataset.suffix || '';
+    const dec = Number(el.dataset.decimals || 0);
+    const show = (v) => (dec ? v.toFixed(dec).replace('.', ',') : String(Math.round(v))) + suf;
     const from = end > 1000 ? end - 30 : 0;
-    if (!e.isIntersecting) { el.textContent = from + suf; return; }
+    if (!e.isIntersecting) { el.textContent = show(from); return; }
     const t0 = performance.now(), dur = 1100;
     const step = (t) => {
-      const p = Math.min(1, (t - t0) / dur), v = Math.round(from + (end - from) * (1 - Math.pow(1 - p, 3)));
-      el.textContent = v + suf;
+      const p = Math.min(1, (t - t0) / dur), v = from + (end - from) * (1 - Math.pow(1 - p, 3));
+      el.textContent = show(v);
       if (p < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -1019,20 +1021,40 @@ function initAspx(box, data) {
     'Si es fácil de usar y funciona en la nube, desde el celular y con perfiles de acceso.',
     'Cuánto cuesta a tres años: la puesta en marcha y la cuota.'
   ];
+  /* Puntos de cada categoría, redondeados para que sumen el peso del aspecto */
+  const cells = [[8, 7, 5], [16, 10, 9], [11, 8, 6], [8, 12]];
   const segs = Array.from(box.querySelectorAll('.aspx__seg'));
   const detail = box.querySelector('.aspx__detail');
+  const waffle = box.querySelector('.aspx__waffle');
+  let html = '', n = 0;
+  cells.forEach((cats, ai) => cats.forEach((c, ci) => {
+    for (let k = 0; k < c; k++) html += '<i class="a' + (ai + 1) + '" data-a="' + ai + '" data-c="' + ci + '" style="--n:' + (n++) + '"></i>';
+  }));
+  waffle.innerHTML = html;
+  const squares = Array.from(waffle.children);
+  const light = (ai, ci) => squares.forEach((q) => {
+    const inA = Number(q.dataset.a) === ai;
+    q.classList.toggle('is-off', !inA);
+    q.classList.toggle('is-dim', inA && ci !== undefined && Number(q.dataset.c) !== ci);
+  });
   const render = (i) => {
     const a = data[i];
     segs.forEach((s, k) => { s.setAttribute('aria-selected', String(k === i)); s.classList.toggle('is-on', k === i); });
     detail.dataset.a = String(i + 1);
+    light(i);
     detail.innerHTML =
       '<div class="aspx__top"><span class="aspx__big">' + a.w + '<small>de 100 puntos</small></span><div><strong>' + a.name + '</strong><p>' + what[i] + '</p></div></div>' +
       '<div class="aspx__cats">' + a.cats.map(([cn, cp, items], k) =>
-        '<div class="aspx__cat" style="--i:' + k + ';--p:' + cp + '"><div class="aspx__cathead"><b>' + cp + '%</b><span>' + cn + '</span></div>' +
-        '<span class="aspx__catbar"><i></i></span>' +
-        '<ul>' + items.map(([n]) => '<li>' + n + '</li>').join('') + '</ul></div>').join('') + '</div>';
+        '<div class="aspx__cat" data-c="' + k + '" style="--i:' + k + ';--p:' + cp + '"><div class="aspx__cathead"><b>' + fmt1(a.w * cp / 100) + '<small> pts</small></b><span>' + cn + '</span></div>' +
+        '<ul class="aspx__reqs">' + items.map(([nm, ip]) => '<li><span>' + nm + '</span><b>' + fmt1(a.w * cp * ip / 10000) + '</b></li>').join('') + '</ul></div>').join('') + '</div>' +
+      '<p class="aspx__legend">Los números de cada requisito son los puntos que vale en la nota final, sobre 100.</p>';
+    detail.querySelectorAll('.aspx__cat').forEach((c) => {
+      c.addEventListener('mouseenter', () => light(i, Number(c.dataset.c)));
+      c.addEventListener('mouseleave', () => light(i));
+    });
   };
   segs.forEach((s, i) => s.addEventListener('click', () => render(i)));
+  squares.forEach((q) => q.addEventListener('click', () => render(Number(q.dataset.a))));
   render(1);
 }
 
