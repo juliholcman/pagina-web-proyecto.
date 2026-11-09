@@ -9027,3 +9027,11 @@ section {
   .stackt__seg b { font-size: 0.7rem; }
   .stackt__legend { margin-left: 0; }
 }
+
+/* Por qué gana Odoo */
+.whywin { display: flex; align-items: center; gap: 22px; padding: 20px 24px; border-radius: 22px; background: linear-gradient(120deg, var(--azul-delta), var(--navy)); color: #fff; box-shadow: 0 20px 40px -26px rgba(21, 101, 192, 0.9); }
+.whywin__big { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; font-size: 2.6rem; font-weight: 800; line-height: 1; color: var(--celeste-delta); }
+.whywin__big small { margin-top: 6px; font-size: 0.75rem; font-weight: 600; color: rgba(255, 255, 255, 0.85); }
+.whywin strong { font-size: 1.2rem; }
+.case-body .whywin p { margin: 4px 0 0; color: rgba(255, 255, 255, 0.9); }
+@media (max-width: 599px) { .whywin { flex-direction: column; align-items: flex-start; } }
