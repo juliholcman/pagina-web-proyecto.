@@ -9274,3 +9274,54 @@ section {
   .pins__row { grid-template-columns: minmax(0, 1fr); }
   .pin, .pin:nth-child(3) { grid-column: 1; grid-row: auto; }
 }
+
+/* ===== 08 · Por qué Odoo: cifras clave ===== */
+.reasons4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.r4 { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 22px 20px; border-radius: 22px; color: #fff; overflow: hidden; background: linear-gradient(160deg, var(--azul-medio), var(--azul-delta)); box-shadow: 0 22px 40px -26px rgba(21, 101, 192, 0.9); }
+.r4:nth-child(2) { background: linear-gradient(160deg, var(--azul-delta), var(--navy)); }
+.r4:nth-child(3) { background: linear-gradient(160deg, var(--navy), var(--azul-profundo)); }
+.r4:nth-child(4) { background: linear-gradient(160deg, #1C8FC9, var(--azul-medio)); }
+.r4::after { content: ''; position: absolute; right: -40px; top: -40px; width: 120px; height: 120px; border-radius: 50%; background: rgba(255, 255, 255, 0.08); }
+.r4__fig { font-size: 2.6rem; font-weight: 800; line-height: 1; color: var(--celeste-delta); }
+.r4__fig small { font-size: 1rem; font-weight: 700; }
+.r4 strong { font-size: 1.1rem; line-height: 1.25; }
+.r4 > span:last-child { font-size: 0.9rem; color: rgba(255, 255, 255, 0.88); }
+.js-reveal-ready .reasons4.replay .r4 { opacity: 0; transform: translateY(26px) scale(0.96); transition: opacity 0.5s ease, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1); transition-delay: calc(var(--i) * 0.15s); }
+.js-reveal-ready .reasons4.replay.is-visible .r4 { opacity: 1; transform: none; }
+.condition { display: flex; align-items: center; gap: 18px; margin-top: 18px; padding: 18px 22px; border-radius: 18px; background: #FFF6E6; border: 2px dashed #E2A13A; }
+.condition__tag { flex: 0 0 auto; padding: 6px 12px; border-radius: 999px; background: #E2A13A; color: #fff; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.case-body .condition p { margin: 0; color: #6B4A12; }
+.condition strong { color: #4A3208; }
+.js-reveal-ready .condition.replay { opacity: 0; transform: translateY(10px); transition: opacity 0.5s ease 0.7s, transform 0.5s ease 0.7s; }
+.js-reveal-ready .condition.replay.is-visible { opacity: 1; transform: none; }
+@media (max-width: 999px) { .reasons4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 599px) { .reasons4 { grid-template-columns: minmax(0, 1fr); } .condition { flex-direction: column; align-items: flex-start; } }
+
+/* Balanza en movimiento */
+.js-reveal-ready .scale-b.replay.is-visible .scale-b__beam,
+.scale-b__beam { animation: beam-sway 3.6s ease-in-out infinite; transition: none; }
+@keyframes beam-sway {
+  0%, 100% { transform: rotate(-9deg); }
+  50% { transform: rotate(-4deg); }
+}
+
+/* ===== 08 · Tres caminos para lo que le falta ===== */
+.paths { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; }
+.path { --pc: var(--azul-delta); border-radius: 22px; background: #fff; overflow: hidden; box-shadow: 0 18px 36px -28px rgba(6, 22, 46, 0.6); }
+.path--proc { --pc: #1C8FC9; }
+.path--acc { --pc: #6B7F99; }
+.path__head { display: flex; align-items: center; gap: 12px; padding: 16px 18px; background: var(--pc); color: #fff; }
+.path__icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: rgba(255, 255, 255, 0.2); }
+.path__icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.path__head strong { display: block; font-size: 1.08rem; }
+.path__head small { font-size: 0.8rem; opacity: 0.85; }
+.path__n { margin-left: auto; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #fff; color: var(--pc); font-size: 1rem; }
+.path ul { display: flex; flex-direction: column; margin: 0; padding: 6px 0; list-style: none; }
+.path li { display: flex; flex-direction: column; gap: 2px; padding: 12px 18px; border-bottom: 1px dashed #E3EBF4; }
+.path li:last-child { border-bottom: none; }
+.path li b { color: var(--azul-profundo); font-size: 0.95rem; }
+.path li span { font-size: 0.88rem; color: var(--texto-secundario); }
+.js-reveal-ready .paths.replay .path { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); transition-delay: calc(var(--i) * 0.18s); }
+.js-reveal-ready .paths.replay .path li { opacity: 0; transform: translateX(-12px); transition: opacity 0.4s ease, transform 0.4s ease; transition-delay: calc(0.4s + var(--i) * 0.18s + var(--j) * 0.08s); }
+.js-reveal-ready .paths.replay.is-visible .path, .js-reveal-ready .paths.replay.is-visible .path li { opacity: 1; transform: none; }
+@media (max-width: 899px) { .paths { grid-template-columns: minmax(0, 1fr); } }
