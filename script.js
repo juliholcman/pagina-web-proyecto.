@@ -890,8 +890,8 @@ function initCountUp() {
   const io = new IntersectionObserver((es) => es.forEach((e) => {
     const el = e.target, end = Number(el.dataset.count), suf = el.dataset.suffix || '';
     const dec = Number(el.dataset.decimals || 0);
-    const show = (v) => (dec ? v.toFixed(dec).replace('.', ',') : String(Math.round(v))) + suf;
-    const from = end > 1000 ? end - 30 : 0;
+    const show = (v) => (dec ? v.toFixed(dec).replace('.', ',') : ('thousands' in el.dataset ? Math.round(v).toLocaleString('es-AR') : String(Math.round(v)))) + suf;
+    const from = end > 1000 && !('thousands' in el.dataset) ? end - 30 : 0;
     if (!e.isIntersecting) { el.textContent = show(from); return; }
     const t0 = performance.now(), dur = 1100;
     const step = (t) => {
