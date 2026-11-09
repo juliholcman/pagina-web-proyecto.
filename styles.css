@@ -9035,3 +9035,29 @@ section {
 .whywin strong { font-size: 1.2rem; }
 .case-body .whywin p { margin: 4px 0 0; color: rgba(255, 255, 255, 0.9); }
 @media (max-width: 599px) { .whywin { flex-direction: column; align-items: flex-start; } }
+
+/* ===== Dónde gana cada uno ===== */
+.wins { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.wins__team { --tc: var(--azul-delta); display: flex; flex-direction: column; gap: 14px; }
+.wins__team--b { --tc: #1C8FC9; }
+.wins__head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 14px 18px; border-radius: 16px; background: var(--tc); color: #fff; }
+.wins__head strong { font-size: 1.35rem; }
+.wins__head span { font-size: 0.85rem; opacity: 0.9; }
+
+.wcard { display: flex; flex-direction: column; gap: 12px; padding: 18px 20px; border-radius: 18px; background: #fff; border-top: 5px solid var(--tc); box-shadow: 0 16px 34px -26px rgba(6, 22, 46, 0.6); }
+.wcard__top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.wcard__asp { font-size: 1.2rem; font-weight: 800; color: var(--azul-profundo); }
+.wcard__asp small { margin-left: 8px; font-size: 0.75rem; font-weight: 600; color: var(--texto-apagado); }
+.wcard__by { padding: 4px 12px; border-radius: 999px; background: color-mix(in srgb, var(--tc) 14%, #fff); color: var(--tc); font-size: 0.8rem; font-weight: 800; }
+.wcard ul { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.wcard li { position: relative; padding-left: 30px; font-size: 0.93rem; color: var(--texto-secundario); line-height: 1.4; }
+.wcard li::before { position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; font-size: 0.75rem; font-weight: 900; }
+.wcard__w::before { content: '✓'; background: var(--tc); color: #fff; }
+.wcard__t::before { content: '='; background: var(--gris-hielo); color: var(--azul-delta); }
+.wcard__l::before { content: '–'; background: #F1F3F6; color: #8A9AB0; }
+.wcard__w { color: var(--azul-profundo); font-weight: 600; }
+
+.js-reveal-ready .wins.replay .wcard { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); transition-delay: calc(0.2s + var(--i) * 0.2s); }
+.js-reveal-ready .wins.replay.is-visible .wcard { opacity: 1; transform: none; }
+
+@media (max-width: 799px) { .wins { grid-template-columns: minmax(0, 1fr); } }
