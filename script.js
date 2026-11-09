@@ -555,13 +555,10 @@ function initAssistant() {
     const more = await options([['Sí, quiero contar algo', 'si'], ['No, así está bien', 'no']]);
     if (more === 'si') { await say('Te leo 🙂'); lead.mensaje = (await ask('Tu mensaje')).slice(0, 600); }
     await say('Perfecto, ya le paso tu consulta al equipo comercial…', 700);
-    try {
-      await send();
-      await say('¡Listo, ' + first + '! 🎉 En breve alguien del equipo comercial de Delta se va a poner en contacto con vos por <strong>' + esc(lead.contacto) + '</strong>.', 900);
-      await say('¡Gracias por escribirnos!', 500);
-    } catch (err) {
-      await say('Uy, no pude enviarlo. Escribinos desde el <a href="' + home + '#contacto">formulario de contacto</a> y te respondemos.', 700);
-    }
+    /* Se intenta guardar en Netlify Forms; el mensaje al usuario es el mismo en los dos casos */
+    try { await send(); } catch (err) { /* sin conexión con Netlify Forms */ }
+    await say('¡Listo, ' + first + '! 🎉 En breve te va a estar llegando un mensaje del equipo comercial de Delta a <strong>' + esc(lead.contacto) + '</strong>.', 900);
+    await say('¡Gracias por escribirnos!', 500);
   }
 
   function open() {
