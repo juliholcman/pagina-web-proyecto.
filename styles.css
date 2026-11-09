@@ -9131,3 +9131,4 @@ section {
   .cost__legend { margin-left: 0; }
   .cost-takeaways { grid-template-columns: minmax(0, 1fr); }
 }
+.cost__row { grid-template-columns: 90px minmax(0, 1fr) 120px; } .cost__total { white-space: nowrap; }
