@@ -9352,3 +9352,21 @@ section {
 .contract.is-visible .contract__box::after { transform: rotate(45deg) scale(1); }
 .contract.is-visible .contract__line path { stroke-dashoffset: 0; }
 @media (max-width: 599px) { .contract__paper { padding: 22px 18px; transform: none; } }
+
+/* ===== Asistente con conversación ===== */
+.assistant__avatar { position: relative; flex: 0 0 auto; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(140deg, var(--celeste-delta), var(--azul-delta)); color: #fff; font-weight: 800; font-size: 1.1rem; }
+.assistant__avatar i { position: absolute; right: 0; bottom: 0; width: 11px; height: 11px; border-radius: 50%; background: #3CCB7F; border: 2px solid var(--navy); }
+.assistant__bubble--me { align-self: flex-end; border-radius: 14px 14px 4px 14px; background: var(--azul-delta); border-color: var(--azul-delta); color: #fff; animation: pmx-in 0.25s ease; }
+.assistant__bubble { animation: pmx-in 0.25s ease; }
+.assistant__typing { display: flex; gap: 4px; padding: 12px 14px; }
+.assistant__typing i { width: 7px; height: 7px; border-radius: 50%; background: #9CC3E8; animation: typing 1s ease-in-out infinite; }
+.assistant__typing i:nth-child(2) { animation-delay: 0.15s; }
+.assistant__typing i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes typing { 0%, 60%, 100% { transform: translateY(0); opacity: 0.5; } 30% { transform: translateY(-4px); opacity: 1; } }
+.assistant__bubble a { color: var(--azul-delta); font-weight: 700; }
+.assistant__input { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--borde); background: #fff; }
+.assistant__input[hidden] { display: none; }
+.assistant__input input { flex: 1; min-width: 0; padding: 10px 14px; border: 1.5px solid #C9D8E8; border-radius: 999px; font: inherit; font-size: 0.92rem; }
+.assistant__input input:focus { outline: none; border-color: var(--azul-medio); }
+.assistant__input button { display: grid; place-items: center; width: 40px; height: 40px; border: none; border-radius: 50%; background: var(--azul-delta); color: #fff; cursor: pointer; }
+.assistant__input button svg { width: 20px; height: 20px; }

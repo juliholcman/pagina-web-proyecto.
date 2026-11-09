@@ -336,6 +336,11 @@
           3) Mantener method="POST".
         El endpoint/ID definitivo debe completarse antes de publicar el sitio.
       -->
+      <!-- Formulario oculto: Netlify lo detecta y recibe las consultas del asistente (script.js) -->
+      <form name="asistente" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="form-name" value="asistente">
+        <input name="bot-field"><input name="tema"><input name="nombre"><input name="contacto"><textarea name="mensaje"></textarea><input name="pagina">
+      </form>
       <div class="contact-form-panel reveal">
         <form
           class="contact-form"

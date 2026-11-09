@@ -454,32 +454,21 @@ function initAssistant() {
     if (tema && isHome) prefill(tema.slice(0, 120));
   } catch (e) { /* sin parámetros: nada que completar */ }
 
+  const BOT = 'Delfi';
   const wrap = document.createElement('div');
   wrap.className = 'assistant';
   wrap.innerHTML =
     '<div class="assistant__panel" id="assistant-panel" role="dialog" aria-modal="false" aria-labelledby="assistant-title" hidden>' +
       '<div class="assistant__head">' +
-        '<img src="delta-simbolo.png" alt="" class="assistant__logo">' +
-        '<div><p class="assistant__title" id="assistant-title">Asistente Delta</p>' +
-        '<p class="assistant__sub">Te conectamos con el equipo comercial</p></div>' +
+        '<span class="assistant__avatar" aria-hidden="true">D<i></i></span>' +
+        '<div><p class="assistant__title" id="assistant-title">' + BOT + ', de Delta</p>' +
+        '<p class="assistant__sub">En línea · te conecto con el equipo comercial</p></div>' +
         '<button type="button" class="assistant__close" aria-label="Cerrar el asistente">' +
           '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>' +
         '</button>' +
       '</div>' +
-      '<div class="assistant__body">' +
-        '<p class="assistant__bubble">¡Hola! ¿En qué te podemos ayudar?</p>' +
-        '<div class="assistant__options" data-view="main">' +
-          '<button type="button" class="assistant__opt assistant__opt--main" data-action="comercial">Hablar con el equipo comercial</button>' +
-          '<button type="button" class="assistant__opt" data-action="servicios">Consultar por un servicio</button>' +
-          '<a class="assistant__opt" href="/casos-exito">Ver casos de éxito</a>' +
-          '<a class="assistant__opt" href="' + home + '#quienes-somos">Conocer a Delta</a>' +
-        '</div>' +
-        '<div class="assistant__options" data-view="servicios" hidden>' +
-          '<p class="assistant__bubble assistant__bubble--small">¿Cuál te interesa?</p>' +
-          SERVICES.map((sv) => '<button type="button" class="assistant__opt" data-service="' + sv + '">' + sv + '</button>').join('') +
-          '<button type="button" class="assistant__back" data-action="volver">← Volver</button>' +
-        '</div>' +
-      '</div>' +
+      '<div class="assistant__body" aria-live="polite"></div>' +
+      '<form class="assistant__input" hidden autocomplete="on"><input type="text" aria-label="Tu respuesta"><button type="submit" aria-label="Enviar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form>' +
     '</div>' +
     '<button type="button" class="assistant__toggle" id="assistant-toggle" aria-expanded="false" aria-controls="assistant-panel">' +
       '<span class="assistant__dot" aria-hidden="true"></span>' +
@@ -490,16 +479,96 @@ function initAssistant() {
 
   const panel = wrap.querySelector('.assistant__panel');
   const toggle = wrap.querySelector('.assistant__toggle');
-  const views = wrap.querySelectorAll('[data-view]');
-  const show = (name) => views.forEach((v) => { v.hidden = v.dataset.view !== name; });
+  const body = wrap.querySelector('.assistant__body');
+  const form = wrap.querySelector('.assistant__input');
+  const input = form.querySelector('input');
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const lead = { tema: '', nombre: '', contacto: '', mensaje: '' };
+  let step = null, started = false;
+
+  const scroll = () => { body.scrollTop = body.scrollHeight; };
+  const say = (html, delay = 650) => new Promise((res) => {
+    const t = document.createElement('p');
+    t.className = 'assistant__bubble assistant__typing';
+    t.innerHTML = '<i></i><i></i><i></i>';
+    body.appendChild(t); scroll();
+    setTimeout(() => { t.classList.remove('assistant__typing'); t.innerHTML = html; scroll(); res(); }, delay);
+  });
+  const me = (text) => { const p = document.createElement('p'); p.className = 'assistant__bubble assistant__bubble--me'; p.textContent = text; body.appendChild(p); scroll(); };
+  const options = (list) => {
+    const box = document.createElement('div');
+    box.className = 'assistant__options';
+    box.innerHTML = list.map(([label, val, href]) => href
+      ? '<a class="assistant__opt" href="' + href + '">' + label + '</a>'
+      : '<button type="button" class="assistant__opt" data-val="' + esc(val) + '">' + label + '</button>').join('');
+    body.appendChild(box); scroll();
+    return new Promise((res) => box.addEventListener('click', (e) => {
+      const b = e.target.closest('button'); if (!b) return;
+      box.remove(); me(b.textContent); res(b.dataset.val);
+    }));
+  };
+  const ask = (placeholder, type = 'text') => new Promise((res) => {
+    form.hidden = false; input.type = type; input.value = ''; input.placeholder = placeholder;
+    setTimeout(() => input.focus(), 50);
+    step = (v) => { form.hidden = true; step = null; res(v); };
+  });
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const v = input.value.trim();
+    if (!v || !step) return;
+    if (input.dataset.check === 'contact' && !(/\S+@\S+\.\S+/.test(v) || v.replace(/\D/g, '').length >= 8)) {
+      input.setCustomValidity('Escribí un mail o un teléfono'); input.reportValidity(); input.setCustomValidity(''); return;
+    }
+    me(v); step(v);
+  });
+
+  /* Envía la consulta a Netlify Forms (formulario "asistente" declarado en index.html) */
+  const send = () => fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ 'form-name': 'asistente', pagina: location.pathname, ...lead }).toString()
+  }).then((r) => { if (!r.ok) throw new Error(r.status); });
+
+  async function chat() {
+    started = true;
+    await say('¡Hola! Soy <strong>' + BOT + '</strong>, del equipo de Delta 👋', 500);
+    await say('¿En qué te puedo ayudar?', 600);
+    const pick = await options([
+      ['Hablar con el equipo comercial', 'una consulta comercial'],
+      ['Consultar por un servicio', 'servicio'],
+      ['Ver casos de éxito', '', '/casos-exito'],
+      ['Conocer a Delta', '', home + '#quienes-somos']
+    ]);
+    lead.tema = pick;
+    if (pick === 'servicio') {
+      await say('¿Cuál te interesa?');
+      lead.tema = 'el servicio de ' + await options(SERVICES.map((sv) => [sv, sv]));
+    }
+    await say('¡Genial! ¿Cómo te llamás?');
+    lead.nombre = (await ask('Tu nombre')).slice(0, 80);
+    const first = esc(lead.nombre.split(' ')[0]);
+    await say('Un gusto, ' + first + '. ¿Me dejás un mail o un teléfono para que te contactemos?');
+    input.dataset.check = 'contact';
+    lead.contacto = (await ask('Mail o teléfono')).slice(0, 120);
+    input.dataset.check = '';
+    await say('¿Querés contarnos algo más sobre tu consulta?');
+    const more = await options([['Sí, quiero contar algo', 'si'], ['No, así está bien', 'no']]);
+    if (more === 'si') { await say('Te leo 🙂'); lead.mensaje = (await ask('Tu mensaje')).slice(0, 600); }
+    await say('Perfecto, ya le paso tu consulta al equipo comercial…', 700);
+    try {
+      await send();
+      await say('¡Listo, ' + first + '! 🎉 En breve alguien del equipo comercial de Delta se va a poner en contacto con vos por <strong>' + esc(lead.contacto) + '</strong>.', 900);
+      await say('¡Gracias por escribirnos!', 500);
+    } catch (err) {
+      await say('Uy, no pude enviarlo. Escribinos desde el <a href="' + home + '#contacto">formulario de contacto</a> y te respondemos.', 700);
+    }
+  }
 
   function open() {
     panel.hidden = false;
     toggle.setAttribute('aria-expanded', 'true');
     wrap.classList.add('is-open');
-    show('main');
-    const first = panel.querySelector('.assistant__opt');
-    if (first) first.focus();
+    if (!started) chat();
   }
   function close(returnFocus) {
     panel.hidden = true;
@@ -511,16 +580,8 @@ function initAssistant() {
   toggle.addEventListener('click', () => (panel.hidden ? open() : close(true)));
   wrap.querySelector('.assistant__close').addEventListener('click', () => close(true));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !panel.hidden) close(true); });
-  document.addEventListener('click', (e) => { if (!panel.hidden && !wrap.contains(e.target)) close(false); });
-
-  panel.addEventListener('click', (e) => {
-    const b = e.target.closest('button');
-    if (!b) return;
-    if (b.dataset.action === 'comercial') goContact('una consulta comercial');
-    else if (b.dataset.action === 'servicios') { show('servicios'); const f = panel.querySelector('[data-service]'); if (f) f.focus(); }
-    else if (b.dataset.action === 'volver') show('main');
-    else if (b.dataset.service) goContact('el servicio de ' + b.dataset.service);
-  });
+  document.addEventListener('click', (e) => { if (!panel.hidden && !wrap.contains(e.target) && document.contains(e.target)) close(false); });
+  void goContact;
 }
 
 /* ---------- Caso Farriplast: glosario, gráficos interactivos y encabezado por etapa ----------
