@@ -889,12 +889,14 @@ function initCountUp() {
   if (!els.length || !('IntersectionObserver' in window)) return;
   const io = new IntersectionObserver((es) => es.forEach((e) => {
     const el = e.target, end = Number(el.dataset.count), suf = el.dataset.suffix || '';
+    const dec = Number(el.dataset.decimals || 0);
+    const show = (v) => (dec ? v.toFixed(dec).replace('.', ',') : String(Math.round(v))) + suf;
     const from = end > 1000 ? end - 30 : 0;
-    if (!e.isIntersecting) { el.textContent = from + suf; return; }
+    if (!e.isIntersecting) { el.textContent = show(from); return; }
     const t0 = performance.now(), dur = 1100;
     const step = (t) => {
-      const p = Math.min(1, (t - t0) / dur), v = Math.round(from + (end - from) * (1 - Math.pow(1 - p, 3)));
-      el.textContent = v + suf;
+      const p = Math.min(1, (t - t0) / dur), v = from + (end - from) * (1 - Math.pow(1 - p, 3));
+      el.textContent = show(v);
       if (p < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
