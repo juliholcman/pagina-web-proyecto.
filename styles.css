@@ -9618,3 +9618,30 @@ section {
 @media (max-width: 599px) { .ai-cost { flex-direction: column; align-items: flex-start; } }
 .kq__ruler span:last-child { transform: translateX(-100%); border-left: 0; border-right: 1px dashed #C9DCEF; padding: 0 6px 0 0; }
 @media (max-width: 599px) { .kq { padding: 20px 16px; } .kq__seg { font-size: 0.66rem; overflow: hidden; } .kq__ruler { font-size: 0.66rem; } }
+
+/* 10 · Prototipo dentro de una notebook (abre el prototipo real) */
+.proto { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+.laptop { position: relative; display: block; padding: 34px 0 40px; color: inherit; text-decoration: none; }
+.laptop__screen { position: relative; display: block; border: 10px solid var(--azul-profundo); border-bottom-width: 14px; border-radius: 18px 18px 6px 6px; background: var(--azul-profundo); overflow: hidden; box-shadow: 0 30px 60px -30px rgba(6, 22, 46, 0.7); transition: transform 0.5s ease, box-shadow 0.5s ease; transform: perspective(1400px) rotateX(4deg); transform-origin: 50% 100%; }
+.laptop__bar { display: flex; align-items: center; gap: 5px; padding: 6px 10px; background: #1B2B44; color: rgba(255, 255, 255, 0.7); font-size: 0.7rem; }
+.laptop__bar i { width: 7px; height: 7px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); }
+.laptop__bar span { margin-left: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.laptop__view { position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; background: #fff; }
+.laptop__view img { display: block; width: 100%; height: auto; animation: laptop-scroll 16s ease-in-out infinite; }
+@keyframes laptop-scroll { 0%, 12% { transform: translateY(0); } 45%, 60% { transform: translateY(-47%); } 88%, 100% { transform: translateY(0); } }
+.laptop__base { position: relative; display: block; height: 14px; margin: 0 -6%; border-radius: 0 0 16px 16px; background: linear-gradient(180deg, #C9D6E6, #93A6BF); }
+.laptop__base::before { content: ''; position: absolute; left: 50%; top: 0; width: 18%; height: 6px; margin-left: -9%; border-radius: 0 0 8px 8px; background: #8296B0; }
+.laptop__live { position: absolute; top: 0; right: 0; z-index: 2; display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: var(--azul-delta); color: #fff; font-size: 0.82rem; font-weight: 700; box-shadow: 0 10px 22px -10px rgba(21, 101, 192, 0.9); transition: background 0.3s ease, transform 0.3s ease; }
+.laptop__live i { width: 8px; height: 8px; border-radius: 50%; background: var(--celeste-delta); box-shadow: 0 0 0 0 rgba(95, 203, 245, 0.7); animation: live-pulse 1.8s ease-out infinite; }
+@keyframes live-pulse { 0% { box-shadow: 0 0 0 0 rgba(95, 203, 245, 0.7); } 100% { box-shadow: 0 0 0 10px rgba(95, 203, 245, 0); } }
+.laptop__chat { position: absolute; left: -18px; bottom: 0; z-index: 2; display: flex; flex-direction: column; gap: 8px; width: min(320px, 70%); }
+.laptop__chat .bubble { max-width: 100%; box-shadow: 0 14px 28px -14px rgba(6, 22, 46, 0.6); }
+.laptop__chat .bubble--me { align-self: flex-start; border-radius: 16px 16px 16px 4px; }
+.laptop:hover .laptop__screen, .laptop:focus-visible .laptop__screen { transform: perspective(1400px) rotateX(0deg) translateY(-6px); box-shadow: 0 40px 70px -30px rgba(21, 101, 192, 0.75); }
+.laptop:hover .laptop__live, .laptop:focus-visible .laptop__live { background: var(--navy); transform: translateY(-2px); }
+.laptop:focus-visible { outline: 3px solid var(--celeste-delta); outline-offset: 6px; border-radius: 18px; }
+.js-reveal-ready .laptop.replay .laptop__chat .bubble { opacity: 0; transform: translateY(12px); transition: opacity 0.4s ease, transform 0.4s ease; }
+.js-reveal-ready .laptop.replay.is-visible .laptop__chat .bubble--me { opacity: 1; transform: none; transition-delay: 0.6s; }
+.js-reveal-ready .laptop.replay.is-visible .laptop__chat .bubble--bot { opacity: 1; transform: none; transition-delay: 1.6s; }
+@media (prefers-reduced-motion: reduce) { .laptop__view img, .laptop__live i { animation: none; } }
+@media (max-width: 899px) { .proto { grid-template-columns: minmax(0, 1fr); } .laptop { padding-bottom: 0; } .laptop__chat { position: static; width: auto; margin-top: 18px; } .laptop__chat .bubble--me { align-self: flex-end; border-radius: 16px 16px 4px 16px; } }
