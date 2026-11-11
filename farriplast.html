@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css">
+<noscript><style>.journey__panel{grid-template-rows:1fr;opacity:1;visibility:visible}</style></noscript>
 
 <link rel="icon" type="image/png" href="delta-simbolo.png">
 </head>
@@ -65,59 +66,71 @@
 
       <!--
         Recorrido del caso: las 11 secciones agrupadas en 4 etapas del
-        proyecto, siempre visibles. Numeración, "Próximamente", contador,
+        proyecto, cada una desplegable (de a una). Numeración, "Próximamente", contador,
         flechas y pie de cada sección los arma script.js (initTabs) a partir
         de los botones .tabs__item: para sumar una sección alcanza con un
         botón acá (con data-short) y su panel en .case-body.
       -->
       <div class="case-nav journey" id="case-nav">
         <p class="journey__intro">El recorrido del proyecto, de punta a punta. Elegí una sección para verla.</p>
-        <div class="journey__track" role="tablist" aria-label="Secciones del caso Farriplast">
-          <div class="journey__stage" data-stage="1">
-            <div class="journey__head">
+        <div class="journey__track" role="group" aria-label="Secciones del caso Farriplast">
+          <div class="journey__stage is-open" data-stage="1">
+            <button type="button" class="journey__head" id="journey-head-1" aria-expanded="true" aria-controls="journey-panel-1">
               <span class="journey__num">Bloque 1</span>
               <span class="journey__name">Diagnóstico</span>
               <span class="journey__q">Cómo está hoy</span>
-            </div>
-            <div class="journey__items">
-              <button type="button" class="tabs__item is-active" role="tab" id="tab-relevamiento" aria-selected="true" aria-controls="panel-relevamiento" tabindex="0" data-short="Quién es y qué necesita" data-template="Template 01 · Caso de Negocio y Relevamiento">Quién es Farriplast y qué necesita</button>
-              <button type="button" class="tabs__item" role="tab" id="tab-arquitectura-actual" aria-selected="false" aria-controls="panel-arquitectura-actual" tabindex="-1" data-short="Cómo está organizada hoy" data-template="Template 02 · Arquitectura Empresarial Actual">Cómo está organizada hoy</button>
+              <span class="journey__chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </button>
+            <div class="journey__panel" id="journey-panel-1">
+              <div class="journey__items" role="tablist" aria-orientation="vertical" aria-labelledby="journey-head-1">
+                <button type="button" class="tabs__item is-active" role="tab" id="tab-relevamiento" aria-selected="true" aria-controls="panel-relevamiento" tabindex="0" data-short="Quién es y qué necesita" data-template="Template 01 · Caso de Negocio y Relevamiento">Quién es Farriplast y qué necesita</button>
+                <button type="button" class="tabs__item" role="tab" id="tab-arquitectura-actual" aria-selected="false" aria-controls="panel-arquitectura-actual" tabindex="-1" data-short="Cómo está organizada hoy" data-template="Template 02 · Arquitectura Empresarial Actual">Cómo está organizada hoy</button>
+              </div>
             </div>
           </div>
           <div class="journey__stage" data-stage="2">
-            <div class="journey__head">
+            <button type="button" class="journey__head" id="journey-head-2" aria-expanded="false" aria-controls="journey-panel-2">
               <span class="journey__num">Bloque 2</span>
               <span class="journey__name">Diseño de la solución</span>
               <span class="journey__q">A dónde tiene que llegar</span>
-            </div>
-            <div class="journey__items">
-              <button type="button" class="tabs__item" role="tab" id="tab-arquitectura-destino" aria-selected="false" aria-controls="panel-arquitectura-destino" tabindex="-1" data-short="Cómo debería funcionar" data-template="Template 03 · Visión de Arquitectura Empresarial Destino">Cómo debería funcionar</button>
-              <button type="button" class="tabs__item" role="tab" id="tab-brechas-escenarios" aria-selected="false" aria-controls="panel-brechas-escenarios" tabindex="-1" data-short="Qué cambiar y cómo" data-template="Template 04 · Matriz de Brechas y Análisis de Escenarios">Qué hay que cambiar y cómo hacerlo</button>
+              <span class="journey__chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </button>
+            <div class="journey__panel" id="journey-panel-2">
+              <div class="journey__items" role="tablist" aria-orientation="vertical" aria-labelledby="journey-head-2">
+                <button type="button" class="tabs__item" role="tab" id="tab-arquitectura-destino" aria-selected="false" aria-controls="panel-arquitectura-destino" tabindex="-1" data-short="Cómo debería funcionar" data-template="Template 03 · Visión de Arquitectura Empresarial Destino">Cómo debería funcionar</button>
+                <button type="button" class="tabs__item" role="tab" id="tab-brechas-escenarios" aria-selected="false" aria-controls="panel-brechas-escenarios" tabindex="-1" data-short="Qué cambiar y cómo" data-template="Template 04 · Matriz de Brechas y Análisis de Escenarios">Qué hay que cambiar y cómo hacerlo</button>
+              </div>
             </div>
           </div>
           <div class="journey__stage" data-stage="3">
-            <div class="journey__head">
+            <button type="button" class="journey__head" id="journey-head-3" aria-expanded="false" aria-controls="journey-panel-3">
               <span class="journey__num">Bloque 3</span>
               <span class="journey__name">Selección del proveedor</span>
               <span class="journey__q">Con qué sistema</span>
-            </div>
-            <div class="journey__items">
-              <button type="button" class="tabs__item" role="tab" id="tab-alcance-mercado" aria-selected="false" aria-controls="panel-alcance-mercado" tabindex="-1" data-short="Qué incluye y qué opciones hay" data-template="Template 05 · Alcance y Análisis del Mercado de Soluciones">Qué incluye el proyecto y qué sistemas hay</button>
-              <button type="button" class="tabs__item" role="tab" id="tab-matriz-rfp" aria-selected="false" aria-controls="panel-matriz-rfp" tabindex="-1" data-short="Cómo comparamos" data-template="Template 06 · Matriz RFP">Cómo comparamos a los proveedores</button>
-              <button type="button" class="tabs__item" role="tab" id="tab-cumplimiento-evaluacion" aria-selected="false" aria-controls="panel-cumplimiento-evaluacion" tabindex="-1" data-short="Puntajes y costos" data-template="Template 07 · Comparación de Cumplimiento y Evaluación Económica">Odoo vs. Softland: puntajes y costos</button>
-              <button type="button" class="tabs__item" role="tab" id="tab-propuesta-comercial" aria-selected="false" aria-controls="panel-propuesta-comercial" tabindex="-1" data-short="Nuestra recomendación" data-template="Template 08 · Análisis de la Propuesta Comercial y Conclusiones de la Selección">Nuestra recomendación</button>
+              <span class="journey__chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </button>
+            <div class="journey__panel" id="journey-panel-3">
+              <div class="journey__items" role="tablist" aria-orientation="vertical" aria-labelledby="journey-head-3">
+                <button type="button" class="tabs__item" role="tab" id="tab-alcance-mercado" aria-selected="false" aria-controls="panel-alcance-mercado" tabindex="-1" data-short="Qué incluye y qué opciones hay" data-template="Template 05 · Alcance y Análisis del Mercado de Soluciones">Qué incluye el proyecto y qué sistemas hay</button>
+                <button type="button" class="tabs__item" role="tab" id="tab-matriz-rfp" aria-selected="false" aria-controls="panel-matriz-rfp" tabindex="-1" data-short="Cómo comparamos" data-template="Template 06 · Matriz RFP">Cómo comparamos a los proveedores</button>
+                <button type="button" class="tabs__item" role="tab" id="tab-cumplimiento-evaluacion" aria-selected="false" aria-controls="panel-cumplimiento-evaluacion" tabindex="-1" data-short="Puntajes y costos" data-template="Template 07 · Comparación de Cumplimiento y Evaluación Económica">Odoo vs. Softland: puntajes y costos</button>
+                <button type="button" class="tabs__item" role="tab" id="tab-propuesta-comercial" aria-selected="false" aria-controls="panel-propuesta-comercial" tabindex="-1" data-short="Nuestra recomendación" data-template="Template 08 · Análisis de la Propuesta Comercial y Conclusiones de la Selección">Nuestra recomendación</button>
+              </div>
             </div>
           </div>
           <div class="journey__stage" data-stage="4">
-            <div class="journey__head">
+            <button type="button" class="journey__head" id="journey-head-4" aria-expanded="false" aria-controls="journey-panel-4">
               <span class="journey__num">Bloque 4</span>
               <span class="journey__name">Innovación y cierre</span>
               <span class="journey__q">Qué sigue</span>
-            </div>
-            <div class="journey__items">
-              <button type="button" class="tabs__item" role="tab" id="tab-innovacion-ia" aria-selected="false" aria-controls="panel-innovacion-ia" tabindex="-1" data-short="Una oportunidad con IA" data-template="Template 09 · Oportunidad de innovación con IA Generativa">Una oportunidad con IA</button>
-              <button type="button" class="tabs__item" role="tab" id="tab-diseno-ia" aria-selected="false" aria-controls="panel-diseno-ia" tabindex="-1" data-short="El prototipo con IA" data-template="Template 10 · Diseño y validación de la solución de IA Generativa">El prototipo con IA</button>
-              <button type="button" class="tabs__item" role="tab" id="tab-cierre" aria-selected="false" aria-controls="panel-cierre" tabindex="-1" data-short="Cierre y próximos pasos" data-template="Template 11 · Carpeta de Cierre del Proyecto">Cierre y próximos pasos</button>
+              <span class="journey__chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </button>
+            <div class="journey__panel" id="journey-panel-4">
+              <div class="journey__items" role="tablist" aria-orientation="vertical" aria-labelledby="journey-head-4">
+                <button type="button" class="tabs__item" role="tab" id="tab-innovacion-ia" aria-selected="false" aria-controls="panel-innovacion-ia" tabindex="-1" data-short="Una oportunidad con IA" data-template="Template 09 · Oportunidad de innovación con IA Generativa">Una oportunidad con IA</button>
+                <button type="button" class="tabs__item" role="tab" id="tab-diseno-ia" aria-selected="false" aria-controls="panel-diseno-ia" tabindex="-1" data-short="El prototipo con IA" data-template="Template 10 · Diseño y validación de la solución de IA Generativa">El prototipo con IA</button>
+                <button type="button" class="tabs__item" role="tab" id="tab-cierre" aria-selected="false" aria-controls="panel-cierre" tabindex="-1" data-short="Cierre y próximos pasos" data-template="Template 11 · Carpeta de Cierre del Proyecto">Cierre y próximos pasos</button>
+              </div>
             </div>
           </div>
         </div>
