@@ -229,6 +229,15 @@ section {
   transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* La foto arranca agrandada (scale 1.08) y en tablet ocupa todo el ancho:
+   sin este recorte se pasaba del borde y aparecía scroll horizontal.
+   "clip" recorta sin crear un contenedor de scroll, así el header fijo y
+   las tarjetas apiladas siguen igual. */
+.about,
+.case-study {
+  overflow-x: clip;
+}
+
 .js-reveal-ready .reveal-mask {
   clip-path: inset(0 0 0 100%);
   transform: scale(1.08);
@@ -6947,6 +6956,202 @@ section {
 }
 
 /* =========================================================
+   Recorrido del caso en acordeón
+   Cada bloque se muestra plegado (etiqueta, título y subtítulo) y
+   despliega sus secciones al tocarlo. Se abre uno a la vez. Solo cambia
+   la interfaz: los bloques, secciones, textos y colores son los mismos.
+   ========================================================= */
+.journey__track {
+  align-items: start;
+}
+
+.journey__stage {
+  gap: 0;
+}
+
+/* Encabezado del bloque: ahora es un botón */
+.journey__head {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  margin: 0;
+  padding: 0 48px 0 4px;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  scroll-margin-top: calc(var(--header-height) + 12px);
+}
+
+.journey__head:focus-visible {
+  outline: 3px solid var(--celeste-delta);
+  outline-offset: 6px;
+}
+
+.case-banner--light .journey__head:focus-visible {
+  outline-color: var(--azul-delta);
+}
+
+/* Chevron: se da vuelta cuando el bloque está abierto */
+.journey__chevron {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 34px;
+  height: 34px;
+  margin-top: -17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.10);
+  color: var(--celeste-claro);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease;
+}
+
+.journey__chevron svg {
+  width: 18px;
+  height: 18px;
+}
+
+.case-banner--light .journey__chevron {
+  background: color-mix(in srgb, var(--sc) 14%, #FFFFFF);
+  color: color-mix(in srgb, var(--sc) 70%, #06162E);
+}
+
+.case-banner--light .journey__head:hover .journey__chevron {
+  background: color-mix(in srgb, var(--sc) 24%, #FFFFFF);
+}
+
+.journey__stage.is-open .journey__chevron {
+  transform: rotate(180deg);
+}
+
+/* Zona plegable: la altura y la opacidad se animan juntas, sin saltos.
+   Cerrada, queda fuera del orden de tabulación y de los lectores de pantalla. */
+.journey__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s ease,
+    visibility 0s linear 0.35s;
+}
+
+.journey__stage.is-open .journey__panel {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease 0.05s,
+    visibility 0s;
+}
+
+/* El relleno deja lugar al foco y a las sombras de los botones sin que se
+   recorten. Cerrado vale 0, así el bloque plegado no deja ningún hueco. */
+.journey__items {
+  min-height: 0;
+  overflow: hidden;
+  margin: 0 -6px;
+  padding: 0 6px;
+  transition: padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.journey__stage.is-open .journey__items {
+  padding: 12px 6px 6px;
+}
+
+/* Al cargar la página no se anima: el bloque correcto ya aparece abierto */
+.journey.no-anim .journey__panel,
+.journey.no-anim .journey__items,
+.journey.no-anim .journey__chevron {
+  transition: none;
+}
+
+/* =========================================================
+   Desbordes horizontales (scroll lateral no deseado)
+   ========================================================= */
+/* Mapa de procesos: entre 760 y 859 px el diseño en fila no entra y los chips
+   se salían de la pantalla. Se usa el mismo diseño apilado que en celular. */
+@media (min-width: 760px) and (max-width: 859px) {
+  .pmap__band, .pmap__line { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .pmap__line ol { flex-direction: column; }
+  .pmap__line li, .pmap__line li:first-child { clip-path: none; border-radius: 10px; }
+  .pmap__chev { flex-direction: column; }
+  .pmap__chev .pmap__p, .pmap__chev .pmap__p:first-child { clip-path: none; border-radius: 10px; }
+}
+
+/* Adornos que arrancan fuera de su lugar (las filas de Doblin entran
+   deslizándose desde la derecha) o que sobresalen a propósito (la base de la
+   notebook): se recorta lo que cae fuera de la pantalla, así no hay scroll
+   lateral y lo que se ve queda igual. "clip" no crea un contenedor de scroll. */
+.case-block:has(.doblin),
+.case-block:has(.laptop) {
+  overflow-x: clip;
+}
+
+/* =========================================================
+   Flecha "Volver arriba" al final de cada sección (la agrega script.js)
+   Reutiliza el círculo de flecha del caso: mismos colores y mismo hover.
+   ========================================================= */
+.to-top {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.to-top__btn {
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.to-top__btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Sobre fondo claro */
+.to-top--light .to-top__btn {
+  border-color: var(--borde-medio);
+  color: var(--azul-delta);
+}
+
+.to-top--light .to-top__btn:hover {
+  background: var(--azul-delta);
+  border-color: var(--azul-delta);
+  color: var(--blanco);
+}
+
+.to-top--light .to-top__btn:focus-visible {
+  outline-color: var(--azul-delta);
+}
+
+/* En el caso, la flecha queda dentro del espacio que ya deja el pie de
+   cada sección, para no alargar la página de más. */
+.tab-panel > .to-top {
+  margin-top: -52px;
+  padding-bottom: 28px;
+}
+
+/* En celular va a la izquierda, alineada con el texto: así queda lejos del
+   botón "Asistente" y del cartel de Netlify, que están abajo a la derecha. */
+@media (max-width: 599px) {
+  .to-top {
+    justify-content: flex-start;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* =========================================================
    Farriplast 04 · escenarios, justificación, módulos e impacto
    ========================================================= */
 .case-body .case-points {
@@ -7524,8 +7729,12 @@ section {
   .mods__why, .mods__needs { grid-template-columns: minmax(0, 1fr); }
 }
 
-/* Doblin: los diez aspectos escritos alrededor de la rueda */
-.doblin { grid-template-columns: minmax(0, 520px) minmax(0, 1fr); gap: 36px; }
+/* Doblin: los diez aspectos escritos alrededor de la rueda.
+   Dos columnas solo en pantallas anchas: antes esta regla pisaba a la de una
+   columna (max-width: 859px) y en celular el cuadro se salía del borde. */
+@media (min-width: 860px) {
+  .doblin { grid-template-columns: minmax(0, 520px) minmax(0, 1fr); gap: 36px; }
+}
 
 .doblin__chart {
   padding: 15%;
@@ -9692,4 +9901,28 @@ section {
   .proto { grid-template-columns: minmax(0, 1fr); }
   .phone { width: min(280px, 100%); min-height: 0; margin: 0 auto; }
   .proto__side { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+}
+
+/* =========================================================
+   Movimiento reducido
+   Quien tiene activado "reducir movimiento" en su dispositivo no ve
+   animaciones ni transiciones: el contenido aparece directamente en su
+   estado final. (script.js apaga además el parallax y los carruseles
+   automáticos.)
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
 }

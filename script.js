@@ -6,6 +6,10 @@
    que se achica al bajar.
    ========================================================= */
 
+/* Preferencia del sistema "reducir movimiento": apaga el parallax, los
+   carruseles automáticos y los contadores, y muestra todo sin animar. */
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   setCurrentYear();
@@ -17,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initServiceStack();
   initAssistant();
   initCaseExtras();
+  initBackToTop();
 });
 
 /* ---------- 1. Menú hamburguesa (header) ---------- */
@@ -60,14 +65,16 @@ function setCurrentYear() {
    (?seccion=<id>). */
 function initTabs() {
   const nav = document.getElementById('case-nav');
-  document.querySelectorAll('[role="tablist"]').forEach((tablist) => {
-    const tabs = Array.from(tablist.querySelectorAll('.tabs__item'));
+  /* Los botones de sección están repartidos en un tablist por bloque
+     (acordeón): para el resto de la lógica son un único grupo ordenado. */
+  const allTabs = Array.from(document.querySelectorAll('[role="tablist"] .tabs__item'));
+  [allTabs].forEach((tabs) => {
     if (!tabs.length) return;
 
     const pad = (n) => String(n).padStart(2, '0');
     const panelOf = (t) => document.getElementById(t.getAttribute('aria-controls'));
     const slugOf = (t) => t.id.replace(/^tab-/, '');
-    const reduceMotion = false; // animaciones siempre activas
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const menu = document.getElementById('case-menu');
     const menuBtn = document.getElementById('case-menu-btn');
@@ -133,6 +140,31 @@ function initTabs() {
 
     let current = Math.max(0, tabs.findIndex((t) => t.classList.contains('is-active')));
 
+    /* Bloques desplegables: se abre uno a la vez. Al cambiar de sección se
+       abre el bloque que la contiene; si el usuario cierra o abre otro
+       mientras recorre una misma sección, se respeta su elección. */
+    const journey = document.querySelector('.journey');
+    const stages = Array.from(document.querySelectorAll('.journey__stage'));
+    const setStage = (stage, open) => {
+      stage.classList.toggle('is-open', open);
+      const head = stage.querySelector('.journey__head');
+      if (head) head.setAttribute('aria-expanded', String(open));
+    };
+    const openOnly = (stage) => stages.forEach((st) => setStage(st, st === stage));
+    stages.forEach((stage) => {
+      const head = stage.querySelector('.journey__head');
+      if (!head) return;
+      head.addEventListener('click', () => {
+        const willOpen = !stage.classList.contains('is-open');
+        if (willOpen) openOnly(stage); else setStage(stage, false);
+        /* Si al abrir queda tapado por el encabezado fijo, se lo trae a la vista */
+        if (willOpen) {
+          setTimeout(() => head.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' }), 380);
+        }
+      });
+    });
+    let lastStage = null;
+
     const setMenu = (open, returnFocus) => {
       if (!menu || !menuBtn) return;
       menu.hidden = !open;
@@ -150,7 +182,9 @@ function initTabs() {
         const on = k === i;
         t.classList.toggle('is-active', on);
         t.setAttribute('aria-selected', String(on));
-        t.tabIndex = on ? 0 : -1;
+        /* Con el acordeón, los botones de un bloque abierto se alcanzan con Tab;
+           los de un bloque cerrado quedan ocultos (visibility) y no reciben foco. */
+        t.tabIndex = 0;
         const panel = panelOf(t);
         if (panel) panel.hidden = !on;
       });
@@ -158,6 +192,10 @@ function initTabs() {
       if (titleEl) titleEl.textContent = names[i];
       const stageEl = document.getElementById('case-stage');
       const st = tabs[i].closest('.journey__stage');
+      if (st && st !== lastStage) {
+        openOnly(st);
+        lastStage = st;
+      }
       if (stageEl && st) {
         stageEl.textContent = st.querySelector('.journey__num').textContent + ' · ' + st.querySelector('.journey__name').textContent;
         stageEl.dataset.stage = st.dataset.stage;
@@ -217,7 +255,47 @@ function initTabs() {
     /* Abrir directo la sección indicada en la URL (?seccion=estructura) */
     const wanted = new URLSearchParams(location.search).get('seccion');
     const start = wanted ? tabs.findIndex((t) => slugOf(t) === wanted) : -1;
+    if (journey) journey.classList.add('no-anim');
     activate(start >= 0 ? start : current);
+    if (journey) requestAnimationFrame(() => requestAnimationFrame(() => journey.classList.remove('no-anim')));
+  });
+}
+
+/* ---------- Flecha "Volver arriba" al final de cada sección ----------
+   Se suma al final de cada sección de la página (salvo la primera, que ya
+   está arriba) y de cada sección del caso Farriplast. Lleva al inicio con
+   scroll suave y deja el foco arriba, para quien navega con teclado.
+   Va centrada: así nunca queda debajo del botón "Asistente" ni del cartel
+   de Netlify, que están abajo a la derecha. */
+function initBackToTop() {
+  const main = document.querySelector('main');
+  if (!main) return;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const targets = Array.from(main.querySelectorAll(':scope > section')).slice(1);
+  main.querySelectorAll('.tab-panel').forEach((panel) => targets.push(panel));
+  if (!targets.length) return;
+
+  const goTop = () => {
+    const logo = document.querySelector('.site-header .logo');
+    if (logo) logo.focus({ preventScroll: true });
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  };
+
+  targets.forEach((target) => {
+    const wrap = document.createElement('div');
+    /* Sobre fondo oscuro (hero y bloques de caso) usa los colores claros */
+    wrap.className = 'to-top' + (target.matches('.hero, .case-study') ? '' : ' to-top--light');
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'case-nav__arrow to-top__btn';
+    btn.setAttribute('aria-label', 'Volver arriba');
+    btn.title = 'Volver arriba';
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" ' +
+      'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>';
+    btn.addEventListener('click', goTop);
+    wrap.appendChild(btn);
+    target.appendChild(wrap);
   });
 }
 
@@ -263,7 +341,7 @@ function initScrollReveal() {
   const targets = document.querySelectorAll('.reveal, .stagger, .reveal-stack, .reveal-mask, .replay');
   if (!targets.length) return;
 
-  if (!('IntersectionObserver' in window)) {
+  if (prefersReducedMotion() || !('IntersectionObserver' in window)) {
     targets.forEach((el) => el.classList.add('is-visible'));
     return;
   }
@@ -329,7 +407,7 @@ function initParallax() {
   if (!els.length) return;
 
   const isDesktop = window.matchMedia('(min-width: 768px)').matches;
-  if (!isDesktop || !('IntersectionObserver' in window)) return;
+  if (!isDesktop || prefersReducedMotion() || !('IntersectionObserver' in window)) return;
 
   const visible = new Set();
   const observer = new IntersectionObserver(
@@ -441,7 +519,7 @@ function initAssistant() {
     if (isHome) {
       prefill(tema);
       const contact = document.getElementById('contacto');
-      if (contact) contact.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (contact) contact.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
       const name = document.getElementById('nombre');
       if (name) setTimeout(() => name.focus({ preventScroll: true }), 700);
       close();
@@ -937,7 +1015,7 @@ function initValuesWheel() {
     title.textContent = data[k].dataset.name;
     desc.textContent = data[k].textContent;
   };
-  const start = () => { timer = setInterval(() => show((i + 1) % nodes.length), 3500); };
+  const start = () => { if (prefersReducedMotion()) return; timer = setInterval(() => show((i + 1) % nodes.length), 3500); };
   const stop = () => { clearInterval(timer); timer = null; };
   nodes.forEach((n, k) => n.addEventListener('click', () => { stop(); show(k); }));
   box.addEventListener('mouseenter', stop);
@@ -952,7 +1030,7 @@ function initValuesWheel() {
 /* Números que cuentan hacia arriba al aparecer */
 function initCountUp() {
   const els = document.querySelectorAll('[data-count]');
-  if (!els.length || !('IntersectionObserver' in window)) return;
+  if (!els.length || prefersReducedMotion() || !('IntersectionObserver' in window)) return;
   const io = new IntersectionObserver((es) => es.forEach((e) => {
     const el = e.target, end = Number(el.dataset.count), suf = el.dataset.suffix || '';
     const dec = Number(el.dataset.decimals || 0);
@@ -991,6 +1069,13 @@ function initRoadmap() {
       const d = st.querySelector('.roadmap__dot').getBoundingClientRect();
       return vertical ? d.top + d.height / 2 - lr.top : d.left + d.width / 2 - lr.left;
     });
+    if (prefersReducedMotion()) {
+      stops.forEach((st) => st.classList.add('is-reached'));
+      fill.style.transform = vertical ? 'scaleY(1)' : 'scaleX(1)';
+      runner.style.transform = vertical ? 'translate(-50%, ' + len + 'px)' : 'translate(' + len + 'px, -50%)';
+      box.classList.add('is-done');
+      return;
+    }
     stops.forEach((st) => st.classList.remove('is-reached'));
     const dur = 5200, t0 = performance.now();
     const step = (t) => {
@@ -1140,7 +1225,7 @@ function initPmap() {
   /* Recorrido automático por los procesos mientras el mapa está a la vista */
   let idx = 2, timer = null, paused = false, resume = null;
   const next = () => { if (paused) return; idx = (idx + 1) % btns.length; show(btns[idx]); };
-  const start = () => { clearInterval(timer); timer = setInterval(next, 3200); };
+  const start = () => { clearInterval(timer); if (prefersReducedMotion()) return; timer = setInterval(next, 3200); };
   const stop = () => clearInterval(timer);
   const pause = (b) => {
     paused = true; idx = btns.indexOf(b); show(b);
@@ -1213,7 +1298,7 @@ function initDash() {
     new IntersectionObserver((es) => es.forEach((e) => {
       clearInterval(timer);
       if (!e.isIntersecting) { if (!user) set(0); return; }
-      if (user) return;
+      if (user || prefersReducedMotion()) return;
       timer = setInterval(() => set((idx + 1) % btns.length), 2200);
     }), { threshold: 0.3 }).observe(box);
   }
