@@ -27,12 +27,10 @@
   --texto-apagado: #5C7086; /* texto secundario chico sobre fondo claro: 4.6:1 sobre gris hielo (WCAG AA) */
 
   /* Tipografía */
-  /* Una sola familia en todo el sitio (Inter), como la referencia noxcp.com.
-     --font-mono se mantiene como nombre para no tocar cada regla, pero ahora
-     también es Inter: etiquetas, números y datos usan la misma letra. */
-  --font-principal: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-hero: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Tipografías del Manual de Marca Delta v1 */
+  --font-principal: 'League Spartan', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-hero: 'League Spartan', system-ui, sans-serif;
 
   /* Layout */
   --max-width: 1180px;
