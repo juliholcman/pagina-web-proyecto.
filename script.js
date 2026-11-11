@@ -603,6 +603,7 @@ function initCaseExtras() {
   initTryscore();
   initRiskFlips();
   initDash();
+  initDraftCursor();
 }
 
 /* Un solo globo de ayuda para glosario y gráficos */
@@ -1216,4 +1217,24 @@ function initDash() {
       timer = setInterval(() => set((idx + 1) % btns.length), 2200);
     }), { threshold: 0.3 }).observe(box);
   }
+}
+
+/* Borrador del aviso: el cursor va de la casilla al botón. Las posiciones
+   se calculan sobre el diseño real para que caiga justo encima. */
+function initDraftCursor() {
+  document.querySelectorAll('.draft').forEach((d) => {
+    const box = d.querySelector('.draft__box'), btn = d.querySelector('.draft__btn');
+    if (!box || !btn) return;
+    const place = () => {
+      const r = d.getBoundingClientRect();
+      const at = (el) => { const e = el.getBoundingClientRect(); return [e.left - r.left + e.width / 2 - 6, e.top - r.top + e.height / 2 - 4]; };
+      const [cx, cy] = at(box), [bx, by] = at(btn);
+      d.style.setProperty('--cx', cx + 'px'); d.style.setProperty('--cy', cy + 'px');
+      d.style.setProperty('--bx', bx + 'px'); d.style.setProperty('--by', by + 'px');
+      d.style.setProperty('--sx', (r.width - 40) + 'px'); d.style.setProperty('--sy', (cy + 60) + 'px');
+    };
+    place();
+    window.addEventListener('resize', place);
+    new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) place(); })).observe(d);
+  });
 }
