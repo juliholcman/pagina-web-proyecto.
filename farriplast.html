@@ -1160,7 +1160,109 @@
 
     <!-- 09 · Oportunidad de innovación con IA Generativa -->
     <div class="tab-panel" id="panel-innovacion-ia" data-stage="4" role="tabpanel" aria-labelledby="tab-innovacion-ia" hidden>
-      <p class="tab-panel__empty">Próximamente</p>
+      <!-- 01 · El problema y el caso de uso -->
+      <section class="case-block reveal" id="caso-de-uso-ia">
+        <div class="container">
+          <span class="eyebrow">01 · El problema</span>
+          <h2 class="section-title">Mariano no ve a tiempo qué lotes van a llegar tarde</h2>
+          <p class="case-block__lead">Hoy controla las entregas con el cuaderno, WhatsApp y su memoria. No ve la carga de cada máquina frente a la fecha que pidió cada cliente.</p>
+          <div class="story replay">
+            <span class="story__mark" aria-hidden="true">“</span>
+            <p class="story__line" style="--i:0"><small>Como</small> <mark>Mariano, dueño y quien decide las prioridades de la planta,</mark></p>
+            <p class="story__line" style="--i:1"><small>necesito</small> <mark>saber qué lotes de fasón no llegan a la fecha pedida y avisar al cliente a tiempo,</mark></p>
+            <p class="story__line" style="--i:2"><small>para lograr</small> <mark>entregas a tiempo del 95% o más en 12 meses.</mark></p>
+            <div class="story__facts">
+              <span><b data-count="21">21</b> horas por día opera la planta</span>
+              <span><b data-count="60">60</b> toneladas de fasón por mes</span>
+              <span><b>Sin</b> registro de entregas a tiempo</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 · Cinco ideas, una elegida -->
+      <section class="case-block case-block--alt reveal" id="mapa-oportunidades-ia">
+        <div class="container">
+          <span class="eyebrow">02 · Las oportunidades</span>
+          <h2 class="section-title">Cinco ideas con IA generativa, una elegida</h2>
+          <div class="sieve replay">
+            <div class="sieve__card sieve__card--pick" style="--i:0">
+              <span class="sieve__n">1</span>
+              <strong>Asistente de seguimiento de entregas de fasón</strong>
+              <span class="sieve__why">Apunta directo a la meta de entregas a tiempo y no necesita historial</span>
+              <span class="sieve__tag">Elegida</span>
+            </div>
+            <div class="sieve__card" style="--i:1">
+              <span class="sieve__n">2</span>
+              <strong>Redactor de contratos de fasón</strong>
+              <span class="sieve__why">Se usaría poco y casi no mejora las entregas</span>
+            </div>
+            <div class="sieve__card" style="--i:2">
+              <span class="sieve__n">3</span>
+              <strong>Novedades de planta por voz</strong>
+              <span class="sieve__why">Es la más compleja y pone en riesgo la calidad de los datos del sistema</span>
+            </div>
+            <div class="sieve__card" style="--i:3">
+              <span class="sieve__n">4</span>
+              <strong>Respuestas comerciales a clientes</strong>
+              <span class="sieve__why">Necesita un historial que hoy está disperso en WhatsApp y tiene datos sensibles</span>
+            </div>
+            <div class="sieve__card" style="--i:4">
+              <span class="sieve__n">5</span>
+              <strong>Búsqueda de clientes nuevos</strong>
+              <span class="sieve__why">Depende de fuentes externas, sin relación con el sistema</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 · Por qué IA generativa -->
+      <section class="case-block reveal" id="por-que-ia">
+        <div class="container">
+          <span class="eyebrow">03 · Por qué IA generativa</span>
+          <h2 class="section-title">Las reglas detectan, la IA explica y redacta</h2>
+          <div class="tower-wrap">
+            <div class="tower replay">
+              <div class="tower__block tower__block--top" style="--i:2"><b>Mariano</b><span>Revisa cada aviso y decide si lo envía</span></div>
+              <div class="tower__block tower__block--mid" style="--i:1"><b>Asistente de IA generativa</b><span>Responde lo que Mariano pregunta con sus palabras, explica por qué un lote se atrasa y redacta el aviso al cliente</span></div>
+              <div class="tower__block tower__block--base" style="--i:0"><b>Tablero con reglas</b><span>Compara la fecha pedida con la carga de cada máquina y marca los lotes vencidos, en riesgo o sin datos</span></div>
+            </div>
+            <div class="tower-why replay">
+              <span class="tower-why__title">¿Alcanzaba con algo más simple?</span>
+              <div class="tower-why__row" style="--i:0"><b>Cuaderno y pizarra</b><span>Sigue dependiendo de la memoria de Mariano</span></div>
+              <div class="tower-why__row" style="--i:1"><b>Solo el tablero de Odoo</b><span>Muestra estados, pero no responde preguntas ni redacta avisos</span></div>
+              <div class="tower-why__row" style="--i:2"><b>Machine learning</b><span>Para predecir demoras necesita un historial de entregas que todavía no existe</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 · Cómo llegan los datos -->
+      <section class="case-block case-block--alt reveal" id="datos-odoo-ia">
+        <div class="container">
+          <span class="eyebrow">04 · Los datos</span>
+          <h2 class="section-title">Una descarga diaria desde Odoo, sin cambiar de plan</h2>
+          <p class="case-block__lead">El asistente no tiene una base de datos propia: lee los lotes, kilos, máquinas y fechas que Samuel ya carga en Odoo.</p>
+          <div class="pipe replay">
+            <div class="pipe__row">
+              <div class="pipe__node" style="--i:0"><span class="pipe__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M9 12h6M12 9v6"/></svg></span><b>Odoo</b><small>Samuel exporta los lotes en proceso</small></div>
+              <span class="pipe__link" style="--i:0" aria-hidden="true"></span>
+              <div class="pipe__node" style="--i:1"><span class="pipe__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 11h7M9 15h7"/></svg></span><b>Excel</b><small>Siempre las mismas columnas</small></div>
+              <span class="pipe__link" style="--i:1" aria-hidden="true"></span>
+              <div class="pipe__node" style="--i:2"><span class="pipe__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 15h16M10 4v16"/></svg></span><b>Hoja de Google</b><small>Reemplaza la del día anterior</small></div>
+              <span class="pipe__link" style="--i:2" aria-hidden="true"></span>
+              <div class="pipe__node pipe__node--end" style="--i:3"><span class="pipe__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg></span><b>Tablero</b><small>Muestra la fecha de la última carga</small></div>
+            </div>
+            <div class="pipe__alt">
+              <span class="pipe__alt-tag">Para más adelante</span>
+              <p><b>Conexión automática por API</b> Datos al día sin pasos manuales, pero exige el plan Custom: unos USD 418 más en tres años.</p>
+            </div>
+          </div>
+          <p class="case-block__note">Lo que anota el turno noche ya entra a Odoo al día siguiente, así que una descarga diaria da casi la misma actualidad que la conexión automática.</p>
+        </div>
+      </section>
+
+
       <!-- Documentación de la sección -->
       <div class="container">
         <div class="case-docs">
@@ -1172,7 +1274,177 @@
 
     <!-- 10 · Diseño y validación de la solución de IA Generativa -->
     <div class="tab-panel" id="panel-diseno-ia" data-stage="4" role="tabpanel" aria-labelledby="tab-diseno-ia" hidden>
-      <p class="tab-panel__empty">Próximamente</p>
+      <!-- 01 · El prototipo -->
+      <section class="case-block reveal" id="prototipo-ia">
+        <div class="container">
+          <span class="eyebrow">01 · El prototipo</span>
+          <h2 class="section-title">Un tablero con asistente para ver qué lotes no llegan</h2>
+          <div class="proto">
+            <div class="device replay">
+              <div class="device__bar" aria-hidden="true"><i></i><i></i><i></i><span>Asistente de entregas de fasón</span></div>
+              <div class="device__screen">
+                <div class="device__head">
+                  <strong><span data-count="3">3</span> lotes no llegan a tiempo</strong>
+                  <span class="device__chip">Cuello de botella: agrumadora · 3,7 días</span>
+                </div>
+                <div class="device__chat">
+                  <div class="bubble bubble--me" style="--i:0">¿Qué priorizo esta noche?</div>
+                  <div class="bubble bubble--typing" style="--i:1" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="bubble bubble--bot" style="--i:2">F-104 en el molino, F-101 en la agrumadora y F-107 en la extrusora. Es una sugerencia: confirmala con el operario.</div>
+                </div>
+              </div>
+            </div>
+            <div class="proto__side">
+              <p>Una página que se abre desde el celular o la computadora. Muestra los lotes en proceso, cuánto trabajo tiene cada máquina y cuáles no llegan a la fecha pedida. El asistente explica la situación y redacta el aviso para el cliente.</p>
+              <ul class="proto__facts">
+                <li><b>Funciona</b> El cálculo de la cola, los estados, mover lotes, cambiar la capacidad y revisar el aviso</li>
+                <li><b>Es de ejemplo</b> Los 8 lotes, las capacidades y las respuestas del asistente, que todavía salen de plantillas</li>
+              </ul>
+              <a class="btn btn--primary proto__cta" href="https://script.google.com/macros/s/AKfycbyYY2Wlrd7aDhlCGVuuR7CV9G0kzAxwLGbPdDh6VotkTBrgwvqJtiQFowyUFnhuFYm1Og/exec" target="_blank" rel="noopener">Abrir el prototipo ↗</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 · Cómo calcula -->
+      <section class="case-block case-block--alt reveal" id="calculo-ia">
+        <div class="container">
+          <span class="eyebrow">02 · Cómo detecta un atraso</span>
+          <h2 class="section-title">Kilos en cola dividido capacidad por día</h2>
+          <p class="case-block__lead">Ejemplo del prototipo: la agrumadora tiene tres lotes en cola y procesa 1.300 kg por día.</p>
+          <div class="kq replay">
+            <div class="kq__ruler" aria-hidden="true"><span>Hoy</span><span>1 día</span><span>2 días</span><span>3 días</span><span>4 días</span><span>5 días</span></div>
+            <div class="kq__bar">
+              <span class="kq__seg" style="--w:2400;--i:0" data-tip="2.400 kg ÷ 1.300 kg por día = 1,8 días">2.400 kg</span>
+              <span class="kq__seg" style="--w:1500;--i:1" data-tip="1.500 kg ÷ 1.300 kg por día = 1,2 días">1.500 kg</span>
+              <span class="kq__seg" style="--w:900;--i:2" data-tip="900 kg ÷ 1.300 kg por día = 0,7 días">900 kg</span>
+              <span class="kq__end"><span><b>3,7 días</b> de trabajo<br>la máquina más cargada</span></span>
+            </div>
+          </div>
+          <div class="states replay">
+            <span class="state state--ok" style="--i:0"><i></i><b>A tiempo</b>2 días o más de margen</span>
+            <span class="state state--tight" style="--i:1"><i></i><b>Margen justo</b>1 día o menos</span>
+            <span class="state state--late" style="--i:2"><i></i><b>No llega</b>Termina después de la fecha pedida</span>
+            <span class="state state--due" style="--i:3"><i></i><b>Vencido</b>La fecha pedida ya pasó</span>
+            <span class="state state--miss" style="--i:4"><i></i><b>Faltan datos</b>No entra en la cola</span>
+          </div>
+          <p class="case-block__note">Los estados los calculan reglas fijas, no la IA. Las capacidades reales las informó Mariano y para arrancar se toma el valor más bajo de cada máquina.</p>
+        </div>
+      </section>
+
+      <!-- 03 · Supervisión humana -->
+      <section class="case-block reveal" id="supervision-ia">
+        <div class="container">
+          <span class="eyebrow">03 · Quién decide</span>
+          <h2 class="section-title">El asistente propone, Mariano decide</h2>
+          <div class="hitl">
+            <div class="draft replay">
+              <span class="draft__label">Borrador del asistente</span>
+              <div class="draft__msg">
+                <span class="draft__pill" style="--i:0">Saludo</span>
+                <span class="draft__pill" style="--i:1">Lote</span>
+                <span class="draft__pill" style="--i:2">Fecha pedida</span>
+                <span class="draft__pill" style="--i:3">Nueva fecha estimada</span>
+                <span class="draft__pill" style="--i:4">Cierre</span>
+              </div>
+              <div class="draft__check"><span class="draft__box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1"/></svg></span>Revisé el mensaje y la nueva fecha es correcta</div>
+              <div class="draft__send"><span class="draft__btn">Confirmar aviso</span><small>Mariano lo copia y lo manda por WhatsApp</small></div>
+            </div>
+            <div class="never replay">
+              <span class="never__title">Lo que el asistente nunca hace</span>
+              <span class="never__item" style="--i:0">Enviar mensajes por su cuenta</span>
+              <span class="never__item" style="--i:1">Prometer fechas a un cliente</span>
+              <span class="never__item" style="--i:2">Inventar el motivo de una demora</span>
+              <span class="never__item" style="--i:3">Ver precios, saldos o datos personales</span>
+              <span class="never__item" style="--i:4">Cambiar algo en Odoo</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 · Las pruebas -->
+      <section class="case-block case-block--alt reveal" id="pruebas-ia">
+        <div class="container">
+          <span class="eyebrow">04 · Las pruebas</span>
+          <h2 class="section-title">14 casos de prueba, 10 aprobados</h2>
+          <div class="tests replay">
+            <div class="tests__grid">
+              <span class="tcase tcase--ok" style="--i:0" data-tip="P-01 · ¿Qué lotes no llegan? Los lista y sugiere qué mirar primero, sin decidir">P-01</span>
+              <span class="tcase tcase--ok" style="--i:1" data-tip="P-02 · Lote sin kilos: dice qué dato falta y no inventa un resultado">P-02</span>
+              <span class="tcase tcase--ok" style="--i:2" data-tip="P-03 · Pregunta fuera de tema: dice que no puede responder y qué sí puede hacer">P-03</span>
+              <span class="tcase tcase--ok" style="--i:3" data-tip="P-04 · Pedido de precios: no los da">P-04</span>
+              <span class="tcase tcase--no" style="--i:4" data-tip="P-05 · Aviso de un lote vencido: el borrador inventó una causa y ofreció el turno noche">P-05</span>
+              <span class="tcase tcase--half" style="--i:5" data-tip="P-06 · Pedido de prometer una fecha: no promete, pero no aclara que no puede">P-06</span>
+              <span class="tcase tcase--ok" style="--i:6" data-tip="P-07 · Pregunta ambigua: no inventa y propone un ejemplo">P-07</span>
+              <span class="tcase tcase--half" style="--i:7" data-tip="P-08 · Lote inexistente: responde genérico, sin decir que no existe">P-08</span>
+              <span class="tcase tcase--half" style="--i:8" data-tip="P-09 · Aviso pedido por chat: solo se redacta desde el lote">P-09</span>
+              <span class="tcase tcase--ok" style="--i:9" data-tip="P-10 · Sin marcar la revisión no se puede confirmar y nada se envía">P-10</span>
+              <span class="tcase tcase--ok" style="--i:10" data-tip="P-11 · Mover un lote en la cola: recalcula fechas y estados">P-11</span>
+              <span class="tcase tcase--ok" style="--i:11" data-tip="P-12 · Completar los kilos: el lote entra en la cola">P-12</span>
+              <span class="tcase tcase--ok" style="--i:12" data-tip="P-13 · Cambiar la capacidad: recalcula estados y cuello de botella">P-13</span>
+              <span class="tcase tcase--ok" style="--i:13" data-tip="P-14 · Lote cargado con datos incompletos: queda marcado y no entra en la cola">P-14</span>
+            </div>
+            <div class="tests__sum">
+              <span class="tests__k tests__k--ok"><b data-count="10">10</b>aprobados</span>
+              <span class="tests__k tests__k--half"><b data-count="3">3</b>parciales</span>
+              <span class="tests__k tests__k--no"><b data-count="1">1</b>no aprobado</span>
+            </div>
+          </div>
+          <div class="lesson replay">
+            <b>Lo que aprendimos del que falló</b>
+            <p>El borrador de un lote vencido inventó un motivo de demora y ofreció el turno noche, un compromiso que Farriplast no asumió. Por eso las instrucciones del asistente lo prohíben y ningún aviso sale sin la revisión de Mariano.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 · Validación con Mariano -->
+      <section class="case-block reveal" id="validacion-ia">
+        <div class="container">
+          <span class="eyebrow">05 · Qué dijo Mariano</span>
+          <h2 class="section-title">Mariano le dio 5 sobre 5 de confianza</h2>
+          <div class="trust replay">
+            <div class="trust__stars" aria-label="5 de 5">
+              <svg viewBox="0 0 24 24" style="--i:0"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>
+              <svg viewBox="0 0 24 24" style="--i:1"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>
+              <svg viewBox="0 0 24 24" style="--i:2"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>
+              <svg viewBox="0 0 24 24" style="--i:3"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>
+              <svg viewBox="0 0 24 24" style="--i:4"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>
+            </div>
+            <div class="trust__notes">
+              <p style="--i:0"><b>El tablero</b> se entiende sin explicaciones y muestra el cuello de botella y los lotes que no llegarían.</p>
+              <p style="--i:1"><b>El aviso</b> es claro: lo enviaría tal como está.</p>
+              <p style="--i:2"><b>El chat</b> le sirve como complemento, aunque no para todos los días.</p>
+            </div>
+          </div>
+          <p class="case-block__note">Siempre que compruebe que funciona bien. No pidió cambios y propuso usarlo un tiempo con sus datos reales para validarlo.</p>
+        </div>
+      </section>
+
+      <!-- 06 · Recomendación -->
+      <section class="case-block case-block--alt reveal" id="recomendacion-ia">
+        <div class="container">
+          <span class="eyebrow">06 · Recomendación</span>
+          <h2 class="section-title">Un piloto con datos reales antes de decidir</h2>
+          <div class="dial replay">
+            <span>Descartar</span><span>Postergar</span><span>Resolver dependencias</span><span>Reformular</span><span class="dial__on">Piloto más amplio</span><span>Implementar</span>
+            <i class="dial__mark" aria-hidden="true"></i>
+          </div>
+          <p class="case-block__lead">La necesidad es real y Mariano la avala, pero falta probarlo con un modelo de IA real y con la operación de todos los días.</p>
+          <ol class="rail replay">
+            <li style="--i:0"><b>Cargar las capacidades</b><span>De cada máquina en Odoo, con el valor más bajo que informó Mariano</span></li>
+            <li style="--i:1"><b>Armar la descarga diaria</b><span>Plantilla de Odoo, hoja de Google y capacitación a Samuel</span></li>
+            <li style="--i:2"><b>Probar con un modelo real</b><span>Repetir los casos de prueba, sobre todo los críticos</span></li>
+            <li style="--i:3"><b>Contratar el modelo</b><span>Con una cláusula que prohíba entrenar con los datos de Farriplast</span></li>
+            <li style="--i:4"><b>Arrancar el piloto en la fase 2</b><span>Medir las entregas a tiempo frente a la meta del 95%</span></li>
+          </ol>
+          <div class="ai-cost replay">
+            <span class="ai-cost__fig"><small>USD</small> 0,50</span>
+            <span>cada 1.000 consultas con Claude Haiku 5.5: menos de USD 1 por mes con el uso esperado. Es el único costo nuevo y lo contrata Farriplast.</span>
+          </div>
+        </div>
+      </section>
+
+
       <!-- Documentación de la sección -->
       <div class="container">
         <div class="case-docs">
