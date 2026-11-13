@@ -1567,8 +1567,72 @@ section {
 }
 
 .case-docs__text {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--texto-secundario);
+  margin-left: auto;
+}
+
+.case-docs { align-items: center; }
+
+.case-docs__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 10px;
+  border-radius: 999px;
+  border: 1.5px solid var(--azul-delta);
+  background: #fff;
+  color: var(--azul-delta);
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+}
+.case-docs__link small {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--celeste-nota);
+}
+.case-docs__link--main {
+  background: var(--azul-delta);
+  color: #fff;
+}
+.case-docs__link--main small { background: rgba(255,255,255,.2); }
+.case-docs__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.45) 50%, transparent 65%);
+  transform: translateX(-120%);
+  animation: docsShine 3.6s ease-in-out infinite;
+  pointer-events: none;
+}
+.case-docs__link + .case-docs__link::after { animation-delay: .5s; }
+.case-docs__link:hover,
+.case-docs__link:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(20, 70, 160, .22);
+}
+.case-docs__link:not(.case-docs__link--main):hover { background: var(--celeste-nota); }
+.case-docs__ico {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  animation: docsBob 2.4s ease-in-out infinite;
+}
+@keyframes docsShine { 0%, 55% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+@keyframes docsBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@media (max-width: 600px) {
+  .case-docs__text { margin-left: 0; flex-basis: 100%; }
 }
 
 /* Pie de cada sección: anterior / siguiente (lo arma script.js) */
@@ -10190,3 +10254,123 @@ section {
 .js-reveal-ready .ba.replay .ba__row { opacity: 0; transform: translateY(12px); }
 .js-reveal-ready .ba.replay.is-visible .ba__row { opacity: 1; transform: none; transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, opacity 0.4s ease, transform 0.4s ease; transition-delay: calc(var(--i) * 0.08s); }
 @media (max-width: 799px) { .ba { padding: 18px 14px; } .ba__rows { grid-template-columns: minmax(0, 1fr); } .ba__opt { padding: 9px 18px; } .ba__bar i { width: 30px; } }
+
+/* ===== Mapa de ubicación en el encabezado del caso ===== */
+.case-banner--map::before { display: none; }
+.locmap {
+  position: absolute;
+  top: -18px;
+  right: 0;
+  width: min(345px, 36%);
+  margin: 0;
+  padding: 10px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, .72);
+  border: 1px solid rgba(47, 134, 216, .18);
+  box-shadow: 0 18px 40px rgba(13, 71, 161, .12);
+  backdrop-filter: blur(4px);
+  animation: locmapIn .9s cubic-bezier(.2, .8, .2, 1) both, tech-float 7s ease-in-out 1s infinite;
+}
+.locmap svg { display: block; width: 100%; height: auto; border-radius: 14px; background: #F4F9FE; }
+.locmap__water { fill: #CDEBFB; }
+.locmap__zone {
+  fill: #fff;
+  stroke: #9CC6EC;
+  stroke-width: 1.2;
+  opacity: 0;
+  animation: locmapFade .6s ease calc(.3s + var(--i) * .12s) forwards;
+}
+.locmap__home {
+  fill: #1565C0;
+  fill-opacity: .9;
+  stroke: #0D47A1;
+  stroke-width: 1.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(.4);
+  opacity: 0;
+  animation: locmapGrow .7s cubic-bezier(.3, 1.5, .5, 1) .95s forwards, locmapBreath 3.2s ease-in-out 2s infinite;
+}
+.locmap__coast {
+  fill: none;
+  stroke: #2F86D8;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 360;
+  stroke-dashoffset: 360;
+  animation: locmapDraw 1.4s ease .2s forwards;
+}
+.locmap__river {
+  fill: none;
+  stroke: #5FCBF5;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 6 5;
+  animation: locmapFlow 2s linear infinite;
+}
+.locmap__lbl { font: 600 9.5px var(--font-sans, sans-serif); fill: #6B84A3; text-anchor: middle; letter-spacing: .02em; }
+.locmap__lbl--big { font-size: 15px; font-weight: 800; fill: #0D47A1; letter-spacing: .14em; }
+.locmap__water-lbl { font: italic 600 10px var(--font-sans, sans-serif); fill: #2F86D8; text-anchor: middle; transform: rotate(42deg); transform-box: fill-box; transform-origin: center; }
+.locmap__river-lbl { font: italic 600 8.5px var(--font-sans, sans-serif); fill: #2F86D8; }
+.locmap__glow { animation: locmapFade .6s ease 1.4s both; opacity: 0; }
+.locmap__ring {
+  fill: none;
+  stroke: #5FCBF5;
+  stroke-width: 2;
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  animation: locmapPulse 2.4s ease-out 1.6s infinite;
+}
+.locmap__ring--2 { animation-delay: 2.8s; }
+.locmap__pin {
+  fill: #0D47A1;
+  stroke: #fff;
+  stroke-width: 2;
+  filter: drop-shadow(0 4px 4px rgba(13, 71, 161, .35));
+  transform: translateY(-60px);
+  opacity: 0;
+  animation: locmapDrop .7s cubic-bezier(.3, 1.6, .5, 1) 1.3s forwards, locmapBob 2.6s ease-in-out 2.2s infinite;
+}
+.locmap__tag {
+  position: absolute;
+  left: 54%;
+  top: 66%;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: #0D47A1;
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(13, 71, 161, .3);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: locmapTag .5s ease 1.9s forwards;
+}
+.locmap__tag::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 12px;
+  width: 10px;
+  height: 10px;
+  background: #0D47A1;
+  transform: rotate(45deg);
+}
+.locmap__tag b { font-size: .82rem; position: relative; }
+.locmap__tag span { font-size: .68rem; opacity: .85; position: relative; }
+@keyframes locmapIn { from { opacity: 0; transform: translateX(30px) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes locmapFade { to { opacity: 1; } }
+@keyframes locmapGrow { to { opacity: 1; transform: scale(1); } }
+@keyframes locmapBreath { 0%, 100% { fill-opacity: .9; } 50% { fill-opacity: .72; } }
+@keyframes locmapDraw { to { stroke-dashoffset: 0; } }
+@keyframes locmapFlow { to { stroke-dashoffset: -22; } }
+@keyframes locmapPulse { 0% { opacity: .9; transform: scale(1); } 100% { opacity: 0; transform: scale(4.5); } }
+@keyframes locmapDrop { to { opacity: 1; transform: translateY(0); } }
+@keyframes locmapBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes locmapTag { to { opacity: 1; transform: none; } }
+@media (max-width: 900px) {
+  .locmap { position: relative; top: auto; right: auto; width: 100%; max-width: 420px; margin: 4px 0 22px; }
+}

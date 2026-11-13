@@ -53,7 +53,7 @@
   <!-- ============================= -->
   <!-- BANNER DEL CASO + NAVEGACIÓN (fondo oscuro) -->
   <!-- ============================= -->
-  <section class="case-study case-banner case-banner--light">
+  <section class="case-study case-banner case-banner--light case-banner--map">
     <div class="container">
 
       <a href="/casos-exito" class="case-hero__back">← Volver a Casos de éxito</a>
@@ -63,6 +63,41 @@
       <img src="farriplast-logo-oscuro.png" alt="Farriplast" class="case-card__logo">
       <h1 class="sr-only">Farriplast</h1>
       <p class="case-card__industry">Reciclado de plástico postindustrial · Lanús, AMBA</p>
+
+      <!-- Ubicación: mapa esquemático del sur del AMBA (no a escala) -->
+      <figure class="locmap" aria-label="Ubicación de Farriplast: Lanús, al sur de la Ciudad de Buenos Aires">
+        <svg viewBox="0 0 360 260" role="img" aria-hidden="true">
+          <defs>
+            <pattern id="locmap-grid" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(-38)">
+              <path d="M0 0H14M0 0V14" fill="none" stroke="#2F86D8" stroke-opacity=".08"/>
+            </pattern>
+            <radialGradient id="locmap-glow"><stop offset="0" stop-color="#5FCBF5" stop-opacity=".55"/><stop offset="1" stop-color="#5FCBF5" stop-opacity="0"/></radialGradient>
+          </defs>
+          <rect width="360" height="260" fill="url(#locmap-grid)"/>
+          <path class="locmap__water" d="M150 0H360V200L250 95Z"/>
+          <path class="locmap__zone" style="--i:0" d="M85 60L120 30L165 15L250 95L225 110L180 125L140 140L95 110Z"/>
+          <path class="locmap__zone" style="--i:1" d="M225 110L250 95L300 145L270 170L225 160L210 130Z"/>
+          <path class="locmap__zone" style="--i:2" d="M95 110L140 140L140 165L160 190L150 245L90 235L70 160Z"/>
+          <path class="locmap__zone" style="--i:3" d="M225 160L270 170L300 145L345 190L330 250L205 250L205 190Z"/>
+          <path class="locmap__home" d="M140 140L180 125L210 130L225 160L205 190L160 190L140 165Z"/>
+          <path class="locmap__coast" d="M150 0L250 95L360 200"/>
+          <path class="locmap__river" d="M95 110L140 140L180 125L225 110L250 95"/>
+          <text class="locmap__water-lbl" x="292" y="62">Río de la Plata</text>
+          <text class="locmap__lbl locmap__lbl--big" x="160" y="72">CABA</text>
+          <text class="locmap__lbl" x="246" y="140">Avellaneda</text>
+          <text class="locmap__lbl" x="100" y="205">Lomas de</text><text class="locmap__lbl" x="100" y="216">Zamora</text>
+          <text class="locmap__lbl" x="240" y="245">Quilmes</text>
+          <text class="locmap__river-lbl" x="104" y="104" transform="rotate(30 104 104)">Riachuelo</text>
+          <circle class="locmap__glow" cx="182" cy="160" r="34" fill="url(#locmap-glow)"/>
+          <circle class="locmap__ring" cx="182" cy="160" r="8"/>
+          <circle class="locmap__ring locmap__ring--2" cx="182" cy="160" r="8"/>
+          <g class="locmap__pin">
+            <path d="M182 160c-7-9-12-15-12-21a12 12 0 0 1 24 0c0 6-5 12-12 21z"/>
+            <circle cx="182" cy="139" r="4.5" fill="#fff"/>
+          </g>
+        </svg>
+        <figcaption class="locmap__tag"><b>Farriplast</b><span>Planta en Lanús</span></figcaption>
+      </figure>
 
       <!--
         Recorrido del caso: las 11 secciones agrupadas en 4 etapas del
@@ -305,7 +340,8 @@
       <div class="container">
         <div class="case-docs">
           <span class="case-docs__label">Documentación</span>
-          <span class="case-docs__text">Próximamente</span>
+          <a class="case-docs__link case-docs__link--main" href="https://economicasuba-my.sharepoint.com/:b:/g/personal/29id33012909_campus_economicas_uba_ar/IQC9WIPv0NtfQK95yiyQ_k6YAZlFKP9bAsG5p8TVKbnal_U" target="_blank" rel="noopener"><svg class="case-docs__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 14h6M9 18h4"/></svg><span>Template 01</span><small>PDF</small></a>
+          <span class="case-docs__text">Abre con cuenta UBA</span>
         </div>
       </div>
     </div>
@@ -369,7 +405,8 @@
       <div class="container">
         <div class="case-docs">
           <span class="case-docs__label">Documentación</span>
-          <span class="case-docs__text">Próximamente</span>
+          <a class="case-docs__link case-docs__link--main" href="https://economicasuba-my.sharepoint.com/:b:/g/personal/29id33012909_campus_economicas_uba_ar/IQAqDo7j5WP3SroYulK9DnHoAQLYmNLiD_IJbaSqSqqja_w" target="_blank" rel="noopener"><svg class="case-docs__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 14h6M9 18h4"/></svg><span>Template 02</span><small>PDF</small></a>
+          <span class="case-docs__text">Abre con cuenta UBA</span>
         </div>
       </div>
     </div>
@@ -512,7 +549,8 @@
       <div class="container">
         <div class="case-docs">
           <span class="case-docs__label">Documentación</span>
-          <span class="case-docs__text">Próximamente</span>
+          <a class="case-docs__link case-docs__link--main" href="https://economicasuba-my.sharepoint.com/:b:/g/personal/29id33012909_campus_economicas_uba_ar/IQC5Tp3L0fqYRaZGNXBnM0cvAcSqfxYC7NKTjXxzQ9lz7dA" target="_blank" rel="noopener"><svg class="case-docs__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 14h6M9 18h4"/></svg><span>Template 03</span><small>PDF</small></a>
+          <span class="case-docs__text">Abre con cuenta UBA</span>
         </div>
       </div>
     </div>
@@ -655,7 +693,9 @@
       <div class="container">
         <div class="case-docs">
           <span class="case-docs__label">Documentación</span>
-          <span class="case-docs__text">Próximamente</span>
+          <a class="case-docs__link case-docs__link--main" href="https://economicasuba-my.sharepoint.com/:b:/g/personal/29id33012909_campus_economicas_uba_ar/IQAsWBLuxDPwR5ck_JpyWBi6Ad9ihdLAbE-mmHle0g7J7nM" target="_blank" rel="noopener"><svg class="case-docs__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 14h6M9 18h4"/></svg><span>Template 04</span><small>PDF</small></a>
+          <a class="case-docs__link" href="https://economicasuba-my.sharepoint.com/:b:/g/personal/29id33012909_campus_economicas_uba_ar/IQAw3C01W61ETZGbywZspEErAVSuB5dFqfR0597Rs2dkRW4" target="_blank" rel="noopener"><svg class="case-docs__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 14h6M9 18h4"/></svg><span>Matriz en Excel</span><small>PDF</small></a>
+          <span class="case-docs__text">Abre con cuenta UBA</span>
         </div>
       </div>
     </div>
@@ -847,7 +887,8 @@
       <div class="container">
         <div class="case-docs">
           <span class="case-docs__label">Documentación</span>
-          <span class="case-docs__text">Próximamente</span>
+          <a class="case-docs__link case-docs__link--main" href="https://economicasuba-my.sharepoint.com/:b:/g/personal/29id33012909_campus_economicas_uba_ar/IQBwETbchZj0QIP7ptjdB1OyAUrR5rcERmvkSwbRMSm25rQ" target="_blank" rel="noopener"><svg class="case-docs__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 14h6M9 18h4"/></svg><span>Template 05</span><small>PDF</small></a>
+          <span class="case-docs__text">Abre con cuenta UBA</span>
         </div>
       </div>
     </div>
@@ -907,7 +948,9 @@
       <div class="container">
         <div class="case-docs">
           <span class="case-docs__label">Documentación</span>
-          <span class="case-docs__text">Próximamente</span>
+          <a class="case-docs__link case-docs__link--main" href="https://economicasuba-my.sharepoint.com/:b:/g/personal/29id33012909_campus_economicas_uba_ar/IQDvpRyPZ-hyTYerXEgIP4SDAeca5kFfgVkIzv72fBVJFK8" target="_blank" rel="noopener"><svg class="case-docs__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 14h6M9 18h4"/></svg><span>Template 06</span><small>PDF</small></a>
+          <a class="case-docs__link" href="https://economicasuba-my.sharepoint.com/:b:/g/personal/29id33012909_campus_economicas_uba_ar/IQCELHv6YRV7S5i-U-EZNgDcAXFj2GaMPkfZaozUK91IgqQ" target="_blank" rel="noopener"><svg class="case-docs__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 14h6M9 18h4"/></svg><span>Matriz en Excel</span><small>PDF</small></a>
+          <span class="case-docs__text">Abre con cuenta UBA</span>
         </div>
       </div>
     </div>
@@ -1061,7 +1104,9 @@
       <div class="container">
         <div class="case-docs">
           <span class="case-docs__label">Documentación</span>
-          <span class="case-docs__text">Próximamente</span>
+          <a class="case-docs__link case-docs__link--main" href="https://economicasuba-my.sharepoint.com/:b:/g/personal/29id33012909_campus_economicas_uba_ar/IQCKeo7_gNcZRYyYZqUh5YzMAd_pW_C_qTY3lbkdpF_yMOc" target="_blank" rel="noopener"><svg class="case-docs__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 14h6M9 18h4"/></svg><span>Template 07</span><small>PDF</small></a>
+          <a class="case-docs__link" href="https://economicasuba-my.sharepoint.com/:b:/g/personal/29id33012909_campus_economicas_uba_ar/IQD9RLKTWJgXRJbrpsjk7n02AX6MnQa8bydSg21u0yfLWlc" target="_blank" rel="noopener"><svg class="case-docs__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 14h6M9 18h4"/></svg><span>Puntajes en Excel</span><small>PDF</small></a>
+          <span class="case-docs__text">Abre con cuenta UBA</span>
         </div>
       </div>
     </div>
@@ -1166,7 +1211,8 @@
       <div class="container">
         <div class="case-docs">
           <span class="case-docs__label">Documentación</span>
-          <span class="case-docs__text">Próximamente</span>
+          <a class="case-docs__link case-docs__link--main" href="https://economicasuba-my.sharepoint.com/:b:/g/personal/29id33012909_campus_economicas_uba_ar/IQBxy5Lfy_0bQ4j3lpOjSF9sAYs3UU1vGzpn1HP-K7hu4OQ" target="_blank" rel="noopener"><svg class="case-docs__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 14h6M9 18h4"/></svg><span>Template 08</span><small>PDF</small></a>
+          <span class="case-docs__text">Abre con cuenta UBA</span>
         </div>
       </div>
     </div>
@@ -1280,7 +1326,8 @@
       <div class="container">
         <div class="case-docs">
           <span class="case-docs__label">Documentación</span>
-          <span class="case-docs__text">Próximamente</span>
+          <a class="case-docs__link case-docs__link--main" href="https://economicasuba-my.sharepoint.com/:b:/g/personal/29id33012909_campus_economicas_uba_ar/IQDV2ziWgzMeR5e8T9q3miAAAfLXpLPm6QeOBc4CwCW5WNI" target="_blank" rel="noopener"><svg class="case-docs__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 14h6M9 18h4"/></svg><span>Template 09</span><small>PDF</small></a>
+          <span class="case-docs__text">Abre con cuenta UBA</span>
         </div>
       </div>
     </div>
@@ -1467,7 +1514,9 @@
       <div class="container">
         <div class="case-docs">
           <span class="case-docs__label">Documentación</span>
-          <span class="case-docs__text">Próximamente</span>
+          <a class="case-docs__link case-docs__link--main" href="https://economicasuba-my.sharepoint.com/:b:/g/personal/29id33012909_campus_economicas_uba_ar/IQDIGZAjDiuOR7XuTnZBjmfOAY-iHBbSrbjtDbh62HUzcps" target="_blank" rel="noopener"><svg class="case-docs__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 14h6M9 18h4"/></svg><span>Template 10</span><small>PDF</small></a>
+          <a class="case-docs__link" href="https://economicasuba-my.sharepoint.com/:b:/g/personal/29id33012909_campus_economicas_uba_ar/IQA2JLxu3MXuQaCFavwSkdnPAavAV4SVT42OQbQD21we6uE" target="_blank" rel="noopener"><svg class="case-docs__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 14h6M9 18h4"/></svg><span>Anexo: el prototipo</span><small>PDF</small></a>
+          <span class="case-docs__text">Abre con cuenta UBA</span>
         </div>
       </div>
     </div>
@@ -1664,7 +1713,8 @@
       <div class="container">
         <div class="case-docs">
           <span class="case-docs__label">Documentación</span>
-          <span class="case-docs__text">Próximamente</span>
+          <a class="case-docs__link case-docs__link--main" href="https://economicasuba-my.sharepoint.com/:b:/g/personal/29id33012909_campus_economicas_uba_ar/IQBkQGWvpVPLSaBon8vN7GpjAQX7IqvRyOREKrxVpWHebpw" target="_blank" rel="noopener"><svg class="case-docs__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><path d="M9 14h6M9 18h4"/></svg><span>Template 11</span><small>PDF</small></a>
+          <span class="case-docs__text">Abre con cuenta UBA</span>
         </div>
       </div>
     </div>
