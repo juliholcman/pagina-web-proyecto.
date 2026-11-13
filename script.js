@@ -8,7 +8,8 @@
 
 /* Preferencia del sistema "reducir movimiento": apaga el parallax, los
    carruseles automáticos y los contadores, y muestra todo sin animar. */
-const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Las animaciones se muestran siempre, aunque el dispositivo tenga "reducir movimiento".
+const prefersReducedMotion = () => false;
 
 document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
@@ -74,7 +75,7 @@ function initTabs() {
     const pad = (n) => String(n).padStart(2, '0');
     const panelOf = (t) => document.getElementById(t.getAttribute('aria-controls'));
     const slugOf = (t) => t.id.replace(/^tab-/, '');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduceMotion = prefersReducedMotion();
 
     const menu = document.getElementById('case-menu');
     const menuBtn = document.getElementById('case-menu-btn');
@@ -270,7 +271,7 @@ function initTabs() {
 function initBackToTop() {
   const main = document.querySelector('main');
   if (!main) return;
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduceMotion = prefersReducedMotion();
 
   const targets = Array.from(main.querySelectorAll(':scope > section')).slice(1);
   main.querySelectorAll('.tab-panel').forEach((panel) => targets.push(panel));
