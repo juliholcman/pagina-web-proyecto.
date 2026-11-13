@@ -10131,3 +10131,38 @@ section {
 .js-reveal-ready .rcards.replay.is-visible .rmeter__bar i.on { transform: none; }
 @media (max-width: 799px) { .rcards { grid-template-columns: minmax(0, 1fr); } }
 .costcard b span { font-size: inherit; color: inherit; }
+
+/* Matriz de riesgos probabilidad × impacto */
+.rmx { display: grid; grid-template-columns: minmax(0, 440px) minmax(0, 1fr); gap: 34px; align-items: center; padding: 26px; border-radius: 24px; background: #fff; box-shadow: 0 22px 44px -32px rgba(6, 22, 46, 0.55); }
+.rmx__chart { display: grid; grid-template-columns: 22px 52px minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto auto; gap: 6px; }
+.rmx__y { grid-row: 1; grid-column: 1; writing-mode: vertical-rl; transform: rotate(180deg); align-self: center; justify-self: center; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--azul-medio); white-space: nowrap; }
+.rmx__ylabels { grid-row: 1; grid-column: 2; display: grid; grid-template-rows: repeat(3, 1fr); gap: 6px; font-size: 0.78rem; font-weight: 700; color: #6B7F99; }
+.rmx__ylabels span { display: flex; align-items: center; justify-content: flex-end; padding-right: 4px; }
+.rmx__grid { grid-row: 1; grid-column: 3; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 6px; aspect-ratio: 1; }
+.rmx__xlabels { grid-row: 2; grid-column: 3; display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; font-size: 0.78rem; font-weight: 700; color: #6B7F99; }
+.rmx__x { grid-row: 3; grid-column: 3; text-align: center; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--azul-medio); }
+.rmx__cell { display: flex; flex-wrap: wrap; align-content: center; justify-content: center; gap: 6px; border-radius: 12px; }
+.rmx__cell--s2 { background: #F1F7FC; }
+.rmx__cell--s3 { background: #E3F0FA; }
+.rmx__cell--s4 { background: #C6E2F6; }
+.rmx__cell--s5 { background: #7FB8E6; }
+.rmx__cell--s6 { background: linear-gradient(150deg, var(--azul-delta), var(--navy)); }
+.rmx__dot { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #fff; color: var(--azul-profundo); font-weight: 800; box-shadow: 0 6px 14px -6px rgba(6, 22, 46, 0.6); cursor: default; }
+.rmx__legend { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.rmx__legend li { display: grid; grid-template-columns: 30px 40px minmax(0, 1fr); gap: 12px; align-items: center; }
+.rmx__legend .ic11 { width: 40px; height: 40px; border-radius: 12px; }
+.rmx__legend .ic11 svg { width: 20px; height: 20px; }
+.rmx__legend b { display: block; color: var(--azul-profundo); font-size: 0.95rem; }
+.rmx__legend li div span { font-size: 0.86rem; color: #4A5D78; }
+.rmx__num { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--gris-hielo); color: var(--azul-profundo); font-weight: 800; font-size: 0.9rem; }
+.rmx__num--hot { background: var(--azul-delta); color: #fff; }
+.js-reveal-ready .rmx.replay .rmx__cell { opacity: 0; transform: scale(0.85); transition: opacity 0.35s ease, transform 0.35s ease; }
+.js-reveal-ready .rmx.replay .rmx__cell:nth-child(3n+1) { transition-delay: 0.1s; }
+.js-reveal-ready .rmx.replay .rmx__cell:nth-child(3n+2) { transition-delay: 0.2s; }
+.js-reveal-ready .rmx.replay .rmx__cell:nth-child(3n) { transition-delay: 0.3s; }
+.js-reveal-ready .rmx.replay .rmx__dot { opacity: 0; transform: scale(0.2); transition: opacity 0.3s ease, transform 0.5s cubic-bezier(0.34, 1.7, 0.64, 1); transition-delay: calc(0.6s + var(--i) * 0.15s); }
+.js-reveal-ready .rmx.replay .rmx__legend li { opacity: 0; transform: translateX(14px); transition: opacity 0.4s ease, transform 0.4s ease; transition-delay: calc(0.6s + var(--i) * 0.15s); }
+.js-reveal-ready .rmx.replay.is-visible .rmx__cell,
+.js-reveal-ready .rmx.replay.is-visible .rmx__dot,
+.js-reveal-ready .rmx.replay.is-visible .rmx__legend li { opacity: 1; transform: none; }
+@media (max-width: 899px) { .rmx { grid-template-columns: minmax(0, 1fr); padding: 18px 14px; } .rmx__chart { max-width: 420px; width: 100%; margin: 0 auto; } }
