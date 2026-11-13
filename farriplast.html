@@ -1474,7 +1474,148 @@
 
     <!-- 11 · Carpeta de Cierre del Proyecto -->
     <div class="tab-panel" id="panel-cierre" data-stage="4" role="tabpanel" aria-labelledby="tab-cierre" hidden>
-      <p class="tab-panel__empty">Próximamente</p>
+      <!-- 01 · Cómo se complementan -->
+      <section class="case-block reveal" id="complemento-cierre">
+        <div class="container">
+          <span class="eyebrow">01 · Las dos propuestas juntas</span>
+          <h2 class="section-title">Uno se anticipa, el otro mide</h2>
+          <p class="case-block__lead">Odoo es la única fuente de datos. El asistente lee una copia diaria, sin precios ni saldos, y no escribe nada en el sistema.</p>
+          <div class="lotline replay">
+            <div class="lotline__track">
+              <span class="lotline__fill lotline__fill--before" aria-hidden="true"></span>
+              <span class="lotline__fill lotline__fill--after" aria-hidden="true"></span>
+              <span class="lotline__mark"><b>Fecha pedida</b></span>
+              <span class="lotline__dot lotline__dot--start" aria-hidden="true"></span>
+              <span class="lotline__dot lotline__dot--end" aria-hidden="true"></span>
+            </div>
+            <div class="lotline__sides">
+              <div class="lotline__side lotline__side--before">
+                <small>Antes de la entrega</small>
+                <strong>Asistente de entregas</strong>
+                <span>Muestra qué lotes no llegan, qué máquina está cargada y prepara el aviso que Mariano revisa y envía</span>
+              </div>
+              <div class="lotline__side lotline__side--after">
+                <small>Después de la entrega</small>
+                <strong>Odoo</strong>
+                <span>Registra si salió a tiempo y los rechazos, y calcula el porcentaje de entregas a tiempo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 · Hoja de ruta -->
+      <section class="case-block case-block--alt reveal" id="hoja-de-ruta">
+        <div class="container">
+          <span class="eyebrow">02 · Hoja de ruta</span>
+          <h2 class="section-title">Los próximos 24 meses</h2>
+          <div class="metro replay">
+            <div class="metro__months" aria-hidden="true"><span>Antes</span><span>Mes 1</span><span>Mes 7</span><span>Mes 13</span><span>Mes 19</span><span>Mes 24</span></div>
+            <div class="metro__line metro__line--erp">
+              <span class="metro__name">Odoo</span>
+              <ol class="metro__stops">
+                <li style="--x:0;--i:0"><b>Demo y prueba con Samuel</b><span>Propuesta formal del proveedor</span></li>
+                <li style="--x:1;--i:1"><b>Fase 1</b><span>Stock, compras, ventas y cuentas corrientes</span></li>
+                <li style="--x:2;--i:2"><b>Fase 2</b><span>Producción, costos, entregas y rechazos</span></li>
+                <li style="--x:3;--i:3"><b>Fase 3</b><span>Tablero, QR y balanza conectada</span></li>
+                <li style="--x:4;--i:4"><b>Fase 4</b><span>Más operarios y meta de crecimiento</span></li>
+              </ol>
+            </div>
+            <div class="metro__line metro__line--ia">
+              <span class="metro__name">Asistente</span>
+              <ol class="metro__stops">
+                <li style="--x:0;--i:5"><b>Entrega del prototipo</b><span>Código y guía de uso</span></li>
+                <li style="--x:1;--i:6"><b>Configuración</b><span>Capacidades y contrato del modelo</span></li>
+                <li style="--x:2;--i:7"><b>Piloto</b><span>Con datos reales, junto a la fase 2</span></li>
+                <li style="--x:3;--i:8"><b>Decisión</b><span>Al terminar el piloto, seguir o no</span></li>
+              </ol>
+            </div>
+          </div>
+          <p class="case-block__note">Al cierre de cada fase, Mariano revisa los avances antes de pasar a la siguiente.</p>
+        </div>
+      </section>
+
+      <!-- 03 · Inversión -->
+      <section class="case-block reveal" id="inversion-cierre">
+        <div class="container">
+          <span class="eyebrow">03 · La inversión</span>
+          <h2 class="section-title">Cuánto cuesta todo, a tres años</h2>
+          <div class="receipt-wrap replay">
+            <div class="receipt">
+              <span class="receipt__head">Farriplast · 36 meses · USD sin IVA</span>
+              <div class="receipt__row" style="--i:0"><span>Licencias Odoo, 2 usuarios</span><b>1.163</b></div>
+              <div class="receipt__row" style="--i:1"><span>Implementación, 50 horas</span><b>5.950</b></div>
+              <div class="receipt__row" style="--i:2"><span>Conexión de la balanza</span><b>720</b></div>
+              <div class="receipt__row receipt__row--sub" style="--i:3"><span>Sin equipos</span><b>7.833</b></div>
+              <div class="receipt__row" style="--i:4"><span>Notebook, teléfono y balanza</span><b>2.345</b></div>
+              <div class="receipt__row receipt__row--total" style="--i:5"><span>Total</span><b>USD <span data-count="10178" data-thousands="true">10.178</span></b></div>
+              <div class="receipt__row receipt__row--ia" style="--i:6"><span>Asistente de IA</span><b>menos de USD 1 por mes</b></div>
+            </div>
+            <div class="receipt-notes">
+              <p><b>El tope de Mariano era USD 5.000</b> sin equipos. Con 25 horas de implementación se llega a USD 4.943, pero recomendamos 50 horas para acompañar las cuatro fases.</p>
+              <p><b>Se evita el plan Custom</b> de Odoo: unos USD 418 menos, gracias a la descarga diaria.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 · Riesgos -->
+      <section class="case-block case-block--alt reveal" id="riesgos-cierre">
+        <div class="container">
+          <span class="eyebrow">04 · Riesgos</span>
+          <h2 class="section-title">Qué vigilar y cómo lo cubrimos</h2>
+          <div class="heat replay">
+            <span class="heat__y" aria-hidden="true">Impacto</span>
+            <div class="heat__grid">
+              <div class="heat__cell heat__cell--h1"><span class="heat__lbl">Alto</span></div>
+              <div class="heat__cell heat__cell--h2">
+                <span class="hrisk" style="--i:4" data-tip="Instrucciones que prohíben inventar datos o compromisos, y ningún aviso sale sin la revisión de Mariano">Avisos con datos inventados</span>
+              </div>
+              <div class="heat__cell heat__cell--h3">
+                <span class="hrisk" style="--i:0" data-tip="Fases por módulos, prueba previa con Samuel, cuaderno en paralelo y capacitación en el puesto">Resistencia al cambio</span>
+                <span class="hrisk" style="--i:1" data-tip="Registro único en el origen, pocos campos obligatorios y medir las horas de Mariano antes y después">Más carga administrativa</span>
+              </div>
+              <div class="heat__cell heat__cell--m1"><span class="heat__lbl">Medio</span>
+                <span class="hrisk" style="--i:5" data-tip="El asistente solo lee estados y plazos, contrato sin entrenamiento con los datos y exportación libre de Odoo">Privacidad y proveedor</span>
+              </div>
+              <div class="heat__cell heat__cell--m2">
+                <span class="hrisk" style="--i:3" data-tip="Cuaderno o pizarra de respaldo, y el tablero muestra la fecha de la última carga">Cortes de conexión</span>
+              </div>
+              <div class="heat__cell heat__cell--m3">
+                <span class="hrisk" style="--i:2" data-tip="Negociar descuentos por pago anual después de la prueba, o bajar a 25 horas de implementación">Pasarse del tope</span>
+              </div>
+            </div>
+            <div class="heat__x" aria-hidden="true"><span>Baja</span><span>Media</span><span>Alta</span><em>Probabilidad</em></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 · Factores de éxito -->
+      <section class="case-block reveal" id="exito-cierre">
+        <div class="container">
+          <span class="eyebrow">05 · Factores de éxito</span>
+          <h2 class="section-title">Lo que sostiene las cuatro metas</h2>
+          <div class="temple replay">
+            <div class="temple__roof">
+              <span>Clientes</span><span>Entregas a tiempo</span><span>Crecimiento</span><span>Galpón</span>
+            </div>
+            <div class="temple__cols">
+              <div class="temple__col" style="--i:0"><b>Samuel referente</b><span>Sostiene la carga diaria y guía al resto</span></div>
+              <div class="temple__col" style="--i:1"><b>Corte del cuaderno</b><span>Hasta 3 meses en paralelo, no más</span></div>
+              <div class="temple__col" style="--i:2"><b>Línea de base temprana</b><span>Fechas desde la fase 1, entregas y rechazos desde la fase 2</span></div>
+              <div class="temple__col" style="--i:3"><b>Revisión por fase</b><span>Mariano decide con la información</span></div>
+              <div class="temple__col" style="--i:4"><b>Validación humana</b><span>Ningún aviso sale sin su aprobación</span></div>
+            </div>
+            <div class="temple__base" aria-hidden="true"></div>
+          </div>
+          <blockquote class="closing replay">
+            <p>El sistema y el asistente dan la información. Los resultados en clientes, entregas, crecimiento y el galpón dependen de las decisiones que Mariano tome con ella.</p>
+            <footer>Equipo Delta</footer>
+          </blockquote>
+        </div>
+      </section>
+
+
       <!-- Documentación de la sección -->
       <div class="container">
         <div class="case-docs">
