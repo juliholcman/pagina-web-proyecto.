@@ -1567,8 +1567,72 @@ section {
 }
 
 .case-docs__text {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--texto-secundario);
+  margin-left: auto;
+}
+
+.case-docs { align-items: center; }
+
+.case-docs__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 10px;
+  border-radius: 999px;
+  border: 1.5px solid var(--azul-delta);
+  background: #fff;
+  color: var(--azul-delta);
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+}
+.case-docs__link small {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--celeste-nota);
+}
+.case-docs__link--main {
+  background: var(--azul-delta);
+  color: #fff;
+}
+.case-docs__link--main small { background: rgba(255,255,255,.2); }
+.case-docs__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.45) 50%, transparent 65%);
+  transform: translateX(-120%);
+  animation: docsShine 3.6s ease-in-out infinite;
+  pointer-events: none;
+}
+.case-docs__link + .case-docs__link::after { animation-delay: .5s; }
+.case-docs__link:hover,
+.case-docs__link:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(20, 70, 160, .22);
+}
+.case-docs__link:not(.case-docs__link--main):hover { background: var(--celeste-nota); }
+.case-docs__ico {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  animation: docsBob 2.4s ease-in-out infinite;
+}
+@keyframes docsShine { 0%, 55% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+@keyframes docsBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@media (max-width: 600px) {
+  .case-docs__text { margin-left: 0; flex-basis: 100%; }
 }
 
 /* Pie de cada sección: anterior / siguiente (lo arma script.js) */
