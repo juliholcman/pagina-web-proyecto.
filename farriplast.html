@@ -1491,12 +1491,12 @@
             <div class="lotline__sides">
               <div class="lotline__side lotline__side--before">
                 <small>Antes de la entrega</small>
-                <strong>Asistente de entregas</strong>
+                <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></span><strong>Asistente de entregas</strong>
                 <span>Muestra qué lotes no llegan, qué máquina está cargada y prepara el aviso que Mariano revisa y envía</span>
               </div>
               <div class="lotline__side lotline__side--after">
                 <small>Después de la entrega</small>
-                <strong>Odoo</strong>
+                <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 13h3M8 16h6"/></svg></span><strong>Odoo</strong>
                 <span>Registra si salió a tiempo y los rechazos, y calcula el porcentaje de entregas a tiempo</span>
               </div>
             </div>
@@ -1540,21 +1540,26 @@
         <div class="container">
           <span class="eyebrow">03 · La inversión</span>
           <h2 class="section-title">Cuánto cuesta todo, a tres años</h2>
-          <div class="receipt-wrap replay">
-            <div class="receipt">
-              <span class="receipt__head">Farriplast · 36 meses · USD sin IVA</span>
-              <div class="receipt__row" style="--i:0"><span>Licencias Odoo, 2 usuarios</span><b>1.163</b></div>
-              <div class="receipt__row" style="--i:1"><span>Implementación, 50 horas</span><b>5.950</b></div>
-              <div class="receipt__row" style="--i:2"><span>Conexión de la balanza</span><b>720</b></div>
-              <div class="receipt__row receipt__row--sub" style="--i:3"><span>Sin equipos</span><b>7.833</b></div>
-              <div class="receipt__row" style="--i:4"><span>Notebook, teléfono y balanza</span><b>2.345</b></div>
-              <div class="receipt__row receipt__row--total" style="--i:5"><span>Total</span><b>USD <span data-count="10178" data-thousands="true">10.178</span></b></div>
-              <div class="receipt__row receipt__row--ia" style="--i:6"><span>Asistente de IA</span><b>menos de USD 1 por mes</b></div>
+          <div class="costbar replay">
+            <div class="costbar__scale" aria-hidden="true"><span style="--v:0">0</span><span style="--v:2500">2.500</span><span style="--v:5000">5.000</span><span style="--v:7500">7.500</span><span style="--v:10178">10.178</span></div>
+            <div class="costbar__bar">
+              <span class="costbar__seg costbar__seg--lic" style="--v:1163;--i:0" data-tip="Licencias de Odoo para 2 usuarios durante 3 años: USD 1.163"></span>
+              <span class="costbar__seg costbar__seg--imp" style="--v:5950;--i:1" data-tip="Implementación, 50 horas de consultoría con descuento: USD 5.950"><em>Implementación</em></span>
+              <span class="costbar__seg costbar__seg--iot" style="--v:720;--i:2" data-tip="Conexión de la balanza desde el mes 13: USD 720"></span>
+              <span class="costbar__seg costbar__seg--eq" style="--v:2345;--i:3" data-tip="Notebook, teléfono y balanza: USD 2.345"><em>Equipos</em></span>
+              <span class="costbar__cap" aria-hidden="true"><b>Tope de Mariano · USD 5.000</b></span>
             </div>
-            <div class="receipt-notes">
-              <p><b>El tope de Mariano era USD 5.000</b> sin equipos. Con 25 horas de implementación se llega a USD 4.943, pero recomendamos 50 horas para acompañar las cuatro fases.</p>
-              <p><b>Se evita el plan Custom</b> de Odoo: unos USD 418 menos, gracias a la descarga diaria.</p>
-            </div>
+            <ul class="costbar__legend">
+              <li><i class="costbar__dot costbar__dot--lic"></i>Licencias <b>1.163</b></li>
+              <li><i class="costbar__dot costbar__dot--imp"></i>Implementación <b>5.950</b></li>
+              <li><i class="costbar__dot costbar__dot--iot"></i>Balanza conectada <b>720</b></li>
+              <li><i class="costbar__dot costbar__dot--eq"></i>Equipos <b>2.345</b></li>
+            </ul>
+          </div>
+          <div class="costcards replay">
+            <div class="costcard costcard--main" style="--i:0"><small>Total a 3 años</small><b>USD <span data-count="10178" data-thousands="true">10.178</span></b><span>USD 7.833 sin equipos</span></div>
+            <div class="costcard" style="--i:1"><small>Con 25 horas</small><b>USD <span data-count="4943" data-thousands="true">4.943</span></b><span>Entra en el tope, pero recomendamos 50 horas para las cuatro fases</span></div>
+            <div class="costcard" style="--i:2"><small>Asistente de IA</small><b>&lt; USD 1</b><span>por mes, y se evitan USD 418 del plan Custom</span></div>
           </div>
         </div>
       </section>
@@ -1564,28 +1569,37 @@
         <div class="container">
           <span class="eyebrow">04 · Riesgos</span>
           <h2 class="section-title">Qué vigilar y cómo lo cubrimos</h2>
-          <div class="heat replay">
-            <span class="heat__y" aria-hidden="true">Impacto</span>
-            <div class="heat__grid">
-              <div class="heat__cell heat__cell--h1"><span class="heat__lbl">Alto</span></div>
-              <div class="heat__cell heat__cell--h2">
-                <span class="hrisk" style="--i:4" data-tip="Instrucciones que prohíben inventar datos o compromisos, y ningún aviso sale sin la revisión de Mariano">Avisos con datos inventados</span>
-              </div>
-              <div class="heat__cell heat__cell--h3">
-                <span class="hrisk" style="--i:0" data-tip="Fases por módulos, prueba previa con Samuel, cuaderno en paralelo y capacitación en el puesto">Resistencia al cambio</span>
-                <span class="hrisk" style="--i:1" data-tip="Registro único en el origen, pocos campos obligatorios y medir las horas de Mariano antes y después">Más carga administrativa</span>
-              </div>
-              <div class="heat__cell heat__cell--m1"><span class="heat__lbl">Medio</span>
-                <span class="hrisk" style="--i:5" data-tip="El asistente solo lee estados y plazos, contrato sin entrenamiento con los datos y exportación libre de Odoo">Privacidad y proveedor</span>
-              </div>
-              <div class="heat__cell heat__cell--m2">
-                <span class="hrisk" style="--i:3" data-tip="Cuaderno o pizarra de respaldo, y el tablero muestra la fecha de la última carga">Cortes de conexión</span>
-              </div>
-              <div class="heat__cell heat__cell--m3">
-                <span class="hrisk" style="--i:2" data-tip="Negociar descuentos por pago anual después de la prueba, o bajar a 25 horas de implementación">Pasarse del tope</span>
-              </div>
+          <div class="rcards replay">
+            <div class="rcard rcard--hot" style="--i:0">
+              <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 12h18M9 6v6M15 12v6"/></svg></span>
+              <div class="rcard__body"><b>Resistencia al cambio</b><span>Fases por módulos, prueba con Samuel y cuaderno en paralelo</span></div>
+              <div class="rcard__meters"><span class="rmeter">Probabilidad <span class="rmeter__bar"><i class="on"></i><i class="on"></i><i class="on"></i></span></span><span class="rmeter">Impacto <span class="rmeter__bar"><i class="on"></i><i class="on"></i><i class="on"></i></span></span></div>
             </div>
-            <div class="heat__x" aria-hidden="true"><span>Baja</span><span>Media</span><span>Alta</span><em>Probabilidad</em></div>
+            <div class="rcard rcard--hot" style="--i:1">
+              <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4h12v4H6zM4 10h16v4H4zM6 16h12v4H6z"/></svg></span>
+              <div class="rcard__body"><b>Más carga administrativa</b><span>Se carga una sola vez, en el origen, con pocos campos</span></div>
+              <div class="rcard__meters"><span class="rmeter">Probabilidad <span class="rmeter__bar"><i class="on"></i><i class="on"></i><i class="on"></i></span></span><span class="rmeter">Impacto <span class="rmeter__bar"><i class="on"></i><i class="on"></i><i class="on"></i></span></span></div>
+            </div>
+            <div class="rcard" style="--i:2">
+              <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 9v6M18 9v6"/></svg></span>
+              <div class="rcard__body"><b>Pasarse del tope</b><span>Descuento por pago anual o bajar a 25 horas</span></div>
+              <div class="rcard__meters"><span class="rmeter">Probabilidad <span class="rmeter__bar"><i class="on"></i><i class="on"></i><i class="on"></i></span></span><span class="rmeter">Impacto <span class="rmeter__bar"><i class="on"></i><i class="on"></i><i></i></span></span></div>
+            </div>
+            <div class="rcard" style="--i:3">
+              <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 20V10a6 6 0 0 1 12 0v10l-2-2-2 2-2-2-2 2-2-2z"/><circle cx="10" cy="10" r="1"/><circle cx="14" cy="10" r="1"/></svg></span>
+              <div class="rcard__body"><b>Avisos con datos inventados</b><span>Instrucciones estrictas y Mariano revisa cada aviso</span></div>
+              <div class="rcard__meters"><span class="rmeter">Probabilidad <span class="rmeter__bar"><i class="on"></i><i class="on"></i><i></i></span></span><span class="rmeter">Impacto <span class="rmeter__bar"><i class="on"></i><i class="on"></i><i class="on"></i></span></span></div>
+            </div>
+            <div class="rcard" style="--i:4">
+              <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1"/><path d="M3 3l18 18"/></svg></span>
+              <div class="rcard__body"><b>Cortes de conexión</b><span>Cuaderno o pizarra de respaldo y fecha de última carga visible</span></div>
+              <div class="rcard__meters"><span class="rmeter">Probabilidad <span class="rmeter__bar"><i class="on"></i><i class="on"></i><i></i></span></span><span class="rmeter">Impacto <span class="rmeter__bar"><i class="on"></i><i class="on"></i><i></i></span></span></div>
+            </div>
+            <div class="rcard" style="--i:5">
+              <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+              <div class="rcard__body"><b>Privacidad y proveedor</b><span>Sin precios ni saldos, contrato sin entrenamiento y datos exportables</span></div>
+              <div class="rcard__meters"><span class="rmeter">Probabilidad <span class="rmeter__bar"><i class="on"></i><i></i><i></i></span></span><span class="rmeter">Impacto <span class="rmeter__bar"><i class="on"></i><i class="on"></i><i></i></span></span></div>
+            </div>
           </div>
         </div>
       </section>
@@ -1600,11 +1614,11 @@
               <span>Clientes</span><span>Entregas a tiempo</span><span>Crecimiento</span><span>Galpón</span>
             </div>
             <div class="temple__cols">
-              <div class="temple__col" style="--i:0"><b>Samuel referente</b><span>Sostiene la carga diaria y guía al resto</span></div>
-              <div class="temple__col" style="--i:1"><b>Corte del cuaderno</b><span>Hasta 3 meses en paralelo, no más</span></div>
-              <div class="temple__col" style="--i:2"><b>Línea de base temprana</b><span>Fechas desde la fase 1, entregas y rechazos desde la fase 2</span></div>
-              <div class="temple__col" style="--i:3"><b>Revisión por fase</b><span>Mariano decide con la información</span></div>
-              <div class="temple__col" style="--i:4"><b>Validación humana</b><span>Ningún aviso sale sin su aprobación</span></div>
+              <div class="temple__col" style="--i:0"><span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></span><b>Samuel referente</b><span>Sostiene la carga diaria y guía al resto</span></div>
+              <div class="temple__col" style="--i:1"><span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/><path d="M4 4l16 16"/></svg></span><b>Corte del cuaderno</b><span>Hasta 3 meses en paralelo, no más</span></div>
+              <div class="temple__col" style="--i:2"><span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><b>Línea de base temprana</b><span>Fechas desde la fase 1, entregas y rechazos desde la fase 2</span></div>
+              <div class="temple__col" style="--i:3"><span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg></span><b>Revisión por fase</b><span>Mariano decide con la información</span></div>
+              <div class="temple__col" style="--i:4"><span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><b>Validación humana</b><span>Ningún aviso sale sin su aprobación</span></div>
             </div>
             <div class="temple__base" aria-hidden="true"></div>
           </div>
