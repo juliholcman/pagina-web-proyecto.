@@ -10151,3 +10151,43 @@ section {
 .js-reveal-ready .rmx.replay.is-visible .rmx__dot,
 .js-reveal-ready .rmx.replay.is-visible .rmx__legend li { opacity: 1; transform: none; }
 @media (max-width: 899px) { .rmx { grid-template-columns: minmax(0, 1fr); padding: 18px 14px; } .rmx__chart { max-width: 420px; width: 100%; margin: 0 auto; } }
+
+/* 11 · Mapa resumen del proyecto */
+.pmap11 { position: relative; aspect-ratio: 1000 / 600; }
+.pmap11__lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.pmap11__lines path { fill: none; stroke: #9CC3E8; stroke-width: 3; stroke-dasharray: 6 6; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; vector-effect: non-scaling-stroke; }
+.pmap11__core { position: absolute; left: 37%; top: 37.5%; width: 26%; height: 25%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 14px; border-radius: 24px; text-align: center; background: linear-gradient(150deg, var(--azul-delta), var(--navy)); box-shadow: 0 26px 50px -24px rgba(6, 22, 46, 0.8), 0 0 0 8px rgba(95, 203, 245, 0.18); z-index: 2; }
+.pmap11__logo { width: 62%; max-width: 170px; height: auto; }
+.case-body .pmap11__core p { margin: 0; color: rgba(255, 255, 255, 0.9); font-size: 0.84rem; line-height: 1.4; }
+.pmap11__cluster { position: absolute; width: 31.5%; display: flex; flex-direction: column; gap: 8px; z-index: 1; }
+.pmap11__cluster--diag { left: 0; top: 0; }
+.pmap11__cluster--dis { right: 0; top: 0; }
+.pmap11__cluster--sel { left: 0; bottom: 0; }
+.pmap11__cluster--inn { right: 0; bottom: 0; }
+.pmap11__head { display: flex; align-items: baseline; gap: 8px; font-weight: 800; color: var(--azul-profundo); font-size: 1rem; }
+.pmap11__head small { padding: 2px 9px; border-radius: 999px; background: var(--azul-delta); color: #fff; font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.pmap11__cluster--inn .pmap11__head small { background: var(--celeste-delta); color: var(--azul-profundo); }
+.pmap11__list { display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.pmap11__leaf { display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px 12px; border: 1px solid #DCE8F4; border-radius: 14px; background: #fff; text-align: left; font: inherit; cursor: pointer; box-shadow: 0 8px 18px -14px rgba(6, 22, 46, 0.5); transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
+.pmap11__leaf:hover, .pmap11__leaf:focus-visible { transform: translateX(4px); border-color: var(--azul-medio); box-shadow: 0 12px 24px -14px rgba(21, 101, 192, 0.6); outline: none; }
+.pmap11__n { display: grid; place-items: center; flex: 0 0 auto; width: 32px; height: 32px; border-radius: 10px; background: var(--gris-hielo); color: var(--azul-delta); font-weight: 800; font-size: 0.85rem; }
+.pmap11__leaf:hover .pmap11__n { background: var(--azul-delta); color: #fff; }
+.pmap11__txt { display: flex; flex-direction: column; min-width: 0; }
+.pmap11__txt b { color: var(--azul-profundo); font-size: 0.88rem; line-height: 1.25; }
+.pmap11__txt small { color: #4A5D78; font-size: 0.78rem; line-height: 1.3; }
+.js-reveal-ready .pmap11.replay .pmap11__core { opacity: 0; transform: scale(0.6); transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.js-reveal-ready .pmap11.replay .pmap11__lines path { stroke-dashoffset: 1; transition: stroke-dashoffset 0.7s ease 0.5s; }
+.js-reveal-ready .pmap11.replay .pmap11__head { opacity: 0; transition: opacity 0.4s ease; transition-delay: calc(0.9s + var(--c) * 0.15s); }
+.js-reveal-ready .pmap11.replay .pmap11__leaf { opacity: 0; transform: translateY(10px); transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.2s ease, box-shadow 0.2s ease; transition-delay: calc(1.1s + var(--i) * 0.08s); }
+.js-reveal-ready .pmap11.replay.is-visible .pmap11__core { opacity: 1; transform: none; }
+.js-reveal-ready .pmap11.replay.is-visible .pmap11__lines path { stroke-dashoffset: 0; }
+.js-reveal-ready .pmap11.replay.is-visible .pmap11__head { opacity: 1; }
+.js-reveal-ready .pmap11.replay.is-visible .pmap11__leaf { opacity: 1; transform: none; }
+.js-reveal-ready .pmap11.replay.is-visible .pmap11__leaf:hover { transform: translateX(4px); transition-delay: 0s; }
+@media (max-width: 1023px) {
+  .pmap11 { aspect-ratio: auto; display: flex; flex-direction: column; gap: 18px; }
+  .pmap11__lines { display: none; }
+  .pmap11__core, .pmap11__cluster { position: static; width: auto; height: auto; }
+  .pmap11__core { padding: 22px; }
+  .pmap11__logo { width: 150px; }
+}

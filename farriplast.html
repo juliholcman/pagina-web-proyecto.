@@ -1474,10 +1474,46 @@
 
     <!-- 11 · Carpeta de Cierre del Proyecto -->
     <div class="tab-panel" id="panel-cierre" data-stage="4" role="tabpanel" aria-labelledby="tab-cierre" hidden>
+      <!-- 01 · El proyecto en un mapa -->
+      <section class="case-block reveal" id="mapa-proyecto">
+        <div class="container">
+          <span class="eyebrow">01 · El proyecto en un mapa</span>
+          <h2 class="section-title">Todo el trabajo, de un vistazo</h2>
+          <div class="pmap11 replay">
+            <svg class="pmap11__lines" viewBox="0 0 1000 640" aria-hidden="true">
+              <path d="M380 290 C 350 230, 340 180, 315 160" pathLength="1"/>
+              <path d="M620 290 C 650 230, 660 180, 685 160" pathLength="1"/>
+              <path d="M380 350 C 350 410, 340 440, 315 450" pathLength="1"/>
+              <path d="M620 350 C 650 410, 660 440, 685 450" pathLength="1"/>
+            </svg>
+            <div class="pmap11__core">
+              <img src="farriplast-logo-claro.png" alt="Farriplast" class="pmap11__logo">
+              <p>Del cuaderno a un sistema en la nube y un asistente que avisa a tiempo</p>
+            </div>
+              <div class="pmap11__cluster pmap11__cluster--diag" style="--c:0">
+                <span class="pmap11__head"><small>Bloque 1</small>Diagnóstico</span>
+                <ol class="pmap11__list"><li><button type="button" class="pmap11__leaf" data-goto="relevamiento" style="--i:0"><span class="pmap11__n">01</span><span class="pmap11__txt"><b>Quién es y qué necesita</b><small>Todo se gestiona a mano, con 4 metas</small></span></button></li><li><button type="button" class="pmap11__leaf" data-goto="arquitectura-actual" style="--i:1"><span class="pmap11__n">02</span><span class="pmap11__txt"><b>Cómo está organizada hoy</b><small>Cuaderno, WhatsApp y un solo Excel</small></span></button></li></ol>
+              </div>
+              <div class="pmap11__cluster pmap11__cluster--dis" style="--c:1">
+                <span class="pmap11__head"><small>Bloque 2</small>Diseño de la solución</span>
+                <ol class="pmap11__list"><li><button type="button" class="pmap11__leaf" data-goto="arquitectura-destino" style="--i:2"><span class="pmap11__n">03</span><span class="pmap11__txt"><b>Cómo debería funcionar</b><small>Un registro único con 10 capacidades</small></span></button></li><li><button type="button" class="pmap11__leaf" data-goto="brechas-escenarios" style="--i:3"><span class="pmap11__n">04</span><span class="pmap11__txt"><b>Qué cambiar y cómo</b><small>Un sistema en la nube, por módulos</small></span></button></li></ol>
+              </div>
+              <div class="pmap11__cluster pmap11__cluster--sel" style="--c:2">
+                <span class="pmap11__head"><small>Bloque 3</small>Selección del proveedor</span>
+                <ol class="pmap11__list"><li><button type="button" class="pmap11__leaf" data-goto="alcance-mercado" style="--i:4"><span class="pmap11__n">05</span><span class="pmap11__txt"><b>Qué incluye y qué hay</b><small>24 meses en 4 fases, 4 sistemas</small></span></button></li><li><button type="button" class="pmap11__leaf" data-goto="matriz-rfp" style="--i:5"><span class="pmap11__n">06</span><span class="pmap11__txt"><b>Cómo comparamos</b><small>37 requisitos en 4 aspectos</small></span></button></li><li><button type="button" class="pmap11__leaf" data-goto="cumplimiento-evaluacion" style="--i:6"><span class="pmap11__n">07</span><span class="pmap11__txt"><b>Odoo vs. Softland</b><small>94,2 contra 85,8 puntos</small></span></button></li><li><button type="button" class="pmap11__leaf" data-goto="propuesta-comercial" style="--i:7"><span class="pmap11__n">08</span><span class="pmap11__txt"><b>Nuestra recomendación</b><small>Odoo, con prueba antes de contratar</small></span></button></li></ol>
+              </div>
+              <div class="pmap11__cluster pmap11__cluster--inn" style="--c:3">
+                <span class="pmap11__head"><small>Bloque 4</small>Innovación</span>
+                <ol class="pmap11__list"><li><button type="button" class="pmap11__leaf" data-goto="innovacion-ia" style="--i:8"><span class="pmap11__n">09</span><span class="pmap11__txt"><b>Una oportunidad con IA</b><small>5 ideas, 1 elegida</small></span></button></li><li><button type="button" class="pmap11__leaf" data-goto="diseno-ia" style="--i:9"><span class="pmap11__n">10</span><span class="pmap11__txt"><b>El prototipo con IA</b><small>14 pruebas y confianza 5 de 5</small></span></button></li></ol>
+              </div>
+          </div>
+        </div>
+      </section>
+
       <!-- 01 · Cómo se complementan -->
       <section class="case-block reveal" id="complemento-cierre">
         <div class="container">
-          <span class="eyebrow">01 · Las dos propuestas juntas</span>
+          <span class="eyebrow">02 · Las dos propuestas juntas</span>
           <h2 class="section-title">Uno se anticipa, el otro mide</h2>
           <p class="case-block__lead">Odoo es la única fuente de datos. El asistente lee una copia diaria, sin precios ni saldos, y no escribe nada en el sistema.</p>
           <div class="lotline replay">
@@ -1507,7 +1543,7 @@
       <!-- 02 · Hoja de ruta -->
       <section class="case-block case-block--alt reveal" id="hoja-de-ruta">
         <div class="container">
-          <span class="eyebrow">02 · Hoja de ruta</span>
+          <span class="eyebrow">03 · Hoja de ruta</span>
           <h2 class="section-title">Los próximos 24 meses</h2>
           <div class="metro replay">
             <div class="metro__months" aria-hidden="true"><span>Antes</span><span>Mes 1</span><span>Mes 7</span><span>Mes 13</span><span>Mes 19</span><span>Mes 24</span></div>
@@ -1538,7 +1574,7 @@
       <!-- 03 · Inversión -->
       <section class="case-block reveal" id="inversion-cierre">
         <div class="container">
-          <span class="eyebrow">03 · La inversión</span>
+          <span class="eyebrow">04 · La inversión</span>
           <h2 class="section-title">Cuánto cuesta todo, a tres años</h2>
           <div class="costbar replay">
             <div class="costbar__scale" aria-hidden="true"><span style="--v:0">0</span><span style="--v:2500">2.500</span><span style="--v:5000">5.000</span><span style="--v:7500">7.500</span><span style="--v:10178">10.178</span></div>
@@ -1567,7 +1603,7 @@
       <!-- 04 · Riesgos -->
       <section class="case-block case-block--alt reveal" id="riesgos-cierre">
         <div class="container">
-          <span class="eyebrow">04 · Riesgos</span>
+          <span class="eyebrow">05 · Riesgos</span>
           <h2 class="section-title">Qué vigilar y cómo lo cubrimos</h2>
           <div class="rmx replay">
             <div class="rmx__chart">
@@ -1585,7 +1621,7 @@
       <!-- 05 · Factores de éxito -->
       <section class="case-block reveal" id="exito-cierre">
         <div class="container">
-          <span class="eyebrow">05 · Factores de éxito</span>
+          <span class="eyebrow">06 · Factores de éxito</span>
           <h2 class="section-title">Lo que sostiene las cuatro metas</h2>
           <div class="temple replay">
             <div class="temple__roof">
