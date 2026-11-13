@@ -1348,3 +1348,16 @@ function initDraftCursor() {
     }), { threshold: 0.35 }).observe(box);
   });
 })();
+
+/* Video de fondo del hero: aparece con fundido cuando arranca a reproducirse
+   (mientras tanto se ve la foto). Se fuerza el play aunque el sistema tenga
+   "reducir movimiento", como el resto de las animaciones del sitio. */
+(function initHeroVideo() {
+  const v = document.querySelector('.hero__video');
+  if (!v) return;
+  const show = () => v.classList.add('is-playing');
+  v.addEventListener('playing', show, { once: true });
+  const p = v.play();
+  if (p && p.catch) p.catch(() => {});
+  if (!v.paused && v.readyState > 2) show();
+})();
