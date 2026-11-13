@@ -1474,38 +1474,54 @@
 
     <!-- 11 · Carpeta de Cierre del Proyecto -->
     <div class="tab-panel" id="panel-cierre" data-stage="4" role="tabpanel" aria-labelledby="tab-cierre" hidden>
-      <!-- 01 · El proyecto en un mapa -->
-      <section class="case-block reveal" id="mapa-proyecto">
+      <!-- 01 · Antes y después -->
+      <section class="case-block reveal" id="antes-despues">
         <div class="container">
-          <span class="eyebrow">01 · El proyecto en un mapa</span>
-          <h2 class="section-title">Todo el trabajo, de un vistazo</h2>
-          <div class="pmap11 replay">
-            <svg class="pmap11__lines" viewBox="0 0 1000 640" aria-hidden="true">
-              <path d="M380 290 C 350 230, 340 180, 315 160" pathLength="1"/>
-              <path d="M620 290 C 650 230, 660 180, 685 160" pathLength="1"/>
-              <path d="M380 350 C 350 410, 340 440, 315 450" pathLength="1"/>
-              <path d="M620 350 C 650 410, 660 440, 685 450" pathLength="1"/>
-            </svg>
-            <div class="pmap11__core">
-              <img src="farriplast-logo-claro.png" alt="Farriplast" class="pmap11__logo">
-              <p>Del cuaderno a un sistema en la nube y un asistente que avisa a tiempo</p>
+          <span class="eyebrow">01 · El cambio</span>
+          <h2 class="section-title">Farriplast hoy y dentro de 24 meses</h2>
+          <div class="ba replay" data-ba>
+            <div class="ba__switch">
+              <button type="button" class="ba__opt is-on" data-v="hoy" aria-pressed="true">Hoy</button>
+              <button type="button" class="ba__opt" data-v="fut" aria-pressed="false">En 24 meses</button>
+              <span class="ba__knob" aria-hidden="true"></span>
             </div>
-              <div class="pmap11__cluster pmap11__cluster--diag" style="--c:0">
-                <span class="pmap11__head"><small>Bloque 1</small>Diagnóstico</span>
-                <ol class="pmap11__list"><li><button type="button" class="pmap11__leaf" data-goto="relevamiento" style="--i:0"><span class="pmap11__n">01</span><span class="pmap11__txt"><b>Quién es y qué necesita</b><small>Todo se gestiona a mano, con 4 metas</small></span></button></li><li><button type="button" class="pmap11__leaf" data-goto="arquitectura-actual" style="--i:1"><span class="pmap11__n">02</span><span class="pmap11__txt"><b>Cómo está organizada hoy</b><small>Cuaderno, WhatsApp y un solo Excel</small></span></button></li></ol>
+            <div class="ba__rows">
+              <div class="ba__row" style="--i:0">
+                <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7c0-2 3.6-3 8-3s8 1 8 3-3.6 3-8 3-8-1-8-3z"/><path d="M4 7v10c0 2 3.6 3 8 3s8-1 8-3V7M4 12c0 2 3.6 3 8 3s8-1 8-3"/></svg></span>
+                <b class="ba__lbl">La información</b>
+                <span class="ba__vals"><span class="ba__val ba__val--hoy">Cuaderno, WhatsApp, fotos y un solo Excel</span><span class="ba__val ba__val--fut">Un único registro en la nube, en Odoo</span></span>
               </div>
-              <div class="pmap11__cluster pmap11__cluster--dis" style="--c:1">
-                <span class="pmap11__head"><small>Bloque 2</small>Diseño de la solución</span>
-                <ol class="pmap11__list"><li><button type="button" class="pmap11__leaf" data-goto="arquitectura-destino" style="--i:2"><span class="pmap11__n">03</span><span class="pmap11__txt"><b>Cómo debería funcionar</b><small>Un registro único con 10 capacidades</small></span></button></li><li><button type="button" class="pmap11__leaf" data-goto="brechas-escenarios" style="--i:3"><span class="pmap11__n">04</span><span class="pmap11__txt"><b>Qué cambiar y cómo</b><small>Un sistema en la nube, por módulos</small></span></button></li></ol>
+              <div class="ba__row" style="--i:1">
+                <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 9v6M18 9v6"/></svg></span>
+                <b class="ba__lbl">Saldos de clientes</b>
+                <span class="ba__vals"><span class="ba__val ba__val--hoy">18 horas por semana para reconstruirlas</span><span class="ba__val ba__val--fut">Saldo de cada cliente al momento</span></span>
               </div>
-              <div class="pmap11__cluster pmap11__cluster--sel" style="--c:2">
-                <span class="pmap11__head"><small>Bloque 3</small>Selección del proveedor</span>
-                <ol class="pmap11__list"><li><button type="button" class="pmap11__leaf" data-goto="alcance-mercado" style="--i:4"><span class="pmap11__n">05</span><span class="pmap11__txt"><b>Qué incluye y qué hay</b><small>24 meses en 4 fases, 4 sistemas</small></span></button></li><li><button type="button" class="pmap11__leaf" data-goto="matriz-rfp" style="--i:5"><span class="pmap11__n">06</span><span class="pmap11__txt"><b>Cómo comparamos</b><small>37 requisitos en 4 aspectos</small></span></button></li><li><button type="button" class="pmap11__leaf" data-goto="cumplimiento-evaluacion" style="--i:6"><span class="pmap11__n">07</span><span class="pmap11__txt"><b>Odoo vs. Softland</b><small>94,2 contra 85,8 puntos</small></span></button></li><li><button type="button" class="pmap11__leaf" data-goto="propuesta-comercial" style="--i:7"><span class="pmap11__n">08</span><span class="pmap11__txt"><b>Nuestra recomendación</b><small>Odoo, con prueba antes de contratar</small></span></button></li></ol>
+              <div class="ba__row" style="--i:2">
+                <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 7v10l9 4 9-4V7M12 11v10"/></svg></span>
+                <b class="ba__lbl">Stock</b>
+                <span class="ba__vals"><span class="ba__val ba__val--hoy">Estimado a ojo</span><span class="ba__val ba__val--fut">Por lote, estado y dueño del material</span></span>
               </div>
-              <div class="pmap11__cluster pmap11__cluster--inn" style="--c:3">
-                <span class="pmap11__head"><small>Bloque 4</small>Innovación</span>
-                <ol class="pmap11__list"><li><button type="button" class="pmap11__leaf" data-goto="innovacion-ia" style="--i:8"><span class="pmap11__n">09</span><span class="pmap11__txt"><b>Una oportunidad con IA</b><small>5 ideas, 1 elegida</small></span></button></li><li><button type="button" class="pmap11__leaf" data-goto="diseno-ia" style="--i:9"><span class="pmap11__n">10</span><span class="pmap11__txt"><b>El prototipo con IA</b><small>14 pruebas y confianza 5 de 5</small></span></button></li></ol>
+              <div class="ba__row" style="--i:3">
+                <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 10h4l4 4v2h-8z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></span>
+                <b class="ba__lbl">Entregas</b>
+                <span class="ba__vals"><span class="ba__val ba__val--hoy">Nadie mide si llegan a tiempo</span><span class="ba__val ba__val--fut">El asistente avisa antes y Odoo mide el % a tiempo</span></span>
               </div>
+              <div class="ba__row" style="--i:4">
+                <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.3-5.5 6.5-5.5s5.7 2 6.5 5.5"/><circle cx="17" cy="9" r="2.8"/><path d="M16 14.6c2.8.3 4.7 2.2 5.4 5.4"/></svg></span>
+                <b class="ba__lbl">Quién carga los datos</b>
+                <span class="ba__vals"><span class="ba__val ba__val--hoy">Todo depende de Mariano</span><span class="ba__val ba__val--fut">Samuel registra y Mariano decide</span></span>
+              </div>
+              <div class="ba__row" style="--i:5">
+                <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+                <b class="ba__lbl">Decisiones como el galpón</b>
+                <span class="ba__vals"><span class="ba__val ba__val--hoy">Por intuición</span><span class="ba__val ba__val--fut">Con costos, márgenes y ocupación reales</span></span>
+              </div>
+            </div>
+            <div class="ba__meter">
+              <span class="ba__mlbl">Madurez de la gestión</span>
+              <span class="ba__bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+              <b class="ba__lvl"><span class="ba__val--hoy">Nivel 1 de 5</span><span class="ba__val--fut">Nivel 4 de 5</span></b>
+            </div>
           </div>
         </div>
       </section>

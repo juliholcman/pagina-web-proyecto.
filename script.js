@@ -1325,39 +1325,26 @@ function initDraftCursor() {
   });
 }
 
-/* Mapa resumen de la sección 11: cada hoja abre su sección del caso */
-document.addEventListener('click', (event) => {
-  const leaf = event.target.closest('[data-goto]');
-  if (!leaf) return;
-  const tab = document.getElementById('tab-' + leaf.dataset.goto);
-  if (tab) tab.click();
-});
-
-/* Mapa resumen: las líneas se calculan sobre el diseño real para que unan
-   el centro con cada bloque, sea cual sea el ancho de la pantalla. */
-(function initPmap11() {
-  const map = document.querySelector('.pmap11');
-  if (!map) return;
-  const svg = map.querySelector('.pmap11__lines');
-  const core = map.querySelector('.pmap11__core');
-  const draw = () => {
-    const m = map.getBoundingClientRect();
-    if (!m.width || getComputedStyle(svg).display === 'none') return;
-    svg.setAttribute('viewBox', '0 0 ' + m.width + ' ' + m.height);
-    const c = core.getBoundingClientRect();
-    const paths = svg.querySelectorAll('path');
-    map.querySelectorAll('.pmap11__cluster').forEach((cl, k) => {
-      const r = cl.getBoundingClientRect();
-      const left = r.left - m.left < (c.left - m.left);
-      const x1 = (left ? c.left : c.right) - m.left;
-      const y1 = (r.top + r.height / 2 < c.top + c.height / 2 ? c.top + c.height * 0.3 : c.bottom - c.height * 0.3) - m.top;
-      const x2 = (left ? r.right : r.left) - m.left;
-      const y2 = r.top + r.height / 2 - m.top;
-      const mx = (x1 + x2) / 2;
-      if (paths[k]) paths[k].setAttribute('d', 'M' + x1 + ' ' + y1 + ' C ' + mx + ' ' + y1 + ', ' + mx + ' ' + y2 + ', ' + x2 + ' ' + y2);
-    });
-  };
-  draw();
-  window.addEventListener('resize', draw);
-  new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) draw(); })).observe(map);
+/* Antes y después (sección 11): al entrar muestra "Hoy" y pasa solo a
+   "En 24 meses"; los botones permiten ir y volver. */
+(function initBeforeAfter() {
+  document.querySelectorAll('[data-ba]').forEach((box) => {
+    const opts = box.querySelectorAll('.ba__opt');
+    let timer = null;
+    let touched = false;
+    const set = (fut) => {
+      box.classList.toggle('is-fut', fut);
+      opts.forEach((o) => {
+        const on = (o.dataset.v === 'fut') === fut;
+        o.classList.toggle('is-on', on);
+        o.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    };
+    opts.forEach((o) => o.addEventListener('click', () => { touched = true; clearTimeout(timer); set(o.dataset.v === 'fut'); }));
+    new IntersectionObserver((es) => es.forEach((e) => {
+      clearTimeout(timer);
+      if (e.isIntersecting) { if (!touched) timer = setTimeout(() => set(true), 1800); }
+      else { touched = false; set(false); }
+    }), { threshold: 0.35 }).observe(box);
+  });
 })();
