@@ -1474,10 +1474,62 @@
 
     <!-- 11 · Carpeta de Cierre del Proyecto -->
     <div class="tab-panel" id="panel-cierre" data-stage="4" role="tabpanel" aria-labelledby="tab-cierre" hidden>
+      <!-- 01 · Antes y después -->
+      <section class="case-block reveal" id="antes-despues">
+        <div class="container">
+          <span class="eyebrow">01 · El cambio</span>
+          <h2 class="section-title">Farriplast hoy y dentro de 24 meses</h2>
+          <div class="ba replay" data-ba>
+            <div class="ba__switch">
+              <button type="button" class="ba__opt is-on" data-v="hoy" aria-pressed="true">Hoy</button>
+              <button type="button" class="ba__opt" data-v="fut" aria-pressed="false">En 24 meses</button>
+              <span class="ba__knob" aria-hidden="true"></span>
+            </div>
+            <div class="ba__rows">
+              <div class="ba__row" style="--i:0">
+                <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7c0-2 3.6-3 8-3s8 1 8 3-3.6 3-8 3-8-1-8-3z"/><path d="M4 7v10c0 2 3.6 3 8 3s8-1 8-3V7M4 12c0 2 3.6 3 8 3s8-1 8-3"/></svg></span>
+                <b class="ba__lbl">La información</b>
+                <span class="ba__vals"><span class="ba__val ba__val--hoy">Cuaderno, WhatsApp, fotos y un solo Excel</span><span class="ba__val ba__val--fut">Un único registro en la nube, en Odoo</span></span>
+              </div>
+              <div class="ba__row" style="--i:1">
+                <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 9v6M18 9v6"/></svg></span>
+                <b class="ba__lbl">Saldos de clientes</b>
+                <span class="ba__vals"><span class="ba__val ba__val--hoy">18 horas por semana para reconstruirlas</span><span class="ba__val ba__val--fut">Saldo de cada cliente al momento</span></span>
+              </div>
+              <div class="ba__row" style="--i:2">
+                <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 7v10l9 4 9-4V7M12 11v10"/></svg></span>
+                <b class="ba__lbl">Stock</b>
+                <span class="ba__vals"><span class="ba__val ba__val--hoy">Estimado a ojo</span><span class="ba__val ba__val--fut">Por lote, estado y dueño del material</span></span>
+              </div>
+              <div class="ba__row" style="--i:3">
+                <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 10h4l4 4v2h-8z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></span>
+                <b class="ba__lbl">Entregas</b>
+                <span class="ba__vals"><span class="ba__val ba__val--hoy">Nadie mide si llegan a tiempo</span><span class="ba__val ba__val--fut">El asistente avisa antes y Odoo mide el % a tiempo</span></span>
+              </div>
+              <div class="ba__row" style="--i:4">
+                <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.3-5.5 6.5-5.5s5.7 2 6.5 5.5"/><circle cx="17" cy="9" r="2.8"/><path d="M16 14.6c2.8.3 4.7 2.2 5.4 5.4"/></svg></span>
+                <b class="ba__lbl">Quién carga los datos</b>
+                <span class="ba__vals"><span class="ba__val ba__val--hoy">Todo depende de Mariano</span><span class="ba__val ba__val--fut">Samuel registra y Mariano decide</span></span>
+              </div>
+              <div class="ba__row" style="--i:5">
+                <span class="ic11" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+                <b class="ba__lbl">Decisiones como el galpón</b>
+                <span class="ba__vals"><span class="ba__val ba__val--hoy">Por intuición</span><span class="ba__val ba__val--fut">Con costos, márgenes y ocupación reales</span></span>
+              </div>
+            </div>
+            <div class="ba__meter">
+              <span class="ba__mlbl">Madurez de la gestión</span>
+              <span class="ba__bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+              <b class="ba__lvl"><span class="ba__val--hoy">Nivel 1 de 5</span><span class="ba__val--fut">Nivel 4 de 5</span></b>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- 01 · Cómo se complementan -->
       <section class="case-block reveal" id="complemento-cierre">
         <div class="container">
-          <span class="eyebrow">01 · Las dos propuestas juntas</span>
+          <span class="eyebrow">02 · Las dos propuestas juntas</span>
           <h2 class="section-title">Uno se anticipa, el otro mide</h2>
           <p class="case-block__lead">Odoo es la única fuente de datos. El asistente lee una copia diaria, sin precios ni saldos, y no escribe nada en el sistema.</p>
           <div class="lotline replay">
@@ -1507,7 +1559,7 @@
       <!-- 02 · Hoja de ruta -->
       <section class="case-block case-block--alt reveal" id="hoja-de-ruta">
         <div class="container">
-          <span class="eyebrow">02 · Hoja de ruta</span>
+          <span class="eyebrow">03 · Hoja de ruta</span>
           <h2 class="section-title">Los próximos 24 meses</h2>
           <div class="metro replay">
             <div class="metro__months" aria-hidden="true"><span>Antes</span><span>Mes 1</span><span>Mes 7</span><span>Mes 13</span><span>Mes 19</span><span>Mes 24</span></div>
@@ -1538,7 +1590,7 @@
       <!-- 03 · Inversión -->
       <section class="case-block reveal" id="inversion-cierre">
         <div class="container">
-          <span class="eyebrow">03 · La inversión</span>
+          <span class="eyebrow">04 · La inversión</span>
           <h2 class="section-title">Cuánto cuesta todo, a tres años</h2>
           <div class="costbar replay">
             <div class="costbar__scale" aria-hidden="true"><span style="--v:0">0</span><span style="--v:2500">2.500</span><span style="--v:5000">5.000</span><span style="--v:7500">7.500</span><span style="--v:10178">10.178</span></div>
@@ -1567,7 +1619,7 @@
       <!-- 04 · Riesgos -->
       <section class="case-block case-block--alt reveal" id="riesgos-cierre">
         <div class="container">
-          <span class="eyebrow">04 · Riesgos</span>
+          <span class="eyebrow">05 · Riesgos</span>
           <h2 class="section-title">Qué vigilar y cómo lo cubrimos</h2>
           <div class="rmx replay">
             <div class="rmx__chart">
@@ -1585,7 +1637,7 @@
       <!-- 05 · Factores de éxito -->
       <section class="case-block reveal" id="exito-cierre">
         <div class="container">
-          <span class="eyebrow">05 · Factores de éxito</span>
+          <span class="eyebrow">06 · Factores de éxito</span>
           <h2 class="section-title">Lo que sostiene las cuatro metas</h2>
           <div class="temple replay">
             <div class="temple__roof">

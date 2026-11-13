@@ -1324,3 +1324,27 @@ function initDraftCursor() {
     new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) place(); })).observe(d);
   });
 }
+
+/* Antes y después (sección 11): al entrar muestra "Hoy" y pasa solo a
+   "En 24 meses"; los botones permiten ir y volver. */
+(function initBeforeAfter() {
+  document.querySelectorAll('[data-ba]').forEach((box) => {
+    const opts = box.querySelectorAll('.ba__opt');
+    let timer = null;
+    let touched = false;
+    const set = (fut) => {
+      box.classList.toggle('is-fut', fut);
+      opts.forEach((o) => {
+        const on = (o.dataset.v === 'fut') === fut;
+        o.classList.toggle('is-on', on);
+        o.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    };
+    opts.forEach((o) => o.addEventListener('click', () => { touched = true; clearTimeout(timer); set(o.dataset.v === 'fut'); }));
+    new IntersectionObserver((es) => es.forEach((e) => {
+      clearTimeout(timer);
+      if (e.isIntersecting) { if (!touched) timer = setTimeout(() => set(true), 1800); }
+      else { touched = false; set(false); }
+    }), { threshold: 0.35 }).observe(box);
+  });
+})();

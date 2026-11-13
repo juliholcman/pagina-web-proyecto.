@@ -10151,3 +10151,42 @@ section {
 .js-reveal-ready .rmx.replay.is-visible .rmx__dot,
 .js-reveal-ready .rmx.replay.is-visible .rmx__legend li { opacity: 1; transform: none; }
 @media (max-width: 899px) { .rmx { grid-template-columns: minmax(0, 1fr); padding: 18px 14px; } .rmx__chart { max-width: 420px; width: 100%; margin: 0 auto; } }
+
+/* 11 · Antes y después */
+.ba { padding: 26px; border-radius: 26px; background: #fff; box-shadow: 0 24px 48px -32px rgba(6, 22, 46, 0.55); transition: background 0.6s ease; }
+.ba.is-fut { background: linear-gradient(160deg, #F2F8FE, #E3F0FA); }
+.ba__switch { position: relative; display: inline-grid; grid-template-columns: 1fr 1fr; margin-bottom: 22px; padding: 5px; border-radius: 999px; background: var(--gris-hielo); }
+.ba__opt { position: relative; z-index: 1; padding: 10px 26px; border: 0; background: none; font: inherit; font-weight: 800; color: #6B7F99; cursor: pointer; transition: color 0.3s ease; }
+.ba__opt.is-on { color: #fff; }
+.ba__knob { position: absolute; top: 5px; bottom: 5px; left: 5px; width: calc(50% - 5px); border-radius: 999px; background: #8A9BB2; box-shadow: 0 8px 18px -10px rgba(6, 22, 46, 0.6); transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1), background 0.45s ease; }
+.ba.is-fut .ba__knob { transform: translateX(100%); background: linear-gradient(150deg, var(--azul-delta), var(--navy)); }
+.ba__rows { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.ba__row { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto auto; gap: 2px 14px; align-items: center; padding: 14px 16px; border-radius: 18px; background: #F5F7FA; border: 1px solid #E4E9F0; transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; transition-delay: calc(var(--i) * 0.08s); }
+.ba__row .ic11 { grid-row: 1 / span 2; background: #E4E9F0; color: #8A9BB2; transition: background 0.5s ease, color 0.5s ease; transition-delay: inherit; }
+.ba__lbl { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: #8A9BB2; transition: color 0.5s ease; transition-delay: inherit; }
+.ba__vals { display: grid; }
+.ba__val { grid-area: 1 / 1; font-size: 1rem; font-weight: 600; transition: opacity 0.4s ease, transform 0.45s ease; transition-delay: inherit; }
+.ba__val--hoy { color: #4A5568; }
+.ba__val--fut { color: var(--azul-profundo); opacity: 0; transform: translateY(10px); }
+.ba.is-fut .ba__row { background: #fff; border-color: #C9DCEF; box-shadow: 0 12px 24px -18px rgba(21, 101, 192, 0.55); }
+.ba.is-fut .ba__row .ic11 { background: var(--azul-delta); color: #fff; }
+.ba.is-fut .ba__lbl { color: var(--azul-medio); }
+.ba.is-fut .ba__row .ba__val--hoy { opacity: 0; transform: translateY(-10px); }
+.ba.is-fut .ba__row .ba__val--fut { opacity: 1; transform: none; }
+.ba__meter { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 22px; padding-top: 18px; border-top: 1px solid #DCE8F4; }
+.ba__mlbl { font-size: 0.82rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--azul-medio); }
+.ba__bar { display: flex; gap: 6px; }
+.ba__bar i { width: 46px; height: 12px; border-radius: 6px; background: #DCE8F4; transition: background 0.4s ease; }
+.ba__bar i:first-child { background: #8A9BB2; }
+.ba.is-fut .ba__bar i:nth-child(-n+4) { background: var(--azul-delta); }
+.ba.is-fut .ba__bar i:nth-child(2) { transition-delay: 0.2s; }
+.ba.is-fut .ba__bar i:nth-child(3) { transition-delay: 0.4s; }
+.ba.is-fut .ba__bar i:nth-child(4) { transition-delay: 0.6s; }
+.ba__lvl { display: grid; font-size: 1.05rem; color: var(--azul-profundo); }
+.ba__lvl span { grid-area: 1 / 1; transition: opacity 0.4s ease; }
+.ba__lvl .ba__val--fut { opacity: 0; transform: none; }
+.ba.is-fut .ba__lvl .ba__val--hoy { opacity: 0; }
+.ba.is-fut .ba__lvl .ba__val--fut { opacity: 1; }
+.js-reveal-ready .ba.replay .ba__row { opacity: 0; transform: translateY(12px); }
+.js-reveal-ready .ba.replay.is-visible .ba__row { opacity: 1; transform: none; transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, opacity 0.4s ease, transform 0.4s ease; transition-delay: calc(var(--i) * 0.08s); }
+@media (max-width: 799px) { .ba { padding: 18px 14px; } .ba__rows { grid-template-columns: minmax(0, 1fr); } .ba__opt { padding: 9px 18px; } .ba__bar i { width: 30px; } }
