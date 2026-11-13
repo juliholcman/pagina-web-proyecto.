@@ -46,12 +46,9 @@
 }
 
 html {
-  font-size: 125%; /* 20px: letra grande para presentar en un aula grande (todo el sitio está en rem y escala junto) */
+  font-size: 106.25%; /* ~17px: aumenta levemente el tamaño de letra base del sitio (legibilidad de párrafos/tarjetas) */
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-height);
-}
-@media (max-width: 900px) {
-  html { font-size: 106.25%; } /* en celular queda como antes para que no se desarme */
 }
 
 body {
