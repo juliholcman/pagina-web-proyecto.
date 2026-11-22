@@ -8,7 +8,7 @@ export const config = {
   matcher: ['/farriplast', '/farriplast.html', '/farriplast/:path*'],
 };
 
-const HASH = '0225fc76c75eaa78eafd5f04b891a7c2b73b9c785db152469f64bfa2399b055c';
+const HASH = '117fa02795934c58fcbcb1099631c3abdf0ba09d66617f906f7513b0062e89c7';
 
 async function sha256(text) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
