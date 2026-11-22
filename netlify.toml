@@ -3,10 +3,19 @@
   to = "/casos-exito.html"
   status = 200
 
+# El caso Farriplast tiene clave y solo se sirve desde Vercel (middleware.js).
+# Netlify no puede pedir clave en el plan gratis, así que redirige allá.
 [[redirects]]
   from = "/farriplast"
-  to = "/farriplast.html"
-  status = 200
+  to = "https://deltaconsultora.vercel.app/farriplast"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/farriplast.html"
+  to = "https://deltaconsultora.vercel.app/farriplast"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/biensentado"
